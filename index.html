@@ -3,189 +3,90 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>InsuFlow | CI Pro Experience</title>
-    
-    <style>
-        /* ============================================================
-           GLOBAL NAV (inline since global-nav.css is external)
-           ============================================================ */
-        *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-
-        :root {
-            --nav-height: 52px;
-            --accent: #0071e3;
-            --bg: #f5f5f7;
-            --surface: #ffffff;
-            --text-primary: #1d1d1f;
-            --text-secondary: #515154;
-            --text-tertiary: #86868b;
-            --border: rgba(0, 0, 0, 0.06);
-            --radius-lg: 20px;
-            --radius-md: 14px;
-            --radius-sm: 8px;
-        }
-
-        body {
-            background-color: var(--bg);
-            color: var(--text-primary);
-            font-family: -apple-system, BlinkMacSystemFont, "SF Pro Text", "Segoe UI", sans-serif;
-            -webkit-font-smoothing: antialiased;
-        }
-
-        /* ---- Navbar ---- */
-        .navbar {
-            position: sticky;
-            top: 0;
-            z-index: 100;
-            background: rgba(255,255,255,0.85);
-            backdrop-filter: blur(20px);
-            -webkit-backdrop-filter: blur(20px);
-            border-bottom: 1px solid var(--border);
-            height: var(--nav-height);
-        }
-
-        .nav-container {
-            max-width: 940px;
-            margin: 0 auto;
-            padding: 0 24px;
-            height: 100%;
-            display: flex;
-            align-items: center;
-            gap: 32px;
-        }
-
-        .logo {
-            font-size: 16px;
-            font-weight: 700;
-            color: var(--text-primary);
-            cursor: pointer;
-            letter-spacing: -0.02em;
-            flex-shrink: 0;
-        }
-
-        .nav-menu {
-            display: flex;
-            gap: 4px;
-            align-items: center;
-            margin-left: auto;
-        }
-
-        .nav-item {
-            font-size: 13px;
-            font-weight: 500;
-            color: var(--text-secondary);
-            text-decoration: none;
-            padding: 6px 12px;
-            border-radius: 8px;
-            transition: background 0.15s, color 0.15s;
-            white-space: nowrap;
-        }
-
-        .nav-item:hover { background: rgba(0,0,0,0.05); color: var(--text-primary); }
-        .nav-item.active { background: rgba(0,113,227,0.08); color: var(--accent); }
-
-        /* Mobile hamburger */
-        .menu-toggle {
-            display: none;
-            flex-direction: column;
-            gap: 5px;
-            cursor: pointer;
-            margin-left: auto;
-            padding: 6px;
-        }
-
-        .menu-toggle span {
-            display: block;
-            width: 22px;
-            height: 2px;
-            background: var(--text-primary);
-            border-radius: 2px;
-            transition: 0.3s;
-        }
-
-        @media (max-width: 700px) {
-            .menu-toggle { display: flex; }
-            .nav-menu {
-                display: none;
-                position: absolute;
-                top: var(--nav-height);
-                left: 0; right: 0;
-                background: rgba(255,255,255,0.97);
-                backdrop-filter: blur(20px);
-                flex-direction: column;
-                padding: 12px 16px 20px;
-                gap: 2px;
-                border-bottom: 1px solid var(--border);
-            }
-            .nav-menu.show { display: flex; }
-            .nav-item { width: 100%; padding: 10px 14px; }
-        }
-
-       /* Hero Section */
-.hero {
-    padding-top: 140px;
-    padding-bottom: 80px;
-    text-align: center;
-}
-
-.badge {
-    font-size: 12px;
-    font-weight: 600;
-    color: #bf4800;
-    text-transform: uppercase;
-    letter-spacing: 0.05em;
-    display: block;
-    margin-bottom: 12px;
-}
-
-.hero h1 {
-    font-size: 48px;
-    font-weight: 700;
-    letter-spacing: -0.03em;
-    line-height: 1.1;
-    margin-bottom: 16px;
-    color: #1d1d1f;
-}
-    </style>
+    <title>Operational Hub - InsuFlow Hub</title>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
-    <!-- ============================
-         NAVIGATION
-         ============================ -->
     <header class="navbar">
         <div class="nav-container">
-            <span class="logo" onclick="window.location.href='dashboard.html'">CI Pro Universe</span>
-
-            <div class="menu-toggle" onclick="toggleMobileMenu()" aria-label="Toggle menu">
-                <span></span><span></span><span></span>
-            </div>
-
-            <nav class="nav-menu" id="navMenu">
-                <a href="dashboard.html" class="nav-item">Operational Hub</a>
-                <a href="ci-pro-experience.html" class="nav-item active">CI Pro Experience</a>
-                <a href="app-filler.html" class="nav-item">EPOS Buddy</a>
-                <a href="app-nomination.html" class="nav-item">Magic Filler</a>
-                <a href="app-nomination.html" class="nav-item">Doc Matters</a>
+            <span class="logo" onclick="window.location.href='dashboard.html'" style="cursor: pointer;">CI Pro Universe</span>
+            <nav class="nav-links">
+                <a href="dashboard.html" class="active" style="color: #000000; font-weight: 500;">Operational Hub</a>
+                <a href="javascript:void(0)" onclick="handleLogout()" class="btn-signin">Sign Out</a>
             </nav>
         </div>
     </header>
 
- <script>   
- // ============================================================
-        // MOBILE NAV
-        // ============================================================
-        function toggleMobileMenu() {
-            document.getElementById('navMenu').classList.toggle('show');
-        }
+    <main class="container">
+        
+        <section class="hero" style="padding-top: 100px; padding-bottom: 40px; text-align: left;">
+            <span class="badge">Broker Workspace</span>
+            <h1 style="font-size: 36px; margin-bottom: 8px;">Welcome back, Broker</h1>
+            <p style="text-align: left; margin: 0; font-size: 16px;" class="subtitle">Select an operational module below to begin analyzing exposure or generating client documentation.</p>
+        </section>
 
-        // ============================================================
-        // INIT
-        // ============================================================
-        document.addEventListener('DOMContentLoaded', () => {
-            applyCombinedFilters();
-            updateStagePlayer(0);
-        });
-    </script>
+        <section class="features" style="background-color: transparent; padding: 20px 0 60px 0;">
+            <div class="grid">
+
+               <div class="card" style="display: flex; flex-direction: column; justify-content: space-between; min-height: 220px;">
+                    <div>
+                        <span style="font-size: 11px; font-weight: 600; color: #0071e3; text-transform: uppercase; tracking: 0.05em; display: block; margin-bottom: 6px;">Advisory Suite</span>
+                        <h3>CI Pro Presentation Kit</h3>
+                        <p>Analyze client personal financial exposure, calculate income replacement, and model out-of-pocket advanced medical treatments.</p>
+                    </div>
+                    <a href="ci-pro-presentation.html" class="btn-primary" style="padding: 8px 16px; font-size: 13px; width: fit-content; margin-top: 16px;">Launch Module</a>
+                </div>
+                
+                <div class="card" style="display: flex; flex-direction: column; justify-content: space-between; min-height: 220px;">
+                    <div>
+                        <span style="font-size: 11px; font-weight: 600; color: #0071e3; text-transform: uppercase; tracking: 0.05em; display: block; margin-bottom: 6px;">Advisory Suite</span>
+                        <h3>CI Pro Experience</h3>
+                        <p>Analyze client personal financial exposure, calculate income replacement, and model out-of-pocket advanced medical treatments.</p>
+                    </div>
+                    <a href="cipro-experience.html" class="btn-primary" style="padding: 8px 16px; font-size: 13px; width: fit-content; margin-top: 16px;">Launch Module</a>
+                </div>
+
+                <div class="card" style="display: flex; flex-direction: column; justify-content: space-between; min-height: 220px;">
+                    <div>
+                        <span style="font-size: 11px; font-weight: 600; color: #0071e3; text-transform: uppercase; tracking: 0.05em; display: block; margin-bottom: 6px;">Automation</span>
+                        <h3>Magic Filler</h3>
+                        <p>Accelerate policy underwriting. Automatically map client profiles across EPP payment, credit card enrollment, and amendments.</p>
+                    </div>
+                    <a href="magicfiller.html" class="btn-primary" style="padding: 8px 16px; font-size: 13px; width: fit-content; margin-top: 16px;">Open Filler</a>
+                </div>
+
+                <div class="card" style="display: flex; flex-direction: column; justify-content: space-between; min-height: 220px;">
+                    <div>
+                        <span style="font-size: 11px; font-weight: 600; color: #0071e3; text-transform: uppercase; tracking: 0.05em; display: block; margin-bottom: 6px;">Legal & Trust</span>
+                        <h3>Nomination Tool</h3>
+                        <p>Structure bulletproof estate and policy beneficiary distributions quickly with real-time statutory rule checking.</p>
+                    </div>
+                    <a href="app-nomination.html" class="btn-primary" style="padding: 8px 16px; font-size: 13px; width: fit-content; margin-top: 16px;">Open Tool</a>
+                </div>
+
+            </div>
+        </section>
+
+        <section class="security" style="padding: 0 0 60px 0;">
+            <div class="security-box">
+                <strong>Secured Session Active:</strong> Encrypted data sync to Supabase engine is online. All client analysis inputs are protected by end-to-end security protocol parameters.
+            </div>
+        </section>
+
+    </main>
+
+    <footer class="footer">
+        &copy; 2026 InsuFlow Hub. Professional Broker Portal. All rights reserved.
+    </footer>
+
+  
+</body>
+</html>
+</body>
+</html>
+</body>
+
+
 </body>
 </html>
