@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Underwriting BMI Calculator - CI Pro Universe</title>
+    <title>Juvenile Build Guideline - CI Pro Universe</title>
 <style>
 /* ============================================================
    GLOBAL DESIGN VARIABLES (Unified Workspace Framework)
@@ -161,7 +161,7 @@ label {
     font-weight: 500;
 }
 
-input[type=number] {
+input, select {
     width: 100%;
     padding: 12px;
     border-radius: 10px;
@@ -173,7 +173,7 @@ input[type=number] {
     transition: border-color 0.2s, box-shadow 0.2s;
 }
 
-input[type=number]:focus {
+input:focus, select:focus {
     border-color: var(--accent);
     outline: none;
 }
@@ -186,11 +186,6 @@ input[type=number]:focus {
 
 @media (max-width: 600px) {
     .grid-2 { grid-template-columns: 1fr; }
-}
-
-.muted {
-    color: var(--text-tertiary);
-    font-size: 0.85rem;
 }
 
 button {
@@ -212,15 +207,22 @@ button:hover {
 }
 
 /* ============================================================
-   BMI SPECIALIST RESULT PANEL STYLING
+   DYNAMIC LABELS & METRIC DISPLAY OUTCOMES
    ============================================================ */
 .result-panel {
     margin-top: 24px;
     padding: 24px;
     background: #ffffff;
     border-radius: 12px;
-    border-left: 4px solid var(--accent);
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.02);
+}
+
+.panel-pass {
+    border-left: 4px solid #34c759; /* Apple Green */
+}
+
+.panel-fail {
+    border-left: 4px solid #ff3b30; /* Apple Red */
 }
 
 .result-title {
@@ -231,26 +233,28 @@ button:hover {
     font-weight: 600;
 }
 
-.bmi-value-display {
-    font-size: 36px;
+.status-badge {
+    font-size: 22px;
     font-weight: 700;
-    color: var(--text-primary);
     margin: 8px 0;
-    letter-spacing: -0.02em;
+    letter-spacing: -0.01em;
 }
 
-.bmi-value-display span {
-    color: var(--accent);
-}
+.status-pass { color: #34c759; }
+.status-fail { color: #ff3b30; }
 
-.underwriting-comment {
+.underwriting-details {
     background: #f5f5f7;
     padding: 14px 16px;
     border-radius: 8px;
     font-size: 0.95rem;
-    font-weight: 500;
     color: var(--text-secondary);
     border: 1px solid rgba(0, 0, 0, 0.03);
+    margin-top: 10px;
+}
+
+.underwriting-details p {
+    margin: 4px 0;
 }
 </style>
 </head>
@@ -269,7 +273,8 @@ button:hover {
                 <a href="cipro-experience.html" class="nav-item">CI Pro Experience</a>
                 <a href="app-filler.html" class="nav-item">EPOS Buddy</a>
                 <a href="magicfiller.html" class="nav-item">Magic Filler</a>
-                <a href="bmi-calculator.html" class="nav-item active">BMI Calculator</a>
+                <a href="bmi-calculator.html" class="nav-item">BMI Calculator</a>
+                <a href="juvenile-build.html" class="nav-item active">Juvenile Build</a>
             </nav>
         </div>
     </header>
@@ -279,76 +284,164 @@ button:hover {
         <div style="background: var(--surface); padding: 32px; border-radius: 18px; border: 1px solid rgba(0,0,0,0.02); box-shadow: 0 4px 12px rgba(0,0,0,0.01);">
             
             <span style="font-size: 11px; font-weight: 600; color: var(--accent); text-transform: uppercase; letter-spacing: 0.05em; display: block; margin-bottom: 4px;">Underwriting Rules Engine</span>
-            <h1 style="font-size: 24px; font-weight: 700; margin-bottom: 24px; letter-spacing: -0.02em;">Field Underwriting BMI Calculator</h1>
+            <h1 style="font-size: 24px; font-weight: 700; margin-bottom: 24px; letter-spacing: -0.02em;">Juvenile Build Guideline (ANB 3–16)</h1>
             
             <section class="section">
-                <h2>Metrics Input</h2>
+                <h2>1. Identity & Age Parameters</h2>
                 <div class="grid-2">
-                    <label>Height (cm)
-                        <input type="number" id="height" placeholder="e.g. 175" inputmode="numeric">
+                    <label>Date of Birth
+                        <input type="date" id="dob" onchange="updateANB()">
                     </label>
-                    <label>Weight (kg)
-                        <input type="number" id="weight" placeholder="e.g. 70" inputmode="numeric">
+                    <label>Age Next Birthday (ANB)
+                        <input type="number" id="anb" min="3" max="16" placeholder="3 - 16" oninput="clearDOB()">
                     </label>
                 </div>
-                <button type="button" onclick="calculateBMI()">Evaluate Guidelines</button>
+                <div style="margin-top: 12px;">
+                    <label>Gender
+                        <select id="gender">
+                            <option value="Female">Female</option>
+                            <option value="Male">Male</option>
+                        </select>
+                    </label>
+                </div>
+            </section>
+
+            <section class="section">
+                <h2>2. Physical Measurements</h2>
+                <div class="grid-2">
+                    <label>Height (cm)
+                        <input type="number" id="height" placeholder="e.g. 110" inputmode="numeric">
+                    </label>
+                    <label>Weight (kg)
+                        <input type="number" id="weight" placeholder="e.g. 20" inputmode="numeric">
+                    </label>
+                </div>
+                <button type="button" onclick="checkBuild()">Check Build Guideline</button>
             </section>
 
             <div class="result-panel" id="result" style="display:none;">
-                <div class="result-title">Evaluation Result</div>
-                <div class="bmi-value-display">BMI: <span id="bmi">0.0</span></div>
-                <div class="underwriting-comment" id="comment"></div>
-            </div>
+                </div>
 
         </div>
     </main>
 
     <script>
-        // Global Navigation Toggle Script
+        // Matrix Mapping Structure
+        const buildTable = {
+            3: { Female: { height: [80, 93], bmi: [13.7, 18.1] }, Male: { height: [82, 94], bmi: [14.2, 18.3] } },
+            4: { Female: { height: [88, 103], bmi: [13.5, 17.8] }, Male: { height: [89, 104], bmi: [13.7, 17.8] } },
+            5: { Female: { height: [94, 111], bmi: [13.2, 17.9] }, Male: { height: [95, 112], bmi: [13.4, 17.6] } },
+            6: { Female: { height: [100, 119], bmi: [13.1, 18.1] }, Male: { height: [101, 119], bmi: [13.3, 17.7] } },
+            7: { Female: { height: [106, 123], bmi: [13.4, 18.8] }, Male: { height: [107, 124], bmi: [13.7, 18.4] } },
+            8: { Female: { height: [112, 131], bmi: [13.4, 19.6] }, Male: { height: [113, 131], bmi: [13.7, 19.2] } },
+            9: { Female: { height: [118, 137], bmi: [13.5, 20.6] }, Male: { height: [118, 137], bmi: [13.8, 20.0] } },
+            10: { Female: { height: [123, 143], bmi: [13.7, 21.8] }, Male: { height: [123, 144], bmi: [14.0, 21.0] } },
+            11: { Female: { height: [127, 150], bmi: [14.0, 23.0] }, Male: { height: [128, 150], bmi: [14.2, 22.0] } },
+            12: { Female: { height: [132, 156], bmi: [14.4, 24.0] }, Male: { height: [132, 155], bmi: [14.5, 23.2] } },
+            13: { Female: { height: [139, 163], bmi: [14.8, 25.2] }, Male: { height: [137, 161], bmi: [15.0, 24.2] } },
+            14: { Female: { height: [145, 168], bmi: [15.3, 26.2] }, Male: { height: [143, 170], bmi: [15.5, 25.2] } },
+            15: { Female: { height: [150, 171], bmi: [15.8, 27.2] }, Male: { height: [150, 176], bmi: [16.0, 26.0] } },
+            16: { Female: { height: [151, 173], bmi: [16.3, 28.0] }, Male: { height: [156, 182], bmi: [16.5, 26.8] } }
+        };
+
+        // Mobile Menu Navigation Switcher
         function toggleMobileMenu() {
             document.getElementById('navMenu').classList.toggle('show');
         }
 
-        // Underwriting Rules Processing Function
-        function calculateBMI() {
-            const weight = parseFloat(document.getElementById('weight').value);
-            const heightCm = parseFloat(document.getElementById('height').value);
+        // Complete standard Insurance Formula for ANB
+        function updateANB() {
+            const dobValue = document.getElementById('dob').value;
+            if (!dobValue) return;
+            
+            const dob = new Date(dobValue);
+            const today = new Date();
+            
+            let age = today.getFullYear() - dob.getFullYear();
+            const birthThisYear = new Date(today.getFullYear(), dob.getMonth(), dob.getDate());
+            
+            // Adjust to ensure processing calculation locks onto "Age Next Birthday" Rules
+            if (today < birthThisYear) {
+                // Not yet reached birthday this calendar year
+                age = age; 
+            } else {
+                // Has passed birthday this calendar year, so next birthday is next calendar year
+                age = age + 1;
+            }
+            
+            // Boundary validation locks
+            if (age >= 3 && age <= 16) {
+                document.getElementById('anb').value = age;
+            } else {
+                document.getElementById('anb').value = age; // Output anyway to let execution check boundaries
+            }
+        }
 
-            if (isNaN(weight) || isNaN(heightCm) || heightCm <= 0 || weight <= 0) {
-                alert("Please enter valid height and weight measurements.");
+        function clearDOB() {
+            document.getElementById('dob').value = '';
+        }
+
+        // Deep Analytical Checker Execution
+        function checkBuild() {
+            const anb = parseInt(document.getElementById('anb').value.trim());
+            const gender = document.getElementById('gender').value;
+            const heightInput = document.getElementById('height').value.trim();
+            const weightInput = document.getElementById('weight').value.trim();
+            const resultPanel = document.getElementById('result');
+
+            const height = parseFloat(heightInput);
+            const weight = parseFloat(weightInput);
+
+            // Error Exception Handle Boundary
+            if (!anb || !height || !weight || isNaN(anb) || isNaN(height) || isNaN(weight)) {
+                resultPanel.className = "result-panel panel-fail";
+                resultPanel.innerHTML = `<div class="result-title">System Error</div>
+                                         <div class="status-badge status-fail">⚠️ Validation Incomplete</div>
+                                         <div class="underwriting-details">Please enter valid, complete metric dimensions for calculation.</div>`;
+                resultPanel.style.display = 'block';
                 return;
             }
 
-            const heightM = heightCm / 100;
-            const bmi = weight / (heightM * heightM);
-            const bmiRounded = bmi.toFixed(1);
-
-            let comment = "";
-
-            if (bmi < 16.0) {
-                comment = "Declined – BMI is too low for coverage.";
-            } else if (bmi >= 16.0 && bmi < 17.0) {
-                comment = "Medical Examination Report (MER) required.";
-            } else if (bmi >= 17.0 && bmi <= 30.0) { // Consolidated overlap ranges nicely
-                comment = "Standard underwriting – No additional requirements.";
-            } else if (bmi > 30.0 && bmi <= 35.0) {
-                comment = "Standard underwriting – Extra loading fees may be applied.";
-            } else if (bmi > 35.0 && bmi <= 40.0) {
-                comment = "Medical Examination Report (MER) required.";
-            } else if (bmi > 40.0 && bmi <= 43.0) {
-                comment = "Medical Examination Report (MER) required – Only Life coverage will be considered.";
-            } else if (bmi > 43.0 && bmi <= 49.0) {
-                comment = "MER + Blood Lipid Profile + Fasting Blood Glucose (FBS) + HbA1c required.";
-            } else {
-                comment = "Declined – BMI exceeds acceptable platform limits.";
+            if (!buildTable[anb] || !buildTable[anb][gender]) {
+                resultPanel.className = "result-panel panel-fail";
+                resultPanel.innerHTML = `<div class="result-title">Underwriting Constraint</div>
+                                         <div class="status-badge status-fail">❌ Scope Out of Range</div>
+                                         <div class="underwriting-details">No underwriting guidelines mapped for age parameters outside ANB 3-16 limits.</div>`;
+                resultPanel.style.display = 'block';
+                return;
             }
 
-            document.getElementById('bmi').innerText = bmiRounded;
-            document.getElementById('comment').innerText = comment;
-            document.getElementById('result').style.display = 'block';
-            
-            // Smooth reveal scroll alignment
-            document.getElementById('result').scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+            const bmi = weight / ((height / 100) ** 2);
+            const bmiRounded = bmi.toFixed(1);
+            const { height: hRange, bmi: bRange } = buildTable[anb][gender];
+
+            const heightOk = height >= hRange[0] && height <= hRange[1];
+            const bmiOk = bmi >= bRange[0] && bmi <= bRange[1];
+
+            if (heightOk && bmiOk) {
+                resultPanel.className = "result-panel panel-pass";
+                resultPanel.innerHTML = `
+                    <div class="result-title">Evaluation Result</div>
+                    <div class="status-badge status-pass">✅ Pass Standard Build</div>
+                    <div class="underwriting-details">
+                        <p>Calculated Juvenile BMI: <strong>${bmiRounded}</strong></p>
+                        <p class="muted" style="margin-top: 6px; font-size:12px;">Metrics map cleanly inside acceptable product table standards for <strong>ANB ${anb} ${gender}</strong>.</p>
+                    </div>`;
+            } else {
+                resultPanel.className = "result-panel panel-fail";
+                resultPanel.innerHTML = `
+                    <div class="result-title">Evaluation Result</div>
+                    <div class="status-badge status-fail">❌ Not Within Guideline</div>
+                    <div class="underwriting-details">
+                        <p>Calculated Juvenile BMI: <strong class="status-fail">${bmiRounded}</strong></p>
+                        <hr style="border:0; border-top:1px solid var(--line); margin: 8px 0;">
+                        <p>• <strong>Target Height:</strong> ${hRange[0]} – ${hRange[1]} cm (Current: ${height} cm)</p>
+                        <p>• <strong>Target BMI Range:</strong> ${bRange[0]} – ${bRange[1]} (Current: ${bmiRounded})</p>
+                    </div>`;
+            }
+
+            resultPanel.style.display = 'block';
+            resultPanel.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
         }
     </script>
 </body>
