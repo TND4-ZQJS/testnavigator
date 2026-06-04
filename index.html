@@ -28,55 +28,95 @@ body {
     padding: 0 24px;
 }
 
-/* Floating Blurred Navbar */
-.navbar {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 48px;
-    background-color: rgba(255, 255, 255, 0.75);
-    backdrop-filter: blur(20px);
-    -webkit-backdrop-filter: blur(20px);
-    border-bottom: 1px solid rgba(0, 0, 0, 0.05);
-    z-index: 1000;
-}
+        /* ---- Navbar ---- */
+        .navbar {
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            background: rgba(255,255,255,0.85);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border-bottom: 1px solid var(--border);
+            height: var(--nav-height);
+        }
 
-.nav-container {
-    max-width: 1000px;
-    margin: 0 auto;
-    padding: 0 24px;
-    height: 100%;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-}
+        .nav-container {
+            max-width: 940px;
+            margin: 0 auto;
+            padding: 0 24px;
+            height: 100%;
+            display: flex;
+            align-items: center;
+            gap: 32px;
+        }
 
-.logo {
-     font-size: 16px;
+        .logo {
+            font-size: 16px;
             font-weight: 700;
             color: var(--text-primary);
             cursor: pointer;
             letter-spacing: -0.02em;
             flex-shrink: 0;
-}
+        }
 
-.nav-links {
-    display: flex;
-    align-items: center;
-    gap: 24px;
-}
+        .nav-menu {
+            display: flex;
+            gap: 4px;
+            align-items: center;
+            margin-left: auto;
+        }
 
-.nav-links a {
-    color: #515154;
-    text-decoration: none;
-    font-size: 13px;
-    transition: color 0.2s ease;
-}
+        .nav-item {
+            font-size: 13px;
+            font-weight: 500;
+            color: var(--text-secondary);
+            text-decoration: none;
+            padding: 6px 12px;
+            border-radius: 8px;
+            transition: background 0.15s, color 0.15s;
+            white-space: nowrap;
+        }
 
-.nav-links a:hover {
-    color: #000000;
-}
+        .nav-item:hover { background: rgba(0,0,0,0.05); color: var(--text-primary); }
+        .nav-item.active { background: rgba(0,113,227,0.08); color: var(--accent); }
+
+        /* Mobile hamburger */
+        .menu-toggle {
+            display: none;
+            flex-direction: column;
+            gap: 5px;
+            cursor: pointer;
+            margin-left: auto;
+            padding: 6px;
+        }
+
+        .menu-toggle span {
+            display: block;
+            width: 22px;
+            height: 2px;
+            background: var(--text-primary);
+            border-radius: 2px;
+            transition: 0.3s;
+        }
+
+        @media (max-width: 700px) {
+            .menu-toggle { display: flex; }
+            .nav-menu {
+                display: none;
+                position: absolute;
+                top: var(--nav-height);
+                left: 0; right: 0;
+                background: rgba(255,255,255,0.97);
+                backdrop-filter: blur(20px);
+                flex-direction: column;
+                padding: 12px 16px 20px;
+                gap: 2px;
+                border-bottom: 1px solid var(--border);
+            }
+            .nav-menu.show { display: flex; }
+            .nav-item { width: 100%; padding: 10px 14px; }
+        }
+
 
 /* Buttons */
 .btn-signin {
@@ -204,114 +244,6 @@ body {
     .subtitle { font-size: 16px; }
 }
 
-/* ==========================================
-   Broker Login Page Component Styles
-   ========================================== */
-
-.login-wrapper {
-    min-height: calc(100vh - 48px); /* Account for your 48px navbar */
-    margin-top: 48px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    background-color: #f5f5f7; /* Matches your features section background */
-    padding: 24px;
-}
-
-.login-card {
-    background: #ffffff;
-    width: 100%;
-    max-width: 380px;
-    padding: 40px 32px;
-    border-radius: 18px; /* Matches your .card border-radius */
-    border: 1px solid rgba(0, 0, 0, 0.03);
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.02);
-}
-
-.login-card h2 {
-    font-size: 24px;
-    font-weight: 600;
-    letter-spacing: -0.02em;
-    color: #1d1d1f;
-    margin-bottom: 6px;
-    text-align: center;
-}
-
-.login-card p {
-    font-size: 14px;
-    color: #86868b;
-    text-align: center;
-    margin-bottom: 28px;
-}
-
-/* Form Layout Elements */
-.form-group {
-    margin-bottom: 20px;
-}
-
-.form-group label {
-    display: block;
-    font-size: 12px;
-    font-weight: 600;
-    color: #1d1d1f;
-    margin-bottom: 6px;
-}
-
-.form-group input {
-    width: 100%;
-    padding: 12px 14px;
-    font-size: 15px;
-    font-family: inherit;
-    color: #1d1d1f;
-    background-color: #ffffff;
-    border: 1px solid #d2d2d7;
-    border-radius: 8px;
-    box-sizing: border-box;
-    transition: border-color 0.2s ease, box-shadow 0.2s ease;
-}
-
-.form-group input:focus {
-    outline: none;
-    border-color: #0071e3; /* Accent blue matching your .btn-primary */
-    box-shadow: 0 0 0 4px rgba(0, 113, 227, 0.1);
-}
-
-/* Functional Forms Button */
-.btn-submit {
-    width: 100%;
-    background-color: #0071e3;
-    color: #ffffff;
-    border: none;
-    padding: 14px;
-    border-radius: 8px;
-    font-size: 15px;
-    font-weight: 500;
-    cursor: pointer;
-    transition: background-color 0.2s ease;
-    margin-top: 8px;
-}
-
-.btn-submit:hover {
-    background-color: #0077ed;
-}
-
-.btn-submit:disabled {
-    background-color: #aeaeaf;
-    cursor: not-allowed;
-}
-
-/* System Exception UI Alert */
-.auth-error {
-    background-color: rgba(223, 72, 0, 0.06);
-    color: #bf4800; /* Matching your badge orange color rule */
-    border: 1px solid rgba(191, 72, 0, 0.15);
-    padding: 12px;
-    border-radius: 8px;
-    font-size: 13px;
-    margin-top: 16px;
-    text-align: center;
-    display: none;
-}    
 </style>
 </head>
 <body>
