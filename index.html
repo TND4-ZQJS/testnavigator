@@ -5,9 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Operational Hub - InsuFlow Hub</title>
 <style>
-
 /* ============================================================
-   GLOBAL DESIGN VARIABLES (Aligned with Target Code)
+   GLOBAL DESIGN VARIABLES (Unified Workspace Framework)
    ============================================================ */
 *, *::before, *::after { 
     box-sizing: border-box; 
@@ -16,14 +15,15 @@
 }
 
 :root {
-    --nav-height: 52px; /* Matched to Target Code */
+    --nav-height: 52px;
     --accent: #0071e3;
-    --bg: #ffffff;      /* Keeps your page body background clean white */
-    --surface: #ffffff;
+    --bg: #f5f5f7;       /* Clean gray workspace canvas background */
+    --surface: #ffffff;  /* Card surface background */
     --text-primary: #1d1d1f;
-    --text-secondary: #515154;  /* Refined secondary text color from target */
+    --text-secondary: #515154;
     --text-tertiary: #86868b;
-    --border: rgba(0, 0, 0, 0.06); /* Subtle layout line from target */
+    --border: rgba(0, 0, 0, 0.06);
+    --line: #e9e9ee;
 }
 
 body {
@@ -35,17 +35,19 @@ body {
 }
 
 .container {
-max-width: 940px;
- margin: 40px auto;
-padding: 0 24px 100px;
+    max-width: 940px;
+    margin: 40px auto;
+    padding: 0 24px 100px;
 }
 
-/* ---- Fixed Navbar Setup ---- */
+/* ============================================================
+   STICKY STYLISH NAVBAR STRUCTURE
+   ============================================================ */
 .navbar {
     position: sticky;
     top: 0;
     z-index: 100;
-    background: rgba(255,255,255,0.85);
+    background: rgba(255, 255, 255, 0.85);
     backdrop-filter: blur(20px);
     -webkit-backdrop-filter: blur(20px);
     border-bottom: 1px solid var(--border);
@@ -99,7 +101,6 @@ padding: 0 24px 100px;
     color: var(--accent); 
 }
 
-/* Mobile hamburger */
 .menu-toggle {
     display: none;
     flex-direction: column;
@@ -137,440 +138,198 @@ padding: 0 24px 100px;
 }
 
 /* ============================================================
-   PAGE MODULE INTERFACE CONTENT STYLING
+   FILLER WORKSPACE COMPONENT STYLES
    ============================================================ */
-.btn-primary {
-    display: inline-block;
-    background-color: #0071e3;
-    color: #ffffff;
-    text-decoration: none;
-    padding: 12px 24px;
-    border-radius: 999px;
-    font-size: 15px;
-    font-weight: 500;
-    margin-top: 24px;
-    transition: background-color 0.2s ease;
+.section {
+    background: #fbfbfd;
+    border: 1px solid #eee;
+    padding: 20px;
+    border-radius: 12px;
+    margin: 16px 0;
 }
 
-.btn-primary:hover {
-    background-color: #0077ed;
+.section h2 {
+    margin: 0 0 14px 0;
+    font-size: 1.15rem;
+    letter-spacing: -0.01em;
 }
 
-/* Hero Section */
-.hero {
-    padding-top: 140px;
-    padding-bottom: 80px;
-    text-align: center;
+.hidden-section {
+    display: none;
 }
 
-.badge {
-    font-size: 30px;
-    font-weight: 600;
-    color: #bf4800;
-    text-transform: uppercase;
-    letter-spacing: 0.05em;
+label {
     display: block;
-    margin-bottom: 12px;
+    margin: 8px 0;
+    font-size: 0.95rem;
 }
 
-.hero h1 {
-    font-size: 48px;
-    font-weight: 700;
-    letter-spacing: -0.03em;
-    line-height: 1.1;
-    margin-bottom: 16px;
-    color: #1d1d1f;
+.info-label {
+    font-weight: bold;
 }
 
-.subtitle {
-    font-size: 19px;
-    color: #86868b;
-    max-width: 640px;
-    margin: 0 auto;
-    font-weight: 400;
-    letter-spacing: -0.01em;
+input[type=text], input[type=number], select, textarea {
+    width: 100%;
+    padding: 10px;
+    border-radius: 10px;
+    border: 1px solid #ddd;
+    margin-top: 6px;
+    font-size: 1rem;
+    background: #fff;
+    font-family: inherit;
 }
 
-/* Features Grid */
-.features {
-    padding: 60px 0;
-    background-color: #f5f5f7;
+h3 {
+    margin: 20px 0 5px 0;
+    font-size: 1.00rem;
 }
 
-.grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-    gap: 24px;
+textarea {
+    resize: vertical;
+    min-height: 120px;
 }
 
-.card {
-    background: #ffffff;
-    padding: 32px;
-    border-radius: 18px;
-    border: 1px solid rgba(0, 0, 0, 0.03);
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.02);
-}
-
-.card h3 {
-    font-size: 19px;
-    font-weight: 600;
-    margin-bottom: 10px;
-    letter-spacing: -0.01em;
-}
-
-.card p {
-    font-size: 14px;
-    color: #6e6e73;
-}
-
-/* Security Box */
-.security {
-    padding: 60px 0;
-}
-
-.security-box {
-    background-color: #ffffff;
-    border-left: 3px solid #86868b;
-    padding: 16px 24px;
-    font-size: 14px;
-    color: #6e6e73;
-}
-
-/* Footer */
-.footer {
-    padding: 40px 24px;
-    text-align: center;
-    font-size: 12px;
-    color: #86868b;
-    border-top: 1px solid #e8e8ed;
-}
-
-/* Mobile Responsive Adjustments */
-@media (max-width: 768px) {
-    .hero h1 { font-size: 36px; }
-    .subtitle { font-size: 16px; }
-}
-
-/* ============================================================
-   2. EXTRA STRUCTURAL FRAMING FOR YOUR EXISTING WEB FILLER
-   ============================================================ */
-:root{
-    --bg:#f6f7f9; --card:#fff; --accent:#007aff; --muted:#666; --line:#e9e9ee;
-  }
-  *{box-sizing:border-box}
-  body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Arial;margin:18px;background:var(--bg);color:#111}
-  main{max-width:980px;margin:0 auto;background:var(--card);padding:18px;border-radius:12px;box-shadow:0 8px 28px rgba(0,0,0,0.06)}
-  h1{margin:15px 0 35px 0;font-size:1.50rem}
-  .section{background:#fbfbfd;border:1px solid #eee;padding:14px;border-radius:10px;margin:12px 0}
-  .section h2{margin:0 0 10px 0;font-size:1.05rem}
-  .hidden-section {
-  display: none;
-}
-  label{display:block;margin:8px 0;font-size:0.95rem}
-  .info-label {font-weight: bold;}
-  input[type=text],input[type=number],select,textarea{
-    width:100%;padding:10px;border-radius:10px;border:1px solid #ddd;margin-top:6px;font-size:1rem;background:#fff
-  }
-  h3{margin:20px 0 5px 0;font-size:1.00rem}
-  textarea{resize:vertical;min-height:120px}
-  .row{display:flex;gap:12px;align-items:center;flex-wrap:wrap;margin:8px 0}
-  .muted{color:var(--muted);font-size:0.85rem}
-  button{background:var(--accent);color:#fff;border:0;padding:10px 14px;border-radius:10px;cursor:pointer}
-  button.secondary{background:#999}
-  button.ghost{background:transparent;border:1px solid var(--line);color:#333}
-  .actions{display:flex;gap:12px;align-items:center}
-
-  .grid-2 {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: 12px;
-}
-@media (max-width: 600px) {
-  .grid-2 {
-    grid-template-columns: 1fr;
-  }
-}
- .grid-3 {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 12px;
-}
-@media (max-width: 600px) {
-  .grid-3 {
-    grid-template-columns: 1fr;
-  }
-}
-
- .grid-4 {
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap: 12px;
-}
-@media (max-width: 600px) {
-  .grid-3 {
-    grid-template-columns: 1fr;
-  }
-}
-
-  #scrollTopBtn {
-  position: fixed;
-  bottom: 24px;
-  right: 20px;
-  width: 44px;
-  height: 44px;
-  border-radius: 50%;
-  border: none;
-  background: #007aff; /* iOS blue */
-  color: #fff;
-  cursor: pointer;
-  display: none; /* hidden by default */
-  box-shadow: 0 4px 8px rgba(0,0,0,0.25);
-  align-items: center;
-  justify-content: center;
-  transition: opacity 0.3s ease;
-  z-index: 999;
-}
-
-#scrollTopBtn svg {
-  pointer-events: none; /* icon doesn't block click */
-}
-
-#scrollTopBtn.show {
-  display: flex; /* show with flex centering */
-  opacity: 1;
-}
-
-/* --------LINK PERSON--------- */
-input[readonly] {
-  background: #f2f2f2;
-  color: #555;
-  cursor: not-allowed;
-}
-
-/* --------Container Grid using Nominee--------- */
-/* Grid */
-.nominee-grid {display: grid; grid-template-columns: 1fr; gap: 12px;}
-/* Entry card */
-.entry {background: #fff; padding: 12px; border-radius: 10px;
-  border: 1px solid #eee; position: relative;}
-/* Header */
-.entry h3 {margin: 0 0 8px 0; font-size: 0.95rem; display: flex; align-items: center; justify-content: space-between;}
-/* Remove button */
-.entry .remove-btn {background: transparent; border: 1px solid var(--line); color: #333; border-radius: 8px; padding: 6px 10px; font-size: 0.9rem; cursor: pointer;}
-.entry .remove-btn:hover {border-color: #d0d0d7;}
-
-
-/* ---------- FIX DATE GROUP LAYOUT ---------- */
-.row.date-group {
-  justify-content: flex-start !important;
-  align-items: center;
-  gap: 8px;
-  flex-wrap: nowrap;
-}
-
-/* Label should not stretch */
-.date-group .date-label {
-  flex: 0 0 auto;
-  margin: 0;
-  margin-right: 3px;      /* closer to input */
-  font-weight: 500;
-  color: #333;
-  text-align: left;
-  white-space: nowrap;     /* desktop only */
-}
-
-/* Container for inputs */
-.date-group .date-inputs {
-  display: flex;
-  flex-grow: 0;
-  justify-content: flex-start;
-  gap: 4px;                /* tighter spacing */
-}
-
-/* Compact input fields */
-.date-group .date-inputs input {
-  width: 3.8em;
-  text-align: center;
-  padding: 9px 0;
-  border: 1px solid #ddd;
-  border-radius: 10px;
-  background: #fff;
-  font-size: 1rem;
-  line-height: 1.2;
-  box-sizing: border-box;
-}
-
-
-/* ---------- MOBILE FIXES ---------- */
-@media (max-width: 600px) {
-
-  .row.date-group {
+.row {
+    display: flex;
+    gap: 12px;
+    align-items: center;
     flex-wrap: wrap;
-    row-gap: 2px;               /* reduce vertical spacing */
-  }
-
-  .date-group .date-label {
-    width: 100%;
-    white-space: normal !important;  /* FIX overflow */
-    margin-bottom: 2px;              /* closer to inputs */
-  }
-
-  .date-group .date-inputs {
-    width: 100%;
-  }
+    margin: 8px 0;
 }
 
-/* ---------- TIME GROUP USING LABEL (NO HTML CHANGE NEEDED) ---------- */
-
-/* Make the label behave like .row.date-group */
-label:has(.time-input-group) {
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  gap: 8px;
-  flex-wrap: nowrap;
+.muted {
+    color: var(--text-tertiary);
+    font-size: 0.85rem;
 }
 
-/* Style the label text (the text before the div) */
-label:has(.time-input-group) > :first-child {
-  flex: 0 0 auto;
-  white-space: nowrap;
-  margin-right: 6px;
-  font-weight: 500;
-  color: #333;
+button {
+    background: var(--accent);
+    color: #fff;
+    border: 0;
+    padding: 10px 16px;
+    border-radius: 10px;
+    cursor: pointer;
+    font-weight: 500;
+    font-size: 0.95rem;
+    transition: background 0.15s;
 }
 
-/* Fix for label text (because :first-child matches text node) */
-label:has(.time-input-group)::first-line {
-  font-weight: 500;
+button:hover {
+    background: #0077ed;
 }
 
-/* Container for HH/MM/AMPM */
-.time-input-group {
-  display: flex;
-  align-items: center;
-  gap: 6px;
-  flex-grow: 0;
-  flex-shrink: 0;
-}
+button.secondary { background: #999; }
+button.ghost { background: transparent; border: 1px solid var(--line); color: #333; }
+button.ghost:hover { background: rgba(0,0,0,0.02); }
 
-/* Match padding, border, height, radius of date inputs */
-.time-input-group input,
-.time-input-group select {
-  width: 3.8em;
-  text-align: center;
-  padding: 9px 0;                /* SAME as date field */
-  border: 1px solid #ddd;
-  border-radius: 10px;           /* SAME rounded corners */
-  background: #fff;
-  font-size: 1rem;
-  line-height: 1.2;
-  box-sizing: border-box;
-}
+.actions { display: flex; gap: 12px; align-items: center; }
 
-/* AMPM select wider slightly */
-.time-input-group select {
-  width: 4.8em;
-}
+/* Grid Structures */
+.grid-2 { display: grid; grid-template-columns: repeat(2, 1fr); gap: 12px; }
+.grid-3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; }
+.grid-4 { display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; }
 
-/* Separator (:) alignment fix */
-.time-input-group .separator {
-  display: inline-block;
-  margin: 0 2px;
-}
-
-/* Mobile style mirroring .date-group */
 @media (max-width: 600px) {
-  label:has(.time-input-group) {
-    flex-wrap: wrap;
-  }
-
-  label:has(.time-input-group) > :first-child {
-    width: 100%;
-    margin-bottom: 4px;
-  }
-
-  .time-input-group {
-    width: 100%;
-  }
+    .grid-2, .grid-3, .grid-4 { grid-template-columns: 1fr; }
 }
 
- /* ---------- WIZARD CSS ---------- */ 
-  /* Progress Tracker Container */
-.step-indicator {display: flex;justify-content: space-between;margin-bottom: 30px;background: #fff;padding: 15px;border-radius: 12px;border: 1px solid var(--line);overflow-x: auto;gap: 10px;}
-
- /* Individual Step Tab */
-.step {flex: 1;text-align: center;font-size: 0.8rem;color: #888;cursor: pointer;transition: all 0.2s ease-in-out;padding: 8px;border-radius: 8px;min-width: 90px;display: flex;flex-direction: column;align-items: center;}
-
-/* Hover effect for Expert users jumping around */
-.step:hover {background: #f0f7ff;color: var(--accent);}
-.step.active {color: var(--accent);font-weight: 600;background: #f0f7ff;}
-.step-num {width: 28px;height: 28px;line-height: 28px;border-radius: 50%;background: #eee;display: block;margin-bottom: 6px;font-size: 0.85rem;transition: background 0.3s;}
-.step.active .step-num {background: var(--accent);color: #fff;}
-
-/* Wizard Step Visibility */
-.wizard-step {display: none;}
-.wizard-step.active {display: block;animation: slideIn 0.3s ease-out;}
-
-@keyframes slideIn {from { opacity: 0; transform: translateX(10px); }to { opacity: 1; transform: translateX(0); }}
-
-/* Navigation Footer */
-.wizard-actions {display: flex;justify-content: space-between;margin-top: 30px;padding: 20px 0;border-top: 1px solid var(--line);}
-
- /* ---------- SIGNATURE CSS ---------- */ 
-  /* Signature preview tiles */
-  .sig-preview{
-    width:100%; height:150px; border:1px dashed #bbb; border-radius:10px;
-    display:flex; align-items:center; justify-content:center; background:#fff; cursor:pointer; position:relative;
-  }
-  .sig-preview img{ max-width:100%; max-height:100%; object-fit:contain; }
-  .sig-preview span{ color:#999; }
-
-  /* Signature Modal */
-  .sig-modal{ display:none; position:fixed; inset:0; background:rgba(0,0,0,.45); z-index:1000; }
-  .sig-modal .box{
-    width:min(560px, 92vw); background:#fff; margin:6vh auto; padding:14px; border-radius:12px;
-    box-shadow:0 18px 50px rgba(0,0,0,.25)
-  }
-  .sig-modal h3{ margin:0 0 8px 0; }
-  /* NOTE: canvas is responsive via CSS; internal pixels are set in JS for crispness */
-  #sigCanvas{ width:100%; height:220px; background:#fff; border:1px solid #ddd; border-radius:10px; touch-action:none }
-  .sig-actions{ display:flex; gap:10px; justify-content:flex-end; margin-top:10px; }
-
-  /* Hidden signature XY tuning inputs (owner/witness) */
-  .hidden-inputs {display: none;}
-
-  /* Preview pane */
-  .preview{background:#fff;border:1px solid #eee;border-radius:10px;padding:10px}
-  .preview canvas{width:100%;height:auto;border-radius:8px}
-
-  /* Save indicator */
-  #saveStatus{
-    position:fixed; top:12px; right:12px; background:var(--accent); color:#fff;
-    padding:6px 10px; border-radius:8px; font-size:0.85rem; opacity:0; transition:opacity .25s;
-  }
-
-  @media (max-width:720px){
-    .policy-grid{grid-template-columns:1fr}
-  }
-
-  .btn-set-today {
-  margin-left: 8px;
-  padding: 4px 10px !important;
-  font-size: 0.75rem !important;
-  height: auto !important;
-  border-color: var(--accent) !important;
-  color: var(--accent) !important;
-  background: transparent;
-  font-weight: 500;
-  cursor: pointer;
-  border-radius: 6px;
+#scrollTopBtn {
+    position: fixed;
+    bottom: 24px;
+    right: 20px;
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    border: none;
+    background: var(--accent);
+    color: #fff;
+    cursor: pointer;
+    display: none;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.25);
+    align-items: center;
+    justify-content: center;
+    transition: opacity 0.3s ease;
+    z-index: 999;
 }
 
-.btn-set-today:hover {
-  background: var(--accent) !important;
-  color: #fff !important;
+#scrollTopBtn.show { display: flex; opacity: 1; }
+input[readonly] { background: #f2f2f2; color: #555; cursor: not-allowed; }
+
+/* Nominee Setup Layout */
+.nominee-grid { display: grid; grid-template-columns: 1fr; gap: 12px; }
+.entry { background: #fff; padding: 12px; border-radius: 10px; border: 1px solid #eee; position: relative; }
+.entry h3 { margin: 0 0 8px 0; font-size: 0.95rem; display: flex; align-items: center; justify-content: space-between; }
+.entry .remove-btn { background: transparent; border: 1px solid var(--line); color: #333; border-radius: 8px; padding: 6px 10px; font-size: 0.9rem; cursor: pointer; }
+.entry .remove-btn:hover { border-color: #d0d0d7; }
+
+/* Date Groups Layout Fixes */
+.row.date-group { justify-content: flex-start !important; align-items: center; gap: 8px; flex-wrap: nowrap; }
+.date-group .date-label { flex: 0 0 auto; margin: 0; margin-right: 3px; font-weight: 500; color: #333; text-align: left; white-space: nowrap; }
+.date-group .date-inputs { display: flex; flex-grow: 0; justify-content: flex-start; gap: 4px; }
+.date-group .date-inputs input { width: 3.8em; text-align: center; padding: 9px 0; border: 1px solid #ddd; border-radius: 10px; background: #fff; font-size: 1rem; line-height: 1.2; box-sizing: border-box; }
+
+@media (max-width: 600px) {
+    .row.date-group { flex-wrap: wrap; row-gap: 2px; }
+    .date-group .date-label { width: 100%; white-space: normal !important; margin-bottom: 2px; }
+    .date-group .date-inputs { width: 100%; }
 }
+
+/* Time Groups Custom Labels Engine */
+label:has(.time-input-group) { display: flex; flex-direction: row; align-items: center; gap: 8px; flex-wrap: nowrap; }
+label:has(.time-input-group) > :first-child { flex: 0 0 auto; white-space: nowrap; margin-right: 6px; font-weight: 500; color: #333; }
+label:has(.time-input-group)::first-line { font-weight: 500; }
+.time-input-group { display: flex; align-items: center; gap: 6px; flex-grow: 0; flex-shrink: 0; }
+.time-input-group input, .time-input-group select { width: 3.8em; text-align: center; padding: 9px 0; border: 1px solid #ddd; border-radius: 10px; background: #fff; font-size: 1rem; line-height: 1.2; box-sizing: border-box; }
+.time-input-group select { width: 4.8em; }
+.time-input-group .separator { display: inline-block; margin: 0 2px; }
+
+@media (max-width: 600px) {
+    label:has(.time-input-group) { flex-wrap: wrap; }
+    label:has(.time-input-group) > :first-child { width: 100%; margin-bottom: 4px; }
+    .time-input-group { width: 100%; }
+}
+
+/* Wizard Steps Interface Tracker */
+.step-indicator { display: flex; justify-content: space-between; margin-bottom: 30px; background: #fff; padding: 15px; border-radius: 12px; border: 1px solid var(--line); overflow-x: auto; gap: 10px; }
+.step { flex: 1; text-align: center; font-size: 0.8rem; color: #888; cursor: pointer; transition: all 0.2s ease-in-out; padding: 8px; border-radius: 8px; min-width: 90px; display: flex; flex-direction: column; align-items: center; }
+.step:hover { background: #f0f7ff; color: var(--accent); }
+.step.active { color: var(--accent); font-weight: 600; background: #f0f7ff; }
+.step-num { width: 28px; height: 28px; line-height: 28px; border-radius: 50%; background: #eee; display: block; margin-bottom: 6px; font-size: 0.85rem; transition: background 0.3s; color: #333; }
+.step.active .step-num { background: var(--accent); color: #fff; }
+
+.wizard-step { display: none; background: var(--surface); padding: 12px; border-radius: 18px; border: 1px solid rgba(0,0,0,0.02); box-shadow: 0 4px 12px rgba(0,0,0,0.01); }
+.wizard-step.active { display: block; animation: slideIn 0.3s ease-out; }
+
+@keyframes slideIn { from { opacity: 0; transform: translateX(10px); } to { opacity: 1; transform: translateX(0); } }
+.wizard-actions { display: flex; justify-content: space-between; margin-top: 30px; padding: 20px 0; border-top: 1px solid var(--line); }
+
+/* Signature Render Windows */
+.sig-preview { width: 100%; height: 150px; border: 1px dashed #bbb; border-radius: 10px; display: flex; align-items: center; justify-content: center; background: #fff; cursor: pointer; position: relative; }
+.sig-preview img { max-width: 100%; max-height: 100%; object-fit: contain; }
+.sig-preview span { color: #999; }
+.sig-modal { display: none; position: fixed; inset: 0; background: rgba(0,0,0,.45); z-index: 1000; }
+.sig-modal .box { width: min(560px, 92vw); background: #fff; margin: 6vh auto; padding: 14px; border-radius: 12px; box-shadow: 0 18px 50px rgba(0,0,0,.25); }
+.sig-modal h3 { margin: 0 0 8px 0; }
+#sigCanvas { width: 100%; height: 220px; background: #fff; border: 1px solid #ddd; border-radius: 10px; touch-action: none; }
+.sig-actions { display: flex; gap: 10px; justify-content: flex-end; margin-top: 10px; }
+.hidden-inputs { display: none; }
+.preview { background: #fff; border: 1px solid #eee; border-radius: 10px; padding: 10px; }
+.preview canvas { width: 100%; height: auto; border-radius: 8px; }
+#saveStatus { position: fixed; top: 12px; right: 12px; background: var(--accent); color: #fff; padding: 6px 10px; border-radius: 8px; font-size: 0.85rem; opacity: 0; transition: opacity .25s; }
+
+.btn-set-today {
+    margin-left: 8px;
+    padding: 4px 10px !important;
+    font-size: 0.75rem !important;
+    height: auto !important;
+    border-color: var(--accent) !important;
+    color: var(--accent) !important;
+    background: transparent;
+    font-weight: 500;
+    cursor: pointer;
+    border-radius: 6px;
+}
+.btn-set-today:hover { background: var(--accent) !important; color: #fff !important; }
 </style>
 </head>
 <body>
