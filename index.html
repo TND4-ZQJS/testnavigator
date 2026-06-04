@@ -170,5 +170,21 @@
         </div>
     </header>
 
+ <script>   
+ // ============================================================
+        // MOBILE NAV
+        // ============================================================
+        function toggleMobileMenu() {
+            document.getElementById('navMenu').classList.toggle('show');
+        }
+
+        // ============================================================
+        // INIT
+        // ============================================================
+        document.addEventListener('DOMContentLoaded', () => {
+            applyCombinedFilters();
+            updateStagePlayer(0);
+        });
+    </script>
 </body>
 </html>
