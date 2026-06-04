@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>InsuFlow | CI Pro Experience</title>
+    
+    <style>
+        /* ============================================================
+           GLOBAL NAV (inline since global-nav.css is external)
+           ============================================================ */
+        *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+        :root {
+            --nav-height: 52px;
+            --accent: #0071e3;
+            --bg: #f5f5f7;
+            --surface: #ffffff;
+            --text-primary: #1d1d1f;
+            --text-secondary: #515154;
+            --text-tertiary: #86868b;
+            --border: rgba(0, 0, 0, 0.06);
+            --radius-lg: 20px;
+            --radius-md: 14px;
+            --radius-sm: 8px;
+        }
+
+        body {
+            background-color: var(--bg);
+            color: var(--text-primary);
+            font-family: -apple-system, BlinkMacSystemFont, "SF Pro Text", "Segoe UI", sans-serif;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        /* ---- Navbar ---- */
+        .navbar {
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            background: rgba(255,255,255,0.85);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border-bottom: 1px solid var(--border);
+            height: var(--nav-height);
+        }
+
+        .nav-container {
+            max-width: 940px;
+            margin: 0 auto;
+            padding: 0 24px;
+            height: 100%;
+            display: flex;
+            align-items: center;
+            gap: 32px;
+        }
+
+        .logo {
+            font-size: 16px;
+            font-weight: 700;
+            color: var(--text-primary);
+            cursor: pointer;
+            letter-spacing: -0.02em;
+            flex-shrink: 0;
+        }
+
+        .nav-menu {
+            display: flex;
+            gap: 4px;
+            align-items: center;
+            margin-left: auto;
+        }
+
+        .nav-item {
+            font-size: 13px;
+            font-weight: 500;
+            color: var(--text-secondary);
+            text-decoration: none;
+            padding: 6px 12px;
+            border-radius: 8px;
+            transition: background 0.15s, color 0.15s;
+            white-space: nowrap;
+        }
+
+        .nav-item:hover { background: rgba(0,0,0,0.05); color: var(--text-primary); }
+        .nav-item.active { background: rgba(0,113,227,0.08); color: var(--accent); }
+
+        /* Mobile hamburger */
+        .menu-toggle {
+            display: none;
+            flex-direction: column;
+            gap: 5px;
+            cursor: pointer;
+            margin-left: auto;
+            padding: 6px;
+        }
+
+        .menu-toggle span {
+            display: block;
+            width: 22px;
+            height: 2px;
+            background: var(--text-primary);
+            border-radius: 2px;
+            transition: 0.3s;
+        }
+
+        @media (max-width: 700px) {
+            .menu-toggle { display: flex; }
+            .nav-menu {
+                display: none;
+                position: absolute;
+                top: var(--nav-height);
+                left: 0; right: 0;
+                background: rgba(255,255,255,0.97);
+                backdrop-filter: blur(20px);
+                flex-direction: column;
+                padding: 12px 16px 20px;
+                gap: 2px;
+                border-bottom: 1px solid var(--border);
+            }
+            .nav-menu.show { display: flex; }
+            .nav-item { width: 100%; padding: 10px 14px; }
+        }
+
+       /* Hero Section */
+.hero {
+    padding-top: 140px;
+    padding-bottom: 80px;
+    text-align: center;
+}
+
+.badge {
+    font-size: 12px;
+    font-weight: 600;
+    color: #bf4800;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    display: block;
+    margin-bottom: 12px;
+}
+
+.hero h1 {
+    font-size: 48px;
+    font-weight: 700;
+    letter-spacing: -0.03em;
+    line-height: 1.1;
+    margin-bottom: 16px;
+    color: #1d1d1f;
+}
+    </style>
+</head>
+<body>
+
+    <!-- ============================
+         NAVIGATION
+         ============================ -->
+    <header class="navbar">
+        <div class="nav-container">
+            <span class="logo" onclick="window.location.href='dashboard.html'">CI Pro Universe</span>
+
+            <div class="menu-toggle" onclick="toggleMobileMenu()" aria-label="Toggle menu">
+                <span></span><span></span><span></span>
+            </div>
+
+            <nav class="nav-menu" id="navMenu">
+                <a href="dashboard.html" class="nav-item">Operational Hub</a>
+                <a href="ci-pro-experience.html" class="nav-item active">CI Pro Experience</a>
+                <a href="app-filler.html" class="nav-item">1-to-3 Form Filler</a>
+                <a href="app-nomination.html" class="nav-item">Nomination Tool</a>
+            </nav>
+        </div>
+    </header>
+
+</body>
+</html>
