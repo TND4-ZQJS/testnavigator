@@ -80,49 +80,6 @@
         &copy; 2026 CI Pro Universe Portal. All rights reserved. Built for CI Pro operations.
     </footer>
 
-   <script type="module">
-        // 1. Direct Framework Import (Guarantees Supabase is found cleanly)
-        import { createClient } from 'https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/+esm';
-
-        // ⚠️ REMINDER: Keep your real URL and Anon Key here
-        const SUPABASE_URL = "https://qotxxqwikxpsjnjddoqm.supabase.co"; 
-        const SUPABASE_ANON_KEY = "sb_publishable_xpWOcimLjRbH2dbeRdoBSg_XddyOqYU";    
-        
-        const supabase = createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
-
-        // 2. Run the Security Guard Check immediately
-        async function checkAuthGuard() {
-            try {
-                const { data: { session }, error } = await supabase.auth.getSession();
-                if (error) throw error;
-                
-                // If no session token is found, kick them straight back to login
-                if (!session) {
-                    window.location.href = "login.html";
-                }
-                console.log("Access Granted:", session.user.email);
-            } catch (err) {
-                console.error("Security guard error:", err);
-                window.location.href = "login.html";
-            }
-        }
-
-        // 3. Bind the Logout function securely to the browser window
-        window.handleLogout = async function() {
-            try {
-                // Destroy the session token in the cloud
-                await supabase.auth.signOut();
-            } catch (err) {
-                console.error("Error during sign out:", err);
-            } finally {
-                // Clear out of the dashboard completely
-                window.location.href = "login.html";
-            }
-        };
-
-        // Execute guard check right now as the page opens
-        checkAuthGuard();
-    </script>
 
 <script>
     document.addEventListener("DOMContentLoaded", () => {
