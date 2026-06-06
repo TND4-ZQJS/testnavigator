@@ -335,7 +335,8 @@ body {
 </div>  
 
 <!-- STEP 3: Sign -->
-      
+
+<div class="wizard-step">         
 <section class="section">
   <h2>Section E — Signature Details</h2>
 
@@ -469,7 +470,14 @@ body {
     <button id="generate">Generate PDF</button>
     <button id="resetAll" class="secondary">Reset All</button>
   </section>
+</div>
 
+   <!-- NAVIGATION BUTTONS -->
+    <div class="wizard-actions">
+      <button type="button" id="prevBtn" class="ghost" onclick="changeStep(-1)" style="visibility:hidden;">Previous</button>
+      <button type="button" id="nextBtn" onclick="changeStep(1)">Next Step</button>
+    </div>        
+        
 </main>
 
 <!-- Signature Modal -->
@@ -1186,6 +1194,57 @@ function resetAll() {
   showSaveStatus();
 }
 
+//WIZARD TRACKER LOGIC
+const steps = document.querySelectorAll(".wizard-step");
+const indicatorSteps = document.querySelectorAll(".step");
+const nextBtn = document.getElementById("nextBtn");
+const prevBtn = document.getElementById("prevBtn");
+let currentStep = 0;
+
+// 1. Initialize Click Events for the Progress Tracker
+indicatorSteps.forEach((stepCircle, index) => {
+  stepCircle.addEventListener("click", () => {
+    navigateTo(index);
+  });
+});
+
+// 2. Updated Navigation Function (Hides Next button on last step)
+function navigateTo(index) {
+  // Hide current
+  steps[currentStep].classList.remove("active");
+  indicatorSteps[currentStep].classList.remove("active");
+
+  // Update Index
+  currentStep = index;
+
+  // Show new
+  steps[currentStep].classList.add("active");
+  indicatorSteps[currentStep].classList.add("active");
+
+  // Handle "Previous" button visibility
+  prevBtn.style.visibility = (currentStep === 0) ? "hidden" : "visible";
+
+  // Handle "Next" button: Hide it completely on the final step
+  if (currentStep === steps.length - 1) {
+    nextBtn.style.display = "none";
+  } else {
+    nextBtn.style.display = "block";
+    nextBtn.innerText = "Next Step";
+  }
+
+  // Smooth scroll to top of the card
+  document.querySelector('main').scrollIntoView({ behavior: 'smooth' });
+}
+
+// 3. Updated Next/Back logic
+function changeStep(n) {
+  let newStep = currentStep + n;
+  
+  // Only navigate if the step actually exists
+  if (newStep >= 0 && newStep < steps.length) {
+    navigateTo(newStep);
+  }
+}    
 
 /* ---------- Wire buttons ---------- */
 $("generate").addEventListener("click", fillPDF);
