@@ -279,18 +279,16 @@ body {
       <section class="hero" style="padding-top: 0px; padding-bottom: 20px; text-align: left;">
             <span class="badge">Nomination Form</span>
         </section>
-        
+
+   <!-- STEP 1: Policy -->
+    <div class="wizard-step active">     
    <section class="section" id="sectionA">
     <h2>Section A - Policy Details</h2>
 
      <div class="step-indicator" id="stepIndicator">
     <div class="step active"><span class="step-num">1</span>Policy</div>
-    <div class="step"><span class="step-num">2</span>Claim Type</div>
-    <div class="step"><span class="step-num">3</span>Person</div>
-    <div class="step"><span class="step-num">4</span>Incident</div>
-    <div class="step"><span class="step-num">5</span>Doctors</div>
-    <div class="step"><span class="step-num">6</span>E-Banking</div>
-    <div class="step"><span class="step-num">7</span>Sign</div>
+    <div class="step"><span class="step-num">2</span>Nominee</div>
+    <div class="step"><span class="step-num">3</span>Sign</div>
   </div>    
 
     <div class="row">
@@ -322,7 +320,10 @@ body {
       </section>
 
   </section>
+    </div>
 
+  <!-- STEP 2: Nominee -->
+<div class="wizard-step">      
   <section class="section" id="sectionA">
     <h2>Section B — Nominee Entries</h2>
     <div id="nomineesContainer" class="nominee-grid"></div>
@@ -331,7 +332,10 @@ body {
       <small class="muted">Up to 5 Nominees</small>
     </div>
   </section>
+</div>  
 
+<!-- STEP 3: Sign -->
+      
 <section class="section">
   <h2>Section E — Signature Details</h2>
 
@@ -380,6 +384,7 @@ body {
       </label>
     </div>
   </section>
+  
 
   <!-- SECTION: Owner/Policyowner Signature -->
   <section class="section">
@@ -426,7 +431,7 @@ body {
     <label style="flex:1">Mobile
       <input id="Nom_Nominee_Witness_Mobile" type="text">
     </label>
-  </div>
+  </div>    
 
   <!-- Tap-to-sign previews (Witness) -->
   <div class="sig-preview" id="preview_witness" onclick="openSig('witness')">
