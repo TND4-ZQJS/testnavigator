@@ -3,446 +3,168 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Juvenile Build Guideline - CI Pro Universe</title>
-<style>
-/* ============================================================
-   GLOBAL DESIGN VARIABLES (Unified Workspace Framework)
-   ============================================================ */
-*, *::before, *::after { 
-    box-sizing: border-box; 
-    margin: 0; 
-    padding: 0; 
-}
-
-:root {
-    --nav-height: 52px;
-    --accent: #0071e3;
-    --bg: #f5f5f7;       /* Clean gray workspace canvas background */
-    --surface: #ffffff;  /* Card surface background */
-    --text-primary: #1d1d1f;
-    --text-secondary: #515154;
-    --text-tertiary: #86868b;
-    --border: rgba(0, 0, 0, 0.06);
-    --line: #e9e9ee;
-}
-
-body {
-    background-color: var(--bg);
-    color: var(--text-primary);
-    font-family: -apple-system, BlinkMacSystemFont, "SF Pro Text", "Segoe UI", sans-serif;
-    -webkit-font-smoothing: antialiased;
-    line-height: 1.5;
-}
-
-.container {
-    max-width: 940px;
-    margin: 40px auto;
-    padding: 0 24px 100px;
-}
-
-/* ============================================================
-   STICKY STYLISH NAVBAR STRUCTURE
-   ============================================================ */
-.navbar {
-    position: sticky;
-    top: 0;
-    z-index: 100;
-    background: rgba(255, 255, 255, 0.85);
-    backdrop-filter: blur(20px);
-    -webkit-backdrop-filter: blur(20px);
-    border-bottom: 1px solid var(--border);
-    height: var(--nav-height);
-}
-
-.nav-container {
-    max-width: 940px;
-    margin: 0 auto;
-    padding: 0 24px;
-    height: 100%;
-    display: flex;
-    align-items: center;
-    gap: 32px;
-}
-
-.logo {
-    font-size: 16px;
-    font-weight: 700;
-    color: var(--text-primary);
-    cursor: pointer;
-    letter-spacing: -0.02em;
-    flex-shrink: 0;
-}
-
-.nav-menu {
-    display: flex;
-    gap: 4px;
-    align-items: center;
-    margin-left: auto;
-}
-
-.nav-item {
-    font-size: 13px;
-    font-weight: 500;
-    color: var(--text-secondary);
-    text-decoration: none;
-    padding: 6px 12px;
-    border-radius: 8px;
-    transition: background 0.15s, color 0.15s;
-    white-space: nowrap;
-}
-
-.nav-item:hover { 
-    background: rgba(0,0,0,0.05); 
-    color: var(--text-primary); 
-}
-
-.nav-item.active { 
-    background: rgba(0,113,227,0.08); 
-    color: var(--accent); 
-}
-
-.menu-toggle {
-    display: none;
-    flex-direction: column;
-    gap: 5px;
-    cursor: pointer;
-    margin-left: auto;
-    padding: 6px;
-}
-
-.menu-toggle span {
-    display: block;
-    width: 22px;
-    height: 2px;
-    background: var(--text-primary);
-    border-radius: 2px;
-    transition: 0.3s;
-}
-
-@media (max-width: 700px) {
-    .menu-toggle { display: flex; }
-    .nav-menu {
-        display: none;
-        position: absolute;
-        top: var(--nav-height);
-        left: 0; right: 0;
-        background: rgba(255,255,255,0.97);
-        backdrop-filter: blur(20px);
-        flex-direction: column;
-        padding: 12px 16px 20px;
-        gap: 2px;
-        border-bottom: 1px solid var(--border);
-    }
-    .nav-menu.show { display: flex; }
-    .nav-item { width: 100%; padding: 10px 14px; }
-}
-
-/* ============================================================
-   FILLER WORKSPACE COMPONENT STYLES
-   ============================================================ */
-.section {
-    background: #fbfbfd;
-    border: 1px solid #eee;
-    padding: 24px;
-    border-radius: 12px;
-    margin: 16px 0;
-}
-
-.section h2 {
-    margin: 0 0 14px 0;
-    font-size: 1.15rem;
-    letter-spacing: -0.01em;
-}
-
-label {
-    display: block;
-    margin: 8px 0;
-    font-size: 0.95rem;
-    font-weight: 500;
-}
-
-input, select {
-    width: 100%;
-    padding: 12px;
-    border-radius: 10px;
-    border: 1px solid #ddd;
-    margin-top: 6px;
-    font-size: 1rem;
-    background: #fff;
-    font-family: inherit;
-    transition: border-color 0.2s, box-shadow 0.2s;
-}
-
-input:focus, select:focus {
-    border-color: var(--accent);
-    outline: none;
-}
-
-.grid-2 { 
-    display: grid; 
-    grid-template-columns: repeat(2, 1fr); 
-    gap: 16px; 
-}
-
-@media (max-width: 600px) {
-    .grid-2 { grid-template-columns: 1fr; }
-}
-
-button {
-    background: var(--accent);
-    color: #fff;
-    border: 0;
-    padding: 12px 24px;
-    border-radius: 10px;
-    cursor: pointer;
-    font-weight: 500;
-    font-size: 0.95rem;
-    transition: background 0.15s;
-    width: 100%;
-    margin-top: 12px;
-}
-
-button:hover {
-    background: #0077ed;
-}
-
-/* ============================================================
-   DYNAMIC LABELS & METRIC DISPLAY OUTCOMES
-   ============================================================ */
-.result-panel {
-    margin-top: 24px;
-    padding: 24px;
-    background: #ffffff;
-    border-radius: 12px;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.02);
-}
-
-.panel-pass {
-    border-left: 4px solid #34c759; /* Apple Green */
-}
-
-.panel-fail {
-    border-left: 4px solid #ff3b30; /* Apple Red */
-}
-
-.result-title {
-    font-size: 0.9rem;
-    text-transform: uppercase;
-    letter-spacing: 0.05em;
-    color: var(--text-tertiary);
-    font-weight: 600;
-}
-
-.status-badge {
-    font-size: 22px;
-    font-weight: 700;
-    margin: 8px 0;
-    letter-spacing: -0.01em;
-}
-
-.status-pass { color: #34c759; }
-.status-fail { color: #ff3b30; }
-
-.underwriting-details {
-    background: #f5f5f7;
-    padding: 14px 16px;
-    border-radius: 8px;
-    font-size: 0.95rem;
-    color: var(--text-secondary);
-    border: 1px solid rgba(0, 0, 0, 0.03);
-    margin-top: 10px;
-}
-
-.underwriting-details p {
-    margin: 4px 0;
-}
-</style>
+    <title>CI Needs Analysis - CI Pro</title>
+    <style>
+        :root {
+            --apple-blue: #0071e3;
+            --apple-gray: #f5f5f7;
+            --apple-dark: #1d1d1f;
+            --apple-text-muted: #86868b;
+        }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            background-color: var(--apple-gray);
+            color: var(--apple-dark);
+            margin: 0;
+            padding: 40px 20px;
+        }
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+        }
+        .card-workspace {
+            background: #ffffff;
+            border-radius: 18px;
+            padding: 32px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+            margin-bottom: 24px;
+        }
+        h2, h3 { margin-top: 0; font-weight: 600; letter-spacing: -0.02em; }
+        .grid-inputs {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 16px;
+            margin-bottom: 24px;
+        }
+        .input-group {
+            display: flex;
+            flex-direction: column;
+        }
+        label {
+            font-size: 12px;
+            font-weight: 600;
+            margin-bottom: 6px;
+            color: var(--apple-text-muted);
+            text-transform: uppercase;
+        }
+        input {
+            padding: 10px 14px;
+            font-size: 14px;
+            border: 1px solid #d2d2d7;
+            border-radius: 8px;
+            background: #ffffff;
+            outline: none;
+            transition: border 0.2s;
+        }
+        input:focus { border-color: var(--apple-blue); }
+        .matrix-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 16px;
+            margin-top: 20px;
+        }
+        .matrix-box {
+            border: 1px solid #d2d2d7;
+            border-radius: 12px;
+            padding: 20px;
+            text-align: center;
+            background: #fafafa;
+        }
+        .matrix-box.highlight {
+            border-color: #ff9500;
+            background: #fff9f0;
+        }
+        .price-tag {
+            font-size: 22px;
+            font-weight: 700;
+            color: var(--apple-dark);
+            margin-top: 10px;
+        }
+    </style>
 </head>
 <body>
 
-    <header class="navbar">
-        <div class="nav-container">
-            <span class="logo" onclick="window.location.href='dashboard.html'">CI Pro Universe</span>
-            
-            <div class="menu-toggle" onclick="toggleMobileMenu()" aria-label="Toggle menu">
-                <span></span><span></span><span></span>
-            </div>
-
-            <nav class="nav-menu" id="navMenu">
-                <a href="dashboard.html" class="nav-item">Operational Hub</a>
-                <a href="cipro-experience.html" class="nav-item">CI Pro Experience</a>
-                <a href="app-filler.html" class="nav-item">EPOS Buddy</a>
-                <a href="magicfiller.html" class="nav-item">Magic Filler</a>
-                <a href="bmi-calculator.html" class="nav-item">BMI Calculator</a>
-                <a href="juvenile-build.html" class="nav-item active">Juvenile Build</a>
-            </nav>
-        </div>
-    </header>
-
-    <main class="container">
+<div class="container">
+    <div class="card-workspace">
+        <h2>Critical Illness Needs Framework</h2>
+        <p style="color: var(--apple-text-muted); font-size: 14px;">Transform booklet field calculations into automated client configurations.</p>
         
-        <div style="background: var(--surface); padding: 32px; border-radius: 18px; border: 1px solid rgba(0,0,0,0.02); box-shadow: 0 4px 12px rgba(0,0,0,0.01);">
-            
-            <span style="font-size: 11px; font-weight: 600; color: var(--accent); text-transform: uppercase; letter-spacing: 0.05em; display: block; margin-bottom: 4px;">Underwriting Rules Engine</span>
-            <h1 style="font-size: 24px; font-weight: 700; margin-bottom: 24px; letter-spacing: -0.02em;">Juvenile Build Guideline (ANB 3–16)</h1>
-            
-            <section class="section">
-                <h2>1. Identity & Age Parameters</h2>
-                <div class="grid-2">
-                    <label>Date of Birth
-                        <input type="date" id="dob" onchange="updateANB()">
-                    </label>
-                    <label>Age Next Birthday (ANB)
-                        <input type="number" id="anb" min="3" max="16" placeholder="3 - 16" oninput="clearDOB()">
-                    </label>
-                </div>
-                <div style="margin-top: 12px;">
-                    <label>Gender
-                        <select id="gender">
-                            <option value="Female">Female</option>
-                            <option value="Male">Male</option>
-                        </select>
-                    </label>
-                </div>
-            </section>
-
-            <section class="section">
-                <h2>2. Physical Measurements</h2>
-                <div class="grid-2">
-                    <label>Height (cm)
-                        <input type="number" id="height" placeholder="e.g. 110" inputmode="numeric">
-                    </label>
-                    <label>Weight (kg)
-                        <input type="number" id="weight" placeholder="e.g. 20" inputmode="numeric">
-                    </label>
-                </div>
-                <button type="button" onclick="checkBuild()">Check Build Guideline</button>
-            </section>
-
-            <div class="result-panel" id="result" style="display:none;">
-                </div>
-
+        <div class="grid-inputs">
+            <div class="input-group">
+                <label>Current Age</label>
+                <input type="number" id="clientAge" value="35" oninput="calculateNeeds()">
+            </div>
+            <div class="input-group">
+                <label>Monthly Commitments (Commitment i)</label>
+                <input type="number" id="monthlyCommitments" value="5000" oninput="calculateNeeds()">
+            </div>
+            <div class="input-group">
+                <label>Monthly Medical Post-CI (Expenses ii)</label>
+                <input type="number" id="monthlyMedical" value="1500" oninput="calculateNeeds()">
+            </div>
         </div>
-    </main>
+    </div>
 
-    <script>
-        // Matrix Mapping Structure
-        const buildTable = {
-            3: { Female: { height: [80, 93], bmi: [13.7, 18.1] }, Male: { height: [82, 94], bmi: [14.2, 18.3] } },
-            4: { Female: { height: [88, 103], bmi: [13.5, 17.8] }, Male: { height: [89, 104], bmi: [13.7, 17.8] } },
-            5: { Female: { height: [94, 111], bmi: [13.2, 17.9] }, Male: { height: [95, 112], bmi: [13.4, 17.6] } },
-            6: { Female: { height: [100, 119], bmi: [13.1, 18.1] }, Male: { height: [101, 119], bmi: [13.3, 17.7] } },
-            7: { Female: { height: [106, 123], bmi: [13.4, 18.8] }, Male: { height: [107, 124], bmi: [13.7, 18.4] } },
-            8: { Female: { height: [112, 131], bmi: [13.4, 19.6] }, Male: { height: [113, 131], bmi: [13.7, 19.2] } },
-            9: { Female: { height: [118, 137], bmi: [13.5, 20.6] }, Male: { height: [118, 137], bmi: [13.8, 20.0] } },
-            10: { Female: { height: [123, 143], bmi: [13.7, 21.8] }, Male: { height: [123, 144], bmi: [14.0, 21.0] } },
-            11: { Female: { height: [127, 150], bmi: [14.0, 23.0] }, Male: { height: [128, 150], bmi: [14.2, 22.0] } },
-            12: { Female: { height: [132, 156], bmi: [14.4, 24.0] }, Male: { height: [132, 155], bmi: [14.5, 23.2] } },
-            13: { Female: { height: [139, 163], bmi: [14.8, 25.2] }, Male: { height: [137, 161], bmi: [15.0, 24.2] } },
-            14: { Female: { height: [145, 168], bmi: [15.3, 26.2] }, Male: { height: [143, 170], bmi: [15.5, 25.2] } },
-            15: { Female: { height: [150, 171], bmi: [15.8, 27.2] }, Male: { height: [150, 176], bmi: [16.0, 26.0] } },
-            16: { Female: { height: [151, 173], bmi: [16.3, 28.0] }, Male: { height: [156, 182], bmi: [16.5, 26.8] } }
-        };
+    <div class="card-workspace">
+        <h3>Calculated Exposure Projections</h3>
+        <div class="matrix-container">
+            <div class="matrix-box">
+                <label>Standard (A + C)</label>
+                <div style="font-size: 12px; color: var(--apple-text-muted);">5Y Income + Fixed Care</div>
+                <div class="price-tag" id="resultAC">RM 0</div>
+            </div>
+            <div class="matrix-box">
+                <label>Extended (B + C)</label>
+                <div style="font-size: 12px; color: var(--apple-text-muted);">10Y Income + Fixed Care</div>
+                <div class="price-tag" id="resultBC">RM 0</div>
+            </div>
+            <div class="matrix-box highlight">
+                <label style="color: #ff9500;">Inflation Defended (A + C*)</label>
+                <div style="font-size: 12px; color: var(--apple-text-muted);">5Y Income + 5% Compound Infl.</div>
+                <div class="price-tag" id="resultACStar">RM 0</div>
+            </div>
+            <div class="matrix-box highlight">
+                <label style="color: #ff9500;">Elite Security (B + C*)</label>
+                <div style="font-size: 12px; color: var(--apple-text-muted);">10Y Income + 5% Compound Infl.</div>
+                <div class="price-tag" id="resultBCStar">RM 0</div>
+            </div>
+        </div>
+    </div>
+</div>
 
-        // Mobile Menu Navigation Switcher
-        function toggleMobileMenu() {
-            document.getElementById('navMenu').classList.toggle('show');
-        }
+<script>
+function calculateNeeds() {
+    const age = parseInt(document.getElementById('clientAge').value) || 0;
+    const monthlyCommitments = parseFloat(document.getElementById('monthlyCommitments').value) || 0;
+    const monthlyMedical = parseFloat(document.getElementById('monthlyMedical').value) || 0;
 
-        // Complete standard Insurance Formula for ANB
-        function updateANB() {
-            const dobValue = document.getElementById('dob').value;
-            if (!dobValue) return;
-            
-            const dob = new Date(dobValue);
-            const today = new Date();
-            
-            let age = today.getFullYear() - dob.getFullYear();
-            const birthThisYear = new Date(today.getFullYear(), dob.getMonth(), dob.getDate());
-            
-            // Adjust to ensure processing calculation locks onto "Age Next Birthday" Rules
-            if (today < birthThisYear) {
-                // Not yet reached birthday this calendar year
-                age = age; 
-            } else {
-                // Has passed birthday this calendar year, so next birthday is next calendar year
-                age = age + 1;
-            }
-            
-            // Boundary validation locks
-            if (age >= 3 && age <= 16) {
-                document.getElementById('anb').value = age;
-            } else {
-                document.getElementById('anb').value = age; // Output anyway to let execution check boundaries
-            }
-        }
+    const gapYears = Math.max(0, 80 - age);
 
-        function clearDOB() {
-            document.getElementById('dob').value = '';
-        }
+    // Living Expenses Calculations
+    const yearlyCommitments = monthlyCommitments * 12;
+    const A = yearlyCommitments * 5;
+    const B = yearlyCommitments * 10;
 
-        // Deep Analytical Checker Execution
-        function checkBuild() {
-            const anb = parseInt(document.getElementById('anb').value.trim());
-            const gender = document.getElementById('gender').value;
-            const heightInput = document.getElementById('height').value.trim();
-            const weightInput = document.getElementById('weight').value.trim();
-            const resultPanel = document.getElementById('result');
+    // Medical Expenses Calculations
+    const yearlyMedical = monthlyMedical * 12;
+    const C = yearlyMedical * gapYears;
 
-            const height = parseFloat(heightInput);
-            const weight = parseFloat(weightInput);
+    // Compound Inflation Calculation (C*) at 5% annually
+    let cStar = 0;
+    for (let t = 0; t < gapYears; t++) {
+        cStar += yearlyMedical * Math.pow(1.05, t);
+    }
 
-            // Error Exception Handle Boundary
-            if (!anb || !height || !weight || isNaN(anb) || isNaN(height) || isNaN(weight)) {
-                resultPanel.className = "result-panel panel-fail";
-                resultPanel.innerHTML = `<div class="result-title">System Error</div>
-                                         <div class="status-badge status-fail">⚠️ Validation Incomplete</div>
-                                         <div class="underwriting-details">Please enter valid, complete metric dimensions for calculation.</div>`;
-                resultPanel.style.display = 'block';
-                return;
-            }
+    // Update UI Results Elements
+    document.getElementById('resultAC').textContent = 'RM ' + Math.round(A + C).toLocaleString();
+    document.getElementById('resultBC').textContent = 'RM ' + Math.round(B + C).toLocaleString();
+    document.getElementById('resultACStar').textContent = 'RM ' + Math.round(A + cStar).toLocaleString();
+    document.getElementById('resultBCStar').textContent = 'RM ' + Math.round(B + cStar).toLocaleString();
+}
 
-            if (!buildTable[anb] || !buildTable[anb][gender]) {
-                resultPanel.className = "result-panel panel-fail";
-                resultPanel.innerHTML = `<div class="result-title">Underwriting Constraint</div>
-                                         <div class="status-badge status-fail">❌ Scope Out of Range</div>
-                                         <div class="underwriting-details">No underwriting guidelines mapped for age parameters outside ANB 3-16 limits.</div>`;
-                resultPanel.style.display = 'block';
-                return;
-            }
+// Initial calculation run on page load
+window.onload = calculateNeeds;
+</script>
 
-            const bmi = weight / ((height / 100) ** 2);
-            const bmiRounded = bmi.toFixed(1);
-            const { height: hRange, bmi: bRange } = buildTable[anb][gender];
-
-            const heightOk = height >= hRange[0] && height <= hRange[1];
-            const bmiOk = bmi >= bRange[0] && bmi <= bRange[1];
-
-            if (heightOk && bmiOk) {
-                resultPanel.className = "result-panel panel-pass";
-                resultPanel.innerHTML = `
-                    <div class="result-title">Evaluation Result</div>
-                    <div class="status-badge status-pass">✅ Pass Standard Build</div>
-                    <div class="underwriting-details">
-                        <p>Calculated Juvenile BMI: <strong>${bmiRounded}</strong></p>
-                        <p class="muted" style="margin-top: 6px; font-size:12px;">Metrics map cleanly inside acceptable product table standards for <strong>ANB ${anb} ${gender}</strong>.</p>
-                    </div>`;
-            } else {
-                resultPanel.className = "result-panel panel-fail";
-                resultPanel.innerHTML = `
-                    <div class="result-title">Evaluation Result</div>
-                    <div class="status-badge status-fail">❌ Not Within Guideline</div>
-                    <div class="underwriting-details">
-                        <p>Calculated Juvenile BMI: <strong class="status-fail">${bmiRounded}</strong></p>
-                        <hr style="border:0; border-top:1px solid var(--line); margin: 8px 0;">
-                        <p>• <strong>Target Height:</strong> ${hRange[0]} – ${hRange[1]} cm (Current: ${height} cm)</p>
-                        <p>• <strong>Target BMI Range:</strong> ${bRange[0]} – ${bRange[1]} (Current: ${bmiRounded})</p>
-                    </div>`;
-            }
-
-            resultPanel.style.display = 'block';
-            resultPanel.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
-        }
-    </script>
 </body>
 </html>
