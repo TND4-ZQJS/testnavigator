@@ -3,167 +3,369 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>CI Needs Analysis - CI Pro</title>
+    <title>CI Needs Analysis Framework</title>
     <style>
         :root {
-            --apple-blue: #0071e3;
-            --apple-gray: #f5f5f7;
-            --apple-dark: #1d1d1f;
-            --apple-text-muted: #86868b;
+            --primary-blue: #0071e3;
+            --bg-light: #f5f5f7;
+            --text-dark: #1d1d1f;
+            --border-color: #d2d2d7;
+            --table-header-bg: #e8e8ed;
+            --accent-orange: #ff9500;
         }
+
         body {
-            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
-            background-color: var(--apple-gray);
-            color: var(--apple-dark);
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+            background-color: var(--bg-light);
+            color: var(--text-dark);
             margin: 0;
-            padding: 40px 20px;
-        }
-        .container {
-            max-width: 900px;
-            margin: 0 auto;
-        }
-        .card-workspace {
-            background: #ffffff;
-            border-radius: 18px;
-            padding: 32px;
-            box-shadow: 0 4px 12px rgba(0,0,0,0.05);
-            margin-bottom: 24px;
-        }
-        h2, h3 { margin-top: 0; font-weight: 600; letter-spacing: -0.02em; }
-        .grid-inputs {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 16px;
-            margin-bottom: 24px;
-        }
-        .input-group {
-            display: flex;
-            flex-direction: column;
-        }
-        label {
-            font-size: 12px;
-            font-weight: 600;
-            margin-bottom: 6px;
-            color: var(--apple-text-muted);
-            text-transform: uppercase;
-        }
-        input {
-            padding: 10px 14px;
-            font-size: 14px;
-            border: 1px solid #d2d2d7;
-            border-radius: 8px;
-            background: #ffffff;
-            outline: none;
-            transition: border 0.2s;
-        }
-        input:focus { border-color: var(--apple-blue); }
-        .matrix-container {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 16px;
-            margin-top: 20px;
-        }
-        .matrix-box {
-            border: 1px solid #d2d2d7;
-            border-radius: 12px;
             padding: 20px;
-            text-align: center;
-            background: #fafafa;
         }
-        .matrix-box.highlight {
-            border-color: #ff9500;
-            background: #fff9f0;
+
+        .workspace-container {
+            max-width: 840px;
+            margin: 0 auto;
+            background: #ffffff;
+            border-radius: 16px;
+            padding: 30px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
         }
-        .price-tag {
+
+        h2 {
             font-size: 22px;
             font-weight: 700;
-            color: var(--apple-dark);
-            margin-top: 10px;
+            margin-bottom: 20px;
+            letter-spacing: -0.02em;
+            border-bottom: 2px solid var(--text-dark);
+            padding-bottom: 8px;
+        }
+
+        .section-title {
+            background-color: #333333;
+            color: #ffffff;
+            padding: 8px 12px;
+            font-size: 14px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            margin-top: 25px;
+            margin-bottom: 10px;
+        }
+
+        .profile-row {
+            display: flex;
+            gap: 20px;
+            background: #fdfdfd;
+            padding: 15px;
+            border: 1px solid var(--border-color);
+            margin-bottom: 15px;
+        }
+
+        .profile-field {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .profile-field label {
+            font-size: 13px;
+            font-weight: 600;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 20px;
+            font-size: 13px;
+        }
+
+        th {
+            background-color: var(--table-header-bg);
+            color: var(--text-dark);
+            font-weight: 700;
+            text-align: left;
+            padding: 10px;
+            border: 1px solid var(--border-color);
+        }
+
+        td {
+            padding: 8px 10px;
+            border: 1px solid var(--border-color);
+            vertical-align: middle;
+        }
+
+        .col-num { width: 40px; text-align: center; font-weight: 600; background: #fafafa; }
+        .col-desc { font-weight: 500; }
+        .col-val { width: 150px; }
+
+        .input-cell {
+            width: 100%;
+            box-sizing: border-box;
+            padding: 6px 8px;
+            border: 1px solid transparent;
+            background: #f9f9fb;
+            font-size: 13px;
+            font-weight: 500;
+            text-align: right;
+            border-radius: 4px;
+        }
+
+        .input-cell:focus {
+            border-color: var(--primary-blue);
+            background: #ffffff;
+            outline: none;
+        }
+
+        .read-only-cell {
+            text-align: right;
+            font-weight: 600;
+            background-color: #f1f3f5;
+        }
+
+        .summary-box {
+            background: #f8fafc;
+            border: 2px dashed var(--border-color);
+            padding: 20px;
+            border-radius: 8px;
+            margin-top: 25px;
+        }
+
+        .matrix-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px;
+            margin-top: 15px;
+        }
+
+        .matrix-card {
+            background: #ffffff;
+            border: 1px solid var(--border-color);
+            padding: 15px;
+            border-radius: 6px;
+            text-align: center;
+        }
+
+        .matrix-card.featured {
+            border: 2px solid var(--accent-orange);
+            background: #fffbf5;
+        }
+
+        .matrix-total {
+            font-size: 20px;
+            font-weight: 700;
+            margin-top: 5px;
+            color: #1d1d1f;
         }
     </style>
 </head>
 <body>
 
-<div class="container">
-    <div class="card-workspace">
-        <h2>Critical Illness Needs Framework</h2>
-        <p style="color: var(--apple-text-muted); font-size: 14px;">Transform booklet field calculations into automated client configurations.</p>
-        
-        <div class="grid-inputs">
-            <div class="input-group">
-                <label>Current Age</label>
-                <input type="number" id="clientAge" value="35" oninput="calculateNeeds()">
-            </div>
-            <div class="input-group">
-                <label>Monthly Commitments (Commitment i)</label>
-                <input type="number" id="monthlyCommitments" value="5000" oninput="calculateNeeds()">
-            </div>
-            <div class="input-group">
-                <label>Monthly Medical Post-CI (Expenses ii)</label>
-                <input type="number" id="monthlyMedical" value="1500" oninput="calculateNeeds()">
-            </div>
+<div class="workspace-container">
+    <h2>Critical Illness (CI) Needs Calculation Booklet</h2>
+
+    <div class="profile-row">
+        <div class="profile-field">
+            <label>Client Name:</label>
+            <input type="text" value="Prospect Client" style="border:none; border-bottom:1px solid #ccc; padding:2px;">
+        </div>
+        <div class="profile-field">
+            <label>Current Age:</label>
+            <input type="number" id="clientAge" value="35" class="input-cell" style="width:60px; text-align:center;" oninput="runBookletCalculations()">
         </div>
     </div>
 
-    <div class="card-workspace">
-        <h3>Calculated Exposure Projections</h3>
-        <div class="matrix-container">
-            <div class="matrix-box">
-                <label>Standard (A + C)</label>
-                <div style="font-size: 12px; color: var(--apple-text-muted);">5Y Income + Fixed Care</div>
-                <div class="price-tag" id="resultAC">RM 0</div>
+    <div class="section-title">1. Lifestyle Maintenance & Living Commitments</div>
+    <table>
+        <thead>
+            <tr>
+                <th class="col-num">No.</th>
+                <th class="col-desc">Monthly Living Commitments</th>
+                <th class="col-val" style="text-align: right;">Amount (RM)</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td class="col-num">1</td>
+                <td class="col-desc">Housing Loan / Rental</td>
+                <td><input type="number" class="input-cell commitment-input" value="2500" oninput="runBookletCalculations()"></td>
+            </tr>
+            <tr>
+                <td class="col-num">2</td>
+                <td class="col-desc">Car Loan / Transportation Expenses</td>
+                <td><input type="number" class="input-cell commitment-input" value="1000" oninput="runBookletCalculations()"></td>
+            </tr>
+            <tr>
+                <td class="col-num">3</td>
+                <td class="col-desc">Personal / Business Loans</td>
+                <td><input type="number" class="input-cell commitment-input" value="500" oninput="runBookletCalculations()"></td>
+            </tr>
+            <tr>
+                <td class="col-num">4</td>
+                <td class="col-desc">Household Costs / Food / Utilities</td>
+                <td><input type="number" class="input-cell commitment-input" value="1200" oninput="runBookletCalculations()"></td>
+            </tr>
+            <tr>
+                <td class="col-num">5</td>
+                <td class="col-desc">Children Education / Parent Allowances</td>
+                <td><input type="number" class="input-cell commitment-input" value="800" oninput="runBookletCalculations()"></td>
+            </tr>
+            <tr>
+                <td class="col-num">6</td>
+                <td class="col-desc">Insurance Premiums / Fixed Savings</td>
+                <td><input type="number" class="input-cell commitment-input" value="500" oninput="runBookletCalculations()"></td>
+            </tr>
+            <tr style="background: #f1f3f5; font-weight: bold;">
+                <td class="col-num">i</td>
+                <td class="col-desc">Total Monthly Living Commitments (Sum 1 - 6)</td>
+                <td id="totalMonthlyCommitments" style="text-align: right; padding-right: 18px;">RM 0</td>
+            </tr>
+            <tr style="background: #e8e8ed; font-weight: bold;">
+                <td class="col-num"></td>
+                <td class="col-desc">Yearly Total Amount (Variable i &times; 12 Months)</td>
+                <td id="totalYearlyCommitments" style="text-align: right; padding-right: 18px;">RM 0</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <table style="margin-top: 10px;">
+        <thead>
+            <tr>
+                <th style="width: 50%;">Option A: 5-Year Income Replacement Strategy</th>
+                <th style="width: 50%;">Option B: 10-Year Income Replacement Strategy</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td id="optionAValue" class="read-only-cell" style="text-align: center; font-size: 16px; padding: 12px; color: var(--primary-blue);">RM 0</td>
+                <td id="optionBValue" class="read-only-cell" style="text-align: center; font-size: 16px; padding: 12px; color: var(--primary-blue);">RM 0</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <div class="section-title">2. Life After Critical Illness Care Strategy</div>
+    <table>
+        <thead>
+            <tr>
+                <th class="col-num">No.</th>
+                <th class="col-desc">Long-Term Care / Alternative Healthcare Expenses</th>
+                <th class="col-val" style="text-align: right;">Amount (RM)</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td class="col-num">1</td>
+                <td class="col-desc">Alternative Medication / Special Care Treatments</td>
+                <td><input type="number" class="input-cell medical-input" value="1000" oninput="runBookletCalculations()"></td>
+            </tr>
+            <tr>
+                <td class="col-num">2</td>
+                <td class="col-desc">Supplements, Organic Food, Traditional Chinese Medicine (TCM)</td>
+                <td><input type="number" class="input-cell medical-input" value="500" oninput="runBookletCalculations()"></td>
+            </tr>
+            <tr>
+                <td class="col-num">3</td>
+                <td class="col-desc">Hiring of Domestic Helper / Professional Caregiver</td>
+                <td><input type="number" class="input-cell medical-input" value="400" oninput="runBookletCalculations()"></td>
+            </tr>
+            <tr style="background: #f1f3f5; font-weight: bold;">
+                <td class="col-num">ii</td>
+                <td class="col-desc">Total Monthly Post-CI Medical Expenses (Sum 1 - 3)</td>
+                <td id="totalMonthlyMedical" style="text-align: right; padding-right: 18px;">RM 0</td>
+            </tr>
+            <tr style="background: #e8e8ed; font-weight: bold;">
+                <td class="col-num"></td>
+                <td class="col-desc">Yearly Care Cost Base (Variable ii &times; 12 Months)</td>
+                <td id="totalYearlyMedical" style="text-align: right; padding-right: 18px;">RM 0</td>
+            </tr>
+            <tr style="background: #fafafa;">
+                <td class="col-num"></td>
+                <td class="col-desc">Target Coverage Timeline to Mature Protection (Age 80 Limit)</td>
+                <td id="gapYearsLabel" style="text-align: right; font-weight:600; padding-right: 18px;">45 Years Remaining</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <div class="summary-box">
+        <h4 style="margin: 0 0 10px 0; text-transform: uppercase; font-size: 12px; letter-spacing: 0.05em; color: #555;">Final Projected Portfolio Requirement Summary</h4>
+        
+        <div class="matrix-grid">
+            <div class="matrix-card">
+                <div style="font-size: 11px; font-weight: 600; color: #666; text-transform: uppercase;">Standard Plan (A + C)</div>
+                <div style="font-size: 12px; color: #86868b;">5Y Replacement + Fixed Medical Care</div>
+                <div id="finalAC" class="matrix-total">RM 0</div>
             </div>
-            <div class="matrix-box">
-                <label>Extended (B + C)</label>
-                <div style="font-size: 12px; color: var(--apple-text-muted);">10Y Income + Fixed Care</div>
-                <div class="price-tag" id="resultBC">RM 0</div>
+            <div class="matrix-card">
+                <div style="font-size: 11px; font-weight: 600; color: #666; text-transform: uppercase;">Extended Protection (B + C)</div>
+                <div style="font-size: 12px; color: #86868b;">10Y Replacement + Fixed Medical Care</div>
+                <div id="finalBC" class="matrix-total">RM 0</div>
             </div>
-            <div class="matrix-box highlight">
-                <label style="color: #ff9500;">Inflation Defended (A + C*)</label>
-                <div style="font-size: 12px; color: var(--apple-text-muted);">5Y Income + 5% Compound Infl.</div>
-                <div class="price-tag" id="resultACStar">RM 0</div>
+            <div class="matrix-card featured">
+                <div style="font-size: 11px; font-weight: 700; color: var(--accent-orange); text-transform: uppercase;">Inflation Resilient (A + C*)</div>
+                <div style="font-size: 12px; color: #86868b;">5Y Replacement + 5% Compound Inflation</div>
+                <div id="finalACStar" class="matrix-total" style="color: var(--accent-orange);">RM 0</div>
             </div>
-            <div class="matrix-box highlight">
-                <label style="color: #ff9500;">Elite Security (B + C*)</label>
-                <div style="font-size: 12px; color: var(--apple-text-muted);">10Y Income + 5% Compound Infl.</div>
-                <div class="price-tag" id="resultBCStar">RM 0</div>
+            <div class="matrix-card featured">
+                <div style="font-size: 11px; font-weight: 700; color: var(--accent-orange); text-transform: uppercase;">Absolute Security (B + C*)</div>
+                <div style="font-size: 12px; color: #86868b;">10Y Replacement + 5% Compound Inflation</div>
+                <div id="finalBCStar" class="matrix-total" style="color: var(--accent-orange);">RM 0</div>
             </div>
         </div>
     </div>
 </div>
 
 <script>
-function calculateNeeds() {
+function runBookletCalculations() {
+    // 1. Process Profile Basics
     const age = parseInt(document.getElementById('clientAge').value) || 0;
-    const monthlyCommitments = parseFloat(document.getElementById('monthlyCommitments').value) || 0;
-    const monthlyMedical = parseFloat(document.getElementById('monthlyMedical').value) || 0;
-
     const gapYears = Math.max(0, 80 - age);
+    document.getElementById('gapYearsLabel').textContent = gapYears + " Years (Up to Age 80)";
 
-    // Living Expenses Calculations
-    const yearlyCommitments = monthlyCommitments * 12;
-    const A = yearlyCommitments * 5;
-    const B = yearlyCommitments * 10;
+    // 2. Sum Living Commitments Block
+    let monthlyCommitmentsSum = 0;
+    const commitmentElements = document.querySelectorAll('.commitment-input');
+    commitmentElements.forEach(input => {
+        monthlyCommitmentsSum += parseFloat(input.value) || 0;
+    });
+    
+    const yearlyCommitments = monthlyCommitmentsSum * 12;
+    const optionA = yearlyCommitments * 5;
+    const optionB = yearlyCommitments * 10;
 
-    // Medical Expenses Calculations
-    const yearlyMedical = monthlyMedical * 12;
-    const C = yearlyMedical * gapYears;
+    // Display Part 1 Values
+    document.getElementById('totalMonthlyCommitments').textContent = "RM " + Math.round(monthlyCommitmentsSum).toLocaleString();
+    document.getElementById('totalYearlyCommitments').textContent = "RM " + Math.round(yearlyCommitments).toLocaleString();
+    document.getElementById('optionAValue').textContent = "RM " + Math.round(optionA).toLocaleString();
+    document.getElementById('optionBValue').textContent = "RM " + Math.round(optionB).toLocaleString();
 
-    // Compound Inflation Calculation (C*) at 5% annually
-    let cStar = 0;
+    // 3. Sum Post-CI Medical Strategy Block
+    let monthlyMedicalSum = 0;
+    const medicalElements = document.querySelectorAll('.medical-input');
+    medicalElements.forEach(input => {
+        monthlyMedicalSum += parseFloat(input.value) || 0;
+    });
+
+    const yearlyMedical = monthlyMedicalSum * 12;
+    const strategyCFixed = yearlyMedical * gapYears;
+
+    // Calculate Compound Inflation (C*)
+    let strategyCCompoundInflation = 0;
     for (let t = 0; t < gapYears; t++) {
-        cStar += yearlyMedical * Math.pow(1.05, t);
+        strategyCCompoundInflation += yearlyMedical * Math.pow(1.05, t);
     }
 
-    // Update UI Results Elements
-    document.getElementById('resultAC').textContent = 'RM ' + Math.round(A + C).toLocaleString();
-    document.getElementById('resultBC').textContent = 'RM ' + Math.round(B + C).toLocaleString();
-    document.getElementById('resultACStar').textContent = 'RM ' + Math.round(A + cStar).toLocaleString();
-    document.getElementById('resultBCStar').textContent = 'RM ' + Math.round(B + cStar).toLocaleString();
+    // Display Part 2 Values
+    document.getElementById('totalMonthlyMedical').textContent = "RM " + Math.round(monthlyMedicalSum).toLocaleString();
+    document.getElementById('totalYearlyMedical').textContent = "RM " + Math.round(yearlyMedical).toLocaleString();
+
+    // 4. Populate Matrix Portfolio Sum Results Boxes
+    document.getElementById('finalAC').textContent = "RM " + Math.round(optionA + strategyCFixed).toLocaleString();
+    document.getElementById('finalBC').textContent = "RM " + Math.round(optionB + strategyCFixed).toLocaleString();
+    document.getElementById('finalACStar').textContent = "RM " + Math.round(optionA + strategyCCompoundInflation).toLocaleString();
+    document.getElementById('finalBCStar').textContent = "RM " + Math.round(optionB + strategyCCompoundInflation).toLocaleString();
 }
 
-// Initial calculation run on page load
-window.onload = calculateNeeds;
+// Fire calculations instantly when viewport is created
+window.onload = runBookletCalculations;
 </script>
 
 </body>
