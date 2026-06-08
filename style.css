@@ -9,14 +9,18 @@
     --text-muted: #86868b;
     --border-light: #d2d2d7;
     
-    /* Semantic Dynamic Palettes */
+    /* Updated Semantic Dynamic Palettes */
     --clr-presentation: #0071e3;
     --clr-presentation-bg: #f2f7fc;
-    --clr-technical: #34c759;
-    --clr-technical-bg: #f2fbf4;
+    
+    /* Changed this from Green to a sharp Teal */
+    --clr-technical: #00a3e0;       
+    --clr-technical-bg: #f0fafd;    
+    
     --clr-operational: #ff9500;
     --clr-operational-bg: #fffbf5;
 }
+
 
 * {
     box-sizing: border-box;
