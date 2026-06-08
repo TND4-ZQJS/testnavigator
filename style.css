@@ -1,0 +1,250 @@
+/* ==========================================================================
+   CI PRO UNIVERSE - ADVANCED APP STYLE SHEET
+   ========================================================================== */
+
+:root {
+    --apple-blue: #0071e3;
+    --apple-gray: #f5f5f7;
+    --text-dark: #1d1d1f;
+    --text-muted: #86868b;
+    --border-light: #d2d2d7;
+    
+    /* Semantic Dynamic Palettes */
+    --clr-presentation: #0071e3;
+    --clr-presentation-bg: #f2f7fc;
+    --clr-technical: #34c759;
+    --clr-technical-bg: #f2fbf4;
+    --clr-operational: #ff9500;
+    --clr-operational-bg: #fffbf5;
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    background-color: var(--apple-gray);
+    color: var(--text-dark);
+    line-height: 1.5;
+    -webkit-font-smoothing: antialiased;
+}
+
+.container {
+    max-width: 1024px;
+    margin: 0 auto;
+    padding: 0 24px;
+}
+
+/* --- Translucent Navigation Bar --- */
+.navbar {
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    background-color: rgba(255, 255, 255, 0.72);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border-bottom: 1px solid rgba(0, 0, 0, 0.08);
+}
+
+.nav-container {
+    max-width: 1024px;
+    margin: 0 auto;
+    padding: 14px 24px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.logo {
+    font-size: 17px;
+    font-weight: 600;
+    letter-spacing: -0.01em;
+    color: var(--text-dark);
+}
+
+.nav-links {
+    display: flex;
+    align-items: center;
+    gap: 24px;
+}
+
+.nav-links a {
+    text-decoration: none;
+    color: var(--text-muted);
+    font-size: 13px;
+    font-weight: 500;
+    transition: color 0.2s;
+}
+
+.nav-links a:hover {
+    color: var(--text-dark);
+}
+
+.nav-links .btn-signin {
+    background-color: var(--text-dark);
+    color: #ffffff;
+    padding: 6px 12px;
+    border-radius: 6px;
+}
+
+.nav-links .btn-signin:hover {
+    background-color: #333336;
+    color: #ffffff;
+}
+
+/* --- Hero Section --- */
+.hero {
+    padding: 80px 0 60px 0;
+    text-align: center;
+    background: #ffffff;
+}
+
+.badge {
+    background-color: var(--apple-gray);
+    color: var(--text-muted);
+    font-size: 11px;
+    font-weight: 700;
+    padding: 4px 10px;
+    border-radius: 20px;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    display: inline-block;
+    margin-bottom: 16px;
+}
+
+h1 {
+    font-size: 40px;
+    font-weight: 700;
+    letter-spacing: -0.03em;
+    line-height: 1.1;
+    max-width: 700px;
+    margin: 0 auto 16px auto;
+}
+
+.subtitle {
+    font-size: 17px;
+    color: var(--text-muted);
+    max-width: 680px;
+    margin: 0 auto 28px auto;
+    font-weight: 400;
+    line-height: 1.45;
+}
+
+.btn-primary {
+    display: inline-block;
+    background-color: var(--apple-blue);
+    color: #ffffff;
+    text-decoration: none;
+    padding: 10px 20px;
+    font-size: 14px;
+    font-weight: 500;
+    border-radius: 8px;
+    transition: background-color 0.2s, transform 0.2s;
+}
+
+.btn-primary:hover {
+    background-color: #0077ed;
+}
+
+/* --- Features Grid Section --- */
+.features {
+    padding: 60px 0;
+}
+
+.grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 24px;
+}
+
+/* Enhanced Lively Cards Layout */
+.card {
+    background: #ffffff;
+    border: 1px solid var(--border-light);
+    border-radius: 16px;
+    padding: 28px;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    position: relative;
+    overflow: hidden;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.01);
+    transition: transform 0.2s, box-shadow 0.2s, border-color 0.2s;
+}
+
+.card:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.04);
+    border-color: #b0b0b5;
+}
+
+/* Micro Top-Accent Indicators */
+.card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 4px;
+    background-color: var(--card-accent, var(--border-light));
+}
+
+/* Card Assignment Themes via CSS Variables */
+.card:nth-child(1) { --card-accent: var(--clr-presentation); }
+.card:nth-child(2) { --card-accent: var(--clr-technical); }
+.card:nth-child(3) { --card-accent: var(--clr-operational); }
+
+.card h3 {
+    font-size: 18px;
+    font-weight: 600;
+    margin-bottom: 8px;
+    letter-spacing: -0.01em;
+}
+
+/* Dynamic Text Highlights on the title */
+.card:nth-child(1) h3 { color: var(--clr-presentation); }
+.card:nth-child(2) h3 { color: var(--clr-technical); }
+.card:nth-child(3) h3 { color: var(--clr-operational); }
+
+.card p {
+    font-size: 13px;
+    color: var(--text-muted);
+    line-height: 1.5;
+}
+
+/* --- Security Box --- */
+.security {
+    padding: 20px 0 40px 0;
+}
+
+.security-box {
+    background-color: rgba(255, 255, 255, 0.6);
+    border: 1px solid var(--border-light);
+    border-radius: 12px;
+    padding: 16px;
+    text-align: center;
+    font-size: 12px;
+    color: var(--text-muted);
+}
+
+/* --- Footer --- */
+.footer {
+    padding: 32px 0;
+    text-align: center;
+    font-size: 12px;
+    color: var(--text-muted);
+    border-top: 1px solid rgba(0, 0, 0, 0.05);
+}
+
+/* --- Mobile Responsive Rules --- */
+@media (max-width: 768px) {
+    h1 { font-size: 30px; }
+    .subtitle { font-size: 15px; }
+    .hero { padding: 50px 0 40px 0; }
+    .grid { gap: 16px; }
+    .card { padding: 22px; }
+    .nav-links { gap: 16px; }
+}
