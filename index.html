@@ -378,118 +378,161 @@ body {
     </main>
 
     <script>
-        function toggleMobileMenu() {
-            document.getElementById('navMenu').classList.toggle('show');
-        }
+// Global Navigation Toggle Script
+function toggleMobileMenu() {
+    document.getElementById('navMenu').classList.toggle('show');
+}
 
-        // Master 80 e-POS Dataset mapped with exact translation keyword clusters
-        const eposDataset = [
-            { en: "Anaemia", zh: "贫血 pinxue 低血红素 bleed 容易晕" }, { en: "Anal Fistula", zh: "肛瘘 ganglou 肛门 屁股发炎屁眼" },
-            { en: "Ankle Sprain", zh: "脚踝扭伤 jiaohuai niushang 扭到脚 崴脚" }, { en: "Arrhythmia", zh: "心律失常 xinlvshichang 心跳不齐 心惊 心跳过快" },
-            { en: "Arthritis", zh: "关节炎 guanjieyan 风湿 膝盖痛" }, { en: "Asthma", zh: "哮喘 xiaochuan 气喘 喘气 呼吸困难" },
-            { en: "Atrial Septal Defect", zh: "房间隔缺损 fangjiange quesun 心脏有洞 心漏症" }, { en: "Back Pain", zh: "背痛 beitong 腰酸背痛 腰痛 腰肌劳损" },
-            { en: "Barrett’s Esophagus", zh: "巴雷特食管 baleite shiguan 食道发炎 长期胃酸倒流" }, { en: "Benign Prostate Hyperplasia", zh: "良性前列腺增生 qianliexian 小便困难 前列腺肥大" },
-            { en: "Blindness", zh: "失明 shiming 盲 眼盲 看不见" }, { en: "Breast Cancer", zh: "乳腺癌 ruxianai 乳房癌 胸部肿瘤" },
-            { en: "Breast Lump", zh: "乳房肿块 ruxian zhongkuai 胸部硬块 乳腺增生" }, { en: "Bronchitis", zh: "支气管炎 zhiqiguanyan 长期咳嗽 肺部发炎" },
-            { en: "Cataract", zh: "白内障 baineizhang 眼睛模糊 眼膜 眼疾" }, { en: "CIN", zh: "宫颈上皮内瘤变 gongjing 子宫颈细胞病变 妇科" },
-            { en: "Colon Cancer", zh: "结肠癌 jiechangai 大肠癌 肠癌" }, { en: "Colon Polyp", zh: "结肠息肉 jiechang xirou 大肠肉瘤 肠息肉" },
-            { en: "Coronary Artery Disease", zh: "冠心病 guanxinbing 心脏血管阻塞 血管硬化" }, { en: "Deafness", zh: "耳聋 erlong 听不到 听力受损 耳疾" },
-            { en: "Dermatitis", zh: "皮炎 piyan 皮肤发炎 皮肤病" }, { en: "Gestational DM", zh: "妊娠期糖尿病 renshen tangniaobing 怀孕血糖高 孕期糖尿病" },
-            { en: "Type 1 Diabetes", zh: "1型糖尿病 1xing tangniaobing 先天性糖尿病" }, { en: "Type 2 Diabetes", zh: "2型糖尿病 2xing tangniaobing 后天糖尿病 血糖高" },
-            { en: "Eczema", zh: "湿疹 shizhen 皮肤痒 红印" }, { en: "Endometriosis", zh: "子宫内膜异位症 zigong neimo 巧克力囊肿 经痛" },
-            { en: "Fatty Liver", zh: "脂肪肝 zhifanggan 肝肥大 肝脏脂肪" }, { en: "Fracture - Spine", zh: "骨折 脊椎 jizhui 脊椎骨折 龙骨断裂" },
-            { en: "Fracture - Skull", zh: "骨折 头骨 tougu 头颅骨折" }, { en: "Fracture - Finger", zh: "骨折 手指 shouzhi 手指断" },
-            { en: "Fracture - Pelvis", zh: "骨折 骨盆 gupen 盆骨骨折" }, { en: "Fracture - Wrist", zh: "骨折 手腕 shouwan 手骨折" },
-            { en: "Fracture - Arm", zh: "骨折 手臂 shoubi 手青绿" }, { en: "Fracture - Elbow", zh: "骨折 手肘 shouzhou 手肘断" },
-            { en: "Fracture - Hip", zh: "骨折 髋关节 kuan 大腿骨折 屁股骨折" }, { en: "Fracture - Knee", zh: "骨折 膝盖 xigai 膝盖骨折" },
-            { en: "Fracture - Leg", zh: "骨折 腿部 tuibu 腿断了" }, { en: "Fracture - Ankle", zh: "骨折 脚踝 jiaohuai 脚踝骨折" },
-            { en: "Fracture - Toe", zh: "骨折 脚趾 jiaozhi 脚趾断" }, { en: "G6PD", zh: "蚕豆病 candoubing G6PD 缺乏症" },
-            { en: "Gallstones", zh: "胆结石 danjieshi 胆囊结石 胆痛" }, { en: "Gastric Reflux", zh: "胃食管反流 weishiguan fanliu 胃酸倒流 烧心 胃痛" },
-            { en: "Gastric Ulcer", zh: "胃溃疡 weikuiyang 胃破洞 胃出血" }, { en: "Gastritis", zh: "胃炎 weiyan 胃痛 胃胀风胃风" },
-            { en: "Glaucoma", zh: "青光眼 qingguangyan 眼压高 青光" }, { en: "Gout", zh: "痛风 tongfeng 尿酸高 关节红肿" },
-            { en: "Haemorrhoids", zh: "痔疮 zhichuang 大便出血 屁股痛" }, { en: "Heart Murmur", zh: "心脏杂音 xinzang zayin 心跳杂音 心脏肉跳" },
-            { en: "Helicobacter Pylori", zh: "幽门螺杆菌 youmen luoganjun HP 胃菌 胃部感染" }, { en: "Hepatitis B", zh: "乙肝 yigan 乙型肝炎 B型肝炎 带菌者" },
-            { en: "High blood pressure", zh: "高血压 gaoxueya 血压高 BP高" }, { en: "High cholesterol", zh: "高胆固醇 gaodanguchun 脂肪高 胆固醇高" },
-            { en: "Hole in Heart", zh: "心脏有洞 xinzang youdong 心漏症 房间隔缺损" }, { en: "Hyperthyroidism", zh: "甲亢 jiakang 甲状腺过高 大颈泡 大脖子病" },
-            { en: "Hypothyroidism", zh: "甲减 jiajian 甲状腺过低" }, { en: "Insomnia", zh: "失眠 shimian 睡不着 精神衰弱" },
-            { en: "Kidney Stones", zh: "肾结石 shenjieshi 腰痛 肾脏腰子" }, { en: "Meniere's Disease", zh: "美尼尔氏综合症 meinier 耳水不平衡 头晕 眩晕" },
-            { en: "Menstrual Disorder", zh: "月经不调 yuejing 乱经 经期不准 姨妈到" }, { en: "Migraine", zh: "偏头痛 piantoutong 头痛 经常头痛" },
-            { en: "Mitral Valve Prolapse", zh: "二尖瓣脱垂 erjianban 心脏瓣膜下垂" }, { en: "Osteoarthritis", zh: "退化性关节炎 guanjieyan 老人风湿 骨质增生" },
-            { en: "Ovarian Cyst", zh: "卵巢囊肿 luanchao nangzhong 水瘤 妇科水泡" }, { en: "Patent Ductus Arteriosus", zh: "动脉导管未闭 dongmai daoguan 心脏先天血管没关" },
-            { en: "Pneumothorax", zh: "气胸 qixiong 肺积气 肺部漏气 爆肺" }, { en: "Polycystic Ovarian Syndrome", zh: "多囊卵巢综合征 duonang luanchao PCOS 荷尔蒙失调" },
-            { en: "Pregnancy", zh: "怀孕 huaiyun 妊娠 大肚子 有喜了" }, { en: "Psoriatic Arthritis", zh: "银屑病关节炎 yinxiebing 牛皮癣关节炎" },
-            { en: "Retinal Detachment", zh: "视网膜脱落 shiwangmo 眼底脱落 眼睛瞎" }, { en: "Rheumatoid Arthritis", zh: "类风湿性关节炎 leifengshi 类风湿 骨节变形" },
-            { en: "Shingles", zh: "生蛇 shengshe 带状疱疹 daizhuangpaozhen 皮肤红疹水泡" }, { en: "Sinusitis", zh: "鼻窦炎 bidouyan 鼻敏感 长期流鼻涕" },
-            { en: "Slipped Disc", zh: "椎间盘突出 zhuijianpan 骨刺 脊椎移位" }, { en: "Sprain", zh: "扭伤 niushang 扭到 筋发炎" },
-            { en: "Stroke", zh: "中风 zhongfeng 半身不遂 脑血管阻塞" }, { en: "Thalassemia minor", zh: "轻型地中海贫血 dizhonghai pinxue 地贫 遗传性贫血" },
-            { en: "Tonsilitis", zh: "扁桃体炎 biantaotiyan 喉咙发炎 扁桃腺" }, { en: "Urinary Tract Infection", zh: "尿道感染 niaodao ganran UTI 小便痛 尿道炎" },
-            { en: "Uterine Fibroid", zh: "子宫肌瘤 zigong jiliu 子宫肉瘤 妇科瘤" }, { en: "Ventricular Septal Defect", zh: "室间隔缺损 shijiange quesun 心脏有洞 心漏症" }
-        ];
+// Master 82 e-POS Dataset - Enhanced with all 6 missing/layman target criteria mapped
+const eposDataset = [
+    { en: "Anaemia", zh: "贫血 pinxue 低血红素 bleed 容易晕" }, 
+    { en: "Anal Fistula", zh: "肛瘘 ganglou 肛门 屁股发炎屁眼" },
+    { en: "Ankle Sprain", zh: "脚踝扭伤 jiaohuai niushang 扭到脚 崴脚" }, 
+    { en: "Arrhythmia", zh: "心律失常 xinlvshichang 心跳不齐 心惊 心跳过快" },
+    { en: "Arthritis", zh: "关节炎 guanjieyan 风湿 膝盖痛" }, 
+    { en: "Asthma", zh: "哮喘 xiaochuan 气喘 喘气 呼吸困难" },
+    { en: "Atrial Septal Defect", zh: "房间隔缺损 fangjiange quesun 心脏有洞 心漏症" }, 
+    { en: "Back Pain", zh: "背痛 beitong 腰酸背痛 腰痛 腰肌劳损" },
+    { en: "Barrett’s Esophagus", zh: "巴雷特食管 baleite shiguan 食道发炎 长期胃酸倒流" }, 
+    { en: "Benign Prostate Hyperplasia", zh: "良性前列腺增生 qianliexian 小便困难 前列腺肥大" },
+    { en: "Blindness", zh: "失明 shiming 盲 眼盲 看不见" }, 
+    { en: "Breast Cancer", zh: "乳腺癌 ruxianai 乳房癌 胸部肿瘤" },
+    { en: "Breast Lump", zh: "乳房肿块 ruxian zhongkuai 胸部硬块 乳腺增生" }, 
+    { en: "Bronchitis", zh: "支气管炎 zhiqiguanyan 长期咳嗽 肺部发炎" },
+    { en: "Cataract", zh: "白内障 baineizhang 眼睛模糊 眼膜 眼疾" }, 
+    { en: "CIN", zh: "宫颈上皮内瘤变 gongjing 子宫颈细胞病变 妇科" },
+    { en: "Colon Cancer", zh: "结肠癌 jiechangai 大肠癌 肠癌" }, 
+    { en: "Colon Polyp", zh: "结肠息肉 jiechang xirou 大肠肉瘤 肠息肉" },
+    { en: "Coronary Artery Disease", zh: "冠心病 guanxinbing 心脏血管阻塞 血管硬化" }, 
+    { en: "Deafness", zh: "耳聋 erlong 听不到 听力受损 耳疾" },
+    { en: "Dengue Fever", zh: "骨痛热症 gutongrezheng 登革热 蚊症 dengue 蚊子咬 发烧" }, // 1. Added Dengue Track
+    { en: "Dermatitis", zh: "皮炎 piyan 皮肤发炎 皮肤病" }, 
+    { en: "Gestational DM", zh: "妊娠期糖尿病 renshen tangniaobing 怀孕血糖高 孕期糖尿病" },
+    { en: "Type 1 Diabetes", zh: "1型糖尿病 1xing tangniaobing 先天性糖尿病 血糖高 high sugar" }, // 6. Mapped High Sugar here
+    { en: "Type 2 Diabetes", zh: "2型糖尿病 2xing tangniaobing 后天糖尿病 血糖高 high sugar 糖尿" }, // 6. Mapped High Sugar here
+    { en: "Eczema", zh: "湿疹 shizhen 皮肤痒 红印" }, 
+    { en: "Endometriosis", zh: "子宫内膜异位症 zigong neimo 巧克力囊肿 经痛" },
+    { en: "Fatty Liver", zh: "脂肪肝 zhifanggan 肝肥大 肝脏脂肪" }, 
+    { en: "Fracture - Spine", zh: "骨折 脊椎 jizhui 脊椎骨折 龙骨断裂" },
+    { en: "Fracture - Skull", zh: "骨折 头骨 tougu 头颅骨折" }, 
+    { en: "Fracture - Finger", zh: "骨折 手指 shouzhi 手指断" },
+    { en: "Fracture - Pelvis", zh: "骨折 骨盆 gupen 盆骨骨折" }, 
+    { en: "Fracture - Wrist", zh: "骨折 手腕 shouwan 手骨折" },
+    { en: "Fracture - Arm", zh: "骨折 手臂 shoubi 手青绿" }, 
+    { en: "Fracture - Elbow", zh: "骨折 手肘 shouzhou 手肘断" },
+    { en: "Fracture - Hip", zh: "骨折 髋关节 kuan 大腿骨折 屁股骨折" }, 
+    { en: "Fracture - Knee", zh: "骨折 膝盖 xigai 膝盖骨折" },
+    { en: "Fracture - Leg", zh: "骨折 腿部 tuibu 腿断了" }, 
+    { en: "Fracture - Ankle", zh: "骨折 脚踝 jiaohuai 脚踝骨折" },
+    { en: "Fracture - Toe", zh: "骨折 脚趾 jiaozhi 脚趾断" }, 
+    { en: "G6PD", zh: "蚕豆病 candoubing G6PD 缺乏症" },
+    { en: "Gallstones", zh: "胆结石 danjieshi 胆囊结石 胆痛" }, 
+    { en: "Gastric Reflux", zh: "胃食管反流 weishiguan fanliu 胃酸倒流 烧心 胃痛" },
+    { en: "Gastric Ulcer", zh: "胃溃疡 weikuiyang 胃破洞 胃出血" }, 
+    { en: "Gastritis", zh: "胃炎 weiyan 胃痛 胃胀风胃风" },
+    { en: "Glaucoma", zh: "青光眼 qingguangyan 眼压高 青光" }, 
+    { en: "Gout", zh: "痛风 tongfeng 尿酸高 关节红肿 high uric acid" }, // 5. Mapped High Uric Acid to Gout logic
+    { en: "Haemorrhoids", zh: "痔疮 zhichuang 大便出血 屁股痛 hemorrhoids" }, // 2. Cross-mapped both spellings
+    { en: "Heart Murmur", zh: "心脏杂音 xinzang zayin 心跳杂音 心脏肉跳" },
+    { en: "Helicobacter Pylori", zh: "幽门螺杆菌 youmen luoganjun HP 胃菌 胃部感染" }, 
+    { en: "Hepatitis B", zh: "乙肝 yigan 乙型肝炎 B型肝炎 带菌者" },
+    { en: "High blood pressure", zh: "高血压 gaoxueya 血压高 BP高 hypertension" }, // 3. Cross-mapped both terms
+    { en: "High cholesterol", zh: "高胆固醇 gaodanguchun 脂肪高 胆固醇高 high cholesterol" }, // 4. Retained & secured
+    { en: "High Uric Acid", zh: "高尿酸 gaoniaosuan 尿酸高 high uric acid 痛风前兆" }, // 5. Added dedicated track
+    { en: "Hole in Heart", zh: "心脏有洞 xinzang youdong 心漏症 房间隔缺损" }, 
+    { en: "Hyperthyroidism", zh: "甲亢 jiakang 甲状腺过高 大颈泡 大脖子病" },
+    { en: "Hypothyroidism", zh: "甲减 jiajian 甲状腺过低" }, 
+    { en: "Insomnia", zh: "失眠 shimian 睡不着 精神衰弱" },
+    { en: "Kidney Stones", zh: "肾结石 shenjieshi 腰痛 肾脏腰子" }, 
+    { en: "Meniere's Disease", zh: "美尼尔氏综合症 meinier 耳水不平衡 头晕 眩晕" },
+    { en: "Menstrual Disorder", zh: "月经不调 yuejing 乱经 经期不准 姨妈到" }, 
+    { en: "Migraine", zh: "偏头痛 piantoutong 头痛 经常头痛" },
+    { en: "Mitral Valve Prolapse", zh: "二尖瓣脱垂 erjianban 心脏瓣膜下垂" }, 
+    { en: "Osteoarthritis", zh: "退化性关节炎 guanjieyan 老人风湿 骨质增生" },
+    { en: "Ovarian Cyst", zh: "卵巢囊肿 luanchao nangzhong 水瘤 妇科水泡" }, 
+    { en: "Patent Ductus Arteriosus", zh: "动脉导管未闭 dongmai daoguan 心脏先天血管没关" },
+    { en: "Pneumothorax", zh: "气胸 qixiong 肺积气 肺部漏气 爆肺" }, 
+    { en: "Polycystic Ovarian Syndrome", zh: "多囊卵巢综合征 duonang luanchao PCOS 荷尔蒙失调" },
+    { en: "Pregnancy", zh: "怀孕 huaiyun 妊娠 大肚子 有喜了" }, 
+    { en: "Psoriatic Arthritis", zh: "银屑病关节炎 yinxiebing 牛皮癣关节炎" },
+    { en: "Retinal Detachment", zh: "视网膜脱落 shiwangmo 眼底脱落 眼睛瞎" }, 
+    { en: "Rheumatoid Arthritis", zh: "类风湿性关节炎 leifengshi 类风湿 骨节变形" },
+    { en: "Shingles", zh: "生蛇 shengshe 带状疱疹 daizhuangpaozhen 皮肤红疹水泡" }, 
+    { en: "Sinusitis", zh: "鼻窦炎 bidouyan 鼻敏感 长期流鼻涕" },
+    { en: "Slipped Disc", zh: "椎间盘突出 zhuijianpan 骨刺 脊椎移位" }, 
+    { en: "Sprain", zh: "扭伤 niushang 扭到 筋发炎" },
+    { en: "Stroke", zh: "中风 zhongfeng 半身不遂 脑血管阻塞" }, 
+    { en: "Thalassemia minor", zh: "轻型地中海贫血 dizhonghai pinxue 地贫 遗传性贫血" },
+    { en: "Tonsilitis", zh: "扁桃体炎 biantaotiyan 喉咙发炎 扁桃腺" }, 
+    { en: "Urinary Tract Infection", zh: "尿道感染 niaodao ganran UTI 小便痛 尿道炎" },
+    { en: "Uterine Fibroid", zh: "子宫肌瘤 zigong jiliu 子宫肉瘤 妇科瘤" }, 
+    { en: "Ventricular Septal Defect", zh: "室间隔缺损 shijiange quesun 心脏有洞 心漏症" }
+];
 
-        // Seed suggestions with all elements organized alphabetically initially
-        document.addEventListener("DOMContentLoaded", () => {
-            renderSuggestions(eposDataset.sort((a,b) => a.en.localeCompare(b.en)));
-        });
+// Seed suggestions with all elements organized alphabetically initially
+document.addEventListener("DOMContentLoaded", () => {
+    renderSuggestions(eposDataset.sort((a,b) => a.en.localeCompare(b.en)));
+});
 
-        function renderSuggestions(list) {
-            const container = document.getElementById("suggestionsBox");
-            container.innerHTML = "";
-            
-            if (list.length === 0) {
-                container.innerHTML = `<div style="padding: 16px; font-size: 13.5px; color: var(--text-tertiary); text-align: center;">No matches found. Try typing a simpler layman term.</div>`;
-                return;
-            }
+function renderSuggestions(list) {
+    const container = document.getElementById("suggestionsBox");
+    container.innerHTML = "";
+    
+    if (list.length === 0) {
+        container.innerHTML = `<div style="padding: 16px; font-size: 13.5px; color: var(--text-tertiary); text-align: center;">No matches found. Try typing a simpler layman term.</div>`;
+        return;
+    }
 
-            list.forEach(item => {
-                const row = document.createElement("div");
-                row.className = "suggestion-row";
-                const primaryZhLabel = item.zh.split(' ')[0]; // Extract first clean translation phrase
-                
-                row.innerHTML = `
-                    <span style="font-weight: 500;">${item.en}</span>
-                    <span style="font-size: 12px; color: var(--text-tertiary); background: #f5f5f7; padding: 2px 8px; border-radius: 4px;">${primaryZhLabel}</span>
-                `;
-                row.onclick = () => selectCondition(item, row);
-                container.appendChild(row);
-            });
-        }
+    list.forEach(item => {
+        const row = document.createElement("div");
+        row.className = "suggestion-row";
+        const primaryZhLabel = item.zh.split(' ')[0]; // Extract first clean translation phrase
+        
+        row.innerHTML = `
+            <span style="font-weight: 500;">${item.en}</span>
+            <span style="font-size: 12px; color: var(--text-tertiary); background: #f5f5f7; padding: 2px 8px; border-radius: 4px;">${primaryZhLabel}</span>
+        `;
+        row.onclick = () => selectCondition(item, row);
+        container.appendChild(row);
+    });
+}
 
-        // Live input character string matcher
-        function handleLiveTranslateSearch() {
-            const rawQuery = document.getElementById("translateSearchInput").value.toLowerCase().trim();
-            
-            if (rawQuery === "") {
-                renderSuggestions(eposDataset.sort((a,b) => a.en.localeCompare(b.en)));
-                return;
-            }
+// Live input character string matcher
+function handleLiveTranslateSearch() {
+    const rawQuery = document.getElementById("translateSearchInput").value.toLowerCase().trim();
+    
+    if (rawQuery === "") {
+        renderSuggestions(eposDataset.sort((a,b) => a.en.localeCompare(b.en)));
+        return;
+    }
 
-            const elementsFiltered = eposDataset.filter(record => {
-                return record.en.toLowerCase().includes(rawQuery) || record.zh.toLowerCase().includes(rawQuery);
-            });
+    const elementsFiltered = eposDataset.filter(record => {
+        return record.en.toLowerCase().includes(rawQuery) || record.zh.toLowerCase().includes(rawQuery);
+    });
 
-            renderSuggestions(elementsFiltered);
+    renderSuggestions(elementsFiltered);
 
-            // Auto-open top item if it is an exact single match to streamline operations
-            if (elementsFiltered.length === 1) {
-                selectCondition(elementsFiltered[0], document.querySelector(".suggestion-row"));
-            }
-        }
+    // Auto-open top item if it is an exact single match to streamline operations
+    if (elementsFiltered.length === 1) {
+        selectCondition(elementsFiltered[0], document.querySelector(".suggestion-row"));
+    }
+}
 
-        // Output Display Activation Controller
-        function selectCondition(item, elementRef) {
-            document.querySelectorAll(".suggestion-row").forEach(r => r.classList.remove("selected"));
-            if (elementRef) elementRef.classList.add("selected");
+// Output Display Activation Controller
+function selectCondition(item, elementRef) {
+    document.querySelectorAll(".suggestion-row").forEach(r => r.classList.remove("selected"));
+    if (elementRef) elementRef.classList.add("selected");
 
-            document.getElementById("translateEmptyState").style.display = "none";
-            document.getElementById("translateActiveDisplay").style.display = "block";
+    document.getElementById("translateEmptyState").style.display = "none";
+    document.getElementById("translateActiveDisplay").style.display = "block";
 
-            // Map target data outputs out to UI
-            document.getElementById("outEposTitle").textContent = item.en;
-            
-            // Clean out space tags for legible advisor reference output
-            const readableZhMeta = item.zh.replace(/ [a-z]+/g, '').replace(/ /g, '、');
-            document.getElementById("outMatchedTerms").textContent = `${readableZhMeta} (${item.en})`;
-        }
+    // Map target data outputs out to UI
+    document.getElementById("outEposTitle").textContent = item.en;
+    
+    // Clean out space tags for legible advisor reference output
+    const readableZhMeta = item.zh.replace(/ [a-z0-9 ]+/g, '').replace(/ /g, '、');
+    document.getElementById("outMatchedTerms").textContent = `${readableZhMeta} (${item.en})`;
+}
     </script>
 </body>
 </html>
