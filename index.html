@@ -3,370 +3,685 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>CI Needs Analysis Framework</title>
-    <style>
-        :root {
-            --primary-blue: #0071e3;
-            --bg-light: #f5f5f7;
-            --text-dark: #1d1d1f;
-            --border-color: #d2d2d7;
-            --table-header-bg: #e8e8ed;
-            --accent-orange: #ff9500;
-        }
+    <title>Underwriting Engine - CI Pro Universe</title>
+<style>
+/* ============================================================
+   GLOBAL DESIGN VARIABLES (Unified Workspace Framework)
+   ============================================================ */
+*, *::before, *::after { 
+    box-sizing: border-box; 
+    margin: 0; 
+    padding: 0; 
+}
 
-        body {
-            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
-            background-color: var(--bg-light);
-            color: var(--text-dark);
-            margin: 0;
-            padding: 20px;
-        }
+:root {
+    --nav-height: 52px;
+    --accent: #0071e3;
+    --bg: #f5f5f7;       /* Clean gray workspace canvas background */
+    --surface: #ffffff;  /* Card surface background */
+    --text-primary: #1d1d1f;
+    --text-secondary: #515154;
+    --text-tertiary: #86868b;
+    --border: rgba(0, 0, 0, 0.06);
+    --line: #e9e9ee;
+}
 
-        .workspace-container {
-            max-width: 840px;
-            margin: 0 auto;
-            background: #ffffff;
-            border-radius: 16px;
-            padding: 30px;
-            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
-        }
+body {
+    background-color: var(--bg);
+    color: var(--text-primary);
+    font-family: -apple-system, BlinkMacSystemFont, "SF Pro Text", "Segoe UI", sans-serif;
+    -webkit-font-smoothing: antialiased;
+    line-height: 1.5;
+}
 
-        h2 {
-            font-size: 22px;
-            font-weight: 700;
-            margin-bottom: 20px;
-            letter-spacing: -0.02em;
-            border-bottom: 2px solid var(--text-dark);
-            padding-bottom: 8px;
-        }
+.container {
+    max-width: 940px;
+    margin: 40px auto;
+    padding: 0 24px 100px;
+}
 
-        .section-title {
-            background-color: #333333;
-            color: #ffffff;
-            padding: 8px 12px;
-            font-size: 14px;
-            font-weight: 600;
-            text-transform: uppercase;
-            letter-spacing: 0.05em;
-            margin-top: 25px;
-            margin-bottom: 10px;
-        }
+/* ============================================================
+   STICKY STYLISH NAVBAR STRUCTURE
+   ============================================================ */
+.navbar {
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    background: rgba(255, 255, 255, 0.85);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border-bottom: 1px solid var(--border);
+    height: var(--nav-height);
+}
 
-        .profile-row {
-            display: flex;
-            gap: 20px;
-            background: #fdfdfd;
-            padding: 15px;
-            border: 1px solid var(--border-color);
-            margin-bottom: 15px;
-        }
+.nav-container {
+    max-width: 940px;
+    margin: 0 auto;
+    padding: 0 24px;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    gap: 32px;
+}
 
-        .profile-field {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-        }
+.logo {
+    font-size: 16px;
+    font-weight: 700;
+    color: var(--text-primary);
+    cursor: pointer;
+    letter-spacing: -0.02em;
+    flex-shrink: 0;
+}
 
-        .profile-field label {
-            font-size: 13px;
-            font-weight: 600;
-        }
+.nav-menu {
+    display: flex;
+    gap: 4px;
+    align-items: center;
+    margin-left: auto;
+}
 
-        table {
-            width: 100%;
-            border-collapse: collapse;
-            margin-bottom: 20px;
-            font-size: 13px;
-        }
+.nav-item {
+    font-size: 13px;
+    font-weight: 500;
+    color: var(--text-secondary);
+    text-decoration: none;
+    padding: 6px 12px;
+    border-radius: 8px;
+    transition: background 0.15s, color 0.15s;
+    white-space: nowrap;
+}
 
-        th {
-            background-color: var(--table-header-bg);
-            color: var(--text-dark);
-            font-weight: 700;
-            text-align: left;
-            padding: 10px;
-            border: 1px solid var(--border-color);
-        }
+.nav-item:hover { 
+    background: rgba(0,0,0,0.05); 
+    color: var(--text-primary); 
+}
 
-        td {
-            padding: 8px 10px;
-            border: 1px solid var(--border-color);
-            vertical-align: middle;
-        }
+.nav-item.active { 
+    background: rgba(0,113,227,0.08); 
+    color: var(--accent); 
+}
 
-        .col-num { width: 40px; text-align: center; font-weight: 600; background: #fafafa; }
-        .col-desc { font-weight: 500; }
-        .col-val { width: 150px; }
+.menu-toggle {
+    display: none;
+    flex-direction: column;
+    gap: 5px;
+    cursor: pointer;
+    margin-left: auto;
+    padding: 6px;
+}
 
-        .input-cell {
-            width: 100%;
-            box-sizing: border-box;
-            padding: 6px 8px;
-            border: 1px solid transparent;
-            background: #f9f9fb;
-            font-size: 13px;
-            font-weight: 500;
-            text-align: right;
-            border-radius: 4px;
-        }
+.menu-toggle span {
+    display: block;
+    width: 22px;
+    height: 2px;
+    background: var(--text-primary);
+    border-radius: 2px;
+    transition: 0.3s;
+}
 
-        .input-cell:focus {
-            border-color: var(--primary-blue);
-            background: #ffffff;
-            outline: none;
-        }
+@media (max-width: 700px) {
+    .menu-toggle { display: flex; }
+    .nav-menu {
+        display: none;
+        position: absolute;
+        top: var(--nav-height);
+        left: 0; right: 0;
+        background: rgba(255,255,255,0.97);
+        backdrop-filter: blur(20px);
+        flex-direction: column;
+        padding: 12px 16px 20px;
+        gap: 2px;
+        border-bottom: 1px solid var(--border);
+    }
+    .nav-menu.show { display: flex; }
+    .nav-item { width: 100%; padding: 10px 14px; }
+}
 
-        .read-only-cell {
-            text-align: right;
-            font-weight: 600;
-            background-color: #f1f3f5;
-        }
+/* ============================================================
+   MODERN SEGMENTED TABS
+   ============================================================ */
+.tab-container {
+    display: flex;
+    background: rgba(0, 0, 0, 0.04);
+    padding: 4px;
+    border-radius: 10px;
+    margin-bottom: 24px;
+}
 
-        .summary-box {
-            background: #f8fafc;
-            border: 2px dashed var(--border-color);
-            padding: 20px;
-            border-radius: 8px;
-            margin-top: 25px;
-        }
+.tab-btn {
+    flex: 1;
+    background: transparent;
+    color: var(--text-secondary);
+    border: 0;
+    padding: 8px 16px;
+    border-radius: 7px;
+    cursor: pointer;
+    font-weight: 500;
+    font-size: 13.5px;
+    transition: all 0.2s;
+    margin-top: 0;
+}
 
-        .matrix-grid {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 15px;
-            margin-top: 15px;
-        }
+.tab-btn.active {
+    background: #ffffff;
+    color: var(--text-primary);
+    box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+}
 
-        .matrix-card {
-            background: #ffffff;
-            border: 1px solid var(--border-color);
-            padding: 15px;
-            border-radius: 6px;
-            text-align: center;
-        }
+/* ============================================================
+   FILLER WORKSPACE COMPONENT STYLES
+   ============================================================ */
+.section {
+    background: #fbfbfd;
+    border: 1px solid #eee;
+    padding: 24px;
+    border-radius: 12px;
+    margin: 16px 0;
+}
 
-        .matrix-card.featured {
-            border: 2px solid var(--accent-orange);
-            background: #fffbf5;
-        }
+.section h2 {
+    margin: 0 0 14px 0;
+    font-size: 1.15rem;
+    letter-spacing: -0.01em;
+}
 
-        .matrix-total {
-            font-size: 20px;
-            font-weight: 700;
-            margin-top: 5px;
-            color: #1d1d1f;
-        }
-    </style>
+label {
+    display: block;
+    margin: 8px 0;
+    font-size: 0.95rem;
+    font-weight: 500;
+}
+
+input[type=number], input[type=text] {
+    width: 100%;
+    padding: 12px;
+    border-radius: 10px;
+    border: 1px solid #ddd;
+    margin-top: 6px;
+    font-size: 1rem;
+    background: #fff;
+    font-family: inherit;
+    transition: border-color 0.2s, box-shadow 0.2s;
+}
+
+input[type=number]:focus, input[type=text]:focus {
+    border-color: var(--accent);
+    outline: none;
+}
+
+.grid-2 { 
+    display: grid; 
+    grid-template-columns: repeat(2, 1fr); 
+    gap: 16px; 
+}
+
+@media (max-width: 600px) {
+    .grid-2 { grid-template-columns: 1fr; }
+}
+
+.muted {
+    color: var(--text-tertiary);
+    font-size: 0.85rem;
+}
+
+button {
+    background: var(--accent);
+    color: #fff;
+    border: 0;
+    padding: 12px 24px;
+    border-radius: 10px;
+    cursor: pointer;
+    font-weight: 500;
+    font-size: 0.95rem;
+    transition: background 0.15s;
+    width: 100%;
+    margin-top: 12px;
+}
+
+button:hover {
+    background: #0077ed;
+}
+
+/* ============================================================
+   BILINGUAL SPLIT MODULE CONTENT GRID STYLE
+   ============================================================ */
+.matrix-split-view {
+    display: grid;
+    grid-template-columns: 1fr 1.2fr;
+    gap: 24px;
+    margin-top: 16px;
+}
+
+@media (max-width: 768px) {
+    .matrix-split-view { grid-template-columns: 1fr; }
+}
+
+.condition-scroll-box {
+    max-height: 420px;
+    overflow-y: auto;
+    border: 1px solid #e9e9ee;
+    border-radius: 10px;
+    background: #fafafa;
+}
+
+.condition-row-item {
+    padding: 12px 16px;
+    font-size: 14px;
+    color: var(--text-primary);
+    cursor: pointer;
+    border-bottom: 1px solid #e9e9ee;
+    transition: all 0.2s;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.condition-row-item:hover {
+    background-color: #f2f7fc;
+    color: var(--accent);
+}
+
+.condition-row-item.selected {
+    background-color: var(--accent);
+    color: #ffffff;
+}
+
+.condition-row-item.selected span {
+    color: rgba(255, 255, 255, 0.8) !important;
+}
+
+/* Questionnaire Panels */
+.question-block {
+    margin-bottom: 16px;
+    background: #f5f5f7;
+    padding: 14px;
+    border-radius: 8px;
+    border: 1px solid rgba(0, 0, 0, 0.02);
+}
+
+.question-block label {
+    font-size: 13px;
+    font-weight: 500;
+    color: var(--text-primary);
+    margin-bottom: 6px;
+    line-height: 1.45;
+}
+
+.question-block select, .question-block input {
+    width: 100%;
+    padding: 8px 10px;
+    border: 1px solid #d2d2d7;
+    border-radius: 6px;
+    font-size: 13px;
+    background: #ffffff;
+    font-family: inherit;
+    outline: none;
+}
+
+.action-alert-banner {
+    padding: 12px 14px;
+    background-color: #f2f7fc;
+    border-left: 4px solid var(--accent);
+    border-radius: 0 8px 8px 0;
+    font-size: 12px;
+    color: var(--text-primary);
+    line-height: 1.45;
+    margin-top: auto;
+}
+
+/* ============================================================
+   BMI SPECIALIST RESULT PANEL STYLING
+   ============================================================ */
+.result-panel {
+    margin-top: 24px;
+    padding: 24px;
+    background: #ffffff;
+    border-radius: 12px;
+    border-left: 4px solid var(--accent);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.02);
+}
+
+.result-title {
+    font-size: 0.9rem;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    color: var(--text-tertiary);
+    font-weight: 600;
+}
+
+.bmi-value-display {
+    font-size: 36px;
+    font-weight: 700;
+    color: var(--text-primary);
+    margin: 8px 0;
+    letter-spacing: -0.02em;
+}
+
+.bmi-value-display span {
+    color: var(--accent);
+}
+
+.underwriting-comment {
+    background: #f5f5f7;
+    padding: 14px 16px;
+    border-radius: 8px;
+    font-size: 0.95rem;
+    font-weight: 500;
+    color: var(--text-secondary);
+    border: 1px solid rgba(0, 0, 0, 0.03);
+}
+</style>
 </head>
 <body>
 
-<div class="workspace-container">
-    <h2>Critical Illness (CI) Needs Calculation Booklet</h2>
+    <header class="navbar">
+        <div class="nav-container">
+            <span class="logo" onclick="window.location.href='dashboard.html'">CI Pro Universe</span>
+            
+            <div class="menu-toggle" onclick="toggleMobileMenu()" aria-label="Toggle menu">
+                <span></span><span></span><span></span>
+            </div>
 
-    <div class="profile-row">
-        <div class="profile-field">
-            <label>Client Name:</label>
-            <input type="text" value="Prospect Client" style="border:none; border-bottom:1px solid #ccc; padding:2px;">
+            <nav class="nav-menu" id="navMenu">
+                <a href="dashboard.html" class="nav-item">Operational Hub</a>
+                <a href="cipro-experience.html" class="nav-item">CI Pro Experience</a>
+                <a href="eposbuddy.html" class="nav-item active">EPOS Buddy</a>
+                <a href="magicfiller.html" class="nav-item">Magic Filler</a>
+            </nav>
         </div>
-        <div class="profile-field">
-            <label>Current Age:</label>
-            <input type="number" id="clientAge" value="35" class="input-cell" style="width:60px; text-align:center;" oninput="runBookletCalculations()">
-        </div>
-    </div>
+    </header>
 
-    <div class="section-title">1. Lifestyle Maintenance & Living Commitments</div>
-    <table>
-        <thead>
-            <tr>
-                <th class="col-num">No.</th>
-                <th class="col-desc">Monthly Living Commitments</th>
-                <th class="col-val" style="text-align: right;">Amount (RM)</th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr>
-                <td class="col-num">1</td>
-                <td class="col-desc">Housing Loan / Rental</td>
-                <td><input type="number" class="input-cell commitment-input" value="2500" oninput="runBookletCalculations()"></td>
-            </tr>
-            <tr>
-                <td class="col-num">2</td>
-                <td class="col-desc">Car Loan / Transportation Expenses</td>
-                <td><input type="number" class="input-cell commitment-input" value="1000" oninput="runBookletCalculations()"></td>
-            </tr>
-            <tr>
-                <td class="col-num">3</td>
-                <td class="col-desc">Personal / Business Loans</td>
-                <td><input type="number" class="input-cell commitment-input" value="500" oninput="runBookletCalculations()"></td>
-            </tr>
-            <tr>
-                <td class="col-num">4</td>
-                <td class="col-desc">Household Costs / Food / Utilities</td>
-                <td><input type="number" class="input-cell commitment-input" value="1200" oninput="runBookletCalculations()"></td>
-            </tr>
-            <tr>
-                <td class="col-num">5</td>
-                <td class="col-desc">Children Education / Parent Allowances</td>
-                <td><input type="number" class="input-cell commitment-input" value="800" oninput="runBookletCalculations()"></td>
-            </tr>
-            <tr>
-                <td class="col-num">6</td>
-                <td class="col-desc">Insurance Premiums / Fixed Savings</td>
-                <td><input type="number" class="input-cell commitment-input" value="500" oninput="runBookletCalculations()"></td>
-            </tr>
-            <tr style="background: #f1f3f5; font-weight: bold;">
-                <td class="col-num">i</td>
-                <td class="col-desc">Total Monthly Living Commitments (Sum 1 - 6)</td>
-                <td id="totalMonthlyCommitments" style="text-align: right; padding-right: 18px;">RM 0</td>
-            </tr>
-            <tr style="background: #e8e8ed; font-weight: bold;">
-                <td class="col-num"></td>
-                <td class="col-desc">Yearly Total Amount (Variable i &times; 12 Months)</td>
-                <td id="totalYearlyCommitments" style="text-align: right; padding-right: 18px;">RM 0</td>
-            </tr>
-        </tbody>
-    </table>
-
-    <table style="margin-top: 10px;">
-        <thead>
-            <tr>
-                <th style="width: 50%;">Option A: 5-Year Income Replacement Strategy</th>
-                <th style="width: 50%;">Option B: 10-Year Income Replacement Strategy</th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr>
-                <td id="optionAValue" class="read-only-cell" style="text-align: center; font-size: 16px; padding: 12px; color: var(--primary-blue);">RM 0</td>
-                <td id="optionBValue" class="read-only-cell" style="text-align: center; font-size: 16px; padding: 12px; color: var(--primary-blue);">RM 0</td>
-            </tr>
-        </tbody>
-    </table>
-
-    <div class="section-title">2. Life After Critical Illness Care Strategy</div>
-    <table>
-        <thead>
-            <tr>
-                <th class="col-num">No.</th>
-                <th class="col-desc">Long-Term Care / Alternative Healthcare Expenses</th>
-                <th class="col-val" style="text-align: right;">Amount (RM)</th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr>
-                <td class="col-num">1</td>
-                <td class="col-desc">Alternative Medication / Special Care Treatments</td>
-                <td><input type="number" class="input-cell medical-input" value="1000" oninput="runBookletCalculations()"></td>
-            </tr>
-            <tr>
-                <td class="col-num">2</td>
-                <td class="col-desc">Supplements, Organic Food, Traditional Chinese Medicine (TCM)</td>
-                <td><input type="number" class="input-cell medical-input" value="500" oninput="runBookletCalculations()"></td>
-            </tr>
-            <tr>
-                <td class="col-num">3</td>
-                <td class="col-desc">Hiring of Domestic Helper / Professional Caregiver</td>
-                <td><input type="number" class="input-cell medical-input" value="400" oninput="runBookletCalculations()"></td>
-            </tr>
-            <tr style="background: #f1f3f5; font-weight: bold;">
-                <td class="col-num">ii</td>
-                <td class="col-desc">Total Monthly Post-CI Medical Expenses (Sum 1 - 3)</td>
-                <td id="totalMonthlyMedical" style="text-align: right; padding-right: 18px;">RM 0</td>
-            </tr>
-            <tr style="background: #e8e8ed; font-weight: bold;">
-                <td class="col-num"></td>
-                <td class="col-desc">Yearly Care Cost Base (Variable ii &times; 12 Months)</td>
-                <td id="totalYearlyMedical" style="text-align: right; padding-right: 18px;">RM 0</td>
-            </tr>
-            <tr style="background: #fafafa;">
-                <td class="col-num"></td>
-                <td class="col-desc">Target Coverage Timeline to Mature Protection (Age 80 Limit)</td>
-                <td id="gapYearsLabel" style="text-align: right; font-weight:600; padding-right: 18px;">45 Years Remaining</td>
-            </tr>
-        </tbody>
-    </table>
-
-    <div class="summary-box">
-        <h4 style="margin: 0 0 10px 0; text-transform: uppercase; font-size: 12px; letter-spacing: 0.05em; color: #555;">Final Projected Portfolio Requirement Summary</h4>
+    <main class="container">
         
-        <div class="matrix-grid">
-            <div class="matrix-card">
-                <div style="font-size: 11px; font-weight: 600; color: #666; text-transform: uppercase;">Standard Plan (A + C)</div>
-                <div style="font-size: 12px; color: #86868b;">5Y Replacement + Fixed Medical Care</div>
-                <div id="finalAC" class="matrix-total">RM 0</div>
+        <div style="background: var(--surface); padding: 32px; border-radius: 18px; border: 1px solid rgba(0,0,0,0.02); box-shadow: 0 4px 12px rgba(0,0,0,0.01);">
+            
+            <span style="font-size: 11px; font-weight: 600; color: var(--accent); text-transform: uppercase; letter-spacing: 0.05em; display: block; margin-bottom: 4px;">Underwriting Rules Engine</span>
+            <h1 style="font-size: 24px; font-weight: 700; margin-bottom: 24px; letter-spacing: -0.02em;">EPOS Underwriting Buddy</h1>
+            
+            <div class="tab-container">
+                <button type="button" class="tab-btn active" id="tabBmiBtn" onclick="switchUnderwritingTab('bmi')">Client Build Evaluation (BMI)</button>
+                <button type="button" class="tab-btn" id="tabReflexBtn" onclick="switchUnderwritingTab('reflex')">80 Common Conditions (Bilingual)</button>
             </div>
-            <div class="matrix-card">
-                <div style="font-size: 11px; font-weight: 600; color: #666; text-transform: uppercase;">Extended Protection (B + C)</div>
-                <div style="font-size: 12px; color: #86868b;">10Y Replacement + Fixed Medical Care</div>
-                <div id="finalBC" class="matrix-total">RM 0</div>
+
+            <div id="underwritingTabBmi">
+                <section class="section">
+                    <h2>Metrics Input</h2>
+                    <div class="grid-2">
+                        <label>Height (cm)
+                            <input type="number" id="height" placeholder="e.g. 175" inputmode="numeric">
+                        </label>
+                        <label>Weight (kg)
+                            <input type="number" id="weight" placeholder="e.g. 70" inputmode="numeric">
+                        </label>
+                    </div>
+                    <button type="button" onclick="calculateBMI()">Evaluate Guidelines</button>
+                </section>
+
+                <div class="result-panel" id="result" style="display:none;">
+                    <div class="result-title">Evaluation Result</div>
+                    <div class="bmi-value-display">BMI: <span id="bmi">0.0</span></div>
+                    <div class="underwriting-comment" id="comment"></div>
+                </div>
             </div>
-            <div class="matrix-card featured">
-                <div style="font-size: 11px; font-weight: 700; color: var(--accent-orange); text-transform: uppercase;">Inflation Resilient (A + C*)</div>
-                <div style="font-size: 12px; color: #86868b;">5Y Replacement + 5% Compound Inflation</div>
-                <div id="finalACStar" class="matrix-total" style="color: var(--accent-orange);">RM 0</div>
+
+            <div id="underwritingTabReflex" style="display: none;">
+                <section class="section" style="padding: 20px; border-radius: 12px;">
+                    <h2>e-POS Pre-Assessment Search</h2>
+                    <input type="text" id="bilingualSearch" placeholder="Type Chinese or English triggers (e.g. 脂肪肝, Gout, 骨折)..." onkeyup="executeBilingualFilter()">
+                    
+                    <div class="matrix-split-view">
+                        <div class="condition-scroll-box" id="bilingualListWrapper">
+                            </div>
+                        
+                        <div id="reflexiveFormPanel" style="background: #ffffff; border: 1px solid #eee; padding: 20px; border-radius: 10px; display: flex; flex-direction: column;">
+                            <div id="reflexiveEmptyState" style="text-align: center; color: var(--text-tertiary); font-size: 13.5px; padding: 60px 10px; margin: auto;">
+                                Select an active medical condition row on the left to unpack its reflexive pre-assessment questions.
+                            </div>
+                            
+                            <div id="reflexiveFormActiveContent" style="display: none; height: 100%;">
+                                <h3 id="activeConditionNameLabel" style="font-size: 16px; font-weight: 600; color: var(--text-primary); margin-bottom: 16px; padding-bottom: 8px; border-bottom: 1px solid var(--line);">Condition Track</h3>
+                                <div id="dynamicQuestionsTargetBox"></div>
+                                <div class="action-alert-banner">
+                                    <strong>Advisory Field Strategy Note:</strong> Answering these structured questionnaire streams accurately prompts reflexive processing within e-POS, eliminating subsequent medical query cycles.
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
             </div>
-            <div class="matrix-card featured">
-                <div style="font-size: 11px; font-weight: 700; color: var(--accent-orange); text-transform: uppercase;">Absolute Security (B + C*)</div>
-                <div style="font-size: 12px; color: #86868b;">10Y Replacement + 5% Compound Inflation</div>
-                <div id="finalBCStar" class="matrix-total" style="color: var(--accent-orange);">RM 0</div>
-            </div>
+
         </div>
-    </div>
-</div>
+    </main>
 
-<script>
-function runBookletCalculations() {
-    // 1. Process Profile Basics
-    const age = parseInt(document.getElementById('clientAge').value) || 0;
-    const gapYears = Math.max(0, 80 - age);
-    document.getElementById('gapYearsLabel').textContent = gapYears + " Years (Up to Age 80)";
+    <script type="module">
+        import { createClient } from 'https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/+esm';
 
-    // 2. Sum Living Commitments Block
-    let monthlyCommitmentsSum = 0;
-    const commitmentElements = document.querySelectorAll('.commitment-input');
-    commitmentElements.forEach(input => {
-        monthlyCommitmentsSum += parseFloat(input.value) || 0;
-    });
-    
-    const yearlyCommitments = monthlyCommitmentsSum * 12;
-    const optionA = yearlyCommitments * 5;
-    const optionB = yearlyCommitments * 10;
+        const SUPABASE_URL = "https://qotxxqwikxpsjnjddoqm.supabase.co"; 
+        const SUPABASE_ANON_KEY = "sb_publishable_xpWOcimLjRbH2dbeRdoBSg_XddyOqYU";    
+        
+        const supabase = createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
 
-    // Display Part 1 Values
-    document.getElementById('totalMonthlyCommitments').textContent = "RM " + Math.round(monthlyCommitmentsSum).toLocaleString();
-    document.getElementById('totalYearlyCommitments').textContent = "RM " + Math.round(yearlyCommitments).toLocaleString();
-    document.getElementById('optionAValue').textContent = "RM " + Math.round(optionA).toLocaleString();
-    document.getElementById('optionBValue').textContent = "RM " + Math.round(optionB).toLocaleString();
+        async function checkAuthGuard() {
+            try {
+                const { data: { session }, error } = await supabase.auth.getSession();
+                if (error) throw error;
+                if (!session) {
+                    window.location.href = "login.html";
+                }
+                console.log("Access Granted:", session.user.email);
+            } catch (err) {
+                console.error("Security guard error:", err);
+                window.location.href = "login.html";
+            }
+        }
 
-    // 3. Sum Post-CI Medical Strategy Block
-    let monthlyMedicalSum = 0;
-    const medicalElements = document.querySelectorAll('.medical-input');
-    medicalElements.forEach(input => {
-        monthlyMedicalSum += parseFloat(input.value) || 0;
-    });
+        window.handleLogout = async function() {
+            try {
+                await supabase.auth.signOut();
+            } catch (err) {
+                console.error("Error during sign out:", err);
+            } finally {
+                window.location.href = "login.html";
+            }
+        };
 
-    const yearlyMedical = monthlyMedicalSum * 12;
-    const strategyCFixed = yearlyMedical * gapYears;
+        checkAuthGuard();
+    </script>
 
-    // Calculate Compound Inflation (C*)
-    let strategyCCompoundInflation = 0;
-    for (let t = 0; t < gapYears; t++) {
-        strategyCCompoundInflation += yearlyMedical * Math.pow(1.05, t);
-    }
+    <script>
+        // Global Navigation Toggle Script
+        function toggleMobileMenu() {
+            document.getElementById('navMenu').classList.toggle('show');
+        }
 
-    // Display Part 2 Values
-    document.getElementById('totalMonthlyMedical').textContent = "RM " + Math.round(monthlyMedicalSum).toLocaleString();
-    document.getElementById('totalYearlyMedical').textContent = "RM " + Math.round(yearlyMedical).toLocaleString();
+        // Tab Switching Engine
+        function switchUnderwritingTab(targetTab) {
+            const bmiBtn = document.getElementById('tabBmiBtn');
+            const reflexBtn = document.getElementById('tabReflexBtn');
+            const bmiView = document.getElementById('underwritingTabBmi');
+            const reflexView = document.getElementById('underwritingTabReflex');
 
-    // 4. Populate Matrix Portfolio Sum Results Boxes
-    document.getElementById('finalAC').textContent = "RM " + Math.round(optionA + strategyCFixed).toLocaleString();
-    document.getElementById('finalBC').textContent = "RM " + Math.round(optionB + strategyCFixed).toLocaleString();
-    document.getElementById('finalACStar').textContent = "RM " + Math.round(optionA + strategyCCompoundInflation).toLocaleString();
-    document.getElementById('finalBCStar').textContent = "RM " + Math.round(optionB + strategyCCompoundInflation).toLocaleString();
-}
+            if (targetTab === 'bmi') {
+                bmiBtn.classList.add('active');
+                reflexBtn.classList.remove('active');
+                bmiView.style.display = 'block';
+                reflexView.style.display = 'none';
+            } else {
+                reflexBtn.classList.add('active');
+                bmiBtn.classList.remove('active');
+                bmiView.style.display = 'none';
+                reflexView.style.display = 'block';
+                initializeBilingualMatrix(); // Load items when tab reveals
+            }
+        }
 
-// Fire calculations instantly when viewport is created
-window.onload = runBookletCalculations;
-</script>
+        // Core 80 Matrix Ledger with Chinese Mapping and Pinyin Filters
+        const eposBilingualData = [
+            { en: "Anaemia", zh: "贫血 pinxue" }, { en: "Anal Fistula", zh: "肛瘘 ganglou 肛门" },
+            { en: "Ankle Sprain", zh: "脚踝扭伤 jiaohuai niushang" }, { en: "Arrhythmia", zh: "心律失常 xinlvshichang 不齐" },
+            { en: "Arthritis", zh: "关节炎 guanjieyan" }, { en: "Asthma", zh: "哮喘 xiaochuan" },
+            { en: "Atrial Septal Defect", zh: "房间隔缺损 fangjiange quesun 心脏" }, { en: "Back Pain", zh: "背痛 beitong 腰酸" },
+            { en: "Barrett’s Esophagus", zh: "巴雷特食管 baleite shiguan" }, { en: "Benign Prostate Hyperplasia", zh: "良性前列腺增生 qianliexian" },
+            { en: "Blindness", zh: "失明 shiming 盲" }, { en: "Breast Cancer", zh: "乳腺癌 ruxianai 乳房" },
+            { en: "Breast Lump", zh: "乳房肿块 ruxian zhongkuai" }, { en: "Bronchitis", zh: "支气管炎 zhiqiguanyan" },
+            { en: "Cataract", zh: "白内障 baineizhang 眼睛" }, { en: "CIN", zh: "宫颈上皮内瘤变 gongjing" },
+            { en: "Colon Cancer", zh: "结肠癌 jiechangai 大肠" }, { en: "Colon Polyp", zh: "结肠息肉 jiechang xirou" },
+            { en: "Coronary Artery Disease", zh: "冠心病 guanxinbing 心脏" }, { en: "Deafness", zh: "耳聋 erlong 听力" },
+            { en: "Dermatitis", zh: "皮炎 piyan" }, { en: "Gestational DM", zh: "妊娠期糖尿病 renshen tangniaobing" },
+            { en: "Type 1 Diabetes", zh: "1型糖尿病 1xing tangniaobing" }, { en: "Type 2 Diabetes", zh: "2型糖尿病 2xing tangniaobing" },
+            { en: "Eczema", zh: "湿疹 shizhen" }, { en: "Endometriosis", zh: "子宫内膜异位症 zigong neimo" },
+            { en: "Fatty Liver", zh: "脂肪肝 zhifanggan 肝脏" }, { en: "Fracture - Spine", zh: "骨折 脊椎 guzhe jizhui" },
+            { en: "Fracture - Skull", zh: "骨折 头骨 guzhe tougu" }, { en: "Fracture - Finger", zh: "骨折 手指 guzhe shouzhi" },
+            { en: "Fracture - Pelvis", zh: "骨折 骨盆 guzhe gupen" }, { en: "Fracture - Wrist", zh: "骨折 手腕 guzhe shouwan" },
+            { en: "Fracture - Arm", zh: "骨折 手臂 guzhe shoubi" }, { en: "Fracture - Elbow", zh: "骨折 手肘 guzhe shouzhou" },
+            { en: "Fracture - Hip", zh: "骨折 髋关节 guzhe kuan" }, { en: "Fracture - Knee", zh: "骨折 膝盖 guzhe xigai" },
+            { en: "Fracture - Leg", zh: "骨折 腿部 guzhe tuibu" }, { en: "Fracture - Ankle", zh: "骨折 脚踝 guzhe jiaohuai" },
+            { en: "Fracture - Toe", zh: "骨折 脚趾 guzhe jiaozhi" }, { en: "G6PD", zh: "蚕豆病 candoubing G6PD" },
+            { en: "Gallstones", zh: "胆结石 danjieshi 胆囊" }, { en: "Gastric Reflux", zh: "胃食管反流 weishiguan fanliu" },
+            { en: "Gastric Ulcer", zh: "胃溃疡 weikuiyang" }, { en: "Gastritis", zh: "胃炎 weiyan" },
+            { en: "Glaucoma", zh: "青光眼 qingguangyan 青光" }, { en: "Gout", zh: "痛风 tongfeng" },
+            { en: "Haemorrhoids", zh: "痔疮 zhichuang" }, { en: "Heart Murmur", zh: "心脏杂音 xinzang zayin" },
+            { en: "Helicobacter Pylori", zh: "幽门螺杆菌 youmen luoganjun HP" }, { en: "Hepatitis B", zh: "乙肝 yigan 乙型肝炎" },
+            { en: "High blood pressure", zh: "高血压 gaoxueya 血压" }, { en: "High cholesterol", zh: "高胆固醇 gaodanguchun 胆固醇" },
+            { en: "Hole in Heart", zh: "心脏有洞 xinzang youdong 心漏症" }, { en: "Hyperthyroidism", zh: "甲亢 jiakang 甲状腺功能亢进" },
+            { en: "Hypothyroidism", zh: "甲减 jiajian 甲状腺功能减退" }, { en: "Insomnia", zh: "失眠 shimian" },
+            { en: "Kidney Stones", zh: "肾结石 shenjieshi" }, { en: "Meniere's Disease", zh: "美尼尔氏综合症 meinier" },
+            { en: "Menstrual Disorder", zh: "月经不调 yuejing" }, { en: "Migraine", zh: "偏头痛 piantoutong" },
+            { en: "Mitral Valve Prolapse", zh: "二尖瓣脱垂 erjianban" }, { en: "Osteoarthritis", zh: "退化性关节炎 guanjieyan" },
+            { en: "Ovarian Cyst", zh: "卵巢囊肿 luanchao nangzhong" }, { en: "Patent Ductus Arteriosus", zh: "动脉导管未闭 dongmai daoguan" },
+            { en: "Pneumothorax", zh: "气胸 qixiong" }, { en: "Polycystic Ovarian Syndrome", zh: "多囊卵巢综合征 duonang luanchao PCOS" },
+            { en: "Pregnancy", zh: "怀孕 huaiyun 妊娠" }, { en: "Psoriatic Arthritis", zh: "银屑病关节炎 yinxiebing" },
+            { en: "Retinal Detachment", zh: "视网膜脱落 shiwangmo" }, { en: "Rheumatoid Arthritis", zh: "类风湿性关节炎 leifengshi" },
+            { en: "Shingles", zh: "生蛇 shengshe 带状疱疹 daizhuangpaozhen" }, { en: "Sinusitis", zh: "鼻窦炎 bidouyan" },
+            { en: "Slipped Disc", zh: "椎间盘突出 zhuijianpan" }, { en: "Sprain", zh: "扭伤 niushang" },
+            { en: "Stroke", zh: "中风 zhongfeng" }, { en: "Thalassemia minor", zh: "轻型地中海贫血 dizhonghai pinxue" },
+            { en: "Tonsilitis", zh: "扁桃体炎 biantaotiyan" }, { en: "Urinary Tract Infection", zh: "尿道感染 niaodao ganran UTI" },
+            { en: "Uterine Fibroid", zh: "子宫肌瘤 zigong jiliu" }, { en: "Ventricular Septal Defect", zh: "室间隔缺损 shijiange quesun" }
+        ];
 
+        let initializedReflexRows = false;
+        function initializeBilingualMatrix() {
+            if (initializedReflexRows) return; // Prevent duplicate appends
+            const scrollBox = document.getElementById("bilingualListWrapper");
+            scrollBox.innerHTML = "";
+
+            eposBilingualData.sort((a,b) => a.en.localeCompare(b.en)).forEach(item => {
+                const elementRow = document.createElement("div");
+                elementRow.className = "condition-row-item";
+                elementRow.setAttribute("data-keys", `${item.en.toLowerCase()} ${item.zh.toLowerCase()}`);
+                
+                elementRow.innerHTML = `
+                    <div style="display: flex; flex-direction: column; gap: 2px;">
+                        <span style="font-weight: 500; font-size: 13.5px;">${item.en}</span>
+                        <span style="font-size: 11px; color: var(--text-tertiary);">${item.zh.split(' ')[0]}</span>
+                    </div>
+                    <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#86868b" stroke-width="2.5"><polyline points="9 18 15 12 9 6"></polyline></svg>
+                `;
+                elementRow.onclick = () => activateReflexiveForm(item.en, elementRow);
+                scrollBox.appendChild(elementRow);
+            });
+            initializedReflexRows = true;
+        }
+
+        // Search Parsing Core Layout
+        function executeBilingualFilter() {
+            const matchCriteria = document.getElementById("bilingualSearch").value.toLowerCase().trim();
+            const listItems = document.querySelectorAll(".condition-row-item");
+
+            listItems.forEach(row => {
+                const terms = row.getAttribute("data-keys");
+                if (terms.includes(matchCriteria)) {
+                    row.style.display = "flex";
+                } else {
+                    row.style.display = "none";
+                }
+            });
+        }
+
+        // Form Reflex Component Spawner
+        function activateReflexiveForm(name, reference) {
+            document.querySelectorAll(".condition-row-item").forEach(r => r.classList.remove("selected"));
+            reference.classList.add("selected");
+
+            document.getElementById("reflexiveEmptyState").style.display = "none";
+            document.getElementById("reflexiveFormActiveContent").style.display = "block";
+            document.getElementById("activeConditionNameLabel").textContent = `e-POS Reflexive Track: ${name}`;
+
+            const fieldBox = document.getElementById("dynamicQuestionsTargetBox");
+            let outputFieldsHtml = `
+                <div class="question-block">
+                    <label>1. Date of initial clinical diagnosis or onset check:</label>
+                    <input type="month" value="2025-01">
+                </div>
+                <div class="question-block">
+                    <label>2. Is there any active maintenance treatment or prescription plan?</label>
+                    <select>
+                        <option>No, fully resolved</option>
+                        <option>Yes, ongoing maintenance care</option>
+                    </select>
+                </div>
+            `;
+
+            // Dynamic additions matching key categories
+            if (name === "High blood pressure" || name === "High cholesterol") {
+                outputFieldsHtml += `
+                    <div class="question-block" style="border-left: 3px solid var(--accent);">
+                        <label>3. Provide the latest clinical pressure or lipid level readings:</label>
+                        <input type="text" placeholder="e.g. 120/80 mmHg or 4.2 mmol/L">
+                    </div>
+                `;
+            } else if (name.includes("Diabetes") || name.includes("DM")) {
+                outputFieldsHtml += `
+                    <div class="question-block" style="border-left: 3px solid #ff453a;">
+                        <label>3. Provide the latest HbA1c screening measurement value (%):</label>
+                        <input type="text" placeholder="e.g. 6.1%">
+                    </div>
+                `;
+            }
+
+            fieldBox.innerHTML = outputFieldsHtml;
+        }
+
+        // Underwriting Rules Processing Function (BMI)
+        function calculateBMI() {
+            const weight = parseFloat(document.getElementById('weight').value);
+            const heightCm = parseFloat(document.getElementById('height').value);
+
+            if (isNaN(weight) || isNaN(heightCm) || heightCm <= 0 || weight <= 0) {
+                alert("Please enter valid height and weight measurements.");
+                return;
+            }
+
+            const heightM = heightCm / 100;
+            const bmi = weight / (heightM * heightM);
+            const bmiRounded = bmi.toFixed(1);
+
+            let comment = "";
+
+            if (bmi < 16.0) {
+                comment = "Declined – BMI is too low for coverage.";
+            } else if (bmi >= 16.0 && bmi < 17.0) {
+                comment = "Medical Examination Report (MER) required.";
+            } else if (bmi >= 17.0 && bmi <= 30.0) {
+                comment = "Standard underwriting – No additional requirements.";
+            } else if (bmi > 30.0 && bmi <= 35.0) {
+                comment = "Standard underwriting – Extra loading fees may be applied.";
+            } else if (bmi > 35.0 && bmi <= 40.0) {
+                comment = "Medical Examination Report (MER) required.";
+            } else if (bmi > 40.0 && bmi <= 43.0) {
+                comment = "Medical Examination Report (MER) required – Only Life coverage will be considered.";
+            } else if (bmi > 43.0 && bmi <= 49.0) {
+                comment = "MER + Blood Lipid Profile + Fasting Blood Glucose (FBS) + HbA1c required.";
+            } else {
+                comment = "Declined – BMI exceeds acceptable platform limits.";
+            }
+
+            document.getElementById('bmi').innerText = bmiRounded;
+            document.getElementById('comment').innerText = comment;
+            document.getElementById('result').style.display = 'block';
+            
+            document.getElementById('result').scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+        }
+    </script>
 </body>
 </html>
