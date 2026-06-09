@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Underwriting Engine - CI Pro Universe</title>
+    <title>e-POS Medical Underwriting Dictionary - CI Pro Universe</title>
 <style>
 /* ============================================================
    GLOBAL DESIGN VARIABLES (Unified Workspace Framework)
@@ -35,7 +35,7 @@ body {
 }
 
 .container {
-    max-width: 940px;
+    max-width: 1020px;
     margin: 40px auto;
     padding: 0 24px 100px;
 }
@@ -55,7 +55,7 @@ body {
 }
 
 .nav-container {
-    max-width: 940px;
+    max-width: 1020px;
     margin: 0 auto;
     padding: 0 24px;
     height: 100%;
@@ -138,237 +138,167 @@ body {
 }
 
 /* ============================================================
-   MODERN SEGMENTED TABS
+   GOOGLE TRANSLATE STYLE DUAL-PANEL LAYOUT
    ============================================================ */
-.tab-container {
-    display: flex;
-    background: rgba(0, 0, 0, 0.04);
-    padding: 4px;
-    border-radius: 10px;
-    margin-bottom: 24px;
-}
-
-.tab-btn {
-    flex: 1;
-    background: transparent;
-    color: var(--text-secondary);
-    border: 0;
-    padding: 8px 16px;
-    border-radius: 7px;
-    cursor: pointer;
-    font-weight: 500;
-    font-size: 13.5px;
-    transition: all 0.2s;
-    margin-top: 0;
-}
-
-.tab-btn.active {
-    background: #ffffff;
-    color: var(--text-primary);
-    box-shadow: 0 1px 3px rgba(0,0,0,0.1);
-}
-
-/* ============================================================
-   FILLER WORKSPACE COMPONENT STYLES
-   ============================================================ */
-.section {
-    background: #fbfbfd;
-    border: 1px solid #eee;
-    padding: 24px;
-    border-radius: 12px;
-    margin: 16px 0;
-}
-
-.section h2 {
-    margin: 0 0 14px 0;
-    font-size: 1.15rem;
-    letter-spacing: -0.01em;
-}
-
-label {
-    display: block;
-    margin: 8px 0;
-    font-size: 0.95rem;
-    font-weight: 500;
-}
-
-input[type=number], input[type=text] {
-    width: 100%;
-    padding: 12px;
-    border-radius: 10px;
-    border: 1px solid #ddd;
-    margin-top: 6px;
-    font-size: 1rem;
-    background: #fff;
-    font-family: inherit;
-    transition: border-color 0.2s, box-shadow 0.2s;
-}
-
-input[type=number]:focus, input[type=text]:focus {
-    border-color: var(--accent);
-    outline: none;
-}
-
-.grid-2 { 
-    display: grid; 
-    grid-template-columns: repeat(2, 1fr); 
-    gap: 16px; 
-}
-
-@media (max-width: 600px) {
-    .grid-2 { grid-template-columns: 1fr; }
-}
-
-.muted {
-    color: var(--text-tertiary);
-    font-size: 0.85rem;
-}
-
-button {
-    background: var(--accent);
-    color: #fff;
-    border: 0;
-    padding: 12px 24px;
-    border-radius: 10px;
-    cursor: pointer;
-    font-weight: 500;
-    font-size: 0.95rem;
-    transition: background 0.15s;
-    width: 100%;
-    margin-top: 12px;
-}
-
-button:hover {
-    background: #0077ed;
-}
-
-/* ============================================================
-   BILINGUAL SPLIT MODULE CONTENT GRID STYLE
-   ============================================================ */
-.matrix-split-view {
+.translate-workspace {
     display: grid;
-    grid-template-columns: 1fr 1.2fr;
-    gap: 24px;
+    grid-template-columns: 1fr 1fr;
+    background: var(--surface);
+    border-radius: 16px;
+    border: 1px solid rgba(0,0,0,0.08);
+    box-shadow: 0 4px 24px rgba(0, 0, 0, 0.02);
+    overflow: hidden;
     margin-top: 16px;
 }
 
 @media (max-width: 768px) {
-    .matrix-split-view { grid-template-columns: 1fr; }
+    .translate-workspace {
+        grid-template-columns: 1fr;
+    }
+    .panel-right {
+        border-top: 1px solid var(--line);
+        border-left: none !important;
+    }
 }
 
-.condition-scroll-box {
-    max-height: 420px;
-    overflow-y: auto;
-    border: 1px solid #e9e9ee;
-    border-radius: 10px;
-    background: #fafafa;
+.panel-left, .panel-right {
+    padding: 24px;
+    display: flex;
+    flex-direction: column;
+    min-height: 400px;
 }
 
-.condition-row-item {
-    padding: 12px 16px;
-    font-size: 14px;
-    color: var(--text-primary);
-    cursor: pointer;
-    border-bottom: 1px solid #e9e9ee;
-    transition: all 0.2s;
+.panel-right {
+    background: #fbfbfd;
+    border-left: 1px solid var(--line);
+}
+
+.panel-header {
+    font-size: 12px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    color: var(--text-tertiary);
+    padding-bottom: 12px;
+    border-bottom: 1px solid var(--line);
+    margin-bottom: 16px;
     display: flex;
     justify-content: space-between;
     align-items: center;
 }
 
-.condition-row-item:hover {
-    background-color: #f2f7fc;
-    color: var(--accent);
-}
-
-.condition-row-item.selected {
-    background-color: var(--accent);
-    color: #ffffff;
-}
-
-.condition-row-item.selected span {
-    color: rgba(255, 255, 255, 0.8) !important;
-}
-
-/* Questionnaire Panels */
-.question-block {
-    margin-bottom: 16px;
-    background: #f5f5f7;
-    padding: 14px;
-    border-radius: 8px;
-    border: 1px solid rgba(0, 0, 0, 0.02);
-}
-
-.question-block label {
-    font-size: 13px;
-    font-weight: 500;
-    color: var(--text-primary);
-    margin-bottom: 6px;
-    line-height: 1.45;
-}
-
-.question-block select, .question-block input {
+/* Custom Search Box style inside Translate Left Panel */
+.search-wrapper {
+    position: relative;
     width: 100%;
-    padding: 8px 10px;
+}
+
+.translate-input {
+    width: 100%;
+    padding: 14px 16px;
+    border-radius: 10px;
     border: 1px solid #d2d2d7;
-    border-radius: 6px;
-    font-size: 13px;
-    background: #ffffff;
+    font-size: 16px;
     font-family: inherit;
     outline: none;
-}
-
-.action-alert-banner {
-    padding: 12px 14px;
-    background-color: #f2f7fc;
-    border-left: 4px solid var(--accent);
-    border-radius: 0 8px 8px 0;
-    font-size: 12px;
-    color: var(--text-primary);
-    line-height: 1.45;
-    margin-top: auto;
-}
-
-/* ============================================================
-   BMI SPECIALIST RESULT PANEL STYLING
-   ============================================================ */
-.result-panel {
-    margin-top: 24px;
-    padding: 24px;
     background: #ffffff;
-    border-radius: 12px;
-    border-left: 4px solid var(--accent);
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.02);
+    transition: border-color 0.15s, box-shadow 0.15s;
 }
 
-.result-title {
-    font-size: 0.9rem;
-    text-transform: uppercase;
-    letter-spacing: 0.05em;
-    color: var(--text-tertiary);
-    font-weight: 600;
+.translate-input:focus {
+    border-color: var(--accent);
+    box-shadow: 0 0 0 4px rgba(0, 113, 227, 0.1);
 }
 
-.bmi-value-display {
-    font-size: 36px;
-    font-weight: 700;
+/* Results Suggestions Area */
+.suggestions-box {
+    margin-top: 14px;
+    flex-grow: 1;
+    overflow-y: auto;
+    max-height: 280px;
+    border: 1px solid #e9e9ee;
+    border-radius: 10px;
+    background: #ffffff;
+}
+
+.suggestion-row {
+    padding: 12px 16px;
+    font-size: 14px;
     color: var(--text-primary);
-    margin: 8px 0;
-    letter-spacing: -0.02em;
+    cursor: pointer;
+    border-bottom: 1px solid #f5f5f7;
+    transition: background 0.15s;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
 }
 
-.bmi-value-display span {
+.suggestion-row:hover {
+    background: #f2f7fc;
     color: var(--accent);
 }
 
-.underwriting-comment {
-    background: #f5f5f7;
-    padding: 14px 16px;
-    border-radius: 8px;
-    font-size: 0.95rem;
+.suggestion-row.selected {
+    background: rgba(0, 113, 227, 0.08);
+    color: var(--accent);
     font-weight: 500;
+}
+
+/* Right Output Translation Panel Displays */
+.output-empty-state {
+    color: var(--text-tertiary);
+    font-size: 15px;
+    margin: auto;
+    text-align: center;
+    line-height: 1.5;
+}
+
+.output-active-card {
+    display: none;
+    animation: fadeIn 0.2s ease-in-out;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(4px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+.epos-official-title {
+    font-size: 28px;
+    font-weight: 700;
+    color: var(--accent);
+    letter-spacing: -0.02em;
+    margin-bottom: 12px;
+}
+
+.meta-info-block {
+    background: #ffffff;
+    padding: 16px;
+    border-radius: 10px;
+    border: 1px solid var(--border);
+    margin-bottom: 16px;
+}
+
+.meta-info-block h4 {
+    font-size: 11px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
     color: var(--text-secondary);
-    border: 1px solid rgba(0, 0, 0, 0.03);
+    margin-bottom: 6px;
+}
+
+.meta-info-block p {
+    font-size: 14px;
+    color: var(--text-primary);
+    line-height: 1.5;
+}
+
+.footer-notice {
+    text-align: center;
+    margin-top: 24px;
+    font-size: 12px;
+    color: var(--text-tertiary);
 }
 </style>
 </head>
@@ -393,64 +323,58 @@ button:hover {
 
     <main class="container">
         
-        <div style="background: var(--surface); padding: 32px; border-radius: 18px; border: 1px solid rgba(0,0,0,0.02); box-shadow: 0 4px 12px rgba(0,0,0,0.01);">
-            
-            <span style="font-size: 11px; font-weight: 600; color: var(--accent); text-transform: uppercase; letter-spacing: 0.05em; display: block; margin-bottom: 4px;">Underwriting Rules Engine</span>
-            <h1 style="font-size: 24px; font-weight: 700; margin-bottom: 24px; letter-spacing: -0.02em;">EPOS Underwriting Buddy</h1>
-            
-            <div class="tab-container">
-                <button type="button" class="tab-btn active" id="tabBmiBtn" onclick="switchUnderwritingTab('bmi')">Client Build Evaluation (BMI)</button>
-                <button type="button" class="tab-btn" id="tabReflexBtn" onclick="switchUnderwritingTab('reflex')">80 Common Conditions (Bilingual)</button>
-            </div>
+        <span style="font-size: 11px; font-weight: 600; color: var(--accent); text-transform: uppercase; letter-spacing: 0.05em; display: block; margin-bottom: 4px;">e-POS Pre-Assessment Dictionary</span>
+        <h1 style="font-size: 26px; font-weight: 700; margin-bottom: 6px; letter-spacing: -0.02em;">Medical Condition Decoder</h1>
+        <p style="font-size: 14px; color: var(--text-secondary); margin-bottom: 24px;">Type layman terms or Chinese phrases used by clients to fetch the exact required system declaration match inside e-POS.</p>
 
-            <div id="underwritingTabBmi">
-                <section class="section">
-                    <h2>Metrics Input</h2>
-                    <div class="grid-2">
-                        <label>Height (cm)
-                            <input type="number" id="height" placeholder="e.g. 175" inputmode="numeric">
-                        </label>
-                        <label>Weight (kg)
-                            <input type="number" id="weight" placeholder="e.g. 70" inputmode="numeric">
-                        </label>
-                    </div>
-                    <button type="button" onclick="calculateBMI()">Evaluate Guidelines</button>
-                </section>
-
-                <div class="result-panel" id="result" style="display:none;">
-                    <div class="result-title">Evaluation Result</div>
-                    <div class="bmi-value-display">BMI: <span id="bmi">0.0</span></div>
-                    <div class="underwriting-comment" id="comment"></div>
+        <div class="translate-workspace">
+            
+            <div class="panel-left">
+                <div class="panel-header">
+                    <span>Client Query (Layman / 中文)</span>
+                    <span style="font-weight: 400; color: var(--text-tertiary); text-transform: none;">Auto-detecting...</span>
                 </div>
-            </div>
+                
+                <div class="search-wrapper">
+                    <input type="text" id="translateSearchInput" class="translate-input" autocomplete="off" placeholder="Enter keywords (e.g., 生蛇, 胃酸倒流, 心有洞, Sprain)..." oninput="handleLiveTranslateSearch()">
+                </div>
 
-            <div id="underwritingTabReflex" style="display: none;">
-                <section class="section" style="padding: 20px; border-radius: 12px;">
-                    <h2>e-POS Pre-Assessment Search</h2>
-                    <input type="text" id="bilingualSearch" placeholder="Type Chinese or English triggers (e.g. 脂肪肝, Gout, 骨折)..." onkeyup="executeBilingualFilter()">
-                    
-                    <div class="matrix-split-view">
-                        <div class="condition-scroll-box" id="bilingualListWrapper">
-                            </div>
-                        
-                        <div id="reflexiveFormPanel" style="background: #ffffff; border: 1px solid #eee; padding: 20px; border-radius: 10px; display: flex; flex-direction: column;">
-                            <div id="reflexiveEmptyState" style="text-align: center; color: var(--text-tertiary); font-size: 13.5px; padding: 60px 10px; margin: auto;">
-                                Select an active medical condition row on the left to unpack its reflexive pre-assessment questions.
-                            </div>
-                            
-                            <div id="reflexiveFormActiveContent" style="display: none; height: 100%;">
-                                <h3 id="activeConditionNameLabel" style="font-size: 16px; font-weight: 600; color: var(--text-primary); margin-bottom: 16px; padding-bottom: 8px; border-bottom: 1px solid var(--line);">Condition Track</h3>
-                                <div id="dynamicQuestionsTargetBox"></div>
-                                <div class="action-alert-banner">
-                                    <strong>Advisory Field Strategy Note:</strong> Answering these structured questionnaire streams accurately prompts reflexive processing within e-POS, eliminating subsequent medical query cycles.
-                                </div>
-                            </div>
-                        </div>
+                <div class="suggestions-box" id="suggestionsBox">
                     </div>
-                </section>
             </div>
 
+            <div class="panel-right">
+                <div class="panel-header">
+                    <span>e-POS Declaration Parameter (English)</span>
+                </div>
+
+                <div id="translateEmptyState" class="output-empty-state">
+                    <svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="var(--text-tertiary)" stroke-width="1.5" style="margin-bottom: 12px; opacity: 0.7;"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path></svg>
+                    <p>Matches will instantly show the official technical declaration value required to bypass redundant underwriting cycles here.</p>
+                </div>
+
+                <div id="translateActiveDisplay" class="output-active-card">
+                    <span style="font-size: 11px; font-weight: 600; color: var(--text-tertiary); text-transform: uppercase;">System Selection Tag:</span>
+                    <div class="epos-official-title" id="outEposTitle">Condition Name</div>
+                    
+                    <div class="meta-info-block">
+                        <h4>MAPPED TERMS LOADED</h4>
+                        <p id="outMatchedTerms">Chinese definitions and vernacular variables matching this block.</p>
+                    </div>
+
+                    <div class="meta-info-block" style="border-left: 3px solid var(--accent); background: #f2f7fc;">
+                        <h4>ADVISOR SUBMISSION LOGIC</h4>
+                        <p style="font-size: 13px;">Selecting this condition from the e-POS drop-down menu immediately triggers the reflexive medical field matrix questionnaire layout.</p>
+                    </div>
+                </div>
+
+            </div>
         </div>
+
+        <div class="footer-notice">
+            &copy; 2026 CI Pro Universe | For Internal Staff and Agent training Use Only. Strictly not for Public Distribution.
+        </div>
+
     </main>
 
     <script type="module">
@@ -468,219 +392,126 @@ button:hover {
                 if (!session) {
                     window.location.href = "login.html";
                 }
-                console.log("Access Granted:", session.user.email);
             } catch (err) {
                 console.error("Security guard error:", err);
                 window.location.href = "login.html";
             }
         }
-
-        window.handleLogout = async function() {
-            try {
-                await supabase.auth.signOut();
-            } catch (err) {
-                console.error("Error during sign out:", err);
-            } finally {
-                window.location.href = "login.html";
-            }
-        };
-
         checkAuthGuard();
     </script>
 
     <script>
-        // Global Navigation Toggle Script
         function toggleMobileMenu() {
             document.getElementById('navMenu').classList.toggle('show');
         }
 
-        // Tab Switching Engine
-        function switchUnderwritingTab(targetTab) {
-            const bmiBtn = document.getElementById('tabBmiBtn');
-            const reflexBtn = document.getElementById('tabReflexBtn');
-            const bmiView = document.getElementById('underwritingTabBmi');
-            const reflexView = document.getElementById('underwritingTabReflex');
-
-            if (targetTab === 'bmi') {
-                bmiBtn.classList.add('active');
-                reflexBtn.classList.remove('active');
-                bmiView.style.display = 'block';
-                reflexView.style.display = 'none';
-            } else {
-                reflexBtn.classList.add('active');
-                bmiBtn.classList.remove('active');
-                bmiView.style.display = 'none';
-                reflexView.style.display = 'block';
-                initializeBilingualMatrix(); // Load items when tab reveals
-            }
-        }
-
-        // Core 80 Matrix Ledger with Chinese Mapping and Pinyin Filters
-        const eposBilingualData = [
-            { en: "Anaemia", zh: "贫血 pinxue" }, { en: "Anal Fistula", zh: "肛瘘 ganglou 肛门" },
-            { en: "Ankle Sprain", zh: "脚踝扭伤 jiaohuai niushang" }, { en: "Arrhythmia", zh: "心律失常 xinlvshichang 不齐" },
-            { en: "Arthritis", zh: "关节炎 guanjieyan" }, { en: "Asthma", zh: "哮喘 xiaochuan" },
-            { en: "Atrial Septal Defect", zh: "房间隔缺损 fangjiange quesun 心脏" }, { en: "Back Pain", zh: "背痛 beitong 腰酸" },
-            { en: "Barrett’s Esophagus", zh: "巴雷特食管 baleite shiguan" }, { en: "Benign Prostate Hyperplasia", zh: "良性前列腺增生 qianliexian" },
-            { en: "Blindness", zh: "失明 shiming 盲" }, { en: "Breast Cancer", zh: "乳腺癌 ruxianai 乳房" },
-            { en: "Breast Lump", zh: "乳房肿块 ruxian zhongkuai" }, { en: "Bronchitis", zh: "支气管炎 zhiqiguanyan" },
-            { en: "Cataract", zh: "白内障 baineizhang 眼睛" }, { en: "CIN", zh: "宫颈上皮内瘤变 gongjing" },
-            { en: "Colon Cancer", zh: "结肠癌 jiechangai 大肠" }, { en: "Colon Polyp", zh: "结肠息肉 jiechang xirou" },
-            { en: "Coronary Artery Disease", zh: "冠心病 guanxinbing 心脏" }, { en: "Deafness", zh: "耳聋 erlong 听力" },
-            { en: "Dermatitis", zh: "皮炎 piyan" }, { en: "Gestational DM", zh: "妊娠期糖尿病 renshen tangniaobing" },
-            { en: "Type 1 Diabetes", zh: "1型糖尿病 1xing tangniaobing" }, { en: "Type 2 Diabetes", zh: "2型糖尿病 2xing tangniaobing" },
-            { en: "Eczema", zh: "湿疹 shizhen" }, { en: "Endometriosis", zh: "子宫内膜异位症 zigong neimo" },
-            { en: "Fatty Liver", zh: "脂肪肝 zhifanggan 肝脏" }, { en: "Fracture - Spine", zh: "骨折 脊椎 guzhe jizhui" },
-            { en: "Fracture - Skull", zh: "骨折 头骨 guzhe tougu" }, { en: "Fracture - Finger", zh: "骨折 手指 guzhe shouzhi" },
-            { en: "Fracture - Pelvis", zh: "骨折 骨盆 guzhe gupen" }, { en: "Fracture - Wrist", zh: "骨折 手腕 guzhe shouwan" },
-            { en: "Fracture - Arm", zh: "骨折 手臂 guzhe shoubi" }, { en: "Fracture - Elbow", zh: "骨折 手肘 guzhe shouzhou" },
-            { en: "Fracture - Hip", zh: "骨折 髋关节 guzhe kuan" }, { en: "Fracture - Knee", zh: "骨折 膝盖 guzhe xigai" },
-            { en: "Fracture - Leg", zh: "骨折 腿部 guzhe tuibu" }, { en: "Fracture - Ankle", zh: "骨折 脚踝 guzhe jiaohuai" },
-            { en: "Fracture - Toe", zh: "骨折 脚趾 guzhe jiaozhi" }, { en: "G6PD", zh: "蚕豆病 candoubing G6PD" },
-            { en: "Gallstones", zh: "胆结石 danjieshi 胆囊" }, { en: "Gastric Reflux", zh: "胃食管反流 weishiguan fanliu" },
-            { en: "Gastric Ulcer", zh: "胃溃疡 weikuiyang" }, { en: "Gastritis", zh: "胃炎 weiyan" },
-            { en: "Glaucoma", zh: "青光眼 qingguangyan 青光" }, { en: "Gout", zh: "痛风 tongfeng" },
-            { en: "Haemorrhoids", zh: "痔疮 zhichuang" }, { en: "Heart Murmur", zh: "心脏杂音 xinzang zayin" },
-            { en: "Helicobacter Pylori", zh: "幽门螺杆菌 youmen luoganjun HP" }, { en: "Hepatitis B", zh: "乙肝 yigan 乙型肝炎" },
-            { en: "High blood pressure", zh: "高血压 gaoxueya 血压" }, { en: "High cholesterol", zh: "高胆固醇 gaodanguchun 胆固醇" },
-            { en: "Hole in Heart", zh: "心脏有洞 xinzang youdong 心漏症" }, { en: "Hyperthyroidism", zh: "甲亢 jiakang 甲状腺功能亢进" },
-            { en: "Hypothyroidism", zh: "甲减 jiajian 甲状腺功能减退" }, { en: "Insomnia", zh: "失眠 shimian" },
-            { en: "Kidney Stones", zh: "肾结石 shenjieshi" }, { en: "Meniere's Disease", zh: "美尼尔氏综合症 meinier" },
-            { en: "Menstrual Disorder", zh: "月经不调 yuejing" }, { en: "Migraine", zh: "偏头痛 piantoutong" },
-            { en: "Mitral Valve Prolapse", zh: "二尖瓣脱垂 erjianban" }, { en: "Osteoarthritis", zh: "退化性关节炎 guanjieyan" },
-            { en: "Ovarian Cyst", zh: "卵巢囊肿 luanchao nangzhong" }, { en: "Patent Ductus Arteriosus", zh: "动脉导管未闭 dongmai daoguan" },
-            { en: "Pneumothorax", zh: "气胸 qixiong" }, { en: "Polycystic Ovarian Syndrome", zh: "多囊卵巢综合征 duonang luanchao PCOS" },
-            { en: "Pregnancy", zh: "怀孕 huaiyun 妊娠" }, { en: "Psoriatic Arthritis", zh: "银屑病关节炎 yinxiebing" },
-            { en: "Retinal Detachment", zh: "视网膜脱落 shiwangmo" }, { en: "Rheumatoid Arthritis", zh: "类风湿性关节炎 leifengshi" },
-            { en: "Shingles", zh: "生蛇 shengshe 带状疱疹 daizhuangpaozhen" }, { en: "Sinusitis", zh: "鼻窦炎 bidouyan" },
-            { en: "Slipped Disc", zh: "椎间盘突出 zhuijianpan" }, { en: "Sprain", zh: "扭伤 niushang" },
-            { en: "Stroke", zh: "中风 zhongfeng" }, { en: "Thalassemia minor", zh: "轻型地中海贫血 dizhonghai pinxue" },
-            { en: "Tonsilitis", zh: "扁桃体炎 biantaotiyan" }, { en: "Urinary Tract Infection", zh: "尿道感染 niaodao ganran UTI" },
-            { en: "Uterine Fibroid", zh: "子宫肌瘤 zigong jiliu" }, { en: "Ventricular Septal Defect", zh: "室间隔缺损 shijiange quesun" }
+        // Master 80 e-POS Dataset mapped with exact translation keyword clusters
+        const eposDataset = [
+            { en: "Anaemia", zh: "贫血 pinxue 低血红素 bleed 容易晕" }, { en: "Anal Fistula", zh: "肛瘘 ganglou 肛门 屁股发炎屁眼" },
+            { en: "Ankle Sprain", zh: "脚踝扭伤 jiaohuai niushang 扭到脚 崴脚" }, { en: "Arrhythmia", zh: "心律失常 xinlvshichang 心跳不齐 心惊 心跳过快" },
+            { en: "Arthritis", zh: "关节炎 guanjieyan 风湿 膝盖痛" }, { en: "Asthma", zh: "哮喘 xiaochuan 气喘 喘气 呼吸困难" },
+            { en: "Atrial Septal Defect", zh: "房间隔缺损 fangjiange quesun 心脏有洞 心漏症" }, { en: "Back Pain", zh: "背痛 beitong 腰酸背痛 腰痛 腰肌劳损" },
+            { en: "Barrett’s Esophagus", zh: "巴雷特食管 baleite shiguan 食道发炎 长期胃酸倒流" }, { en: "Benign Prostate Hyperplasia", zh: "良性前列腺增生 qianliexian 小便困难 前列腺肥大" },
+            { en: "Blindness", zh: "失明 shiming 盲 眼盲 看不见" }, { en: "Breast Cancer", zh: "乳腺癌 ruxianai 乳房癌 胸部肿瘤" },
+            { en: "Breast Lump", zh: "乳房肿块 ruxian zhongkuai 胸部硬块 乳腺增生" }, { en: "Bronchitis", zh: "支气管炎 zhiqiguanyan 长期咳嗽 肺部发炎" },
+            { en: "Cataract", zh: "白内障 baineizhang 眼睛模糊 眼膜 眼疾" }, { en: "CIN", zh: "宫颈上皮内瘤变 gongjing 子宫颈细胞病变 妇科" },
+            { en: "Colon Cancer", zh: "结肠癌 jiechangai 大肠癌 肠癌" }, { en: "Colon Polyp", zh: "结肠息肉 jiechang xirou 大肠肉瘤 肠息肉" },
+            { en: "Coronary Artery Disease", zh: "冠心病 guanxinbing 心脏血管阻塞 血管硬化" }, { en: "Deafness", zh: "耳聋 erlong 听不到 听力受损 耳疾" },
+            { en: "Dermatitis", zh: "皮炎 piyan 皮肤发炎 皮肤病" }, { en: "Gestational DM", zh: "妊娠期糖尿病 renshen tangniaobing 怀孕血糖高 孕期糖尿病" },
+            { en: "Type 1 Diabetes", zh: "1型糖尿病 1xing tangniaobing 先天性糖尿病" }, { en: "Type 2 Diabetes", zh: "2型糖尿病 2xing tangniaobing 后天糖尿病 血糖高" },
+            { en: "Eczema", zh: "湿疹 shizhen 皮肤痒 红印" }, { en: "Endometriosis", zh: "子宫内膜异位症 zigong neimo 巧克力囊肿 经痛" },
+            { en: "Fatty Liver", zh: "脂肪肝 zhifanggan 肝肥大 肝脏脂肪" }, { en: "Fracture - Spine", zh: "骨折 脊椎 jizhui 脊椎骨折 龙骨断裂" },
+            { en: "Fracture - Skull", zh: "骨折 头骨 tougu 头颅骨折" }, { en: "Fracture - Finger", zh: "骨折 手指 shouzhi 手指断" },
+            { en: "Fracture - Pelvis", zh: "骨折 骨盆 gupen 盆骨骨折" }, { en: "Fracture - Wrist", zh: "骨折 手腕 shouwan 手骨折" },
+            { en: "Fracture - Arm", zh: "骨折 手臂 shoubi 手青绿" }, { en: "Fracture - Elbow", zh: "骨折 手肘 shouzhou 手肘断" },
+            { en: "Fracture - Hip", zh: "骨折 髋关节 kuan 大腿骨折 屁股骨折" }, { en: "Fracture - Knee", zh: "骨折 膝盖 xigai 膝盖骨折" },
+            { en: "Fracture - Leg", zh: "骨折 腿部 tuibu 腿断了" }, { en: "Fracture - Ankle", zh: "骨折 脚踝 jiaohuai 脚踝骨折" },
+            { en: "Fracture - Toe", zh: "骨折 脚趾 jiaozhi 脚趾断" }, { en: "G6PD", zh: "蚕豆病 candoubing G6PD 缺乏症" },
+            { en: "Gallstones", zh: "胆结石 danjieshi 胆囊结石 胆痛" }, { en: "Gastric Reflux", zh: "胃食管反流 weishiguan fanliu 胃酸倒流 烧心 胃痛" },
+            { en: "Gastric Ulcer", zh: "胃溃疡 weikuiyang 胃破洞 胃出血" }, { en: "Gastritis", zh: "胃炎 weiyan 胃痛 胃胀风胃风" },
+            { en: "Glaucoma", zh: "青光眼 qingguangyan 眼压高 青光" }, { en: "Gout", zh: "痛风 tongfeng 尿酸高 关节红肿" },
+            { en: "Haemorrhoids", zh: "痔疮 zhichuang 大便出血 屁股痛" }, { en: "Heart Murmur", zh: "心脏杂音 xinzang zayin 心跳杂音 心脏肉跳" },
+            { en: "Helicobacter Pylori", zh: "幽门螺杆菌 youmen luoganjun HP 胃菌 胃部感染" }, { en: "Hepatitis B", zh: "乙肝 yigan 乙型肝炎 B型肝炎 带菌者" },
+            { en: "High blood pressure", zh: "高血压 gaoxueya 血压高 BP高" }, { en: "High cholesterol", zh: "高胆固醇 gaodanguchun 脂肪高 胆固醇高" },
+            { en: "Hole in Heart", zh: "心脏有洞 xinzang youdong 心漏症 房间隔缺损" }, { en: "Hyperthyroidism", zh: "甲亢 jiakang 甲状腺过高 大颈泡 大脖子病" },
+            { en: "Hypothyroidism", zh: "甲减 jiajian 甲状腺过低" }, { en: "Insomnia", zh: "失眠 shimian 睡不着 精神衰弱" },
+            { en: "Kidney Stones", zh: "肾结石 shenjieshi 腰痛 肾脏腰子" }, { en: "Meniere's Disease", zh: "美尼尔氏综合症 meinier 耳水不平衡 头晕 眩晕" },
+            { en: "Menstrual Disorder", zh: "月经不调 yuejing 乱经 经期不准 姨妈到" }, { en: "Migraine", zh: "偏头痛 piantoutong 头痛 经常头痛" },
+            { en: "Mitral Valve Prolapse", zh: "二尖瓣脱垂 erjianban 心脏瓣膜下垂" }, { en: "Osteoarthritis", zh: "退化性关节炎 guanjieyan 老人风湿 骨质增生" },
+            { en: "Ovarian Cyst", zh: "卵巢囊肿 luanchao nangzhong 水瘤 妇科水泡" }, { en: "Patent Ductus Arteriosus", zh: "动脉导管未闭 dongmai daoguan 心脏先天血管没关" },
+            { en: "Pneumothorax", zh: "气胸 qixiong 肺积气 肺部漏气 爆肺" }, { en: "Polycystic Ovarian Syndrome", zh: "多囊卵巢综合征 duonang luanchao PCOS 荷尔蒙失调" },
+            { en: "Pregnancy", zh: "怀孕 huaiyun 妊娠 大肚子 有喜了" }, { en: "Psoriatic Arthritis", zh: "银屑病关节炎 yinxiebing 牛皮癣关节炎" },
+            { en: "Retinal Detachment", zh: "视网膜脱落 shiwangmo 眼底脱落 眼睛瞎" }, { en: "Rheumatoid Arthritis", zh: "类风湿性关节炎 leifengshi 类风湿 骨节变形" },
+            { en: "Shingles", zh: "生蛇 shengshe 带状疱疹 daizhuangpaozhen 皮肤红疹水泡" }, { en: "Sinusitis", zh: "鼻窦炎 bidouyan 鼻敏感 长期流鼻涕" },
+            { en: "Slipped Disc", zh: "椎间盘突出 zhuijianpan 骨刺 脊椎移位" }, { en: "Sprain", zh: "扭伤 niushang 扭到 筋发炎" },
+            { en: "Stroke", zh: "中风 zhongfeng 半身不遂 脑血管阻塞" }, { en: "Thalassemia minor", zh: "轻型地中海贫血 dizhonghai pinxue 地贫 遗传性贫血" },
+            { en: "Tonsilitis", zh: "扁桃体炎 biantaotiyan 喉咙发炎 扁桃腺" }, { en: "Urinary Tract Infection", zh: "尿道感染 niaodao ganran UTI 小便痛 尿道炎" },
+            { en: "Uterine Fibroid", zh: "子宫肌瘤 zigong jiliu 子宫肉瘤 妇科瘤" }, { en: "Ventricular Septal Defect", zh: "室间隔缺损 shijiange quesun 心脏有洞 心漏症" }
         ];
 
-        let initializedReflexRows = false;
-        function initializeBilingualMatrix() {
-            if (initializedReflexRows) return; // Prevent duplicate appends
-            const scrollBox = document.getElementById("bilingualListWrapper");
-            scrollBox.innerHTML = "";
+        // Seed suggestions with all elements organized alphabetically initially
+        document.addEventListener("DOMContentLoaded", () => {
+            renderSuggestions(eposDataset.sort((a,b) => a.en.localeCompare(b.en)));
+        });
 
-            eposBilingualData.sort((a,b) => a.en.localeCompare(b.en)).forEach(item => {
-                const elementRow = document.createElement("div");
-                elementRow.className = "condition-row-item";
-                elementRow.setAttribute("data-keys", `${item.en.toLowerCase()} ${item.zh.toLowerCase()}`);
-                
-                elementRow.innerHTML = `
-                    <div style="display: flex; flex-direction: column; gap: 2px;">
-                        <span style="font-weight: 500; font-size: 13.5px;">${item.en}</span>
-                        <span style="font-size: 11px; color: var(--text-tertiary);">${item.zh.split(' ')[0]}</span>
-                    </div>
-                    <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#86868b" stroke-width="2.5"><polyline points="9 18 15 12 9 6"></polyline></svg>
-                `;
-                elementRow.onclick = () => activateReflexiveForm(item.en, elementRow);
-                scrollBox.appendChild(elementRow);
-            });
-            initializedReflexRows = true;
-        }
-
-        // Search Parsing Core Layout
-        function executeBilingualFilter() {
-            const matchCriteria = document.getElementById("bilingualSearch").value.toLowerCase().trim();
-            const listItems = document.querySelectorAll(".condition-row-item");
-
-            listItems.forEach(row => {
-                const terms = row.getAttribute("data-keys");
-                if (terms.includes(matchCriteria)) {
-                    row.style.display = "flex";
-                } else {
-                    row.style.display = "none";
-                }
-            });
-        }
-
-        // Form Reflex Component Spawner
-        function activateReflexiveForm(name, reference) {
-            document.querySelectorAll(".condition-row-item").forEach(r => r.classList.remove("selected"));
-            reference.classList.add("selected");
-
-            document.getElementById("reflexiveEmptyState").style.display = "none";
-            document.getElementById("reflexiveFormActiveContent").style.display = "block";
-            document.getElementById("activeConditionNameLabel").textContent = `e-POS Reflexive Track: ${name}`;
-
-            const fieldBox = document.getElementById("dynamicQuestionsTargetBox");
-            let outputFieldsHtml = `
-                <div class="question-block">
-                    <label>1. Date of initial clinical diagnosis or onset check:</label>
-                    <input type="month" value="2025-01">
-                </div>
-                <div class="question-block">
-                    <label>2. Is there any active maintenance treatment or prescription plan?</label>
-                    <select>
-                        <option>No, fully resolved</option>
-                        <option>Yes, ongoing maintenance care</option>
-                    </select>
-                </div>
-            `;
-
-            // Dynamic additions matching key categories
-            if (name === "High blood pressure" || name === "High cholesterol") {
-                outputFieldsHtml += `
-                    <div class="question-block" style="border-left: 3px solid var(--accent);">
-                        <label>3. Provide the latest clinical pressure or lipid level readings:</label>
-                        <input type="text" placeholder="e.g. 120/80 mmHg or 4.2 mmol/L">
-                    </div>
-                `;
-            } else if (name.includes("Diabetes") || name.includes("DM")) {
-                outputFieldsHtml += `
-                    <div class="question-block" style="border-left: 3px solid #ff453a;">
-                        <label>3. Provide the latest HbA1c screening measurement value (%):</label>
-                        <input type="text" placeholder="e.g. 6.1%">
-                    </div>
-                `;
-            }
-
-            fieldBox.innerHTML = outputFieldsHtml;
-        }
-
-        // Underwriting Rules Processing Function (BMI)
-        function calculateBMI() {
-            const weight = parseFloat(document.getElementById('weight').value);
-            const heightCm = parseFloat(document.getElementById('height').value);
-
-            if (isNaN(weight) || isNaN(heightCm) || heightCm <= 0 || weight <= 0) {
-                alert("Please enter valid height and weight measurements.");
+        function renderSuggestions(list) {
+            const container = document.getElementById("suggestionsBox");
+            container.innerHTML = "";
+            
+            if (list.length === 0) {
+                container.innerHTML = `<div style="padding: 16px; font-size: 13.5px; color: var(--text-tertiary); text-align: center;">No matches found. Try typing a simpler layman term.</div>`;
                 return;
             }
 
-            const heightM = heightCm / 100;
-            const bmi = weight / (heightM * heightM);
-            const bmiRounded = bmi.toFixed(1);
+            list.forEach(item => {
+                const row = document.createElement("div");
+                row.className = "suggestion-row";
+                const primaryZhLabel = item.zh.split(' ')[0]; // Extract first clean translation phrase
+                
+                row.innerHTML = `
+                    <span style="font-weight: 500;">${item.en}</span>
+                    <span style="font-size: 12px; color: var(--text-tertiary); background: #f5f5f7; padding: 2px 8px; border-radius: 4px;">${primaryZhLabel}</span>
+                `;
+                row.onclick = () => selectCondition(item, row);
+                container.appendChild(row);
+            });
+        }
 
-            let comment = "";
-
-            if (bmi < 16.0) {
-                comment = "Declined – BMI is too low for coverage.";
-            } else if (bmi >= 16.0 && bmi < 17.0) {
-                comment = "Medical Examination Report (MER) required.";
-            } else if (bmi >= 17.0 && bmi <= 30.0) {
-                comment = "Standard underwriting – No additional requirements.";
-            } else if (bmi > 30.0 && bmi <= 35.0) {
-                comment = "Standard underwriting – Extra loading fees may be applied.";
-            } else if (bmi > 35.0 && bmi <= 40.0) {
-                comment = "Medical Examination Report (MER) required.";
-            } else if (bmi > 40.0 && bmi <= 43.0) {
-                comment = "Medical Examination Report (MER) required – Only Life coverage will be considered.";
-            } else if (bmi > 43.0 && bmi <= 49.0) {
-                comment = "MER + Blood Lipid Profile + Fasting Blood Glucose (FBS) + HbA1c required.";
-            } else {
-                comment = "Declined – BMI exceeds acceptable platform limits.";
+        // Live input character string matcher
+        function handleLiveTranslateSearch() {
+            const rawQuery = document.getElementById("translateSearchInput").value.toLowerCase().trim();
+            
+            if (rawQuery === "") {
+                renderSuggestions(eposDataset.sort((a,b) => a.en.localeCompare(b.en)));
+                return;
             }
 
-            document.getElementById('bmi').innerText = bmiRounded;
-            document.getElementById('comment').innerText = comment;
-            document.getElementById('result').style.display = 'block';
+            const elementsFiltered = eposDataset.filter(record => {
+                return record.en.toLowerCase().includes(rawQuery) || record.zh.toLowerCase().includes(rawQuery);
+            });
+
+            renderSuggestions(elementsFiltered);
+
+            // Auto-open top item if it is an exact single match to streamline operations
+            if (elementsFiltered.length === 1) {
+                selectCondition(elementsFiltered[0], document.querySelector(".suggestion-row"));
+            }
+        }
+
+        // Output Display Activation Controller
+        function selectCondition(item, elementRef) {
+            document.querySelectorAll(".suggestion-row").forEach(r => r.classList.remove("selected"));
+            if (elementRef) elementRef.classList.add("selected");
+
+            document.getElementById("translateEmptyState").style.display = "none";
+            document.getElementById("translateActiveDisplay").style.display = "block";
+
+            // Map target data outputs out to UI
+            document.getElementById("outEposTitle").textContent = item.en;
             
-            document.getElementById('result').scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+            // Clean out space tags for legible advisor reference output
+            const readableZhMeta = item.zh.replace(/ [a-z]+/g, '').replace(/ /g, '、');
+            document.getElementById("outMatchedTerms").textContent = `${readableZhMeta} (${item.en})`;
         }
     </script>
 </body>
