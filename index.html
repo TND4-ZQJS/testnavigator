@@ -377,29 +377,6 @@ body {
 
     </main>
 
-    <script type="module">
-        import { createClient } from 'https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/+esm';
-
-        const SUPABASE_URL = "https://qotxxqwikxpsjnjddoqm.supabase.co"; 
-        const SUPABASE_ANON_KEY = "sb_publishable_xpWOcimLjRbH2dbeRdoBSg_XddyOqYU";    
-        
-        const supabase = createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
-
-        async function checkAuthGuard() {
-            try {
-                const { data: { session }, error } = await supabase.auth.getSession();
-                if (error) throw error;
-                if (!session) {
-                    window.location.href = "login.html";
-                }
-            } catch (err) {
-                console.error("Security guard error:", err);
-                window.location.href = "login.html";
-            }
-        }
-        checkAuthGuard();
-    </script>
-
     <script>
         function toggleMobileMenu() {
             document.getElementById('navMenu').classList.toggle('show');
