@@ -1,4 +1,4 @@
-import { createClient } from 'https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/+esm';
+
 import 'https://unpkg.com/pdf-lib/dist/pdf-lib.min.js';
 
 // Helper shortcut for getting DOM elements
