@@ -4,35 +4,7 @@ import 'https://unpkg.com/pdf-lib/dist/pdf-lib.min.js';
 // Helper shortcut for getting DOM elements
 const $ = (id) => document.getElementById(id);
 
-/* ---------- SUPABASE AND SECURITY CONFIG ---------- */
-const SUPABASE_URL = "https://qotxxqwikxpsjnjddoqm.supabase.co"; 
-const SUPABASE_ANON_KEY = "sb_publishable_xpWOcimLjRbH2dbeRdoBSg_XddyOqYU";    
-const supabase = createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
 
-async function checkAuthGuard() {
-    try {
-        const { data: { session }, error } = await supabase.auth.getSession();
-        if (error) throw error;
-        if (!session) {
-            window.location.href = "login.html";
-        }
-        console.log("Access Granted:", session.user.email);
-    } catch (err) {
-        console.error("Security guard error:", err);
-        window.location.href = "login.html";
-    }
-}
-
-// Global window exposed actions
-window.handleLogout = async function() {
-    try {
-        await supabase.auth.signOut();
-    } catch (err) {
-        console.error("Error during sign out:", err);
-    } finally {
-        window.location.href = "login.html";
-    }
-};
 
 /* ---------- INITIAL CONFIGURATION & CONSTANTS ---------- */
 const PDF_FILENAME = "Medical and Accident Claim_Claimant's Statement_LF5191_202305_fillable.pdf";
