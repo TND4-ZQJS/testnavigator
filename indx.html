@@ -1,0 +1,892 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Operational Hub - InsuFlow Hub</title>
+<style>
+/* ============================================================
+   GLOBAL DESIGN VARIABLES (Unified Workspace Framework)
+   ============================================================ */
+*, *::before, *::after { 
+    box-sizing: border-box; 
+    margin: 0; 
+    padding: 0; 
+}
+
+:root {
+    --nav-height: 52px;
+    --accent: #0071e3;
+    --bg: #f5f5f7;       /* Clean gray workspace canvas background */
+    --surface: #ffffff;  /* Card surface background */
+    --text-primary: #1d1d1f;
+    --text-secondary: #515154;
+    --text-tertiary: #86868b;
+    --border: rgba(0, 0, 0, 0.06);
+    --line: #e9e9ee;
+}
+
+body {
+    background-color: var(--bg);
+    color: var(--text-primary);
+    font-family: -apple-system, BlinkMacSystemFont, "SF Pro Text", "Segoe UI", sans-serif;
+    -webkit-font-smoothing: antialiased;
+    line-height: 1.5;
+}
+
+.container {
+    max-width: 940px;
+    margin: 40px auto;
+    padding: 0 24px 100px;
+}
+
+/* ============================================================
+   STICKY STYLISH NAVBAR STRUCTURE
+   ============================================================ */
+.navbar {
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    background: rgba(255, 255, 255, 0.85);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border-bottom: 1px solid var(--border);
+    height: var(--nav-height);
+}
+
+.nav-container {
+    max-width: 940px;
+    margin: 0 auto;
+    padding: 0 24px;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    gap: 32px;
+}
+
+.logo {
+    font-size: 16px;
+    font-weight: 700;
+    color: var(--text-primary);
+    cursor: pointer;
+    letter-spacing: -0.02em;
+    flex-shrink: 0;
+}
+
+.nav-menu {
+    display: flex;
+    gap: 4px;
+    align-items: center;
+    margin-left: auto;
+}
+
+.nav-item {
+    font-size: 13px;
+    font-weight: 500;
+    color: var(--text-secondary);
+    text-decoration: none;
+    padding: 6px 12px;
+    border-radius: 8px;
+    transition: background 0.15s, color 0.15s;
+    white-space: nowrap;
+}
+
+.nav-item:hover { 
+    background: rgba(0,0,0,0.05); 
+    color: var(--text-primary); 
+}
+
+.nav-item.active { 
+    background: rgba(0,113,227,0.08); 
+    color: var(--accent); 
+}
+
+.menu-toggle {
+    display: none;
+    flex-direction: column;
+    gap: 5px;
+    cursor: pointer;
+    margin-left: auto;
+    padding: 6px;
+}
+
+.menu-toggle span {
+    display: block;
+    width: 22px;
+    height: 2px;
+    background: var(--text-primary);
+    border-radius: 2px;
+    transition: 0.3s;
+}
+
+@media (max-width: 700px) {
+    .menu-toggle { display: flex; }
+    .nav-menu {
+        display: none;
+        position: absolute;
+        top: var(--nav-height);
+        left: 0; right: 0;
+        background: rgba(255,255,255,0.97);
+        backdrop-filter: blur(20px);
+        flex-direction: column;
+        padding: 12px 16px 20px;
+        gap: 2px;
+        border-bottom: 1px solid var(--border);
+    }
+    .nav-menu.show { display: flex; }
+    .nav-item { width: 100%; padding: 10px 14px; }
+}
+
+/* Footer */
+.footer {
+    padding: 40px 24px;
+    text-align: center;
+    font-size: 12px;
+    color: #86868b;
+    border-top: 1px solid #e8e8ed;
+}    
+
+/* Hero Section */
+.hero {
+    padding-top: 140px;
+    padding-bottom: 80px;
+    text-align: center;
+}
+
+/* Security Box */
+.security {
+    padding: 60px 0;
+}
+
+.security-box {
+    background-color: transparent;
+    border-left: 3px solid #86868b;
+    padding: 16px 24px;
+    font-size: 14px;
+    color: #6e6e73;
+}        
+
+.badge {
+    font-size: 20px;
+    font-weight: 600;
+    color: #bf4800;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    display: block;
+    margin-bottom: 12px;
+}
+
+.hero h1 {
+    font-size: 48px;
+    font-weight: 700;
+    letter-spacing: -0.03em;
+    line-height: 1.1;
+    margin-bottom: 16px;
+    color: #1d1d1f;
+}
+
+.subtitle {
+    font-size: 19px;
+    color: #86868b;
+    max-width: 640px;
+    margin: 0 auto;
+    font-weight: 400;
+    letter-spacing: -0.01em;
+}    
+
+/* ============================================================
+   FILLER WORKSPACE COMPONENT STYLES
+   ============================================================ */
+.section {
+    background: #fbfbfd;
+    border: 1px solid #eee;
+    padding: 20px;
+    border-radius: 12px;
+    margin: 16px 0;
+}
+
+.section h2 {
+    margin: 0 0 14px 0;
+    font-size: 1.15rem;
+    letter-spacing: -0.01em;
+}
+
+.hidden-section {
+    display: none;
+}
+
+label {
+    display: block;
+    margin: 8px 0;
+    font-size: 0.95rem;
+}
+
+.info-label {
+    font-weight: bold;
+}
+
+input[type=text], input[type=number], select, textarea {
+    width: 100%;
+    padding: 10px;
+    border-radius: 10px;
+    border: 1px solid #ddd;
+    margin-top: 6px;
+    font-size: 1rem;
+    background: #fff;
+    font-family: inherit;
+}
+
+h3 {
+    margin: 20px 0 5px 0;
+    font-size: 1.00rem;
+}
+
+textarea {
+    resize: vertical;
+    min-height: 120px;
+}
+
+.row {
+    display: flex;
+    gap: 12px;
+    align-items: center;
+    flex-wrap: wrap;
+    margin: 8px 0;
+}
+
+.muted {
+    color: var(--text-tertiary);
+    font-size: 0.85rem;
+}
+
+button {
+    background: var(--accent);
+    color: #fff;
+    border: 0;
+    padding: 10px 16px;
+    border-radius: 10px;
+    cursor: pointer;
+    font-weight: 500;
+    font-size: 0.95rem;
+    transition: background 0.15s;
+}
+
+button:hover {
+    background: #0077ed;
+}
+
+button.secondary { background: #999; }
+button.ghost { background: transparent; border: 1px solid var(--line); color: #333; }
+button.ghost:hover { background: rgba(0,0,0,0.02); }
+
+.actions { display: flex; gap: 12px; align-items: center; }
+
+/* Grid Structures */
+.grid-2 { display: grid; grid-template-columns: repeat(2, 1fr); gap: 12px; }
+.grid-3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; }
+.grid-4 { display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; }
+
+@media (max-width: 600px) {
+    .grid-2, .grid-3, .grid-4 { grid-template-columns: 1fr; }
+}
+
+#scrollTopBtn {
+    position: fixed;
+    bottom: 24px;
+    right: 20px;
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    border: none;
+    background: var(--accent);
+    color: #fff;
+    cursor: pointer;
+    display: none;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.25);
+    align-items: center;
+    justify-content: center;
+    transition: opacity 0.3s ease;
+    z-index: 999;
+}
+
+#scrollTopBtn.show { display: flex; opacity: 1; }
+input[readonly] { background: #f2f2f2; color: #555; cursor: not-allowed; }
+
+/* Nominee Setup Layout */
+.nominee-grid { display: grid; grid-template-columns: 1fr; gap: 12px; }
+.entry { background: #fff; padding: 12px; border-radius: 10px; border: 1px solid #eee; position: relative; }
+.entry h3 { margin: 0 0 8px 0; font-size: 0.95rem; display: flex; align-items: center; justify-content: space-between; }
+.entry .remove-btn { background: transparent; border: 1px solid var(--line); color: #333; border-radius: 8px; padding: 6px 10px; font-size: 0.9rem; cursor: pointer; }
+.entry .remove-btn:hover { border-color: #d0d0d7; }
+
+/* Date Groups Layout Fixes */
+.row.date-group { justify-content: flex-start !important; align-items: center; gap: 8px; flex-wrap: nowrap; }
+.date-group .date-label { flex: 0 0 auto; margin: 0; margin-right: 3px; font-weight: 500; color: #333; text-align: left; white-space: nowrap; }
+.date-group .date-inputs { display: flex; flex-grow: 0; justify-content: flex-start; gap: 4px; }
+.date-group .date-inputs input { width: 3.8em; text-align: center; padding: 9px 0; border: 1px solid #ddd; border-radius: 10px; background: #fff; font-size: 1rem; line-height: 1.2; box-sizing: border-box; }
+
+@media (max-width: 600px) {
+    .row.date-group { flex-wrap: wrap; row-gap: 2px; }
+    .date-group .date-label { width: 100%; white-space: normal !important; margin-bottom: 2px; }
+    .date-group .date-inputs { width: 100%; }
+}
+
+/* Time Groups Custom Labels Engine */
+label:has(.time-input-group) { display: flex; flex-direction: row; align-items: center; gap: 8px; flex-wrap: nowrap; }
+label:has(.time-input-group) > :first-child { flex: 0 0 auto; white-space: nowrap; margin-right: 6px; font-weight: 500; color: #333; }
+label:has(.time-input-group)::first-line { font-weight: 500; }
+.time-input-group { display: flex; align-items: center; gap: 6px; flex-grow: 0; flex-shrink: 0; }
+.time-input-group input, .time-input-group select { width: 3.8em; text-align: center; padding: 9px 0; border: 1px solid #ddd; border-radius: 10px; background: #fff; font-size: 1rem; line-height: 1.2; box-sizing: border-box; }
+.time-input-group select { width: 4.8em; }
+.time-input-group .separator { display: inline-block; margin: 0 2px; }
+
+@media (max-width: 600px) {
+    label:has(.time-input-group) { flex-wrap: wrap; }
+    label:has(.time-input-group) > :first-child { width: 100%; margin-bottom: 4px; }
+    .time-input-group { width: 100%; }
+}
+
+/* Wizard Steps Interface Tracker */
+.step-indicator { display: flex; justify-content: space-between; margin-bottom: 30px; background: #fff; padding: 15px; border-radius: 12px; border: 1px solid var(--line); overflow-x: auto; gap: 10px; }
+.step { flex: 1; text-align: center; font-size: 0.8rem; color: #888; cursor: pointer; transition: all 0.2s ease-in-out; padding: 8px; border-radius: 8px; min-width: 90px; display: flex; flex-direction: column; align-items: center; }
+.step:hover { background: #f0f7ff; color: var(--accent); }
+.step.active { color: var(--accent); font-weight: 600; background: #f0f7ff; }
+.step-num { width: 28px; height: 28px; line-height: 28px; border-radius: 50%; background: #eee; display: block; margin-bottom: 6px; font-size: 0.85rem; transition: background 0.3s; color: #333; }
+.step.active .step-num { background: var(--accent); color: #fff; }
+
+.wizard-step { display: none; background: var(--surface); padding: 12px; border-radius: 18px; border: 1px solid rgba(0,0,0,0.02); box-shadow: 0 4px 12px rgba(0,0,0,0.01); }
+.wizard-step.active { display: block; animation: slideIn 0.3s ease-out; }
+
+@keyframes slideIn { from { opacity: 0; transform: translateX(10px); } to { opacity: 1; transform: translateX(0); } }
+.wizard-actions { display: flex; justify-content: space-between; margin-top: 30px; padding: 20px 0; border-top: 1px solid var(--line); }
+
+/* Signature Render Windows */
+.sig-preview { width: 100%; height: 150px; border: 1px dashed #bbb; border-radius: 10px; display: flex; align-items: center; justify-content: center; background: #fff; cursor: pointer; position: relative; }
+.sig-preview img { max-width: 100%; max-height: 100%; object-fit: contain; }
+.sig-preview span { color: #999; }
+.sig-modal { display: none; position: fixed; inset: 0; background: rgba(0,0,0,.45); z-index: 1000; }
+.sig-modal .box { width: min(560px, 92vw); background: #fff; margin: 6vh auto; padding: 14px; border-radius: 12px; box-shadow: 0 18px 50px rgba(0,0,0,.25); }
+.sig-modal h3 { margin: 0 0 8px 0; }
+#sigCanvas { width: 100%; height: 220px; background: #fff; border: 1px solid #ddd; border-radius: 10px; touch-action: none; }
+.sig-actions { display: flex; gap: 10px; justify-content: flex-end; margin-top: 10px; }
+.hidden-inputs { display: none; }
+.preview { background: #fff; border: 1px solid #eee; border-radius: 10px; padding: 10px; }
+.preview canvas { width: 100%; height: auto; border-radius: 8px; }
+#saveStatus { position: fixed; top: 12px; right: 12px; background: var(--accent); color: #fff; padding: 6px 10px; border-radius: 8px; font-size: 0.85rem; opacity: 0; transition: opacity .25s; }
+
+.btn-set-today {
+    margin-left: 8px;
+    padding: 4px 10px !important;
+    font-size: 0.75rem !important;
+    height: auto !important;
+    border-color: var(--accent) !important;
+    color: var(--accent) !important;
+    background: transparent;
+    font-weight: 500;
+    cursor: pointer;
+    border-radius: 6px;
+}
+.btn-set-today:hover { background: var(--accent) !important; color: #fff !important; }
+</style>
+</head>
+<body>
+
+    <header class="navbar">
+        <div class="nav-container">
+            <span class="logo" id="navLogo">CI Pro Universe</span>
+
+            <div class="menu-toggle" id="menuToggle" aria-label="Toggle menu">
+                <span></span><span></span><span></span>
+            </div>
+
+            <nav class="nav-menu" id="navMenu">
+                <a href="dashboard.html" class="nav-item">Operational Hub</a>
+                <a href="cipro-experience.html" class="nav-item">CI Pro Experience</a>
+                <a href="eposbuddy.html" class="nav-item">EPOS Buddy</a>
+                <a href="magicfiller.html" class="nav-item active">Magic Filler</a>
+            </nav>
+        </div>
+    </header>
+
+    <main class="container">
+
+        <section class="hero" style="padding-top: 0px; padding-bottom: 20px; text-align: left;">
+            <span class="badge">Medical and Accidental Claims</span>
+        </section>
+        
+        <div class="step-indicator" id="stepIndicator">
+            <div class="step active"><span class="step-num">1</span>Policy</div>
+            <div class="step"><span class="step-num">2</span>Claim Type</div>
+            <div class="step"><span class="step-num">3</span>Person</div>
+            <div class="step"><span class="step-num">4</span>Incident</div>
+            <div class="step"><span class="step-num">5</span>Doctors</div>
+            <div class="step"><span class="step-num">6</span>E-Banking</div>
+            <div class="step"><span class="step-num">7</span>Sign</div>
+        </div>
+  
+        <form id="claimForm">
+            <div class="wizard-step active">
+                <section class="section">
+                    <h2>Particulars of Policy</h2>
+
+                    <div class="row date-group"> 
+                        <label class="date-label">Date submitted <span class="muted">(DD/MM/YYYY)</span></label>
+                        <button type="button" class="btn-set-today ghost" data-target="ClmMed_Basicinfo">Today</button>
+                        <div class="date-inputs">
+                            <input id="ClmMed_Basicinfo_Day" class="persist date-input" placeholder="DD" type="text" maxlength="2" inputmode="numeric" pattern="\d*">
+                            <input id="ClmMed_Basicinfo_Month" class="persist date-input" placeholder="MM" type="text" maxlength="2" inputmode="numeric" pattern="\d*">
+                            <input id="ClmMed_Basicinfo_Year" class="persist date-input" placeholder="YYYY" type="text" maxlength="4" inputmode="numeric" pattern="\d*">
+                        </div>
+                    </div>
+
+                    <div class="row" style="margin-top:10px;">
+                        <label style="display:flex; align-items:center; gap:8px; cursor:pointer; background: #f0f7ff; padding: 10px; border-radius: 8px;">
+                            <input id="Clm_Agent_Is_Witness" type="checkbox" class="persist">
+                            <span style="font-weight:500; color:var(--accent);">Agent is also the Witness</span>
+                        </label>
+                    </div> 
+                    <div class="grid-2">
+                        <label style="flex:1">Agent Name
+                            <input id="ClmMed_Basicinfo_Agent" class="persist" type="text" placeholder="Enter name">
+                        </label>
+                        <label style="flex:1">Agent Contact
+                            <input id="ClmMed_Basicinfo_Mobile" class="persist" type="text" placeholder="Enter contact">
+                        </label>
+                        <label id="agentNircContainer" style="display: none;">Agent NIRC
+                            <input id="ClmMed_Basicinfo_AgentNIRC" class="persist" type="text" placeholder="e.g. 800101-10-5566">
+                        </label>
+                        <label style="flex:1">Agency Name
+                            <input id="ClmMed_Basicinfo_Agency" class="persist" type="text" value="DU LIFE GROUP SDN BHD" readonly>
+                        </label>
+                    </div>
+                    
+                    <div id="basicPolicyGrid" class="nominee-grid"></div>
+                    <div class="row">
+                        <button id="addBasicPolicyBtn" type="button">+ Add Another Policy</button>
+                        <small class="muted">Up to 4 Policies</small>
+                    </div>
+                </section>
+            </div>
+
+            <div class="wizard-step">
+                <section class="section">
+                    <h2>Type of Claim</h2>
+                    <section class="section">
+                        <div class="grid-2">
+                            <label style="flex:1"><input id="ClmMed_Claimtype_Hosp" class="persist" type="checkbox">Hospitalisation/Day Surgery Medical Expenses</label>
+                            <label style="flex:1"><input id="ClmMed_Claimtype_PrePost" class="persist" type="checkbox">Pre or Post Hospitalisation Treatment</label>
+                            <label style="flex:1"><input id="ClmMed_Claimtype_AccInjury" class="persist" type="checkbox">Outpatient Emergency Accidental Injury Treatment</label>
+                            <label style="flex:1"><input id="ClmMed_Claimtype_OpKidney" class="persist" type="checkbox">Outpatient Kidney Dialysis/Outpatient Cancer Treatment</label>
+                            <label style="flex:1"><input id="ClmMed_Claimtype_OpDengue" class="persist" type="checkbox">Outpatient Dengue Fever Treatment</label>
+                            <label style="flex:1"><input id="ClmMed_Claimtype_Home" class="persist" type="checkbox">Home Nursing Care</label>
+                            <label style="flex:1"><input id="ClmMed_Claimtype_HospBen" class="persist" type="checkbox">Hospitalization Benefit/Allowance only</label>
+                            <label style="flex:1"><input id="ClmMed_Claimtype_AccIndemnity" class="persist" type="checkbox">Accident Indemnity</label>
+                            <label style="flex:1"><input id="ClmMed_Claimtype_Others" class="persist" type="checkbox">Others<input id="ClmMed_Claimtype_Others_Text" class="persist" type="text" placeholder="Please Specify. Eg Vaccination"></label>
+                        </div>
+                    </section>
+                    <div class="row">
+                        <label style="flex:1">Total Claim Amount (Medical Expenses Only): (RM)
+                            <input id="ClmMed_Claimtype_Amt" class="persist" type="text" placeholder="Enter amount (only enter digits)">
+                        </label>
+                    </div>
+                </section>
+            </div>    
+
+            <div class="wizard-step">
+                <section class="section">
+                    <h2>Particulars of Insured Person</h2>
+                    <div class="row">
+                        <small class="muted">Ensure your email and mobile number are updated in order to receive claim notifications on a timely manner.</small>
+                    </div>
+                    <div class="row">
+                        <label style="flex:1">Name<input id="ClmMed_Insuredinfo_Name" class="persist" type="text" placeholder="Enter name"></label>
+                    </div>
+                    <div class="row">
+                        <label style="flex:1">NIRC/Passport No.<input id="ClmMed_Insuredinfo_NIRC" class="persist" type="text" placeholder="Enter number"></label>
+                    </div>
+                    <div class="row">
+                        <label style="flex:1">Mobile No.<input id="ClmMed_Insuredinfo_Mobile" class="persist" type="text" placeholder="Enter mobile no."></label>
+                        <label style="flex:1">Email<input id="ClmMed_Insuredinfo_Email" class="persist" type="text" placeholder="Enter email"></label>
+                    </div>
+                    <div class="row">
+                        <label style="flex:1">Current Correspondence Address<textarea id="ClmMed_Insuredinfo_Add" class="persist" placeholder="Enter address"></textarea></label>
+                    </div>
+                    <div class="row">
+                        <label style="flex:1">Current Occupation<input id="ClmMed_Insuredinfo_Occupation" class="persist" type="text" placeholder="Enter occupation"></label>
+                    </div>
+                    <div class="row">
+                        <label style="flex:1">Exaxt Duties Performed<input id="ClmMed_Insuredinfo_Duties" class="persist" type="text" placeholder="Enter duties performed"></label>
+                    </div>
+                    <div class="row">
+                        <label style="flex:1">Name of Current Employer<input id="ClmMed_Insuredinfo_Employer" class="persist" type="text" placeholder="Enter name"></label>
+                    </div>
+                    <div class="row">
+                        <label style="flex:1">Address of Employer<textarea id="ClmMed_Insuredinfo_EmployerAdd" class="persist" placeholder="Enter address"></textarea></label>
+                    </div>
+                </section>
+
+                <section class="section">
+                    <h2>Particulars of Policyowner</h2>
+                    <div class="row">
+                        <label style="flex:1"><input id="CB_PO" class="persist" type="checkbox">Insured and Policyowner is DIFFERENT PERSON</label>
+                    </div>
+                    <div id="Policyownerinfo">
+                        <div class="row">
+                            <label style="flex:1">Name<input id="ClmMed_POinfo_Name" class="persist" type="text" placeholder="Enter name"></label>
+                        </div>
+                        <div class="row">
+                            <label style="flex:1">New IC/Old IC/Passport No.<input id="ClmMed_POinfo_NIRC" class="persist" type="text" placeholder="Enter number"></label>
+                        </div>
+                        <div class="row">
+                            <label style="flex:1">Mobile No.<input id="ClmMed_POinfo_Mobile" class="persist" type="text" placeholder="Enter mobile no."></label>
+                            <label style="flex:1">Email<input id="ClmMed_POinfo_Email" class="persist" type="text" placeholder="Enter email"></label>
+                        </div>
+                        <div class="row">
+                            <label style="flex:1">Current Correspondence Address<textarea id="ClmMed_POinfo_Add" class="persist" placeholder="Enter address"></textarea></label>
+                        </div>
+                    </div>
+                </section>
+            </div>
+
+            <div class="wizard-step">  
+                <section class="section">
+                    <h2>Particulars of Illness/Accident</h2>
+                    <section class="section">
+                        <div class="row"><label style="flex:1">This is due to:</label></div>
+                        <div class="row">
+                            <label class="inline"><input id="optionIllness" class="persist" name="IncidentType" type="radio">Illness</label>
+                            <label class="inline"><input id="optionAccident" class="persist" name="IncidentType" type="radio">Accident</label>
+                        </div>
+                    </section>
+
+                    <div id="illnesssection" style="display:none;">
+                        <div class="row">
+                            <label style="flex:1">Nature of Illness Disability<input id="ClmMed_Illness_Nature" class="persist" type="text" placeholder="Enter name"></label>
+                        </div>
+                        <div class="row date-group"> 
+                            <label class="date-label">Date of diagnosis <span class="muted">(DD/MM/YYYY)</span></label>
+                            <div class="date-inputs">
+                                <input id="ClmMed_Illness_Diagnosis_Day" class="persist date-input" placeholder="DD" type="text" maxlength="2" inputmode="numeric" pattern="\d*">
+                                <input id="ClmMed_Illness_Diagnosis_Month" class="persist date-input" placeholder="MM" type="text" maxlength="2" inputmode="numeric" pattern="\d*">
+                                <input id="ClmMed_Illness_Diagnosis_Year" class="persist date-input" placeholder="YYYY" type="text" maxlength="4" inputmode="numeric" pattern="\d*">
+                            </div>
+                        </div>
+                        <div class="row">
+                            <label style="flex:1">Presenting sign and symptoms<input id="ClmMed_Illness_Sympton" class="persist" type="text" placeholder="Enter name"></label>
+                        </div>
+                        <div class="row date-group"> 
+                            <label class="date-label">Onset date <span class="muted">(DD/MM/YYYY)</span></label>
+                            <div class="date-inputs">
+                                <input id="ClmMed_Illness_Onset_Day" class="persist date-input" placeholder="DD" type="text" maxlength="2" inputmode="numeric" pattern="\d*">
+                                <input id="ClmMed_Illness_Onset_Month" class="persist date-input" placeholder="MM" type="text" maxlength="2" inputmode="numeric" pattern="\d*">
+                                <input id="ClmMed_Illness_Onset_Year" class="persist date-input" placeholder="YYYY" type="text" maxlength="4" inputmode="numeric" pattern="\d*">
+                            </div>
+                        </div>
+                    </div>
+
+                    <div id="accidentsection" style="display:none;">
+                        <div class="row date-group"> 
+                            <label class="date-label">Date of accident <span class="muted">(DD/MM/YYYY)</span></label>
+                            <div class="date-inputs">
+                                <input id="ClmMed_Accident_Day" class="persist date-input" placeholder="DD" type="text" maxlength="2" inputmode="numeric" pattern="\d*">
+                                <input id="ClmMed_Accident_Month" class="persist date-input" placeholder="MM" type="text" maxlength="2" inputmode="numeric" pattern="\d*">
+                                <input id="ClmMed_Accident_Year" class="persist date-input" placeholder="YYYY" type="text" maxlength="4" inputmode="numeric" pattern="\d*">
+                            </div>
+                        </div>
+                        <div>
+                            <label>Time of accident
+                                <div class="time-input-group" data-field="ClmMed_Accident_Time">
+                                    <input id="AppointmentTime_HH" class="persist time-input" placeholder="HH" type="text" maxlength="2" inputmode="numeric" pattern="\d*">
+                                    <span class="separator">:</span>
+                                    <input id="AppointmentTime_MM" class="persist time-input" placeholder="MM" type="text" maxlength="2" inputmode="numeric" pattern="\d*">
+                                    <select id="AppointmentTime_AMPM" class="persist">
+                                        <option value="">--</option>
+                                        <option value="AM">AM</option>
+                                        <option value="PM">PM</option>
+                                    </select>
+                                </div>
+                            </label>
+                        </div>
+                        <div class="row">
+                            <label style="flex:1">Place of accident<input id="ClmMed_Accident_Place" class="persist" type="text" placeholder="Enter place name"></label>
+                        </div>
+                        <div class="row">
+                            <label style="flex:1">How did the accident happen?<textarea id="ClmMed_Accident_How" class="persist" placeholder="Describe the incident"></textarea></label>
+                        </div>
+                        <div class="row">
+                            <label style="flex:1">Nature and extend of injury<textarea id="ClmMed_Accident_Injury" class="persist" placeholder="Describe/state the injury"></textarea></label>
+                        </div>
+                        <div class="row date-group"> 
+                            <label class="date-label">Date first absent from work due to accident <span class="muted">(DD/MM/YYYY)</span></label>
+                            <div class="date-inputs">
+                                <input id="ClmMed_Accident_AbsentDay" class="persist date-input" placeholder="DD" type="text" maxlength="2" inputmode="numeric" pattern="\d*">
+                                <input id="ClmMed_Accident_AbsentMonth" class="persist date-input" placeholder="MM" type="text" maxlength="2" inputmode="numeric" pattern="\d*">
+                                <input id="ClmMed_Accident_AbsentYear" class="persist date-input" placeholder="YYYY" type="text" maxlength="4" inputmode="numeric" pattern="\d*">
+                            </div>
+                        </div>
+                        <div class="row date-group"> 
+                            <label class="date-label">Date returned to work <span class="muted">(DD/MM/YYYY)</span></label>
+                            <div class="date-inputs">
+                                <input id="ClmMed_Accident_ReturnDay" class="persist date-input" placeholder="DD" type="text" maxlength="2" inputmode="numeric" pattern="\d*">
+                                <input id="ClmMed_Accident_ReturnMonth" class="persist date-input" placeholder="MM" type="text" maxlength="2" inputmode="numeric" pattern="\d*">
+                                <input id="ClmMed_Accident_ReturnYear" class="persist date-input" placeholder="YYYY" type="text" maxlength="4" inputmode="numeric" pattern="\d*">
+                            </div>
+                        </div>
+                    </div>
+                </section>
+            </div>
+    
+            <div class="wizard-step">  
+                <section class="section">
+                    <h2>Particulars of Doctors Consulted</h2>
+                    <section class="section">
+                        <div class="row"><b><label style="flex:1">First doctor consulted for this illness/disability</label></b></div>
+                        <div class="row date-group" data-combine="true" data-field="ClmMed_Dr_First_Date"> 
+                            <label class="date-label">First consultation date <span class="muted">(DD/MM/YYYY)</span></label>
+                            <div class="date-inputs">
+                                <input id="ClmMed_Dr_First_Day" class="persist date-input" placeholder="DD" type="text" maxlength="2" inputmode="numeric" pattern="\d*">
+                                <input id="ClmMed_Dr_First_Month" class="persist date-input" placeholder="MM" type="text" maxlength="2" inputmode="numeric" pattern="\d*">
+                                <input id="ClmMed_Dr_First_Year" class="persist date-input" placeholder="YYYY" type="text" maxlength="4" inputmode="numeric" pattern="\d*">
+                            </div>
+                        </div>
+                        <div class="row">
+                            <label style="flex:1">Name and Address of Doctor(s)<textarea id="ClmMed_Dr_First_NameAdd" class="persist" placeholder="eg. Dr ABC, XYZ Medical Centre"></textarea></label>
+                        </div>
+                    </section>
+
+                    <section class="section">
+                        <div class="row"><b><label style="flex:1">All other doctors consulted for this illness/disability</label></b></div>
+                        <div class="row date-group" data-combine="true" data-field="ClmMed_Dr_Others_Date"> 
+                            <label class="date-label">First consultation date <span class="muted">(DD/MM/YYYY)</span></label>
+                            <div class="date-inputs">
+                                <input id="ClmMed_Dr_Others_Day" class="persist date-input" placeholder="DD" type="text" maxlength="2" inputmode="numeric" pattern="\d*">
+                                <input id="ClmMed_Dr_Others_Month" class="persist date-input" placeholder="MM" type="text" maxlength="2" inputmode="numeric" pattern="\d*">
+                                <input id="ClmMed_Dr_Others_Year" class="persist date-input" placeholder="YYYY" type="text" maxlength="4" inputmode="numeric" pattern="\d*">
+                            </div>
+                        </div>
+                        <div class="row">
+                            <label style="flex:1">Name and Address of Doctor(s)<textarea id="ClmMed_Dr_Others_NameAdd" class="persist" placeholder="eg. Dr ABC, XYZ Medical Centre"></textarea></label>
+                        </div>
+                    </section>
+
+                    <section class="section">
+                        <div class="row"><b><label style="flex:1">Regular doctors/ gynaecologist/ obstetrician</label></b></div>
+                        <div class="row date-group" data-combine="true" data-field="ClmMed_Dr_Regular_Date"> 
+                            <label class="date-label">First consultation date <span class="muted">(DD/MM/YYYY)</span></label>
+                            <div class="date-inputs">
+                                <input id="ClmMed_Dr_Regular_Day" class="persist date-input" placeholder="DD" type="text" maxlength="2" inputmode="numeric" pattern="\d*">
+                                <input id="ClmMed_Dr_Regular_Month" class="persist date-input" placeholder="MM" type="text" maxlength="2" inputmode="numeric" pattern="\d*">
+                                <input id="ClmMed_Dr_Regular_Year" class="persist date-input" placeholder="YYYY" type="text" maxlength="4" inputmode="numeric" pattern="\d*">
+                            </div>
+                        </div>
+                        <div class="row">
+                            <label style="flex:1">Name and Address of Doctor(s)<textarea id="ClmMed_Dr_Regular_NameAdd" class="persist" placeholder="eg. Dr ABC, XYZ Medical Centre"></textarea></label>
+                        </div>
+                    </section>
+
+                    <section class="section">
+                        <div class="row"><b><label style="flex:1">All other doctors consulted in the past five (5) years</label></b></div>
+                        <div class="row date-group" data-combine="true" data-field="ClmMed_Dr_5yrs_Date"> 
+                            <label class="date-label">First consultation date <span class="muted">(DD/MM/YYYY)</span></label>
+                            <div class="date-inputs">
+                                <input id="ClmMed_Dr_5yrs_Day" class="persist date-input" placeholder="DD" type="text" maxlength="2" inputmode="numeric" pattern="\d*">
+                                <input id="ClmMed_Dr_5yrs_Month" class="persist date-input" placeholder="MM" type="text" maxlength="2" inputmode="numeric" pattern="\d*">
+                                <input id="ClmMed_Dr_5yrs_Year" class="persist date-input" placeholder="YYYY" type="text" maxlength="4" inputmode="numeric" pattern="\d*">
+                            </div>
+                        </div>
+                        <div class="row">
+                            <label style="flex:1">Name and Address of Doctor(s)<textarea id="ClmMed_Dr_5yrs_NameAdd" class="persist" placeholder="eg. Dr ABC, XYZ Medical Centre"></textarea></label>
+                        </div>
+                    </section>
+                </section>
+
+                <section id="otherCoverageSection" class="section">
+                    <h2>Particulars of Other Coverage/Scheme/Policy(ies)</h2>
+                    <div class="container-grid" id="otherCoverageGrid"></div>
+                    <div class="row">
+                        <button type="button" id="addOtherCoverageBtn">+ Add Other Coverage</button>
+                        <small class="muted">Up to 4 policies</small>
+                    </div>
+                </section>
+            </div>
+
+            <div class="wizard-step">  
+                <section class="section">
+                    <h2>Particulars of Bank Account for Claim Payment</h2>
+                    <div class="row">
+                        <label style="flex:1">Account Holder Name<input id="ClmMed_EBank_Name" class="persist" type="text"></label>
+                    </div>
+                    <div class="row">
+                        <label style="flex:1">New IC/Old IC/Passport No/Co. Registration No. (as per bank’s records)<input id="ClmMed_EBank_NIRC" class="persist" type="text"></label>
+                    </div>
+                    <div class="row">
+                        <label style="flex:1">Bank Account No.<input id="ClmMed_EBank_AccNo" class="persist" type="text" placeholder="Enter no."></label>
+                    </div>
+                    <div class="row">
+                        <label style="flex:1">Name of Bank
+                            <select id="ClmMed_EBank_Bank" class="persist">
+                                <option value="">-- Select Bank --</option>
+                                <option value="Maybank">Maybank</option>
+                                <option value="CIMB Bank">CIMB Bank</option>
+                                <option value="Public Bank">Public Bank</option>
+                                <option value="RHB Bank">RHB Bank</option>
+                                <option value="Hong Leong Bank">Hong Leong Bank</option>
+                                <option value="AmBank">AmBank</option>
+                                <option value="UOB Bank">UOB Bank</option>
+                                <option value="OCBC Bank">OCBC Bank</option>
+                                <option value="HSBC Bank">HSBC Bank</option>
+                                <option value="Standard Chartered">Standard Chartered</option>
+                                <option value="Alliance Bank">Alliance Bank</option>
+                                <option value="Affin Bank">Affin Bank</option>
+                                <option value="Citibank">Citibank</option>
+                                <option value="Bank Rakyat">Bank Rakyat</option>
+                                <option value="Bank Islam">Bank Islam</option>
+                                <option value="Bank Muamalat">Bank Muamalat</option>
+                            </select>
+                        </label>
+                    </div>
+                    <section class="section">
+                        <div class="row"><label>Bank Account Type</label></div>
+                        <div class="grid-2">
+                            <label class="inline"><input id="ClmMed_EBank_Conventional" class="persist bank-type" name="Accounttype" type="radio">Conventional</label>
+                            <label class="inline"><input id="ClmMed_EBank_Islamic" class="persist bank-type" name="Accounttype" type="radio">Islamic</label>
+                        </div>
+                    </section>
+                </section>
+            </div>
+    
+            <div class="wizard-step">  
+                <section class="section">
+                    <h2>Signature of Insured Person/Policyowner/Claimant</h2>
+                    <div class="row">
+                        <label style="flex:1">Name of Insured Person/Policyowner/Claimant<input id="ClmMed_Sign_PO_Name" class="persist" type="text"></label>
+                    </div>
+                    <div class="row">
+                        <label style="flex:1">New IC/Old IC/Passport No.<input id="ClmMed_Sign_PO_NIRC" class="persist" type="text"></label>
+                    </div>
+                    <div class="row">
+                        <label style="flex:1">Mobile No.<input id="ClmMed_Sign_Relationship_Mobile" class="persist" type="text"></label>
+                    </div>
+                    <div class="row">
+                        <label style="flex:1">Relationship with Insured Person
+                            <select id="ClmMed_Sign_Relationship" class="persist">
+                                <option value="">-- Select Relationship --</option>
+                                <option value="Self">Self</option>
+                                <option value="Spouse">Spouse</option>
+                                <option value="Child">Child</option>
+                                <option value="Parent">Parent</option>
+                                <option value="Sibling">Sibling</option>
+                                <option value="Employee">Employee</option>
+                                <option value="Employer">Employer</option>
+                                <option value="Legal Guardian">Legal Guardian</option>
+                                <option value="Trustee">Trustee</option>
+                                <option value="Assignee">Assignee</option>
+                                <option value="Other">Other</option>
+                            </select>
+                        </label>
+                    </div>
+                    <div class="row date-group" data-combine="true" data-field="ClmMed_Sign_PO_Date"> 
+                        <label class="date-label">Date signed <span class="muted">(DD/MM/YYYY)</span></label>
+                        <button type="button" class="btn-set-today ghost" data-target="ClmMed_Sign_PO">Today</button>
+                        <div class="date-inputs">
+                            <input id="ClmMed_Sign_PO_Day" class="persist date-input" placeholder="DD" type="text" maxlength="2" inputmode="numeric" pattern="\d*">
+                            <input id="ClmMed_Sign_PO_Month" class="persist date-input" placeholder="MM" type="text" maxlength="2" inputmode="numeric" pattern="\d*">
+                            <input id="ClmMed_Sign_PO_Year" class="persist date-input" placeholder="YYYY" type="text" maxlength="4" inputmode="numeric" pattern="\d*">
+                        </div>
+                    </div>
+                    <div class="sig-preview" id="preview_simple_owner">
+                        <span>Tap to Sign (Policyowner / Assignee)</span>
+                    </div>
+                    <div class="row">
+                        <button id="clearPreview_Simple_Owner" class="secondary" type="button">Clear Signature</button>
+                    </div>
+                </section>
+
+                <section class="section">
+                    <h2>Signature of Witness</h2>
+                    <div class="row">
+                        <label style="flex:1">Name of Witness<input id="ClmMed_Sign_Witness_Name" class="persist" type="text" placeholder="Enter name"></label>
+                    </div>
+                    <div class="row">
+                        <label style="flex:1">NIRC<input id="ClmMed_Sign_Witness_NIRC" class="persist" type="text" placeholder="e.g. 800202-08-5678"></label>
+                        <label style="flex:1">Mobile No.<input id="ClmMed_Sign_Witness_Mobile" class="persist" type="text" placeholder="e.g. 012-23456789"></label>
+                    </div>
+                    <div class="row date-group" data-combine="true" data-field="ClmMed_Sign_Witness_Date"> 
+                        <label class="date-label">Date signed <span class="muted">(DD/MM/YYYY)</span></label>
+                        <button type="button" class="btn-set-today ghost" data-target="ClmMed_Sign_Witness">Today</button>
+                        <div class="date-inputs">
+                            <input id="ClmMed_Sign_Witness_Day" class="persist date-input" placeholder="DD" type="text" maxlength="2" inputmode="numeric" pattern="\d*">
+                            <input id="ClmMed_Sign_Witness_Month" class="persist date-input" placeholder="MM" type="text" maxlength="2" inputmode="numeric" pattern="\d*">
+                            <input id="ClmMed_Sign_Witness_Year" class="persist date-input" placeholder="YYYY" type="text" maxlength="4" inputmode="numeric" pattern="\d*">
+                        </div>
+                    </div>
+                    <div class="sig-preview" id="preview_simple_witness">
+                        <span>Tap to Sign (Witness)</span>
+                    </div>
+                    <div class="row">
+                        <button id="clearPreview_Simple_Witness" class="secondary" type="button">Clear Signature</button>
+                    </div>
+                </section>
+  
+                <section class="section hidden-section">
+                    <h2>Signature of Trustee(s)/Nominee(s)</h2>
+                    <div class="row">
+                        <label style="flex:1">Name of Trustee/Assignee<input id="Complx_Sign_Trustee_Name" class="persist" type="text" placeholder="Enter name"></label>
+                    </div>
+                    <div class="row">
+                        <label style="flex:1">New IC/Old IC/Passport No.<input id="Complx_Sign_Trustee_NIRC" class="persist" type="text" placeholder="e.g. 900101-14-1234"></label>
+                    </div>
+                    <div class="sig-preview" id="preview_simple_assignee">
+                        <span>Tap to Sign (Trustee/Nominee)</span>
+                    </div>
+                    <div class="row">
+                        <button id="clearPreview_Simple_Assignee" class="secondary" type="button">Clear Signature</button>
+                    </div>
+                </section>
+    
+                <section class="section actions">
+                    <button id="generate" type="button">Generate PDF</button>
+                    <button id="resetAll" type="button" class="secondary">Reset All</button>
+                </section>
+            </div>
+
+            <div class="wizard-actions">
+                <button type="button" id="prevBtn" class="ghost" style="visibility:hidden;">Previous</button>
+                <button type="button" id="nextBtn">Next Step</button>
+            </div>
+        </form>
+
+        <div id="sigModal" class="sig-modal" aria-hidden="true">
+            <div class="box">
+                <h3 id="sigModalTitle">Draw Signature</h3>
+                <canvas id="sigCanvas"></canvas>
+                <div class="sig-actions">
+                    <button id="sigDone" type="button">Done</button>
+                    <button id="sigClear" type="button" class="ghost">Clear</button>
+                    <button id="sigCancel" type="button" class="secondary">Cancel</button>
+                </div>
+            </div>
+        </div>
+        
+        <div id="saveStatus">Saved</div>
+
+        <button id="scrollTopBtn" aria-label="Back to top">
+            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="white" viewBox="0 0 16 16">
+                <path fill-rule="evenodd" d="M8 4.354l-5.146 5.147.708.708L8 5.768l4.438 4.441.708-.708z"/>
+            </svg>
+        </button>
+
+        <section class="security" style="padding: 50px 0 20px 0;">
+            <div class="security-box">
+                <strong>Secured Session Active:</strong> This platform operates on a static, local-injection framework. We do not store, log, or track any personal details or financial credentials on external servers.
+            </div>
+        </section>   
+    </main>
+
+    <footer class="footer">
+        &copy; 2026 CI Pro Universe Portal. All rights reserved. Built for CI Pro operations.
+    </footer>
+
+    <script type="module" src="medical-claim.js"></script>
+</body>
+</html>
