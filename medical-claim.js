@@ -1,6 +1,3 @@
-
-import 'https://unpkg.com/pdf-lib/dist/pdf-lib.min.js';
-
 // Helper shortcut for getting DOM elements
 const $ = (id) => document.getElementById(id);
 
