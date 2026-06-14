@@ -1,3 +1,5 @@
+alert("JS is working!");
+
 // Helper shortcut for getting DOM elements
 const $ = (id) => document.getElementById(id);
 
