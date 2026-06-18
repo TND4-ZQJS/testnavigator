@@ -3,17 +3,12 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Operational Hub - InsuFlow Hub</title>
+    <title>Magic Filler - CI Pro Universe</title>
 <style>
 /* ============================================================
-   GLOBAL DESIGN VARIABLES (Unified Workspace Framework)
+    GLOBAL DESIGN VARIABLES (Unified Workspace Framework)
    ============================================================ */
-*, *::before, *::after { 
-    box-sizing: border-box; 
-    margin: 0; 
-    padding: 0; 
-}
-
+*, *::before, *::after {box-sizing: border-box;margin: 0; padding: 0; }
 :root {
     --nav-height: 52px;
     --accent: #0071e3;
@@ -26,268 +21,107 @@
     --line: #e9e9ee;
 }
 
-body {
-    background-color: var(--bg);
-    color: var(--text-primary);
-    font-family: -apple-system, BlinkMacSystemFont, "SF Pro Text", "Segoe UI", sans-serif;
-    -webkit-font-smoothing: antialiased;
-    line-height: 1.5;
-}
-
-.container {
-    max-width: 940px;
-    margin: 40px auto;
-    padding: 0 24px 100px;
-}
+body {background-color: var(--bg);color: var(--text-primary);font-family: -apple-system, BlinkMacSystemFont, "SF Pro Text", "Segoe UI", sans-serif;-webkit-font-smoothing: antialiased;line-height: 1.5;}
+.container {max-width: 940px;margin: 40px auto;padding: 0 24px 20px;}
 
 /* ============================================================
-   STICKY STYLISH NAVBAR STRUCTURE
+    STICKY STYLISH NAVBAR STRUCTURE
    ============================================================ */
-.navbar {
-    position: sticky;
-    top: 0;
-    z-index: 100;
-    background: rgba(255, 255, 255, 0.85);
-    backdrop-filter: blur(20px);
-    -webkit-backdrop-filter: blur(20px);
-    border-bottom: 1px solid var(--border);
-    height: var(--nav-height);
-}
-
-.nav-container {
-    max-width: 940px;
-    margin: 0 auto;
-    padding: 0 24px;
-    height: 100%;
-    display: flex;
-    align-items: center;
-    gap: 32px;
-}
-
-.logo {
-    font-size: 16px;
-    font-weight: 700;
-    color: var(--text-primary);
-    cursor: pointer;
-    letter-spacing: -0.02em;
-    flex-shrink: 0;
-}
-
-.nav-menu {
-    display: flex;
-    gap: 4px;
-    align-items: center;
-    margin-left: auto;
-}
-
-.nav-item {
-    font-size: 13px;
-    font-weight: 500;
-    color: var(--text-secondary);
-    text-decoration: none;
-    padding: 6px 12px;
-    border-radius: 8px;
-    transition: background 0.15s, color 0.15s;
-    white-space: nowrap;
-}
-
-.nav-item:hover { 
-    background: rgba(0,0,0,0.05); 
-    color: var(--text-primary); 
-}
-
-.nav-item.active { 
-    background: rgba(0,113,227,0.08); 
-    color: var(--accent); 
-}
-
-.menu-toggle {
-    display: none;
-    flex-direction: column;
-    gap: 5px;
-    cursor: pointer;
-    margin-left: auto;
-    padding: 6px;
-}
-
-.menu-toggle span {
-    display: block;
-    width: 22px;
-    height: 2px;
-    background: var(--text-primary);
-    border-radius: 2px;
-    transition: 0.3s;
-}
-
+.navbar {position: sticky;top: 0;z-index: 100;background: rgba(255, 255, 255, 0.85);backdrop-filter: blur(20px);-webkit-backdrop-filter: blur(20px);border-bottom: 1px solid var(--border);height: var(--nav-height);}
+.nav-container {max-width: 940px;margin: 0 auto;padding: 0 24px;height: 100%;display: flex;align-items: center;gap: 32px;}
+.logo {font-size: 16px;font-weight: 700;color: var(--text-primary);cursor: pointer;letter-spacing: -0.02em;flex-shrink: 0;}
+.nav-menu {display: flex;gap: 4px;align-items: center;margin-left: auto;}
+.nav-item {font-size: 13px;font-weight: 500;color: var(--text-secondary);text-decoration: none;padding: 6px 12px;border-radius: 8px;transition: background 0.15s, color 0.15s;white-space: nowrap;}
+.nav-item:hover {background: rgba(0,0,0,0.05); color: var(--text-primary);}
+.nav-item.active {background: rgba(0,113,227,0.08); color: var(--accent);}
+.menu-toggle {display: none;flex-direction: column;gap: 5px;cursor: pointer;margin-left: auto;padding: 6px;}
+.menu-toggle span {display: block;width: 22px;height: 2px;background: var(--text-primary);border-radius: 2px;transition: 0.3s;}
 @media (max-width: 700px) {
     .menu-toggle { display: flex; }
-    .nav-menu {
-        display: none;
-        position: absolute;
-        top: var(--nav-height);
-        left: 0; right: 0;
-        background: rgba(255,255,255,0.97);
-        backdrop-filter: blur(20px);
-        flex-direction: column;
-        padding: 12px 16px 20px;
-        gap: 2px;
-        border-bottom: 1px solid var(--border);
-    }
+    .nav-menu {display: none;position: absolute;top: var(--nav-height);left: 0; right: 0;background: rgba(255,255,255,0.97);backdrop-filter: blur(20px);flex-direction: column;padding: 12px 16px 20px;gap: 2px;border-bottom: 1px solid var(--border);}
     .nav-menu.show { display: flex; }
     .nav-item { width: 100%; padding: 10px 14px; }
 }
 
-/* ============================================================
-   FILLER WORKSPACE COMPONENT STYLES
-   ============================================================ */
-.section {
-    background: #fbfbfd;
-    border: 1px solid #eee;
-    padding: 20px;
-    border-radius: 12px;
-    margin: 16px 0;
+/* Security Box */
+.security {padding: 60px 0;}
+.security-box {
+    background-color: transparent;
+    border-left: 3px solid #86868b;
+    padding: 16px 24px;
+    font-size: 14px;
+    color: #6e6e73;
+}        
+
+/* Footer */
+.footer {
+    padding: 40px 24px;
+    text-align: center;
+    font-size: 12px;
+    color: #86868b;
+    border-top: 1px solid #e8e8ed;
+}    
+
+/* Hero Section */
+.hero {
+    padding-top: 140px;
+    padding-bottom: 80px;
+    text-align: center;
 }
 
-.section h2 {
-    margin: 0 0 14px 0;
-    font-size: 1.15rem;
-    letter-spacing: -0.01em;
-}
-
-.hidden-section {
-    display: none;
-}
-
-label {
+.badge {
+    font-size: 20px;
+    font-weight: 600;
+    color: #bf4800;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
     display: block;
-    margin: 8px 0;
-    font-size: 0.95rem;
+    margin-bottom: 12px;
 }
 
-.info-label {
-    font-weight: bold;
+.hero h1 {
+    font-size: 48px;
+    font-weight: 700;
+    letter-spacing: -0.03em;
+    line-height: 1.1;
+    margin-bottom: 16px;
+    color: #1d1d1f;
 }
 
-input[type=text], input[type=number], select, textarea {
-    width: 100%;
-    padding: 10px;
-    border-radius: 10px;
-    border: 1px solid #ddd;
-    margin-top: 6px;
-    font-size: 1rem;
-    background: #fff;
-    font-family: inherit;
-}
+.subtitle {
+    font-size: 19px;
+    color: #86868b;
+    max-width: 640px;
+    margin: 0 auto;
+    font-weight: 400;
+    letter-spacing: -0.01em;
+}    
 
-h3 {
-    margin: 20px 0 5px 0;
-    font-size: 1.00rem;
+/* ============================================================
+    FILLER WORKSPACE COMPONENT STYLES
+   ============================================================ */
+.section { background: #fbfbfd; border: 1px solid #eee; padding: 14px; border-radius: 10px; margin: 12px 0; }
+.section h2 { margin: 0 0 10px 0; font-size: 1.05rem; }
+label { display: block; margin: 8px 0; font-size: 0.95rem; }
+input[type=text], input[type=email], input[type=number], input[type=tel], select, textarea {
+    width: 100%; padding: 10px; border-radius: 10px; border: 1px solid #ddd; margin-top: 6px; font-size: 1rem; background: #fff;
 }
+.row { display: flex; gap: 12px; align-items: center; flex-wrap: wrap; margin: 8px 0; }
+.muted { color: #86868b; font-size: 0.85rem; }
 
-textarea {
-    resize: vertical;
-    min-height: 120px;
-}
-
-.row {
-    display: flex;
-    gap: 12px;
-    align-items: center;
-    flex-wrap: wrap;
-    margin: 8px 0;
-}
-
-.muted {
-    color: var(--text-tertiary);
-    font-size: 0.85rem;
-}
-
-button {
-    background: var(--accent);
-    color: #fff;
-    border: 0;
-    padding: 10px 16px;
-    border-radius: 10px;
-    cursor: pointer;
-    font-weight: 500;
-    font-size: 0.95rem;
-    transition: background 0.15s;
-}
-
-button:hover {
-    background: #0077ed;
-}
-
+button { background: var(--accent); color: #fff; border: 0; padding: 10px 16px; border-radius: 10px; cursor: pointer; font-weight: 500; font-size: 0.95rem; transition: background 0.15s; }
+button:hover { background: #0077ed; }
 button.secondary { background: #999; }
 button.ghost { background: transparent; border: 1px solid var(--line); color: #333; }
 button.ghost:hover { background: rgba(0,0,0,0.02); }
-
 .actions { display: flex; gap: 12px; align-items: center; }
 
-/* Grid Structures */
-.grid-2 { display: grid; grid-template-columns: repeat(2, 1fr); gap: 12px; }
-.grid-3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; }
-.grid-4 { display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; }
-
-@media (max-width: 600px) {
-    .grid-2, .grid-3, .grid-4 { grid-template-columns: 1fr; }
-}
-
-#scrollTopBtn {
-    position: fixed;
-    bottom: 24px;
-    right: 20px;
-    width: 44px;
-    height: 44px;
-    border-radius: 50%;
-    border: none;
-    background: var(--accent);
-    color: #fff;
-    cursor: pointer;
-    display: none;
-    box-shadow: 0 4px 8px rgba(0,0,0,0.25);
-    align-items: center;
-    justify-content: center;
-    transition: opacity 0.3s ease;
-    z-index: 999;
-}
-
-#scrollTopBtn.show { display: flex; opacity: 1; }
-input[readonly] { background: #f2f2f2; color: #555; cursor: not-allowed; }
-
-/* Nominee Setup Layout */
+/* Nominee grid */
 .nominee-grid { display: grid; grid-template-columns: 1fr; gap: 12px; }
-.entry { background: #fff; padding: 12px; border-radius: 10px; border: 1px solid #eee; position: relative; }
-.entry h3 { margin: 0 0 8px 0; font-size: 0.95rem; display: flex; align-items: center; justify-content: space-between; }
-.entry .remove-btn { background: transparent; border: 1px solid var(--line); color: #333; border-radius: 8px; padding: 6px 10px; font-size: 0.9rem; cursor: pointer; }
-.entry .remove-btn:hover { border-color: #d0d0d7; }
-
-/* Date Groups Layout Fixes */
-.row.date-group { justify-content: flex-start !important; align-items: center; gap: 8px; flex-wrap: nowrap; }
-.date-group .date-label { flex: 0 0 auto; margin: 0; margin-right: 3px; font-weight: 500; color: #333; text-align: left; white-space: nowrap; }
-.date-group .date-inputs { display: flex; flex-grow: 0; justify-content: flex-start; gap: 4px; }
-.date-group .date-inputs input { width: 3.8em; text-align: center; padding: 9px 0; border: 1px solid #ddd; border-radius: 10px; background: #fff; font-size: 1rem; line-height: 1.2; box-sizing: border-box; }
-
-@media (max-width: 600px) {
-    .row.date-group { flex-wrap: wrap; row-gap: 2px; }
-    .date-group .date-label { width: 100%; white-space: normal !important; margin-bottom: 2px; }
-    .date-group .date-inputs { width: 100%; }
-}
-
-/* Time Groups Custom Labels Engine */
-label:has(.time-input-group) { display: flex; flex-direction: row; align-items: center; gap: 8px; flex-wrap: nowrap; }
-label:has(.time-input-group) > :first-child { flex: 0 0 auto; white-space: nowrap; margin-right: 6px; font-weight: 500; color: #333; }
-label:has(.time-input-group)::first-line { font-weight: 500; }
-.time-input-group { display: flex; align-items: center; gap: 6px; flex-grow: 0; flex-shrink: 0; }
-.time-input-group input, .time-input-group select { width: 3.8em; text-align: center; padding: 9px 0; border: 1px solid #ddd; border-radius: 10px; background: #fff; font-size: 1rem; line-height: 1.2; box-sizing: border-box; }
-.time-input-group select { width: 4.8em; }
-.time-input-group .separator { display: inline-block; margin: 0 2px; }
-
-@media (max-width: 600px) {
-    label:has(.time-input-group) { flex-wrap: wrap; }
-    label:has(.time-input-group) > :first-child { width: 100%; margin-bottom: 4px; }
-    .time-input-group { width: 100%; }
-}
+.nominee { background: #fff; padding: 12px; border-radius: 10px; border: 1px solid #eee; position: relative; }
+.nominee h3 { margin: 0 0 8px 0; font-size: 0.95rem; display: flex; align-items: center; justify-content: space-between; }
+.nominee .remove-btn { background: transparent; border: 1px solid var(--line); color: #333; border-radius: 8px; padding: 6px 10px; font-size: 0.9rem; }
+.nominee .remove-btn:hover { border-color: #d0d0d7; }
 
 /* Wizard Steps Interface Tracker */
 .step-indicator { display: flex; justify-content: space-between; margin-bottom: 30px; background: #fff; padding: 15px; border-radius: 12px; border: 1px solid var(--line); overflow-x: auto; gap: 10px; }
@@ -301,36 +135,98 @@ label:has(.time-input-group)::first-line { font-weight: 500; }
 .wizard-step.active { display: block; animation: slideIn 0.3s ease-out; }
 
 @keyframes slideIn { from { opacity: 0; transform: translateX(10px); } to { opacity: 1; transform: translateX(0); } }
-.wizard-actions { display: flex; justify-content: space-between; margin-top: 30px; padding: 20px 0; border-top: 1px solid var(--line); }
+.wizard-actions { display: flex; justify-content: space-between; margin-top: 30px; padding: 20px 0; border-top: 1px solid var(--line); }  
 
-/* Signature Render Windows */
-.sig-preview { width: 100%; height: 150px; border: 1px dashed #bbb; border-radius: 10px; display: flex; align-items: center; justify-content: center; background: #fff; cursor: pointer; position: relative; }
+/* Signature preview tiles */
+.sig-preview {
+    width: 100%; height: 150px; border: 1px dashed #bbb; border-radius: 10px;
+    display: flex; align-items: center; justify-content: center; background: #fff; cursor: pointer; position: relative;
+}
 .sig-preview img { max-width: 100%; max-height: 100%; object-fit: contain; }
 .sig-preview span { color: #999; }
+
+/* Signature Modal */
 .sig-modal { display: none; position: fixed; inset: 0; background: rgba(0,0,0,.45); z-index: 1000; }
-.sig-modal .box { width: min(560px, 92vw); background: #fff; margin: 6vh auto; padding: 14px; border-radius: 12px; box-shadow: 0 18px 50px rgba(0,0,0,.25); }
+.sig-modal .box {
+    width: min(560px, 92vw); background: #fff; margin: 6vh auto; padding: 14px; border-radius: 12px;
+    box-shadow: 0 18px 50px rgba(0,0,0,.25);
+}
 .sig-modal h3 { margin: 0 0 8px 0; }
 #sigCanvas { width: 100%; height: 220px; background: #fff; border: 1px solid #ddd; border-radius: 10px; touch-action: none; }
 .sig-actions { display: flex; gap: 10px; justify-content: flex-end; margin-top: 10px; }
-.hidden-inputs { display: none; }
-.preview { background: #fff; border: 1px solid #eee; border-radius: 10px; padding: 10px; }
-.preview canvas { width: 100%; height: auto; border-radius: 8px; }
-#saveStatus { position: fixed; top: 12px; right: 12px; background: var(--accent); color: #fff; padding: 6px 10px; border-radius: 8px; font-size: 0.85rem; opacity: 0; transition: opacity .25s; }
 
-.btn-set-today {
-    margin-left: 8px;
-    padding: 4px 10px !important;
-    font-size: 0.75rem !important;
-    height: auto !important;
-    border-color: var(--accent) !important;
-    color: var(--accent) !important;
-    background: transparent;
-    font-weight: 500;
-    cursor: pointer;
-    border-radius: 6px;
+/* ============================================================
+    PREMIUM iOS BACK NAVIGATION ENGINE (No-Underline Override)
+   ============================================================ */
+.back-navigation-container {
+    max-width: 940px; /* Aligned perfectly with your top container metrics */
+    margin: 20px auto 0 auto;
+    padding: 0 24px;
+    display: flex;
+    align-items: center;
 }
-.btn-set-today:hover { background: var(--accent) !important; color: #fff !important; }
+
+/* Explicit chaining to completely annihilate inherited underlines across link states */
+a.back-link, 
+a.back-link:link, 
+a.back-link:visited, 
+a.back-link:hover, 
+a.back-link:active,
+a.back-link span {
+    text-decoration: none !important;
+    text-decoration-line: none !important;
+    border-bottom: none !important;
+    box-shadow: none !important;
+    outline: none !important;
+    
+    display: inline-flex;
+    align-items: center;
+    gap: 2px;
+    color: #007aff; /* Apple System Blue */
+    
+    font-family: -apple-system, BlinkMacSystemFont, "SF Pro Text", "SF Pro Display", "Helvetica Neue", Arial, sans-serif;
+    font-size: 16px;
+    font-weight: 400;
+    letter-spacing: -0.3px;
+    
+    transition: opacity 0.15s ease;
+    cursor: pointer;
+    -webkit-user-select: none;
+    user-select: none;
+}
+
+a.back-link:hover {
+    opacity: 0.7 !important;
+    text-decoration: none !important;
+}
+
+a.back-link:active {
+    opacity: 0.3 !important;
+}
+
+a.back-link svg {
+    margin-left: -6px;
+    transform: translateY(0.5px);
+    stroke: #007aff !important;
+}
+
+/* Save indicator */
+#saveStatus {
+    position: fixed; bottom: 12px; right: 12px; background: var(--accent); color: #fff;
+    padding: 6px 10px; border-radius: 8px; font-size: 0.85rem; opacity: 0; transition: opacity .25s;
+}
+
+@media (max-width: 900px) { 
+    .header-grid { grid-template-columns: 1fr; } 
+    .onetime-charge-options { grid-column: 1 / -1; } 
+}
+@media (max-width: 720px) { 
+    .policy-grid { grid-template-columns: 1fr; } 
+    .card-digit { width: 60px; } 
+    .back-navigation-container { margin-top: 15px; padding: 0 24px; }
+}
 </style>
+
 </head>
 <body>
 
@@ -347,546 +243,157 @@ label:has(.time-input-group)::first-line { font-weight: 500; }
             <nav class="nav-menu" id="navMenu">
                 <a href="dashboard.html" class="nav-item">Operational Hub</a>
                 <a href="cipro-experience.html" class="nav-item">CI Pro Experience</a>
-                <a href="app-filler.html" class="nav-item">EPOS Buddy</a>
+                <a href="eposbuddy.html" class="nav-item">EPOS Buddy</a>
                 <a href="magicfiller.html" class="nav-item active">Magic Filler</a>
-                <a href="app-nomination.html" class="nav-item">Performance</a>
             </nav>
         </div>
     </header>
 
+<div class="back-navigation-container">
+    <a href="javascript:history.back()" id="backToMainLink" class="back-link">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+            <polyline points="15 18 9 12 15 6"></polyline>
+        </svg>
+        <span>Back</span>
+    </a>
+</div>
+
     <main class="container">
-     <!-- Progress Tracker -->
-  <div class="step-indicator" id="stepIndicator">
+
+      <section class="hero" style="padding-top: 0px; padding-bottom: 20px; text-align: left;">
+            <span class="badge">Amendment to Application</span>
+        </section>
+
+        <div class="step-indicator" id="stepIndicator">
     <div class="step active"><span class="step-num">1</span>Policy</div>
-    <div class="step"><span class="step-num">2</span>Claim Type</div>
-    <div class="step"><span class="step-num">3</span>Person</div>
-    <div class="step"><span class="step-num">4</span>Incident</div>
-    <div class="step"><span class="step-num">5</span>Doctors</div>
-    <div class="step"><span class="step-num">6</span>E-Banking</div>
-    <div class="step"><span class="step-num">7</span>Sign</div>
-  </div>
-  
-  <!-- SECTION: Policy Info -->
-  <form id="claimForm">
-    <!-- STEP 1: Policy -->
-    <div class="wizard-step active">
+    <div class="step"><span class="step-num">2</span>Amendment Details</div>
+    <div class="step"><span class="step-num">3</span>Sign</div>
+  </div>  
+        
+   <!-- STEP 1: Policy -->
+    <div class="wizard-step active">     
   <section class="section">
-    <h2>1. Particulars of Policy</h2>
+    <h2>Proposed Life Insured Info</h2>
 
-     <div class="row date-group"> 
-  <label class="date-label">Date submitted
-    <span class="muted">(DD/MM/YYYY)</span>
-  </label>
+    <label>Proposed Life Insured/Insured Name
+      <input id="LifeProposed_Name" class="persist" type="text" placeholder="AS IN I/C">
+    </label>
 
+    <div class="row">
+      <label style="flex:1">Policy No.
+        <input id="PolicyNo" class="persist" type="text" placeholder="Enter policy number">
+      </label>
+      <label style="flex:1">IC No.
+        <input id="LifeProposed_NRIC" class="persist" type="text" placeholder="e.g. 900101-14-1234">
+      </label>
+    </div>
+  </section>
 
-  <button type="button" class="btn-set-today ghost" data-target="ClmMed_Basicinfo">Today</button>
-  <div class="date-inputs">
-    <input id="ClmMed_Basicinfo_Day" class="persist date-input" placeholder="DD" type="text" maxlength="2" inputmode="numeric" pattern="\d*">
-    <input id="ClmMed_Basicinfo_Month" class="persist date-input" placeholder="MM" type="text" maxlength="2" inputmode="numeric" pattern="\d*">
-    <input id="ClmMed_Basicinfo_Year" class="persist date-input" placeholder="YYYY" type="text" maxlength="4" inputmode="numeric" pattern="\d*">
-  </div>
 </div>
 
-    <div class="row" style="margin-top:10px;">
-  <label style="display:flex; align-items:center; gap:8px; cursor:pointer; background: #f0f7ff; padding: 10px; border-radius: 8px;">
-    <input id="Clm_Agent_Is_Witness" type="checkbox" class="persist">
-    <span style="font-weight:500; color:var(--accent);">Agent is also the Witness</span>
-  </label>
-</div> 
-   <div class="grid-2">
-       <label style="flex:1">Agent Name
-        <input id="ClmMed_Basicinfo_Agent" class="persist" type="text" placeholder="Enter name">
-      </label>
-       <label style="flex:1">Agent Contact
-        <input id="ClmMed_Basicinfo_Mobile" class="persist" type="text" placeholder="Enter contact">
-      </label>
-     <label id="agentNircContainer" style="display: none;">Agent NIRC
-    <input id="ClmMed_Basicinfo_AgentNIRC" class="persist" type="text" placeholder="e.g. 800101-10-5566">
-  </label>
-      <label style="flex:1">Agency Name
-        <input id="ClmMed_Basicinfo_Agency" class="persist" type="text" value="DU LIFE GROUP SDN BHD" readonly>
-      </label>
-   </div>
+  <!-- STEP 2: Amendment Details -->
+<div class="wizard-step"> 
 
-    
-    <div id="basicPolicyGrid" class="nominee-grid"></div>
-    <div class="row">
-      <button id="addBasicPolicyBtn">+ Add Another Policy</button>
-      <small class="muted">Up to 4 Policies</small>
-    </div>
-  </section>
-    </div>
+<section class="section">    
+<h2>Details of Amendment</h2>
+    <label>Write details here
+      <textarea id="Amendment_WriteDetails" class="persist" rows="15" placeholder="Describe the amendment in detail..."></textarea>
+    </label>
 
-   <!-- SECTION: Type of Claim -->
-    <div class="wizard-step">
-    <section class="section">
-    <h2>2. Type of Claim</h2>
-
-    <section class="section">
-   <div class="grid-2">
-      <label style="flex:1"><input id="ClmMed_Claimtype_Hosp" class="persist" type="checkbox">Hospitalisation/Day Surgery Medical Expenses
-      </label>
-      <label style="flex:1"><input id="ClmMed_Claimtype_PrePost" class="persist" type="checkbox">Pre or Post Hospitalisation Treatment
-      </label>
-      <label style="flex:1"><input id="ClmMed_Claimtype_AccInjury" class="persist" type="checkbox">Outpatient Emergency Accidental Injury Treatment
-      </label>
-      <label style="flex:1"><input id="ClmMed_Claimtype_OpKidney" class="persist" type="checkbox">Outpatient Kidney Dialysis/Outpatient Cancer Treatment
-      </label>
-      <label style="flex:1"><input id="ClmMed_Claimtype_OpDengue" class="persist" type="checkbox">Outpatient Dengue Fever Treatment
-      </label>
-      <label style="flex:1"><input id="ClmMed_Claimtype_Home" class="persist" type="checkbox">Home Nursing Care
-      </label>
-      <label style="flex:1"><input id="ClmMed_Claimtype_HospBen" class="persist" type="checkbox">Hospitalization Benefit/Allowance only
-      </label>
-      <label style="flex:1"><input id="ClmMed_Claimtype_AccIndemnity" class="persist" type="checkbox">Accident Indemnity
-      </label>
-      <label style="flex:1"><input id="ClmMed_Claimtype_Others" class="persist" type="checkbox">Others<input id="ClmMed_Claimtype_Others_Text" class="persist" type="text" placeholder="Please Specify. Eg Vaccination">
-      </label>
-    </div>
-    </section>
-    
-     <div class="row">
-       <label style="flex:1">Total Claim Amount (Medical Expenses Only): (RM)
-        <input id="ClmMed_Claimtype_Amt" class="persist" type="text" placeholder="Enter amount (only enter digits)">
-      </label>
-    </div>
-    
-  </section>
-    </div>    
-
-  <!-- SECTION 3: Particulars of Insured Person-->
-    <div class="wizard-step">
-    <section class="section">
-    <h2>3. Particulars of Insured Person</h2>
- <div class="row">
-  <small class="muted">Ensure your email and mobile number are updated in order to receive claim notifications on a timely manner.</small>
- </div>
-    
-     <div class="row">
-      <label style="flex:1">Name<input id="ClmMed_Insuredinfo_Name" class="persist" type="text" placeholder="Enter name">
-      </label>
-    </div>
-    <div class="row">
-      <label style="flex:1">NIRC/Passport No.<input id="ClmMed_Insuredinfo_NIRC" class="persist" type="text" placeholder="Enter number">
-      </label>
-     </div>
-    <div class="row">
-      <label style="flex:1">Mobile No.<input id="ClmMed_Insuredinfo_Mobile" class="persist" type="text" placeholder="Enter mobile no.">
-      </label>
-         <label style="flex:1">Email<input id="ClmMed_Insuredinfo_Email" class="persist" type="text" placeholder="Enter email">
-      </label>
-     </div>
-   <div class="row">
-      <label style="flex:1">Current Correspondence Address<textarea id="ClmMed_Insuredinfo_Add" class="persist" placeholder="Enter address"></textarea>
-      </label>
-     </div>
-       <div class="row">
-      <label style="flex:1">Current Occupation<input id="ClmMed_Insuredinfo_Occupation" class="persist" type="text" placeholder="Enter occupation">
-      </label>
-     </div>
-       <div class="row">
-      <label style="flex:1">Exaxt Duties Performed<input id="ClmMed_Insuredinfo_Duties" class="persist" type="text" placeholder="Enter duties performed">
-      </label>
-     </div>
-       <div class="row">
-      <label style="flex:1">Name of Current Employer<input id="ClmMed_Insuredinfo_Employer" class="persist" type="text" placeholder="Enter name">
-      </label>
-     </div>
-       <div class="row">
-      <label style="flex:1">Address of Employer<textarea id="ClmMed_Insuredinfo_EmployerAdd" class="persist" placeholder="Enter address"></textarea>
-      </label>
-     </div>
-  </section>
-    
-
-
-  <!-- SECTION 4: Particulars of policyowner-->
-  <section class="section">
-    <h2>4. Particulars of Policyowner</h2>
-    <div class="row">
-      <label style="flex:1"><input id="CB_PO" class="persist" type="checkbox">Insured and Policyowner is DIFFERENT PERSON
-      </label>
-    </div>
-    
-    <div id="Policyownerinfo">
-        <div class="row">
-      <label style="flex:1">Name<input id="ClmMed_POinfo_Name" class="persist" type="text" placeholder="Enter name">
-      </label>
-     </div>
-    <div class="row">
-      <label style="flex:1">New IC/Old IC/Passport No.<input id="ClmMed_POinfo_NIRC" class="persist" type="text" placeholder="Enter number">
-      </label>
-     </div>
-    <div class="row">
-      <label style="flex:1">Mobile No.<input id="ClmMed_POinfo_Mobile" class="persist" type="text" placeholder="Enter mobile no.">
-      </label>
-         <label style="flex:1">Email<input id="ClmMed_POinfo_Email" class="persist" type="text" placeholder="Enter email">
-      </label>
-     </div>
-   <div class="row">
-      <label style="flex:1">Current Correspondence Address<textarea id="ClmMed_POinfo_Add" class="persist" placeholder="Enter address"></textarea>
-      </label>
-     </div>
-    </div>
-  </section>
-
-    </div>
-
-  <!-- SECTION 5: Particular of Illness/Accident-->
-  <div class="wizard-step">  
-  <section class="section">
-    <h2>5. Particulars of Illness/Accident</h2>
-
-    <!-- SECTION 5: Selection of Ilness or Accident-->
-    <section class="section">
-      <div class="row">
-       <label style="flex:1">This is due to:</label>
-      </div>
-      <div class="row">
-       <label class="inline"><input id="optionIllness" class="persist" name="IncidentType" type="radio">Ilness</label>
-        <label class="inline"><input id="optionAccident" class="persist" name="IncidentType" type="radio">Accident</label>
-      </div>
-    </section>
-
-  <div id="illnesssection" style="display:none;">
-     <div class="row">
-      <label style="flex:1">Nature of Illness Disability<input id="ClmMed_Illness_Nature" class="persist" type="text" placeholder="Enter name">
-      </label>
-     </div>
-        <div class="row date-group"> 
-          <label class="date-label">Date of diagnosis
-          <span class="muted">(DD/MM/YYYY)</span>
-          </label>
-  
-       <div class="date-inputs">
-        <input id="ClmMed_Illness_Diagnosis_Day" class="persist date-input" placeholder="DD" type="text" maxlength="2" inputmode="numeric" pattern="\d*">
-        <input id="ClmMed_Illness_Diagnosis_Month" class="persist date-input" placeholder="MM" type="text" maxlength="2" inputmode="numeric" pattern="\d*">
-        <input id="ClmMed_Illness_Diagnosis_Year" class="persist date-input" placeholder="YYYY" type="text" maxlength="4" inputmode="numeric" pattern="\d*">
-       </div>
-     </div>
-
-       <div class="row">
-      <label style="flex:1">Presenting sign and symptoms<input id="ClmMed_Illness_Sympton" class="persist" type="text" placeholder="Enter name">
-      </label>
-     </div>
-
-     <div class="row date-group"> 
-     <label class="date-label">Onset date
-     <span class="muted">(DD/MM/YYYY)</span>
-     </label>
-    
-      <div class="date-inputs">
-      <input id="ClmMed_Illness_Onset_Day" class="persist date-input" placeholder="DD" type="text" maxlength="2" inputmode="numeric" pattern="\d*">
-      <input id="ClmMed_Illness_Onset_Month" class="persist date-input" placeholder="MM" type="text" maxlength="2" inputmode="numeric" pattern="\d*">
-      <input id="ClmMed_Illness_Onset_Year" class="persist date-input" placeholder="YYYY" type="text" maxlength="4" inputmode="numeric" pattern="\d*">
-      </div>
-      </div>
-  </div>
-
-  <div id="accidentsection" style="display:none;">
-        <div class="row date-group"> 
-        <label class="date-label">Date of accident
-        <span class="muted">(DD/MM/YYYY)</span>
-        </label>
-    
-      <div class="date-inputs">
-    <input id="ClmMed_Accident_Day" class="persist date-input" placeholder="DD" type="text" maxlength="2" inputmode="numeric" pattern="\d*">
-    <input id="ClmMed_Accident_Month" class="persist date-input" placeholder="MM" type="text" maxlength="2" inputmode="numeric" pattern="\d*">
-    <input id="ClmMed_Accident_Year" class="persist date-input" placeholder="YYYY" type="text" maxlength="4" inputmode="numeric" pattern="\d*">
-     </div>
-      </div>
-
-    <div>
-    <label>Time of accident
-    <div class="time-input-group" data-field="ClmMed_Accident_Time">
-    <input id="AppointmentTime_HH" class="persist time-input" placeholder="HH" type="text" maxlength="2" inputmode="numeric" pattern="\d*">
-    
-    <span class="separator">:</span>
-    
-    <input id="AppointmentTime_MM" class="persist time-input" placeholder="MM" type="text" maxlength="2" inputmode="numeric" pattern="\d*">
-    
-    <select id="AppointmentTime_AMPM" class="persist">
-      <option value="">--</option>
-      <option value="AM">AM</option>
-      <option value="PM">PM</option>
-    </select>
-  </div>
-</label>
-      </div>
-
-    <div class="row">
-      <label style="flex:1">Place of accident<input id="ClmMed_Accident_Place" class="persist" type="text" placeholder="Enter place name">
-      </label>
-     </div>
-
-    <div class="row">
-      <label style="flex:1">How did the accident happen?<textarea id="ClmMed_Accident_How" class="persist" placeholder="Describe the incident"></textarea>
-      </label>
-     </div>
-
-    <div class="row">
-      <label style="flex:1">Nature and extend of injury<textarea id="ClmMed_Accident_Injury" class="persist" placeholder="Describe/state the injury"></textarea>
-      </label>
-     </div>
-
-    <div class="row date-group"> 
-  <label class="date-label">Date first absent from work due to accident
-    <span class="muted">(DD/MM/YYYY)</span>
-  </label>
-    
-      <div class="date-inputs">
-    <input id="ClmMed_Accident_AbsentDay" class="persist date-input" placeholder="DD" type="text" maxlength="2" inputmode="numeric" pattern="\d*">
-    <input id="ClmMed_Accident_AbsentMonth" class="persist date-input" placeholder="MM" type="text" maxlength="2" inputmode="numeric" pattern="\d*">
-    <input id="ClmMed_Accident_AbsentYear" class="persist date-input" placeholder="YYYY" type="text" maxlength="4" inputmode="numeric" pattern="\d*">
-  </div>
+    <label>Common Amendment</label>
+<div class="dropdown-with-button">
+  <select id="Amendment_Common">
+    <option value="">-- Insert common amendment --</option>
+    <option>Kindly bill with EPP</option>
+    <option>Change Basic Face Amount</option>
+    <option>Change Beyond Critical Cover Face Amount</option>
+    <option>Change Accelerated CI Face Amount</option>
+    <option>Business Adress: Home Based</option>
+  </select>
+  <button type="button" class="insert">Insert</button>
 </div>
+</section>
 
-    <div class="row date-group"> 
-  <label class="date-label">Date returned to work
-    <span class="muted">(DD/MM/YYYY)</span>
-  </label>
-    
-      <div class="date-inputs">
-    <input id="ClmMed_Accident_ReturnDay" class="persist date-input" placeholder="DD" type="text" maxlength="2" inputmode="numeric" pattern="\d*">
-    <input id="ClmMed_Accident_ReturnMonth" class="persist date-input" placeholder="MM" type="text" maxlength="2" inputmode="numeric" pattern="\d*">
-    <input id="ClmMed_Accident_ReturnYear" class="persist date-input" placeholder="YYYY" type="text" maxlength="4" inputmode="numeric" pattern="\d*">
-  </div>
-   </div>
+</div>  
 
-</div>
-  </section>
-  </div>
-    
-  <!-- SECTION 6: Particulars of Dr -->
-  <div class="wizard-step">  
-  <section id="UserOption" class="section">
-  <h2>6. Particulars of Doctors Consulted</h2>
-
-   
-    <section class="section">
-      <div class="row">
-      <b><label style="flex:1">First doctor consulted for this illness/disability</label></b>
-      </div>
-      
-      <div class="row date-group" data-combine="true" data-field="ClmMed_Dr_First_Date"> 
-  <label class="date-label">First consultation date
-    <span class="muted">(DD/MM/YYYY)</span>
-  </label>
-    
-      <div class="date-inputs">
-    <input id="ClmMed_Dr_First_Day" class="persist date-input" placeholder="DD" type="text" maxlength="2" inputmode="numeric" pattern="\d*">
-    <input id="ClmMed_Dr_First_Month" class="persist date-input" placeholder="MM" type="text" maxlength="2" inputmode="numeric" pattern="\d*">
-    <input id="ClmMed_Dr_First_Year" class="persist date-input" placeholder="YYYY" type="text" maxlength="4" inputmode="numeric" pattern="\d*">
-  </div>
-</div>
-
-          <div class="row">
-      <label style="flex:1">Name and Address of Doctor(s)<textarea id="ClmMed_Dr_First_NameAdd" class="persist" placeholder="eg. Dr ABC, XYZ Medical Centre"></textarea>
-      </label>
-     </div>
-      
-    </section>
+<!-- STEP 3: Sign -->
+<div class="wizard-step">         
 
 <section class="section">
-      <div class="row">
-      <label style="flex:1">All other doctors consulted for this illness/disability</label>
-      </div>
-      
-    <div class="row date-group" data-combine="true" data-field="ClmMed_Dr_Others_Date"> 
-  <label class="date-label">First consultation date
-    <span class="muted">(DD/MM/YYYY)</span>
-  </label>
-    
-      <div class="date-inputs">
-    <input id="ClmMed_Dr_Others_Day" class="persist date-input" placeholder="DD" type="text" maxlength="2" inputmode="numeric" pattern="\d*">
-    <input id="ClmMed_Dr_Others_Month" class="persist date-input" placeholder="MM" type="text" maxlength="2" inputmode="numeric" pattern="\d*">
-    <input id="ClmMed_Dr_Others_Year" class="persist date-input" placeholder="YYYY" type="text" maxlength="4" inputmode="numeric" pattern="\d*">
-  </div>
-    </div>
-          <div class="row">
-      <label style="flex:1">Name and Address of Doctor(s)<textarea id="ClmMed_Dr_Others_NameAdd" class="persist" placeholder="eg. Dr ABC, XYZ Medical Centre"></textarea>
-      </label>
-     </div>
-      
-    </section>
-
-    <section class="section">
-      <div class="row">
-      <label style="flex:1">Regular doctors/ gynaecologist/ obstetrician</label>
-      </div>
-      
-      <div class="row date-group" data-combine="true" data-field="ClmMed_Dr_Regular_Date"> 
-  <label class="date-label">First consultation date
-    <span class="muted">(DD/MM/YYYY)</span>
-  </label>
-    
-      <div class="date-inputs">
-    <input id="ClmMed_Dr_Regular_Day" class="persist date-input" placeholder="DD" type="text" maxlength="2" inputmode="numeric" pattern="\d*">
-    <input id="ClmMed_Dr_Regular_Month" class="persist date-input" placeholder="MM" type="text" maxlength="2" inputmode="numeric" pattern="\d*">
-    <input id="ClmMed_Dr_Regular_Year" class="persist date-input" placeholder="YYYY" type="text" maxlength="4" inputmode="numeric" pattern="\d*">
-  </div>
-</div>
-
-          <div class="row">
-      <label style="flex:1">Name and Address of Doctor(s)<textarea id="ClmMed_Dr_Regular_NameAdd" class="persist" placeholder="eg. Dr ABC, XYZ Medical Centre"></textarea>
-      </label>
-     </div>
-      
-    </section>
-
-    <section class="section">
-      <div class="row"> 
-      <label style="flex:1">All other doctors consulted in the past five (5) years</label>
-      </div>
-      
-    <div class="row date-group" data-combine="true" data-field="ClmMed_Dr_5yrs_Date"> 
-  <label class="date-label">First consultation date
-    <span class="muted">(DD/MM/YYYY)</span>
-  </label>
-    
-      <div class="date-inputs">
-    <input id="ClmMed_Dr_5yrs_Day" class="persist date-input" placeholder="DD" type="text" maxlength="2" inputmode="numeric" pattern="\d*">
-    <input id="ClmMed_Dr_5yrs_Month" class="persist date-input" placeholder="MM" type="text" maxlength="2" inputmode="numeric" pattern="\d*">
-    <input id="ClmMed_Dr_5yrs_Year" class="persist date-input" placeholder="YYYY" type="text" maxlength="4" inputmode="numeric" pattern="\d*">
-  </div>
-    </div>
-
-          <div class="row">
-      <label style="flex:1">Name and Address of Doctor(s)<textarea id="ClmMed_Dr_5yrs_NameAdd" class="persist" placeholder="eg. Dr ABC, XYZ Medical Centre"></textarea>
-      </label>
-     </div>
-    </section>
-  </section>
-
-   <!-- SECTION 7: Other Coverage -->
-<section id="otherCoverageSection" class="section">
-  <h2>7. Particulars of Other Coverage/Scheme/Policy(ies)</h2>
-  <div class="container-grid" id="otherCoverageGrid">
-    <!-- Dynamic entries will be appended here -->
-  </div>
-  <div class="row">
-  <button type="button" id="addOtherCoverageBtn">+ Add Other Coverage</button>
-  <small class="muted">Up to 4 policies</small>
-  </div>
-</section>
-  </div>
-
-    <!-- SECTION 8: E Banking -->
-  <div class="wizard-step">  
-  <section id="UserOption" class="section">
-  <h2>8. Particulars of Bank Account for Claim Payment</h2>
-
-   <div class="row">
-      <label style="flex:1">Account Holder Name<input id="ClmMed_EBank_Name" class="persist" type="text">
-      </label>
-     </div>
-
-      <div class="row">
-      <label style="flex:1">New IC/Old IC/Passport No/Co. Registration No.
-(as per bank’s records)<input id="ClmMed_EBank_NIRC" class="persist" type="text">
-      </label>
-     </div>
-
-      <div class="row">
-      <label style="flex:1">Bank Account No.<input id="ClmMed_EBank_AccNo" class="persist" type="text" placeholder="Enter no.">
-      </label>
-     </div>
-
-          <div class="row">
-  <label style="flex:1">Name of Bank
-    <select id="ClmMed_EBank_Bank" class="persist">
-      <option value="">-- Select Bank --</option>
-      <option value="Maybank">Maybank</option>
-      <option value="CIMB Bank">CIMB Bank</option>
-      <option value="Public Bank">Public Bank</option>
-      <option value="RHB Bank">RHB Bank</option>
-      <option value="Hong Leong Bank">Hong Leong Bank</option>
-      <option value="AmBank">AmBank</option>
-      <option value="UOB Bank">UOB Bank</option>
-      <option value="OCBC Bank">OCBC Bank</option>
-      <option value="HSBC Bank">HSBC Bank</option>
-      <option value="Standard Chartered">Standard Chartered</option>
-      <option value="Alliance Bank">Alliance Bank</option>
-      <option value="Affin Bank">Affin Bank</option>
-      <option value="Citibank">Citibank</option>
-      <option value="Bank Rakyat">Bank Rakyat</option>
-      <option value="Bank Islam">Bank Islam</option>
-      <option value="Bank Muamalat">Bank Muamalat</option>
-    </select>
-  </label>
-</div>
-
-    <section class="section">
+    <h2>Signature Details</h2>
     <div class="row">
-    <label>Bank Account Type</label>  
+      <label style="flex:1">Signed at (State)
+        <select id="Signed_State" class="persist">
+          <option value="">-- Select State --</option>
+          <!-- Same label set used in your reference -->
+          <option>SELANGOR</option><option>K.LUMPUR</option><option>MELAKA</option><option>JOHOR</option>
+          <option>N.SEMBILAN</option><option>PENANG</option><option>PERAK</option><option>SABAH</option>
+          <option>SARAWAK</option><option>KELANTAN</option><option>PERLIS</option><option>T'GANU</option>
+          <option>PAHANG</option><option>KEDAH</option>
+        </select>
+      </label>
     </div>
-    <div class="grid-2">
-        <label class="inline"><input id="ClmMed_EBank_Conventional" class="persist"  name="Accounttype" type="radio">Conventional</label>
-        <label class="inline"><input id="ClmMed_EBank_Islamic" class="persist"  name="Accounttype" type="radio">Islamic</label>
+    <div class="row">
+      <label style="flex:1">Day
+        <select id="Signed_Day" class="persist">
+          <option value="">-- Day (DD) --</option>
+          <option>01</option><option>02</option><option>03</option><option>04</option>
+          <option>05</option><option>06</option><option>07</option><option>08</option>
+          <option>09</option><option>10</option><option>11</option><option>12</option>
+          <option>13</option><option>14</option><option>15</option><option>16</option>
+          <option>17</option><option>18</option><option>19</option><option>20</option>
+          <option>21</option><option>22</option><option>23</option><option>24</option>
+          <option>25</option><option>26</option><option>27</option><option>28</option>
+          <option>29</option><option>30</option><option>31</option>
+        </select>
+      </label>
+      <label style="flex:1">Month
+        <select id="Signed_Month" class="persist">
+          <option value="">-- Month --</option>
+          <option>JANUARY</option><option>FEBRUARY</option><option>MARCH</option><option>APRIL</option>
+          <option>MAY</option><option>JUNE</option><option>JULY</option><option>AUGUST</option>
+          <option>SEPTEMBER</option><option>OCTOBER</option><option>NOVEMBER</option><option>DECEMBER</option>
+        </select>
+      </label>
+      <label style="flex:1">Year
+        <select id="Signed_Year" class="persist">
+          <option value="">-- Year (YYYY) --</option>
+          <option>2025</option><option>2026</option>
+        </select>
+      </label>
     </div>
-    </section>
-    
   </section>
-  </div>
-    
 
   <!-- SECTION: Owner/Policyowner Signature -->
-  <div class="wizard-step">  
   <section class="section">
-    <h2>Signature of Insured Person/Policyowner/Claimant</h2>
+    <h2>Signature of Proposed Life Insured / Policyowner</h2>
+
     <div class="row">
-      <label style="flex:1">Name of Insured Person/Policyowner/Claimant
-        <input id="ClmMed_Sign_PO_Name" class="persist" type="text">
+    <label style="display: flex; align-items: center; gap: 8px; cursor: pointer; margin-bottom: 10px;">
+      <input type="checkbox" id="copyInfoCheckbox" class="persist"> 
+      Copy from insured info above
+    </label>
+  </div>
+    
+    <div class="row">
+      <label style="flex:1">Proposed LifeInsured/Policyowner Name
+        <input id="Sign_LifeProposedPO_Name" class="persist" type="text" placeholder="AS IN I/C">
       </label>
     </div>
     <div class="row">
-    <label style="flex:1">New IC/Old IC/Passport No.
-        <input id="ClmMed_Sign_PO_NIRC" class="persist" type="text">
+    <label style="flex:1">IC No.
+        <input id="Sign_LifeProposedPO_NRIC" class="persist" type="text" placeholder="e.g. 900101-14-1234">
     </label>
-    </div>
-
-    <div class="row">
     <label style="flex:1">Mobile No.
-        <input id="ClmMed_Sign_Relationship_Mobile" class="persist" type="text">
+        <input id="Sign_LifeProposedPO_Mobile" class="persist" type="text" placeholder="e.g. 012-3456789">
     </label>
     </div>
-    
-    <div class="row">
-    <label style="flex:1">Relationship with Insured Person
-    <select id="ClmMed_Sign_Relationship" class="persist">
-      <option value="">-- Select Relationship --</option>
-      <option value="Self">Self</option>
-      <option value="Spouse">Spouse</option>
-      <option value="Child">Child</option>
-      <option value="Parent">Parent</option>
-      <option value="Sibling">Sibling</option>
-      <option value="Employee">Employee</option>
-      <option value="Employer">Employer</option>
-      <option value="Legal Guardian">Legal Guardian</option>
-      <option value="Trustee">Trustee</option>
-      <option value="Assignee">Assignee</option>
-      <option value="Other">Other</option>
-    </select>
-  </label>
-    </div>
 
-    <div class="row date-group" data-combine="true" data-field="ClmMed_Sign_PO_Date"> 
-  <label class="date-label">Date signed
-    <span class="muted">(DD/MM/YYYY)</span>
-  </label>
-    <button type="button" class="btn-set-today ghost" data-target="ClmMed_Sign_PO">Today</button>
-      <div class="date-inputs">
-    <input id="ClmMed_Sign_PO_Day" class="persist date-input" placeholder="DD" type="text" maxlength="2" inputmode="numeric" pattern="\d*">
-    <input id="ClmMed_Sign_PO_Month" class="persist date-input" placeholder="MM" type="text" maxlength="2" inputmode="numeric" pattern="\d*">
-    <input id="ClmMed_Sign_PO_Year" class="persist date-input" placeholder="YYYY" type="text" maxlength="4" inputmode="numeric" pattern="\d*">
-  </div>
-</div>
-
-        <div class="sig-preview" id="preview_simple_owner" onclick="openSig('simple_owner')">
-      <span>Tap to Sign (Policyowner / Assignee)</span>
+        <div class="sig-preview" id="preview_policyowner" onclick="openSig('policyowner')">
+      <span>Tap to Sign (Insured/Policyowner)</span>
     </div>
     <div class="row">
-      <button id="clearPreview_Simple_Owner" class="secondary" type="button">Clear Signature</button>
+      <button id="clearPreviewPolicyowner" class="secondary" type="button">Clear Signature</button>
     </div>
   </section>
 
@@ -895,77 +402,48 @@ label:has(.time-input-group)::first-line { font-weight: 500; }
     <h2>Signature of Witness</h2>
     <div class="row">
       <label style="flex:1">Name of Witness
-        <input id="ClmMed_Sign_Witness_Name" class="persist" type="text" placeholder="Enter name">
+        <input id="Sign_Witness_Name" class="persist" type="text" placeholder="AS IN I/C">
       </label>
-    </div>
-    <div class="row">
-      <label style="flex:1">NIRC
-        <input id="ClmMed_Sign_Witness_NIRC" class="persist" type="text" placeholder="e.g. 800202-08-5678">
-      </label>
-      <label style="flex:1">Mobile No.
-        <input id="ClmMed_Sign_Witness_Mobile" class="persist" type="text" placeholder="e.g. 012-23456789">
+      <label style="flex:1">IC No.
+        <input id="Sign_Witness_NRIC" class="persist" type="text" placeholder="e.g. 800202-08-5678">
       </label>
     </div>
 
-      <div class="row date-group" data-combine="true" data-field="ClmMed_Sign_Witness_Date"> 
-  <label class="date-label">Date signed
-    <span class="muted">(DD/MM/YYYY)</span>
-  </label>
-    <button type="button" class="btn-set-today ghost" data-target="ClmMed_Sign_Witness">Today</button>
-      <div class="date-inputs">
-    <input id="ClmMed_Sign_Witness_Day" class="persist date-input" placeholder="DD" type="text" maxlength="2" inputmode="numeric" pattern="\d*">
-    <input id="ClmMed_Sign_Witness_Month" class="persist date-input" placeholder="MM" type="text" maxlength="2" inputmode="numeric" pattern="\d*">
-    <input id="ClmMed_Sign_Witness_Year" class="persist date-input" placeholder="YYYY" type="text" maxlength="4" inputmode="numeric" pattern="\d*">
-  </div>
-</div>
-
-
-    <div class="sig-preview" id="preview_simple_witness" onclick="openSig('simple_witness')">
+       <div class="sig-preview" id="preview_witness" onclick="openSig('witness')">
       <span>Tap to Sign (Witness)</span>
     </div>
     <div class="row">
-      <button id="clearPreview_Simple_Witness" class="secondary" type="button">Clear Signature</button>
+      <button id="clearPreviewWitness" class="secondary" type="button">Clear Signature</button>
     </div>
   </section>
-  
-    <!-- SECTION: Assignee -->
-  <section class="section hidden-section">
-    <h2>Signature of Trustee(s)/Nominee(s)</h2>
-    <div class="row">
-      <label style="flex:1">Name of Trustee/Assignee
-        <input id="Complx_Sign_Trustee_Name" class="persist" type="text" placeholder="Enter name">
-      </label>
-    </div>
-    <div class="row">
-    <label style="flex:1">New IC/Old IC/Passport No.
-        <input id="Complx_Sign_Trustee_NIRC" class="persist" type="text" placeholder="e.g. 900101-14-1234">
-    </label>
-    </div>
 
-
-    <div class="sig-preview" id="preview_simple_assignee" onclick="openSig('simple_assignee')">
-      <span>Tap to Sign (Trustee/Nominee)</span>
-    </div>
-    <div class="row">
-      <button id="clearPreview_Simple_Assignee" class="secondary" type="button">Clear Signature</button>
-    </div>
-  </section>
-    
     <section class="section actions">
     <button id="generate">Generate PDF</button>
     <button id="resetAll" class="secondary">Reset All</button>
   </section>
-  </div>
 
-    <!-- NAVIGATION BUTTONS -->
+</div>
+
+   <!-- NAVIGATION BUTTONS -->
     <div class="wizard-actions">
       <button type="button" id="prevBtn" class="ghost" onclick="changeStep(-1)" style="visibility:hidden;">Previous</button>
       <button type="button" id="nextBtn" onclick="changeStep(1)">Next Step</button>
-    </div>
-  </form>
+    </div>      
 
-  
-    <div id="sigModal" class="sig-modal" aria-hidden="true">
+    <section class="security" style="padding: 0 0 60px 0;">
+            <div class="security-box">
+                <strong>Secured Session Active:</strong> This platform operates on a static, local-injection framework. We do not store, log, or track any personal details or financial credentials on external servers.
+            </div>
+    </section>       
+        
+</main>
+
+    <footer class="footer">
+        &copy; 2026 CI Pro Universe Portal. All rights reserved. Built for CI Pro operations.
+    </footer>    
+
+<!-- Signature Modal -->
+ <div id="sigModal" class="sig-modal" aria-hidden="true">
   <div class="box">
     <h3 id="sigModalTitle">Draw Signature</h3>
     <!-- Responsive canvas: internal pixels are set in JS for crispness -->
@@ -977,1302 +455,631 @@ label:has(.time-input-group)::first-line { font-weight: 500; }
     </div>
   </div>
 </div>
-    <div id="saveStatus">Saved</div>
 
+<div id="saveStatus">Saved</div>
 
-  <button id="scrollTopBtn" onclick="scrollToTop()" aria-label="Back to top">
-  <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="white" viewBox="0 0 16 16">
-    <path fill-rule="evenodd" d="M8 4.354l-5.146 5.147.708.708L8 5.768l4.438 4.441.708-.708z"/>
-  </svg>
-</button>
-
+<script src="https://cdn.jsdelivr.net/npm/signature_pad@4.0.0/dist/signature_pad.umd.min.js"></script>
 <script src="https://unpkg.com/pdf-lib/dist/pdf-lib.min.js"></script>
-<script>
 
-  function $(id) {
-  return document.getElementById(id);
-}
-  
-/* ---------- CONFIG ---------- */
-const PDF_FILENAME = "Medical and Accident Claim_Claimant's Statement_LF5191_202305_fillable.pdf";
+<script type="module">
+    import { createClient } from 'https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/+esm';
 
-// ---------- Ilness/Accident SECTION CONTROL CONFIG (Show/Hide Section) ----------
-function toggleIncidentSections() {
-  const isIllness = document.getElementById("optionIllness").checked;
-  const isAccident = document.getElementById("optionAccident").checked;
+    // SUPABASE CONFIGURATION
+    const SUPABASE_URL = "https://qotxxqwikxpsjnjddoqm.supabase.co"; 
+    const SUPABASE_ANON_KEY = "sb_publishable_xpWOcimLjRbH2dbeRdoBSg_XddyOqYU";    
+    
+    const supabase = createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
 
-  document.getElementById("illnesssection").style.display = isIllness ? "block" : "none";
-  document.getElementById("accidentsection").style.display = isAccident ? "block" : "none";
-}
-
-// Bind change events
-document.getElementById("optionIllness").addEventListener("change", toggleIncidentSections);
-document.getElementById("optionAccident").addEventListener("change", toggleIncidentSections);
-
-// Run once on page load (restore localStorage state)
-document.addEventListener("DOMContentLoaded", toggleIncidentSections);
-
-document.addEventListener("DOMContentLoaded", () => {
-  const saved = localStorage.getItem("IncidentType");
-
-  // If no saved data → clear both on first load
-  if (!saved) {
-    document.getElementById("optionIllness").checked = false;
-    document.getElementById("optionAccident").checked = false;
-  }
-
-  toggleIncidentSections(); // refresh UI
-});
-
-
-  
-// ---------- SECTION CONTROL CONFIG (Show/Hide Section) ----------
-const CONTROLLER_BY_SECTION = {
-  Policyownerinfo: "CB_PO",
-};
-
-// ---------- UI ENABLE/DISABLE TOGGLE ----------
-document.addEventListener("DOMContentLoaded", () => {
-  function setSectionEnabled(sectionEl, enabled) {
-    if (!sectionEl) return;
-    const inputs = sectionEl.querySelectorAll("input, select, textarea, button");
-    inputs.forEach(el => el.disabled = !enabled);
-
-    sectionEl.style.display = enabled ? "" : "none";
-  }
-
-  Object.entries(CONTROLLER_BY_SECTION).forEach(([sectionId, controllerId]) => {
-    const controller = document.getElementById(controllerId);
-    const section = document.getElementById(sectionId);
-    if (controller && section) {
-      const updateState = () => setSectionEnabled(section, controller.checked);
-      controller.addEventListener("change", updateState);
-      updateState(); // initialize state on load
-    }
-  });
-});
-
-  
-/* --- UNIVERSAL AUTO-TAB (DATE) LOGIC --- */
-window.addEventListener("DOMContentLoaded", () => {
-
-  const dateGroups = document.querySelectorAll('.date-group'); // each date section
-
-  dateGroups.forEach(group => {
-    const inputs = group.querySelectorAll('.date-input');
-
-    inputs.forEach((currentInput, index) => {
-      const maxLength = parseInt(currentInput.getAttribute('maxlength'), 10);
-
-      if (maxLength > 0) {
-        currentInput.addEventListener('input', (e) => {
-          // numeric only
-          e.target.value = e.target.value.replace(/[^0-9]/g, '');
-
-          // if filled and not the last input in this group
-          if (e.target.value.length === maxLength && index < inputs.length - 1) {
-            const nextInput = inputs[index + 1];
-            if (nextInput) {
-              nextInput.focus();
-              nextInput.select();
+    // Active Auth Guard Execution
+    async function checkAuthGuard() {
+        try {
+            const { data: { session }, error } = await supabase.auth.getSession();
+            if (error) throw error;
+            
+            if (!session) {
+                window.location.href = "login.html";
+                return;
             }
-          }
-        });
-      }
-    });
-  });
-
-  /* --- UNIVERSAL AUTO-TAB (TIME) LOGIC --- */
-  const timeGroups = document.querySelectorAll('.time-input-group');
-
-  timeGroups.forEach(group => {
-    const hourInput = group.querySelector('input[placeholder="HH"]');
-    const minuteInput = group.querySelector('input[placeholder="MM"]');
-    const ampmSelect = group.querySelector('select');
-
-    if (hourInput && minuteInput) {
-      // Auto-tab HH → MM
-      hourInput.addEventListener('input', (e) => {
-        e.target.value = e.target.value.replace(/[^0-9]/g, '');
-        if (e.target.value.length === parseInt(e.target.maxLength, 10)) {
-          minuteInput.focus();
-          minuteInput.select();
+            console.log("Access Granted:", session.user.email);
+        } catch (err) {
+            console.error("Security guard error:", err);
+            window.location.href = "login.html";
         }
-      });
+    }
 
-      // Auto-tab MM → AM/PM
-      minuteInput.addEventListener('input', (e) => {
-        e.target.value = e.target.value.replace(/[^0-9]/g, '');
-        if (
-          e.target.value.length === parseInt(e.target.maxLength, 10) &&
-          ampmSelect
-        ) {
-          ampmSelect.focus();
+    // Expose Logout API cleanly to the UI window scope
+    window.handleLogout = async function() {
+        try {
+            await supabase.auth.signOut();
+        } catch (err) {
+            console.error("Error during sign out:", err);
+        } finally {
+            window.location.href = "login.html";
         }
-      });
-    }
-  });
+    };
 
-  /* --- END AUTO-TAB LOGIC --- */
-});
+    // Execute session validation immediately
+    checkAuthGuard();
+</script>   
 
-/* ---AGENT IS WITNESS --- */
-const agentIsWitnessCheckbox = document.getElementById('Clm_Agent_Is_Witness');
-const agentNircContainer = document.getElementById('agentNircContainer');
-
-// Mapping: Source (Agent Section) -> Destination (Witness Section)
-const fieldPairs = [
-  { src: 'ClmMed_Basicinfo_Agent',     dest: 'ClmMed_Sign_Witness_Name' },
-  { src: 'ClmMed_Basicinfo_Mobile',    dest: 'ClmMed_Sign_Witness_Mobile' },
-  { src: 'ClmMed_Basicinfo_AgentNIRC',  dest: 'ClmMed_Sign_Witness_NIRC' }
-];
-
-function handleAgentWitnessLogic() {
-  const isChecked = agentIsWitnessCheckbox.checked;
-
-  // 1. Handle Visibility of the Agent IC Box
-  agentNircContainer.style.display = isChecked ? 'block' : 'none';
-
-  // 2. Handle Data Sync and Field Locking
-  fieldPairs.forEach(pair => {
-    const srcEl = document.getElementById(pair.src);
-    const destEl = document.getElementById(pair.dest);
-
-    if (isChecked) {
-      // Copy values
-      destEl.value = srcEl.value;
-      // Lock witness fields
-      destEl.readOnly = true;
-      destEl.classList.add('readonly-sync'); 
-      // Trigger persistence
-      destEl.dispatchEvent(new Event('input', { bubbles: true }));
-    } else {
-      // Unlock fields if user changes mind
-      destEl.readOnly = false;
-      destEl.classList.remove('readonly-sync');
-    }
-  });
+<script>
+// Selector Helper
+function $(id) {
+    return document.getElementById(id);
 }
-
-// Listen for checkbox toggle
-agentIsWitnessCheckbox.addEventListener('change', handleAgentWitnessLogic);
-
-// Listen for typing in Agent fields to update Witness fields live
-fieldPairs.forEach(pair => {
-  document.getElementById(pair.src).addEventListener('input', () => {
-    if (agentIsWitnessCheckbox.checked) handleAgentWitnessLogic();
-  });
-});
-
-// Run on page load to restore state from LocalStorage
-window.addEventListener('load', () => {
-  setTimeout(handleAgentWitnessLogic, 300);
-});
-
-// ---------- EXPORT FILTER LOGIC ----------
-function shouldIncludeFieldByUI(fieldId) {
-  const el = document.getElementById(fieldId);
-  if (!el) return true;
-  let parent = el;
-  while (parent && parent !== document.body) {
-    if (parent.id && CONTROLLER_BY_SECTION[parent.id]) {
-      const controllerId = CONTROLLER_BY_SECTION[parent.id];
-      const cb = document.getElementById(controllerId);
-      if (cb && !cb.checked) return false; // skip if unchecked
-    }
-    parent = parent.parentElement;
-  }
-  return true;
-}
-
-/* ---------- ENFORCE TRUE RADIO BEHAVIOR ---------- */
-document.querySelectorAll("input.bank-type").forEach(el => {
-  el.addEventListener("change", () => {
-    // ensure only one is active
-    const conventional = $("ClmMed_EBank_Conventional");
-    const islamic = $("ClmMed_EBank_Islamic");
-
-    if (el.id === "ClmMed_EBank_Conventional") {
-      islamic.checked = false;
-    } else {
-      conventional.checked = false;
-    }
-
-    // sync to localStorage manually (radio groups need special handling)
-    if (el.checked) {
-      localStorage.setItem("Accounttype", el.id); // store the ID
-    }
-  });
-});
-
-
-/* --- SAVE STATUS + LOCALSTORAGE (Text, Checkbox, Dropdown) ---------- */
+  
+/* ---------- CONFIG & ENVIROMENT VARIABLES ---------- */
+const PDF_FILENAME = "Amendment to Application_LF1042_fillable.pdf";
 const saveStatusEl = document.getElementById("saveStatus");
 
-/* ---------- EMAIL FIELDS (Step 1) ---------- */
-const EMAIL_FIELDS = [
-  "ClmMed_Insuredinfo_Email",
-  "ClmMed_POinfo_Email"
-];
-
-/* ---------- Helper (Step 2) ---------- */
-function isEmailField(id) {
-  return EMAIL_FIELDS.includes(id);
-}
-
-
 function showSaveStatus(){
-  saveStatusEl.style.opacity = 1;
-  clearTimeout(saveStatusEl._timer);
-  saveStatusEl._timer = setTimeout(() => saveStatusEl.style.opacity = 0, 1200);
+    if (!saveStatusEl) return;
+    saveStatusEl.style.opacity = 1;
+    clearTimeout(saveStatusEl._timer);
+    saveStatusEl._timer = setTimeout(() => saveStatusEl.style.opacity = 0, 1200);
 }
 
 function saveElValue(el){
-  localStorage.setItem(el.id, el.value);
-  showSaveStatus();
+    if (!el || !el.id) return;
+    localStorage.setItem(el.id, el.value);
+    showSaveStatus();
 }
 
-function autoBindSave(el) {
-  const saved = localStorage.getItem(el.id);
+function autoBindSave(el){
+    if (!el || !el.id) return;
 
-  // Restore
-  if (el.type === "checkbox") {
-    if (saved !== null) el.checked = (saved === "true");
-  } else if (el.type === "radio") {
-    const savedRadioValue = localStorage.getItem(el.name);
-    if (savedRadioValue) el.checked = (el.id === savedRadioValue);
-  } else if (saved !== null) {
-    el.value = saved;
-  }
-
-  // Bind save
-  if (el.tagName === "SELECT") {
-    el.addEventListener("change", () => saveElValue(el));
-  } else if (el.type === "checkbox") {
-    el.addEventListener("change", () => {
-      localStorage.setItem(el.id, el.checked);
-      showSaveStatus();
-    });
-  } else if (el.type === "radio") {
-    el.addEventListener("change", () => {
-      if (el.checked) {
-        localStorage.setItem(el.name, el.id);
-        showSaveStatus();
-      }
-    });
-  } else {
-    el.addEventListener("input", () => {
-      // only uppercase if not in the email list
-     if (!isEmailField(el.id)) {
-  el.value = el.value.toUpperCase();
-}
-      localStorage.setItem(el.id, el.value);
-      showSaveStatus();
-    });
-  }
-}
-
-/********************************************
- * BASIC INFO POLICY NO (1 input per entry)
- ********************************************/
-const basicPolicyMax = 4;
-const basicPolicyGrid = document.getElementById("basicPolicyGrid");
-const addBasicPolicyBtn = document.getElementById("addBasicPolicyBtn");
-
-// LocalStorage Helpers
-const saveBasicPolicy = (id, value) => localStorage.setItem(id, value);
-const restoreBasicPolicyValue = (id) => localStorage.getItem(id) || "";
-
-// Disable 'Add' button if limit reached
-function updateBasicPolicyAddStatus() {
-  const count = basicPolicyGrid.querySelectorAll(".entry").length;
-  addBasicPolicyBtn.disabled = count >= basicPolicyMax;
-}
-
-// Create one entry (card)
-function createBasicPolicyEntry(index) {
-  const entry = document.createElement("div");
-  entry.className = "entry";
-  entry.dataset.index = index;
-
-  // Use a template literal for the inner structure
-  entry.innerHTML = `
-    <h3>Policy No #${index}
-      ${index > 1 ? `<button type="button" class="remove-btn">Remove</button>` : ""}
-    </h3>
-    <div class="row">
-      <label style="flex:1">Policy Number
-        <input type="text" class="persist" id="ClmMed_Basicinfo_PolicyNo${index}" 
-               placeholder="Enter policy no."
-               value="${restoreBasicPolicyValue("ClmMed_Basicinfo_PolicyNo" + index)}">
-      </label>
-    </div>
-  `;
-
-  // Attach input listener for persistence
-  const input = entry.querySelector("input");
-  input.addEventListener("input", (e) => {
-    saveBasicPolicy(e.target.id, e.target.value);
-  });
-
-  // Attach remove listener
-  const removeBtn = entry.querySelector(".remove-btn");
-  if (removeBtn) {
-    removeBtn.addEventListener("click", () => {
-      // Clear localStorage for this specific input before removing
-      localStorage.removeItem(input.id);
-      entry.remove();
-      renumberBasicPolicyEntries();
-      updateBasicPolicyAddStatus();
-    });
-  }
-
-  basicPolicyGrid.appendChild(entry);
-  updateBasicPolicyAddStatus();
-}
-
-// Renumbering logic that maintains input values
-function renumberBasicPolicyEntries() {
-  const entries = basicPolicyGrid.querySelectorAll(".entry");
-  entries.forEach((entry, i) => {
-    const newIndex = i + 1;
-    const oldInput = entry.querySelector("input");
-    const oldId = oldInput.id;
-    const newId = `ClmMed_Basicinfo_PolicyNo${newIndex}`;
-
-    // Update the Header text without nuking the whole innerHTML (to keep listeners)
-    entry.querySelector("h3").childNodes[0].textContent = `Policy No #${newIndex} `;
-    
-    // Update IDs and Labels
-    entry.dataset.index = newIndex;
-    oldInput.id = newId;
-
-    // Migrate LocalStorage if index changed
-    if (oldId !== newId) {
-      const val = localStorage.getItem(oldId);
-      if (val) {
-        localStorage.setItem(newId, val);
-        localStorage.removeItem(oldId);
-      }
-    }
-  });
-}
-
-// Restore entries from saved data
-function restoreBasicPolicy() {
-  basicPolicyGrid.innerHTML = ""; // Clear grid first
-  let foundExisting = false;
-
-  for (let i = 1; i <= basicPolicyMax; i++) {
-    const savedVal = localStorage.getItem("ClmMed_Basicinfo_PolicyNo" + i);
-    if (savedVal && savedVal.trim() !== "") {
-      createBasicPolicyEntry(i);
-      foundExisting = true;
-    }
-  }
-
-  if (!foundExisting) createBasicPolicyEntry(1);
-}
-
-// Add Button Click
-addBasicPolicyBtn.addEventListener("click", (e) => {
-  e.preventDefault(); // Stop wizard from jumping
-  const count = basicPolicyGrid.querySelectorAll(".entry").length;
-  if (count < basicPolicyMax) {
-    createBasicPolicyEntry(count + 1);
-  }
-});
-
-// Run on load
-restoreBasicPolicy();
-
-/* ---------- Other Coverage dynamic container (max 4) ---------- */
-const maxOtherCoverage = 4;
-const otherCoverageGrid = document.getElementById("otherCoverageGrid");
-const addBtn = document.getElementById("addOtherCoverageBtn");
-
-// Helper: save input to localStorage
-function saveOtherCoverage(id, value){
-  localStorage.setItem(id, value);
-}
-
-// Helper: restore value from localStorage
-function restoreValue(id){
-  return localStorage.getItem(id) || "";
-}
-
-// Create a new Other Coverage entry card
-function createOtherCoverageEntry(index){
-  const entry = document.createElement("div");
-  entry.className = "entry";
-  entry.dataset.index = index;
-
-  entry.innerHTML = `
-    <h3>Other Coverage #${index} 
-      <button type="button" class="remove-btn">Remove</button>
-    </h3>
-    <div class="row" style="flex:1">
-      <label style="flex:1" for="ClmMed_OtherCover_CompName${index}">Name of Company/Insurer/Scheme
-      <input type="text" id="ClmMed_OtherCover_CompName${index}" value="${restoreValue("ClmMed_OtherCover_CompName"+index)}"></label>
-    </div>
-    <div class="row" style="flex:1">
-      <label style="flex:1" for="ClmMed_OtherCover_PolicyNo${index}">Policy/Membership No.
-      <input type="text" id="ClmMed_OtherCover_PolicyNo${index}" value="${restoreValue("ClmMed_OtherCover_PolicyNo"+index)}"></label>
-    </div>
-    <div class="row" style="flex:1">
-      <label class="flex:1" for="ClmMed_OtherCover_Date${index}">Effective Date of Cover
-      <input type="text" id="ClmMed_OtherCover_Date${index}" value="${restoreValue("ClmMed_OtherCover_Date"+index)}"></label>
-      <label style="flex:1" for="ClmMed_OtherCover_FA${index}">Sum Assured
-      <input type="text" id="ClmMed_OtherCover_FA${index}" value="${restoreValue("ClmMed_OtherCover_FA"+index)}"></label>
-    </div>
-  `;
-
-  // Add input change listener to save in localStorage
-  entry.querySelectorAll("input").forEach(input => {
-    input.addEventListener("input", e => saveOtherCoverage(e.target.id, e.target.value));
-  });
-
-  // Remove button
-  entry.querySelector(".remove-btn").addEventListener("click", () => {
-    entry.remove();
-    updateAddBtnStatus();
-  });
-
-  otherCoverageGrid.appendChild(entry);
-  updateAddBtnStatus();
-}
-
-// Show/hide Add button based on current entries
-function updateAddBtnStatus(){
-  const currentCount = otherCoverageGrid.querySelectorAll(".entry").length;
-  addBtn.disabled = currentCount >= maxOtherCoverage;
-}
-
-// Initialize: restore saved entries
-function restoreOtherCoverage(){
-  for(let i=1; i<=maxOtherCoverage; i++){
-    if(localStorage.getItem("ClmMed_OtherCover_CompName"+i) ||
-       localStorage.getItem("ClmMed_OtherCover_PolicyNo"+i) ||
-       localStorage.getItem("ClmMed_OtherCover_Date"+i) ||
-       localStorage.getItem("ClmMed_OtherCover_FA"+i)){
-      createOtherCoverageEntry(i);
-    }
-  }
-}
-
-// Add button click
-addBtn.addEventListener("click", () => {
-  const currentCount = otherCoverageGrid.querySelectorAll(".entry").length;
-  createOtherCoverageEntry(currentCount + 1);
-});
-
-// Run on page load
-restoreOtherCoverage();
-
-
-
-/* ---------- UNIVERSAL AUTO-LINK PERSON HELPER---------- */
-function autoLinkPersonFields(config) {
-  const { trigger, sourceA, sourceB, targets, alwaysReadOnly } = config;
-
-  function restoreTargets() {
-    targets.forEach(t => {
-      ["name", "nirc", "mobile"].forEach(key => {
-        if (!t[key]) return;
-        const el = document.getElementById(t[key]);
-        const saved = localStorage.getItem(t[key]);
-        if (el && saved !== null) el.value = saved;
-        if (alwaysReadOnly && el) el.readOnly = true;
-      });
-    });
-  }
-
-  function applyLinking() {
-    const cb = trigger ? document.getElementById(trigger) : null;
-
-    const src = cb?.checked ? sourceB : sourceA;
-
-    const srcName  = document.getElementById(src.name)?.value || "";
-    const srcNirc  = document.getElementById(src.nirc)?.value || "";
-    const srcMobile = src.mobile ? (document.getElementById(src.mobile)?.value || "") : "";
-
-    targets.forEach(t => {
-      if (t.name) {
-        const el = document.getElementById(t.name);
-        if (el) {
-          el.value = srcName;
-          localStorage.setItem(t.name, srcName);
-          if (alwaysReadOnly) el.readOnly = true;
+    // Restore saved value state securely from storage
+    const saved = localStorage.getItem(el.id);
+    if(saved !== null){
+        if(el.type === "checkbox" || el.type === "radio"){
+            el.checked = (saved === "true");
+        } else {
+            el.value = saved;
         }
-      }
+    }
 
-      if (t.nirc) {
-        const el = document.getElementById(t.nirc);
-        if (el) {
-          el.value = srcNirc;
-          localStorage.setItem(t.nirc, srcNirc);
-          if (alwaysReadOnly) el.readOnly = true;
-        }
-      }
+    // Bind real-time change events
+    if(el.tagName === "SELECT"){  
+        el.addEventListener("change", () => saveElValue(el));
+    } else if(el.type === "checkbox" || el.type === "radio"){  
+        el.addEventListener("change", () => {
+            localStorage.setItem(el.id, el.checked);
+            showSaveStatus();
+        });
+    } else { 
+        el.addEventListener("input", () => {
+            const start = el.selectionStart;
+            const end = el.selectionEnd;
 
-      if (t.mobile) {
-        const el = document.getElementById(t.mobile);
-        if (el) {
-          el.value = srcMobile;
-          localStorage.setItem(t.mobile, srcMobile);
-          if (alwaysReadOnly) el.readOnly = true;
-        }
-      }
-    });
+            el.value = el.value.toUpperCase();
 
-    if (typeof showSaveStatus === "function") showSaveStatus();
-  }
-
-  if (trigger)
-    document.getElementById(trigger)?.addEventListener("change", applyLinking);
-
-  // Bind source fields
-  [sourceA, sourceB].forEach(src => {
-    ["name", "nirc", "mobile"].forEach(key => {
-      if (!src[key]) return;
-      const el = document.getElementById(src[key]);
-      if (el) el.addEventListener("input", applyLinking);
-    });
-  });
-
-  restoreTargets();
-  applyLinking();
+            if (start !== null && end !== null) {
+                el.setSelectionRange(start, end); 
+            }
+            saveElValue(el);
+        });
+    }
 }
-
-
-/* ---------- UNIVERSAL HELPER FUNCTION ---------- */
-
-  //Detect input type - text/dropdown/checkbox/radio
+  
+/* ---------- UNIVERSAL FIELD PROCESSING ENGINE ---------- */
 function safeSetField(form, fieldName, value) {
-  if (value === null || value === undefined) return;
+    if (value === null || value === undefined) return;
 
-  try {
-    let field;
-
-    // text or textarea, then force Uppercase
     try {
-      field = form.getTextField(fieldName);
-      // Keep original case for email
-     if (!isEmailField(fieldName)) {
-  field.setText(value.toUpperCase());
-} else {
-  field.setText(value); // email remains as typed
-}
-      return;
-    } catch (e) {}
+        let field;
 
-    // dropdown
-    try {
-      field = form.getDropdown(fieldName);
-      field.select(value);
-      return;
-    } catch (e) {}
+        try {
+            field = form.getTextField(fieldName);
+            field.setText(value.toUpperCase());
+            return;
+        } catch (e) {}
 
-    // checkbox
-    try {
-      field = form.getCheckBox(fieldName);
-      if (value === true || value === "true" || value === "on" || value === "checked") {
-        field.check();
-      } else {
-        field.uncheck();
-      }
-      return;
-    } catch (e) {}
-    
-    // radio
-    try {
-      field = form.getRadioGroup(fieldName);
-      field.select(value);
-      return;
-    } catch (e) {}
+        try {
+            field = form.getDropdown(fieldName);
+            field.select(value);
+            return;
+        } catch (e) {}
 
-    console.warn(`Field ${fieldName} not found in PDF`);
-  } catch (err) {
-    console.error(`Error setting field ${fieldName}`, err);
-  }
+        try {
+            field = form.getCheckBox(fieldName);
+            if (value === true || value === "true" || value === "on" || value === "checked") {
+                field.check();
+            } else {
+                field.uncheck();
+            }
+            return;
+        } catch (e) {}
+
+        try {
+            field = form.getRadioGroup(fieldName);
+            field.select(value);
+            return;
+        } catch (e) {}
+
+        console.warn(`Field ${fieldName} not found in PDF template structured design maps.`);
+    } catch (err) {
+        console.error(`Error setting field map targets: ${fieldName}`, err);
+    }
 }
 
-/* ---------- Date Input Helper : Combine into ONE string  ---------- */
-document.addEventListener("DOMContentLoaded", () => {
-  // Target only date groups that have data-combine="true"
-  const combinedGroups = document.querySelectorAll('.date-group[data-combine="true"]');
+// WhatsApp-style text area line interception behaviors
+const writeDetailsTextArea = document.getElementById("Amendment_WriteDetails");
+if (writeDetailsTextArea) {
+    writeDetailsTextArea.addEventListener("keydown", function(e) {
+        if (e.key === "Enter") {
+            e.preventDefault();
+            const start = this.selectionStart;
+            const text = this.value.substring(0, start);
+            const lastLine = text.split("\n").pop();
 
-  combinedGroups.forEach(group => {
-    const fieldId = group.dataset.field; // e.g. ClmMed_Dr_First_Date
-    const inputs = group.querySelectorAll(".date-input");
+            // Detect numbering sequence formatting (e.g. "1. ")
+            const match = lastLine.match(/^(\d+)\.\s/);
+            if (match) {
+                const nextNum = parseInt(match[1]) + 1;
+                this.setRangeText("\n" + nextNum + ". ", start, start, "end");
+                this.dispatchEvent(new Event("input"));
+                return;
+            }
 
-    // Restore saved combined date
-    const saved = localStorage.getItem(fieldId);
-    if (saved) {
-      const [d, m, y] = saved.split("/");
-      if (inputs[0]) inputs[0].value = d || "";
-      if (inputs[1]) inputs[1].value = m || "";
-      if (inputs[2]) inputs[2].value = y || "";
-    }
+            // Detect simple bullet markdown configurations (e.g. "- ")
+            if (/^-\s/.test(lastLine)) {
+                this.setRangeText("\n- ", start, start, "end");
+                this.dispatchEvent(new Event("input"));
+                return;
+            }
 
-    // Save combined value on any input change
-    inputs.forEach(input => {
-      input.addEventListener("input", () => {
-        const [d, m, y] = Array.from(inputs).map(i => i.value.trim());
-        const combined = [d, m, y].filter(Boolean).join("/");
-        localStorage.setItem(fieldId, combined);
-      });
+            this.setRangeText("\n", start, start, "end");
+            this.dispatchEvent(new Event("input"));
+        }
     });
-  });
+
+    writeDetailsTextArea.addEventListener("input", function() {
+        const start = this.selectionStart;
+        const end = this.selectionEnd;
+        this.value = this.value.toUpperCase();
+        if (start !== null && end !== null) {
+            this.setSelectionRange(start, end);
+        }
+        localStorage.setItem("Amendment_WriteDetails", this.value);
+        showSaveStatus();
+    });
+}
+
+// Document layout wrapping calculator
+function wrapTextByWordsWithPrefix(text, maxCharsPerLine = 60) {
+    const lines = text.split("\n");
+    const wrapped = [];
+
+    lines.forEach((line, index) => {
+        const prefixMatch = line.match(/^(\d+\.\s|-\s)/);
+        const prefix = prefixMatch ? prefixMatch[0] : "";
+        const content = prefixMatch ? line.slice(prefix.length) : line;
+
+        let currentLine = prefix;
+        content.split(" ").forEach(word => {
+            if ((currentLine + word).length > maxCharsPerLine) {
+                wrapped.push(currentLine.trimEnd());
+                currentLine = prefix + word + " ";
+            } else {
+                currentLine += word + " ";
+            }
+        });
+        if (currentLine.trim() !== "") wrapped.push(currentLine.trimEnd());
+
+        if (/^\d+\.\s/.test(line) && index < lines.length - 1) {
+            wrapped.push("");
+        }
+    });
+
+    return wrapped.join("\n");
+}
+
+// Dropdown quick select insertion logic
+const insertBtn = document.getElementById("insertCommonBtn");
+const dropdown = document.getElementById("Amendment_Common");
+
+if (insertBtn && dropdown && writeDetailsTextArea) {
+    insertBtn.addEventListener("click", () => {
+        const val = dropdown.value;
+        if (!val) return;
+
+        if (writeDetailsTextArea.value.trim() === "") {
+            writeDetailsTextArea.value = "1. " + val;
+        } else {
+            const lines = writeDetailsTextArea.value.split("\n");
+            let lastNum = 0;
+            lines.forEach(line => {
+                const m = line.match(/^(\d+)\./);
+                if (m) lastNum = Math.max(lastNum, parseInt(m[1]));
+            });
+            writeDetailsTextArea.value += `\n${lastNum + 1}. ${val}`;
+        }
+
+        writeDetailsTextArea.dispatchEvent(new Event("input"));
+        dropdown.value = "";
+    });
+}
+
+// Proportional Insured Data Copy Link Sync
+const checkbox = document.getElementById('copyInfoCheckbox');
+const sourceName = document.getElementById('LifeProposed_Name');
+const sourceNRIC = document.getElementById('LifeProposed_NRIC');
+const targetName = document.getElementById('Sign_LifeProposedPO_Name');
+const targetNRIC = document.getElementById('Sign_LifeProposedPO_NRIC');
+
+function syncData() {
+    if (!checkbox) return;
+    const isChecked = checkbox.checked;
+
+    if (targetName && targetNRIC) {
+        targetName.readOnly = isChecked;
+        targetNRIC.readOnly = isChecked;
+
+        if (isChecked && sourceName && sourceNRIC) {
+            targetName.value = sourceName.value;
+            targetNRIC.value = sourceNRIC.value;
+
+            targetName.dispatchEvent(new Event('input', { bubbles: true }));
+            targetNRIC.dispatchEvent(new Event('input', { bubbles: true }));
+        }
+    }
+}
+
+if (checkbox) {
+    checkbox.addEventListener('change', syncData);
+}
+
+[sourceName, sourceNRIC].forEach(input => {
+    if (input) {
+        input.addEventListener('input', () => {
+            if (checkbox && checkbox.checked) syncData();
+        });
+    }
 });
 
-/* ---------- Time Input Helper : Combine into ONE string  ---------- */
-document.addEventListener("DOMContentLoaded", () => {
-  const timeGroups = document.querySelectorAll(".time-input-group[data-field]");
-
-  timeGroups.forEach(group => {
-    const fieldId = group.dataset.field; // e.g. ClmMed_Accident_Time
-    const hourInput = group.querySelector('input[placeholder="HH"]');
-    const minuteInput = group.querySelector('input[placeholder="MM"]');
-    const ampmSelect = group.querySelector("select");
-
-    // --- Restore saved time ---
-    const saved = localStorage.getItem(fieldId);
-    if (saved) {
-      // Expect "HH:MM AM" or "HH:MM PM"
-      const [time, period] = saved.split(" ");
-      if (time) {
-        const [hh, mm] = time.split(":");
-        if (hourInput) hourInput.value = hh || "";
-        if (minuteInput) minuteInput.value = mm || "";
-      }
-      if (ampmSelect) ampmSelect.value = period || "";
-    }
-
-    // --- Save combined time on change ---
-    const saveTime = () => {
-      const hh = hourInput.value.trim().padStart(2, "0");
-      const mm = minuteInput.value.trim().padStart(2, "0");
-      const ampm = ampmSelect.value;
-      const combined = (hh || mm || ampm) ? `${hh}:${mm} ${ampm}`.trim() : "";
-      localStorage.setItem(fieldId, combined);
-    };
-
-    [hourInput, minuteInput, ampmSelect].forEach(el => {
-      el.addEventListener("input", saveTime);
-      el.addEventListener("change", saveTime);
-    });
-  });
-});
-
-
-/* ---------- SIGNATURE MODAL LOGIC (Owner + Payor) with HiDPI scaling ---------- */
+/* ---------- SIGNATURE PAD MECHANICS & DRAWING CANVAS CONTROLS ---------- */
 let sigTarget = null;
 const sigModal = $("sigModal");
 const sigCanvas = $("sigCanvas");
-const sigCtx = sigCanvas.getContext("2d");
-let drawing = false;
-let scaleX = 1, scaleY = 1;
+const sigCtx = sigCanvas ? sigCanvas.getContext("2d") : null;
+let signaturePad = null;
 
-/* Resize canvas to look crisp on any screen size & DPR */
-function resizeSigCanvas(){
-  const dpr = window.devicePixelRatio || 1;
-  const cssWidth = sigCanvas.clientWidth || sigCanvas.parentElement.clientWidth || 560;
-  const cssHeight = sigCanvas.clientHeight || 220;
-  sigCanvas.width = Math.max(1, Math.floor(cssWidth * dpr));
-  sigCanvas.height = Math.max(1, Math.floor(cssHeight * dpr));
-  sigCtx.setTransform(1,0,0,1,0,0); // reset
-  sigCtx.scale(dpr, dpr);
-  sigCtx.lineWidth = 2;
-  sigCtx.lineCap = "round";
-  sigCtx.strokeStyle = "#000";
-  scaleX = sigCanvas.width / (sigCanvas.getBoundingClientRect().width || cssWidth);
-  scaleY = sigCanvas.height / (sigCanvas.getBoundingClientRect().height || cssHeight);
-  // White background (prevents transparent PNG on PDFs)
-  //sigCtx.fillStyle = "#fff";
-  //sigCtx.fillRect(0,0,sigCanvas.width/scaleX, sigCanvas.height/scaleY);
+if (sigCanvas) {
+    signaturePad = new SignaturePad(sigCanvas, {
+        minWidth: 0.7,
+        maxWidth: 2.5,
+        velocityFilterWeight: 0.6,
+        minDistance: 3,
+        throttle: 16,
+        penColor: "black",
+        backgroundColor: "rgba(0,0,0,0)"
+    });
 }
 
-function openSig(target){
-  sigTarget = target; // 'simple_owner' | 'simple_witness' | 'simple_assignee' | 'simple_oldsig'| 'simple_newsig'
+function resizeCanvas() {
+    if (!sigCanvas || !sigCtx) return;
+    const ratio = Math.max(window.devicePixelRatio || 1, 1);
+    const storageKey = sigTarget ? "ata_sig_" + sigTarget : null;
+    const savedFromStorage = storageKey ? localStorage.getItem(storageKey) : null;
+    const sourceData = savedFromStorage || sigCanvas.toDataURL();
 
-if (target === 'simple_owner') {
-  $("sigModalTitle").textContent = "Sign: Policy Owner";
-} else if (target === 'simple_witness') {
-  $("sigModalTitle").textContent = "Sign: Witness";
-} else if (target === 'simple_assignee') {
-  $("sigModalTitle").textContent = "Sign: Trustee";
-}
+    sigCanvas.width = Math.floor(sigCanvas.offsetWidth * ratio);
+    sigCanvas.height = Math.floor(sigCanvas.offsetHeight * ratio);
+    sigCtx.setTransform(ratio, 0, 0, ratio, 0, 0);
 
-  sigModal.style.display = "block";
-  sigModal.setAttribute("aria-hidden", "false");
+    const cssW = sigCanvas.offsetWidth;
+    const cssH = sigCanvas.offsetHeight;
 
-  // Next frame: ensure layout settled then resize canvas
-  requestAnimationFrame(()=>{
-    resizeSigCanvas();
-  sigCtx.clearRect(0, 0, sigCanvas.width, sigCanvas.height);
-  
-    // If there is an existing signature, draw it to current canvas size
-    const existing = localStorage.getItem("sig_"+target);
-    if (existing){
-      const img = new Image();
-      img.onload = ()=>{
-        // cover the canvas area with existing image
-        sigCtx.drawImage(img, 0, 0, sigCanvas.width/scaleX, sigCanvas.height/scaleY);
-      };
-      img.src = existing;
+    if (sourceData && typeof sourceData === "string" && sourceData.indexOf("data:image") === 0) {
+        const img = new Image();
+        img.onload = () => {
+            sigCtx.clearRect(0, 0, cssW, cssH);
+            const scale = Math.min(cssW / img.width, cssH / img.height);
+            const x = (cssW - img.width * scale) / 2;
+            const y = (cssH - img.height * scale) / 2;
+            sigCtx.drawImage(img, x, y, img.width * scale, img.height * scale);
+        };
+        img.src = sourceData;
+    } else if (signaturePad) {
+        signaturePad.clear();
     }
-  });
 }
-$("sigClear").addEventListener("click", ()=>{
-  sigCtx.clearRect(0,0,sigCanvas.width, sigCanvas.height);
-  // Repaint white bg in CSS pixels
-  //sigCtx.fillStyle="#fff"; sigCtx.fillRect(0,0,sigCanvas.width/scaleX, sigCanvas.height/scaleY);
-});
-$("sigCancel").addEventListener("click", closeSigModal);
-function closeSigModal(){
-  sigModal.style.display = "none";
-  sigModal.setAttribute("aria-hidden", "true");
-  sigTarget = null;
-}
-$("sigDone").addEventListener("click", ()=>{
-  if(!sigTarget) return;
-  const dataURL = sigCanvas.toDataURL("image/png");
-  localStorage.setItem("sig_"+sigTarget, dataURL);
-  const preview = $("preview_"+sigTarget);
-  preview.innerHTML = `<img alt="Signature ${sigTarget}" src="${dataURL}">`;
-  closeSigModal();
-});
+window.addEventListener("resize", resizeCanvas);
 
-/* Drawing (mouse + touch) with coordinate conversion */
-function getPos(e){
-  const rect = sigCanvas.getBoundingClientRect();
-  if(e.touches && e.touches[0]){
-    return { x: (e.touches[0].clientX - rect.left), y: (e.touches[0].clientY - rect.top) };
-  }
-  return { x: (e.clientX - rect.left), y: (e.clientY - rect.top) };
-}
-function startDraw(e){
-  drawing = true;
-  sigCtx.beginPath();
-  const {x,y}=getPos(e);
-  sigCtx.moveTo(x, y);
-  e.preventDefault?.();
-}
-function endDraw(){ drawing = false; sigCtx.beginPath(); }
-function moveDraw(e){
-  if(!drawing) return;
-  const {x,y} = getPos(e);
-  sigCtx.lineTo(x, y);
-  sigCtx.stroke();
-  sigCtx.beginPath();
-  sigCtx.moveTo(x, y);
-  e.preventDefault?.();
-}
-sigCanvas.addEventListener("mousedown", startDraw);
-sigCanvas.addEventListener("mousemove", moveDraw);
-window.addEventListener("mouseup", endDraw);
-sigCanvas.addEventListener("touchstart", startDraw, {passive:false});
-sigCanvas.addEventListener("touchmove", moveDraw, {passive:false});
-sigCanvas.addEventListener("touchend", endDraw);
-window.addEventListener("resize", ()=> {
-  // Only resize when modal is open to avoid reflow glitches
-  if(sigModal.getAttribute("aria-hidden")==="false"){ 
-    const img = new Image();
-    img.onload = ()=>{
-      resizeSigCanvas();
-      sigCtx.drawImage(img, 0, 0, sigCanvas.width/scaleX, sigCanvas.height/scaleY);
-    };
-    img.src = sigCanvas.toDataURL("image/png");
-  }
-});
+window.openSig = function(target) {
+    sigTarget = target;
 
-/* Clear preview buttons + Restore previews on load */
-$("clearPreview_Simple_Owner").addEventListener("click", ()=>{
-  localStorage.removeItem("sig_simple_owner");
-  $("preview_simple_owner").innerHTML = `<span>Tap to Sign (Policyowner/Assignee)</span>`;
-});
-$("clearPreview_Simple_Witness").addEventListener("click", ()=>{
-  localStorage.removeItem("sig_simple_witness");
-  $("preview_simple_witness").innerHTML = `<span>Tap to Sign (Witness)</span>`;
-});
-$("clearPreview_Simple_Assignee").addEventListener("click", ()=>{
-  localStorage.removeItem("sig_simple_assignee");
-  $("preview_simple_assignee").innerHTML = `<span>Tap to Sign (Trustee/Nominee)</span>`;
-});
-
-window.addEventListener("DOMContentLoaded", ()=>{
-  ["owner","witness","assignee"].forEach(role=>{
-    const saved = localStorage.getItem("sig_simple_"+role);
-    if(saved){ $("preview_simple_"+role).innerHTML = `<img alt="Signature ${role}" src="${saved}">`; }
-  });
-});
-
-
-/* ---------- FINAL: RUN AUTO-LINK AFTER autoBindSave RESTORES VALUES ---------- */
-window.addEventListener("DOMContentLoaded", () => {
-  // Wait 50ms to allow autoBindSave() to finish restoring ALL persist fields
-  setTimeout(() => {
-    autoLinkPersonFields({
-      trigger: "CB_PO",
-
-      sourceA: { // Insured
-        name: "ClmMed_Insuredinfo_Name",
-        nirc: "ClmMed_Insuredinfo_NIRC",
-        mobile: "ClmMed_Insuredinfo_Mobile"   // NEW
-      },
-
-      sourceB: { // Policy Owner
-        name: "ClmMed_POinfo_Name",
-        nirc: "ClmMed_POinfo_NIRC",
-        mobile: "ClmMed_POinfo_Mobile"       // NEW
-      },
-
-      targets: [
-        { // Bank Section
-          name: "ClmMed_EBank_Name",
-          nirc: "ClmMed_EBank_NIRC",
-        },
-        { // Signature Section
-          name: "ClmMed_Sign_PO_Name",
-          nirc: "ClmMed_Sign_PO_NIRC",
-          mobile: "ClmMed_Sign_Relationship_Mobile"
-        }
-      ],
-
-      alwaysReadOnly: true
-    });
-  }, 50);
-});
-
-
-
-/* ---------- RESTORE SAVED BANK TYPE SELECTION ---------- */
-const savedType = localStorage.getItem("Accounttype");
-if (savedType) {
-  const el = document.getElementById(savedType);
-  if (el) el.checked = true;
-}
-
-/* ---------- GENERATE PDF ---------- */
-async function fillPDF(){
-  try {
-    $("generate").disabled = true;
-
-    const res = await fetch(PDF_FILENAME);
-    if (!res.ok) throw new Error("Cannot load PDF: " + PDF_FILENAME);
-    const bytes = await res.arrayBuffer();
-    const pdfDoc = await PDFLib.PDFDocument.load(bytes);
-    const form = pdfDoc.getForm();
-
-    const pages = pdfDoc.getPages();
-    const page = pages[3]; // use 4th page
-
-
-    // FILL FORM FIELDS FROM LOCALSTORAGE HERE
-const fieldNames = [
-  "ClmMed_Basicinfo_PolicyNo1",
-  "ClmMed_Basicinfo_PolicyNo2",
-  "ClmMed_Basicinfo_PolicyNo3",
-  "ClmMed_Basicinfo_PolicyNo4",
-  "ClmMed_Basicinfo_Day",
-  "ClmMed_Basicinfo_Month",
-  "ClmMed_Basicinfo_Year",
-  "ClmMed_Basicinfo_Agent",
-  "ClmMed_Basicinfo_Agency",
-  "ClmMed_Basicinfo_Mobile",
-  "ClmMed_Claimtype_Hosp",
-  "ClmMed_Claimtype_PrePost",
-  "ClmMed_Claimtype_HospBen",
-  "ClmMed_Claimtype_OpDengue",
-  "ClmMed_Claimtype_OpKidney",
-  "ClmMed_Claimtype_Home",
-  "ClmMed_Claimtype_AccInjury",
-  "ClmMed_Claimtype_AccIndemnity",
-  "ClmMed_Claimtype_Others",
-  "ClmMed_Claimtype_Others_Text",
-  "ClmMed_Claimtype_Amt",
-  "ClmMed_Insuredinfo_Name",
-  "ClmMed_Insuredinfo_NIRC", 
-  "ClmMed_Insuredinfo_Mobile",
-  "ClmMed_Insuredinfo_Email",
-  "ClmMed_Insuredinfo_Add",
-  "ClmMed_Insuredinfo_Occupation",
-  "ClmMed_Insuredinfo_Duties",
-  "ClmMed_Insuredinfo_Employer",
-  "ClmMed_Insuredinfo_EmployerAdd",
-  "ClmMed_POinfo_Name",
-  "ClmMed_POinfo_NIRC",
-  "ClmMed_POinfo_Mobile",
-  "ClmMed_POinfo_Email",
-  "ClmMed_POinfo_Add",
-  "ClmMed_Illness_Nature",
-  "ClmMed_Illness_Sympton",
-  "ClmMed_Illness_Diagnosis_Month",
-  "ClmMed_Illness_Diagnosis_Year",
-  "ClmMed_Illness_Onset_Month",
-  "ClmMed_Illness_Diagnosis_Day",
-  "ClmMed_Accident_Day",
-  "ClmMed_Accident_Month",
-  "ClmMed_Illness_Onset_Year",
-  "ClmMed_Accident_Time",
-  "ClmMed_Accident_AM",
-  "ClmMed_Accident_PM",
-  "ClmMed_Accident_Place",
-  "ClmMed_Accident_How",
-  "ClmMed_Accident_Injury",
-  "ClmMed_Illness_Onset_Day",
-  "ClmMed_Accident_AbsentDay",
-  "ClmMed_Accident_Year",
-  "ClmMed_Accident_ReturnDay",
-  "ClmMed_Accident_AbsentMonth",
-  "ClmMed_Accident_ReturnMonth",
-  "ClmMed_Accident_AbsentYear",
-  "ClmMed_Accident_ReturnYear",
-  "ClmMed_Dr_First_Date",
-  "ClmMed_Dr_First_NameAdd",
-  "ClmMed_Dr_Others_NameAdd",
-  "ClmMed_Dr_Others_Date",
-  "ClmMed_Dr_Regular_Date",
-  "ClmMed_Dr_Regular_NameAdd",
-  "ClmMed_Dr_5yrs_Date",
-  "ClmMed_Dr_5yrs_NameAdd",
-  "ClmMed_OtherCover_CompName1",
-  "ClmMed_OtherCover_CompName2",
-  "ClmMed_OtherCover_CompName3",
-  "ClmMed_OtherCover_CompName4",
-  "ClmMed_OtherCover_PolicyNo1",
-  "ClmMed_OtherCover_PolicyNo2",
-  "ClmMed_OtherCover_PolicyNo3",
-  "ClmMed_OtherCover_PolicyNo4",
-  "ClmMed_OtherCover_Date1",
-  "ClmMed_OtherCover_Date2",
-  "ClmMed_OtherCover_Date3",
-  "ClmMed_OtherCover_Date4",
-  "ClmMed_OtherCover_FA1",
-  "ClmMed_OtherCover_FA2",
-  "ClmMed_OtherCover_FA3",
-  "ClmMed_OtherCover_FA4",
-  "ClmMed_EBank_Name",
-  "ClmMed_EBank_NIRC",
-  "ClmMed_EBank_AccNo",
-  "ClmMed_EBank_Bank",
-  "ClmMed_Sign_Witness_Name",
-  "ClmMed_Sign_Witness_NIRC",
-  "ClmMed_Sign_Witness_Date",
-  "ClmMed_Sign_Witness_Mobile",
-  "ClmMed_Sign_PO_Name",
-  "ClmMed_Sign_PO_NIRC",
-  "ClmMed_Sign_PO_Date",
-  "ClmMed_Sign_Relationship",
-  "ClmMed_Sign_Relationship_Mobile"
-];
-
-fieldNames.forEach(fieldName => {
-  // If the UI section containing this field is currently unticked, skip it.
-  if (!shouldIncludeFieldByUI(fieldName)) return;
-
-  const value = localStorage.getItem(fieldName);
-  safeSetField(form, fieldName, value);
-});
-
-/* ---------- WRITE BANK ACCOUNT TYPE TO PDF CHECKBOXES ---------- */
-function writeBankAccountType(form) {
-  const selected = localStorage.getItem("Accounttype"); // ID stored
-
-  const conventional = (selected === "ClmMed_EBank_Conventional");
-  const islamic = (selected === "ClmMed_EBank_Islamic");
-
-  try {
-    const conv = form.getCheckBox("ClmMed_EBank_Conventional");
-    const isl  = form.getCheckBox("ClmMed_EBank_Islamic");
-
-    if (conventional) conv.check(); else conv.uncheck();
-    if (islamic) isl.check(); else isl.uncheck();
-  } catch (e) {
-    console.error("Error writing bank type:", e);
-  }
-}
-
-writeBankAccountType(form);
-    
-    /* --------- SIGNATURE IMAGE EMBEDDING (embedPng + drawImage) --------- */
-
-// Owner signature FillPDF
-const sig_Simple_Owner = localStorage.getItem("sig_simple_owner");
-if (sig_Simple_Owner) {
-  try {
-    const img_Simple_Owner = await pdfDoc.embedPng(sig_Simple_Owner);
-    const { width, height } = img_Simple_Owner.size();
-
-    const previewEl = document.getElementById("preview_simple_owner");
-    const boxW = previewEl.offsetWidth;
-    const boxH = previewEl.offsetHeight;
-
-    const scale = Math.min(boxW / width, boxH / height);
-    let drawW = width * scale;
-    let drawH = height * scale;
-
-    const factor = 0.40;    // % scale
-    const posX = 370;         // X position on PDF
-    const posY = 200;        // Y position on PDF
-
-    drawW *= factor;
-    drawH *= factor;
-
-    page.drawImage(img_Simple_Owner, {
-      x: posX,
-      y: posY,
-      width: drawW,
-      height: drawH
-    });
-  } catch (e) {
-    console.error(e);
-  }
-}
-
-// Witness signature FillPDF
-const sig_Simple_Witness = localStorage.getItem("sig_simple_witness");
-if (sig_Simple_Witness) {
-  try {
-    const img_Simple_Witness = await pdfDoc.embedPng(sig_Simple_Witness);
-    const { width, height } = img_Simple_Witness.size();
-
-    const previewEl = document.getElementById("preview_simple_witness");
-    const boxW = previewEl.offsetWidth;
-    const boxH = previewEl.offsetHeight;
-
-    const scale = Math.min(boxW / width, boxH / height);
-    let drawW = width * scale;
-    let drawH = height * scale;
-
-    const factor = 0.40;    // % scale
-    const posX = 70;         // X position on PDF
-    const posY = 200;        // Y position on PDF
-
-    drawW *= factor;
-    drawH *= factor;
-
-    page.drawImage(img_Simple_Witness, {
-      x: posX,
-      y: posY,
-      width: drawW,
-      height: drawH
-    });
-  } catch (e) {
-    console.error(e);
-  }
-}
-
-
-// Assignee signature FillPDF
-const sig_Simple_Assignee = localStorage.getItem("sig_simple_assignee");
-if (sig_Simple_Assignee) {
-  try {
-    const img_Simple_Assignee = await pdfDoc.embedPng(sig_Simple_Assignee);
-    const { width, height } = img_Simple_Assignee.size();
-
-    const previewEl = document.getElementById("preview_simple_assignee");
-    const boxW = previewEl.offsetWidth;
-    const boxH = previewEl.offsetHeight;
-
-    const scale = Math.min(boxW / width, boxH / height);
-    let drawW = width * scale;
-    let drawH = height * scale;
-
-    const factor = 0.40;    // % scale
-    const posX = 230;         // X position on PDF
-    const posY = 620;        // Y position on PDF
-
-    drawW *= factor;
-    drawH *= factor;
-
-    page.drawImage(img_Simple_Assignee, {
-      x: posX,
-      y: posY,
-      width: drawW,
-      height: drawH
-    });
-  } catch (e) {
-    console.error(e);
-  }
-}
-    
-    
-    // Save & download FillPDF
-    // 1. Save & get bytes
-    const pdfBytes = await pdfDoc.save();
-
-    // 2. Extract Policy Number ONLY
-    const policyInput = document.getElementById('ClmMed_Basicinfo_PolicyNo1');
-    const policyNum = policyInput ? policyInput.value.trim() : "";
-
-    // 3. Format the filename (PolicyNumber_FormType.pdf)
-    const safePolicy = policyNum.replace(/[^a-z0-9]/gi, '_') || "NEW";
-    const finalFileName = `${safePolicy}_Medical_Accidental_Claim.pdf`;
-
-    // 4. Trigger download
-    const blob = new Blob([pdfBytes], { type: "application/pdf" });
-    const url = URL.createObjectURL(blob);
-    const a = document.createElement("a");
-    a.href = url;
-    a.download = finalFileName; 
-    document.body.appendChild(a);
-    a.click();
-    a.remove();
-
-    setTimeout(() => URL.revokeObjectURL(url), 2500);
-
-  } catch(err){
-    alert("PDF generation failed: " + (err.message || err));
-    console.error(err);
-  } finally {
-    $("generate").disabled = false;
-  }
-}
-
-
-/* ---------- RESET ALL DATA function ---------- */
-function resetAll() {
-  if (!confirm("Are you sure you want to reset the form? All saved data will be cleared.")) {
-    return;
-  }
-
-  // 1) Clear ALL saved keys
-  localStorage.clear();
-
-  // 2) Clear the live UI values (inputs, checkboxes, radios, selects, textareas)
-  document.querySelectorAll("input, select, textarea").forEach(el => {
-    if (!el.id) return;
-    if (el.type === "checkbox" || el.type === "radio") {
-      el.checked = false;
+    if (target === "policyowner") {
+        $("sigModalTitle").textContent = "Sign: Proposed Life Insured / Policyowner";
     } else {
-      el.value = "";
+        $("sigModalTitle").textContent = "Sign: Witness";
     }
-  });
 
-  // 3) Reset signature previews
-  $("preview_simple_owner").innerHTML   = `<span>Tap to Sign (Policyowner/Assignee)</span>`;
-  $("preview_simple_witness").innerHTML = `<span>Tap to Sign (Witness)</span>`;
-  $("preview_simple_assignee").innerHTML = `<span>Tap to Sign (Trustee/Nominee)</span>`;
+    sigModal.style.display = "block";
+    sigModal.setAttribute("aria-hidden", "false");
 
+    requestAnimationFrame(() => {
+        resizeCanvas();
+    });
+};
 
-  // 4) Update status text if you have it
-  showSaveStatus();
+if ($("sigClear")) {
+    $("sigClear").addEventListener("click", () => {
+        if (!signaturePad) return;
+        signaturePad.clear();
+
+        if (sigTarget) {
+            localStorage.removeItem("ata_sig_" + sigTarget);
+            $("preview_" + sigTarget).innerHTML = `<span>Tap to Sign (${
+                sigTarget.charAt(0).toUpperCase() + sigTarget.slice(1)
+            })</span>`;
+        }
+    });
 }
 
-  /* ---------- Wire buttons ---------- */
-$("generate").addEventListener("click", fillPDF);
-$("resetAll").addEventListener("click", resetAll);
-document.querySelectorAll(".persist").forEach(autoBindSave);
+if ($("sigCancel")) {
+    $("sigCancel").addEventListener("click", closeSigModal);
+}
 
+function closeSigModal(){
+    if (sigModal) {
+        sigModal.style.display = "none";
+        sigModal.setAttribute("aria-hidden", "true");
+    }
+    sigTarget = null;
+}
+  
+if ($("sigDone")) {
+    $("sigDone").addEventListener("click", () => {
+        if (!sigTarget || !sigCanvas || !signaturePad) return;
 
-  // Show button when user scrolls down
-window.addEventListener("scroll", () => {
-  const btn = document.getElementById("scrollTopBtn");
-  if (document.documentElement.scrollTop > 200 || document.body.scrollTop > 200) {
-    btn.classList.add("show");
-  } else {
-    btn.classList.remove("show");
-  }
+        const dataURL = sigCanvas.toDataURL("image/png");
+
+        if (signaturePad.isEmpty() && !localStorage.getItem("ata_sig_" + sigTarget)) {
+            const label = sigTarget.charAt(0).toUpperCase() + sigTarget.slice(1);
+            $("preview_" + sigTarget).innerHTML = `<span>Tap to Sign (${label})</span>`;
+            localStorage.removeItem("ata_sig_" + sigTarget);
+        } else {
+            localStorage.setItem("ata_sig_" + sigTarget, dataURL);
+            $("preview_" + sigTarget).innerHTML = `<img alt="Signature ${sigTarget}" src="${dataURL}">`;
+        }
+
+        closeSigModal();
+    });
+}
+
+/* Clear preview individual routes */
+if ($("clearPreviewPolicyowner")) {
+    $("clearPreviewPolicyowner").addEventListener("click", () => {
+        localStorage.removeItem("ata_sig_policyowner");
+        $("preview_policyowner").innerHTML = `<span>Tap to Sign (Insured / Policyowner)</span>`;
+        if (sigTarget === "policyowner" && signaturePad) signaturePad.clear();
+    });
+}
+
+if ($("clearPreviewWitness")) {
+    $("clearPreviewWitness").addEventListener("click", () => {
+        localStorage.removeItem("ata_sig_witness");
+        $("preview_witness").innerHTML = `<span>Tap to Sign (Witness)</span>`;
+        if (sigTarget === "witness" && signaturePad) signaturePad.clear();
+    });
+}
+
+window.addEventListener("DOMContentLoaded", () => {
+    ["policyowner","witness"].forEach(role => {
+        const saved = localStorage.getItem("ata_sig_" + role);
+        if(saved && $("preview_" + role)){
+            $("preview_" + role).innerHTML = `<img alt="Signature ${role}" src="${saved}">`;
+        }
+    });
 });
+  
+/* ---------- EXPORT MECHANICS: COMPILING & DOWNLOADING FIELD DATA TO PDF ---------- */
+async function fillPDF(){
+    try {
+        $("generate").disabled = true;
 
-// Smooth scroll to top
-function scrollToTop() {
-  window.scrollTo({ top: 0, behavior: "smooth" });
+        const res = await fetch(PDF_FILENAME);
+        if (!res.ok) throw new Error("Cannot locate form resource layout blueprint: " + PDF_FILENAME);
+        const bytes = await res.arrayBuffer();
+        const pdfDoc = await PDFLib.PDFDocument.load(bytes);
+        const form = pdfDoc.getForm();
+
+        const pages = pdfDoc.getPages();
+        const page = pages[0];
+
+        const amendmentField = form.getTextField("Amendment_WriteDetails");
+        if (amendmentField) {
+            amendmentField.enableMultiline(); 
+            const val = localStorage.getItem("Amendment_WriteDetails") || "";
+            amendmentField.setText(wrapTextByWordsWithPrefix(val, 60));
+        }
+
+        // Sequential text iteration parameters
+        [
+            "LifeProposed_Name",
+            "PolicyNo",
+            "LifeProposed_NRIC",
+            "Signed_State",
+            "Signed_Day",
+            "Signed_Month",
+            "Signed_Year",
+            "Sign_LifeProposedPO_Name",
+            "Sign_LifeProposedPO_NRIC",
+            "Sign_LifeProposedPO_Mobile",
+            "Sign_Witness_Name",
+            "Sign_Witness_NRIC"
+        ].forEach(fieldName => {
+            safeSetField(form, fieldName, localStorage.getItem(fieldName));
+        });
+
+        // Layer Owner Signatures
+        const sigPolicyowner = localStorage.getItem("ata_sig_policyowner");
+        if (sigPolicyowner) {
+            try {
+                const imgPolicyowner = await pdfDoc.embedPng(sigPolicyowner);
+                const { width, height } = imgPolicyowner.size();
+                const previewEl = document.getElementById("preview_policyowner");
+                
+                if (previewEl) {
+                    const boxW = previewEl.offsetWidth;
+                    const boxH = previewEl.offsetHeight;
+                    const scale = Math.min(boxW / width, boxH / height);
+                    let drawW = width * scale * 0.35;
+                    let drawH = height * scale * 0.35;
+
+                    page.drawImage(imgPolicyowner, { x: 380, y: 145, width: drawW, height: drawH });
+                }
+            } catch (e) { console.error("Policyowner Signature compression failed:", e); }
+        }
+
+        // Layer Witness Signatures
+        const sigWitness = localStorage.getItem("ata_sig_witness");
+        if (sigWitness) {
+            try {
+                const imgWitness = await pdfDoc.embedPng(sigWitness);
+                const { width, height } = imgWitness.size();
+                const previewEl = document.getElementById("preview_witness");
+                
+                if (previewEl) {
+                    const boxW = previewEl.offsetWidth;
+                    const boxH = previewEl.offsetHeight;
+                    const scale = Math.min(boxW / width, boxH / height);
+                    let drawW = width * scale * 0.35;
+                    let drawH = height * scale * 0.35;
+
+                    page.drawImage(imgWitness, { x: 50, y: 145, width: drawW, height: drawH });
+                }
+            } catch (e) { console.error("Witness Signature compilation failed:", e); }
+        }
+
+        const pdfBytes = await pdfDoc.save();
+        const policyInput = document.getElementById('PolicyNo');
+        let policyNum = "NEW";
+        
+        if (policyInput && policyInput.value.trim() !== "") {
+            policyNum = policyInput.value.trim().replace(/[^a-z0-9]/gi, '_');
+        }
+
+        const finalFileName = `${policyNum}_Amendment_to_Application.pdf`;
+        const blob = new Blob([pdfBytes], { type: "application/pdf" });
+        const url = URL.createObjectURL(blob);
+        const a = document.createElement("a"); 
+        
+        a.href = url; 
+        a.download = finalFileName;
+        document.body.appendChild(a); 
+        a.click(); 
+        a.remove();
+        
+        setTimeout(() => URL.revokeObjectURL(url), 2500);
+    } catch(err){
+        alert("PDF structural processing failed: " + (err.message || err));
+        console.error(err);
+    } finally {
+        $("generate").disabled = false;
+    }
 }
 
-//WIZARD TRACKER LOGIC
+/* ---------- SYSTEM WORKSPACE SECURITY & TARGETED RESETS ---------- */
+window.resetFormAndReload = function() {
+    if (!confirm("Are you sure you want to reset the form? All saved fields and signature snapshots will be erased permanently.")) {
+        return; 
+    }
+
+    // Explicit targets only - preserves the Supabase authentication tokens
+    const formKeys = [
+        "LifeProposed_Name", "PolicyNo", "LifeProposed_NRIC", "Amendment_WriteDetails",
+        "Signed_State", "Signed_Day", "Signed_Month", "Signed_Year",
+        "Sign_LifeProposedPO_Name", "Sign_LifeProposedPO_NRIC", "Sign_LifeProposedPO_Mobile",
+        "Sign_Witness_Name", "Sign_Witness_NRIC", "ata_sig_policyowner", "ata_sig_witness"
+    ];
+
+    formKeys.forEach(key => localStorage.removeItem(key));
+    window.location.reload();
+};
+
+// Auto Bind all active fields to local preservation streams
+document.querySelectorAll("input[type=text], input[type=checkbox], textarea, select").forEach(autoBindSave);
+
+// Event Pipeline Integration Attacher Hooks
+if ($("generate")) $("generate").addEventListener("click", fillPDF);
+if ($("resetAll")) $("resetAll").addEventListener("click", window.resetFormAndReload);
+
+/* ---------- MULTI-STEP VISUAL PROGRESSION WIZARD TRACKER ---------- */
 const steps = document.querySelectorAll(".wizard-step");
 const indicatorSteps = document.querySelectorAll(".step");
 const nextBtn = document.getElementById("nextBtn");
 const prevBtn = document.getElementById("prevBtn");
 let currentStep = 0;
 
-// 1. Initialize Click Events for the Progress Tracker
-indicatorSteps.forEach((stepCircle, index) => {
-  stepCircle.addEventListener("click", () => {
-    navigateTo(index);
-  });
-});
-
-// 2. Updated Navigation Function (Hides Next button on last step)
-function navigateTo(index) {
-  // Hide current
-  steps[currentStep].classList.remove("active");
-  indicatorSteps[currentStep].classList.remove("active");
-
-  // Update Index
-  currentStep = index;
-
-  // Show new
-  steps[currentStep].classList.add("active");
-  indicatorSteps[currentStep].classList.add("active");
-
-  // Handle "Previous" button visibility
-  prevBtn.style.visibility = (currentStep === 0) ? "hidden" : "visible";
-
-  // Handle "Next" button: Hide it completely on the final step
-  if (currentStep === steps.length - 1) {
-    nextBtn.style.display = "none";
-  } else {
-    nextBtn.style.display = "block";
-    nextBtn.innerText = "Next Step";
-  }
-
-  // Smooth scroll to top of the card
-  document.querySelector('main').scrollIntoView({ behavior: 'smooth' });
-}
-
-// 3. Updated Next/Back logic
-function changeStep(n) {
-  let newStep = currentStep + n;
-  
-  // Only navigate if the step actually exists
-  if (newStep >= 0 && newStep < steps.length) {
-    navigateTo(newStep);
-  }
-}
-
-// Universal "Set to Today" Logic
-document.addEventListener('click', function(e) {
-  if (e.target && e.target.classList.contains('btn-set-today')) {
-    e.preventDefault(); // Prevent wizard from jumping or form submitting
-    
-    // Get the ID prefix from the button's data-target
-    const prefix = e.target.getAttribute('data-target');
-    const now = new Date();
-    
-    // Values to set
-    const dateData = {
-      Day: String(now.getDate()).padStart(2, '0'),
-      Month: String(now.getMonth() + 1).padStart(2, '0'),
-      Year: String(now.getFullYear())
-    };
-
-    // Loop through Day, Month, and Year to set values
-    ['Day', 'Month', 'Year'].forEach(part => {
-      const input = document.getElementById(`${prefix}_${part}`);
-      if (input) {
-        input.value = dateData[part];
-        
-        // IMPORTANT: Trigger the 'input' event so your 
-        // localStorage/Persistence logic saves the new data!
-        input.dispatchEvent(new Event('input', { bubbles: true }));
-      }
+if (indicatorSteps.length > 0) {
+    indicatorSteps.forEach((stepCircle, index) => {
+        stepCircle.addEventListener("click", () => {
+            navigateTo(index);
+        });
     });
-  }
-});  
-  
-</script>   
-       
+}
 
-    </main>
+function navigateTo(index) {
+    if (index < 0 || index >= steps.length) return;
 
-    <footer class="footer">
-        &copy; 2026 InsuFlow Hub. Professional Broker Portal. All rights reserved.
-    </footer>
+    steps[currentStep].classList.remove("active");
+    indicatorSteps[currentStep].classList.remove("active");
 
+    currentStep = index;
+
+    steps[currentStep].classList.add("active");
+    indicatorSteps[currentStep].classList.add("active");
+
+    if (prevBtn) {
+        prevBtn.style.visibility = (currentStep === 0) ? "hidden" : "visible";
+    }
+
+    if (nextBtn) {
+        if (currentStep === steps.length - 1) {
+            nextBtn.style.display = "none";
+        } else {
+            nextBtn.style.display = "block";
+            nextBtn.innerText = "Next Step";
+        }
+    }
+
+    const mainContainer = document.querySelector('main');
+    if (mainContainer) {
+        mainContainer.scrollIntoView({ behavior: 'smooth' });
+    }
+}
+
+window.changeStep = function(n) {
+    let newStep = currentStep + n;
+    if (newStep >= 0 && newStep < steps.length) {
+        navigateTo(newStep);
+    }
+};
+
+// iOS-Style Back Navigation Interceptor
+const backToMainLink = document.getElementById("backToMainLink");
+if (backToMainLink) {
+    backToMainLink.addEventListener("click", function(e) {
+        // If the browser has history of a previous page within your system, pop back to it natively
+        if (document.referrer && document.referrer.includes(window.location.hostname)) {
+            e.preventDefault();
+            window.history.back();
+        }
+        // Fallback: If they opened the form directly in a new tab, it falls back to "dashboard.html"
+    });
+}    
+
+    
+</script>
+    
+<script>
+    function toggleMobileMenu() {
+        const nav = document.getElementById('navMenu');
+        if (nav) nav.classList.toggle('show');
+    }
+</script>
     
 </body>
 </html>
