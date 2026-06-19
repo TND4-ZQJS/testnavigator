@@ -3,105 +3,152 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="robots" content="noindex, nofollow">
-    <title>CI Pro Universe | Advisor Excellence Framework</title>
-    <!-- SF Pro/Inter Fallbacks injected via standard system font stacks -->
+    <title>CI Pro Universe | Workspace</title>
     <link rel="stylesheet" href="style.css">
 </head>
-<body style="background-color: #f5f5f7; color: #1d1d1f; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif; margin: 0; padding: 0; -webkit-font-smoothing: antialiased;">
+<body>
 
-    <!-- Translucent Apple-Style Navigation Bar -->
-    <header class="navbar" style="position: fixed; top: 0; left: 0; width: 100%; height: 52px; background: rgba(255, 255, 255, 0.72); backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px); border-bottom: 1px solid rgba(0, 0, 0, 0.05); z-index: 9999; display: flex; align-items: center; box-sizing: border-box;">
-        <div class="nav-container" style="max-width: 1024px; width: 100%; margin: 0 auto; padding: 0 22px; display: flex; justify-content: space-between; align-items: center;">
-            <span class="logo" style="font-size: 1.15rem; font-weight: 600; letter-spacing: -0.5px; color: #000000;">CI Pro Universe</span>
-            <nav class="nav-links" style="display: flex; align-items: center; gap: 24px;">
-                <a href="#features" style="font-size: 0.85rem; color: #515154; text-decoration: none; transition: color 0.2s;" onmouseover="this.style.color='#0071e3'" onmouseout="this.style.color='#515154'">Features</a>
-                <a href="#security" style="font-size: 0.85rem; color: #515154; text-decoration: none; transition: color 0.2s;" onmouseover="this.style.color='#0071e3'" onmouseout="this.style.color='#515154'">Security</a>
-                <a href="login.html" class="btn-signin" style="font-size: 0.75rem; font-weight: 500; background: #0071e3; color: #ffffff; padding: 4px 11px; border-radius: 12px; text-decoration: none; transition: background 0.2s;" onmouseover="this.style.background='#0077ed'" onmouseout="this.style.background='#0071e3'">Sign In</a>
+    <header class="navbar">
+        <div class="nav-container">
+            <span class="logo" onclick="window.location.href='dashboard.html'" style="cursor: pointer;">CI Pro Universe</span>
+            <nav class="nav-links">
+                
+                <button id="inboxBell" onclick="toggleInboxTray()" style="background: none; border: none; cursor: pointer; position: relative; padding: 6px; display: flex; align-items: center; margin-right: 16px;">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#86868b" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"></path><path d="M13.73 21a2 2 0 0 1-3.46 0"></path></svg>
+                    <span id="inboxDot" style="display: none; position: absolute; top: 4px; right: 4px; width: 7px; height: 7px; background-color: #ff453a; border-radius: 50%; border: 1.5px solid #ffffff;"></span>
+                </button>
+
+                <a href="javascript:void(0)" onclick="handleLogout()" class="btn-signin">Sign Out</a>
             </nav>
         </div>
     </header>
 
-    <!-- Bold Cinema Hero Section -->
-    <section class="hero" style="padding: 160px 20px 80px 20px; text-align: center; background: #ffffff;">
-        <div class="container" style="max-width: 800px; margin: 0 auto;">
-            <!-- Apple Notification Badge -->
-            <span class="badge" style="display: inline-block; font-size: 0.75rem; font-weight: 600; color: #ff6600; text-transform: uppercase; letter-spacing: 1.2px; background: rgba(255, 102, 0, 0.08); padding: 5px 14px; border-radius: 20px; margin-bottom: 24px;">
-                Mastery & Operations Blueprint
-            </span>
-            
-            <!-- High-Contrast Typography -->
-            <h1 style="font-size: 3.5rem; font-weight: 800; letter-spacing: -1.5px; color: #000000; line-height: 1.1; margin: 0 0 24px 0;">
-                The Definitive Framework for <br><span style="background: linear-gradient(135deg, #0071e3 0%, #00b4d8 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent;">Critical Illness Specialists.</span>
-            </h1>
-            
-            <p class="subtitle" style="font-size: 1.3rem; font-weight: 400; line-height: 1.5; color: #86868b; max-width: 680px; margin: 0 auto 40px auto; letter-spacing: -0.2px;">
-                Elevate your practice through a unified model built on strategic client presentation, deep technical metrics, bespoke plan customization, and frictionless backend operational assistance.
-            </p>
-            
-            <!-- Pill Button with Hover State -->
-            <a href="dashboard.html" class="btn-primary" style="display: inline-block; font-size: 1rem; font-weight: 500; background: #0071e3; color: #ffffff; padding: 12px 28px; border-radius: 980px; text-decoration: none; box-shadow: 0 4px 12px rgba(0, 113, 227, 0.15); transition: all 0.2s;" onmouseover="this.style.background='#0077ed'; this.style.transform='scale(1.02)'" onmouseout="this.style.background='#0071e3'; this.style.transform='scale(1)'">
-                Access Workspace
-            </a>
-        </div>
-    </section>
+    <main class="container">
+        
+        <section class="hero" style="padding-top: 100px; padding-bottom: 40px; text-align: left;">
+            <span class="badge">CI Specialist Workspace</span>
+            <h1 id="welcome-heading" style="font-size: 36px; margin-bottom: 8px;">Welcome back...</h1>
+            <p style="text-align: left; margin: 0; font-size: 16px;" class="subtitle">Select an operational module below to begin the amazing journey in CI Pro Universe</p>
+        </section>
 
-    <!-- Bento-Grid Features Section -->
-    <section id="features" class="features" style="padding: 100px 20px; background-color: #f5f5f7;">
-        <div class="container" style="max-width: 1024px; margin: 0 auto;">
-            
-            <div style="text-align: center; margin-bottom: 60px;">
-                <h2 style="font-size: 2.5rem; font-weight: 700; letter-spacing: -1px; color: #000000; margin: 0 0 10px 0;">Engineered for Precision.</h2>
-                <p style="font-size: 1.1rem; color: #86868b; margin: 0;">Everything an advisor needs to drive flawless digital workflow.</p>
+        <section class="features" style="background-color: transparent; padding: 20px 0 60px 0;">
+            <div class="grid">
+
+               <div class="card card-featured" style="display: flex; flex-direction: column; justify-content: space-between; min-height: 220px;"><div>
+                      <span style="font-size: 11px; font-weight: 600; color: #ffffff; text-transform: uppercase; letter-spacing: 0.05em; display: block; margin-bottom: 6px; opacity: 0.85;">Legendary CI Blue Print</span>
+                      <h3>CI Pro Presentation Kit</h3>
+                      <p>Access the definitive presentation PDF kit engineered to dismantle client misconceptions and establish immediate urgency for CI coverage. Includes clear, step-by-step guidelines on how to customize the narrative to fit individual client profiles.</p>
+              </div>
+              <a href="ci-pro-presentation.html" class="btn-primary" style="padding: 8px 16px; font-size: 13px; width: fit-content; margin-top: 16px; background-color: #ffffff; color: #0071e3;">Launch Module</a>
             </div>
-
-            <!-- Bento Box Grid Layout -->
-            <div class="grid" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 24px;">
                 
-                <!-- Card 1: Standard White Bento Box -->
-                <div class="card" style="background: #ffffff; padding: 40px; border-radius: 24px; border: 1px solid rgba(0, 0, 0, 0.02); box-shadow: 0 4px 12px rgba(0, 0, 0, 0.01), 0 16px 40px rgba(0, 0, 0, 0.04); transition: transform 0.3s cubic-bezier(0.25, 1, 0.5, 1);" onmouseover="this.style.transform='translateY(-4px)'" onmouseout="this.style.transform='translateY(0)'">
-                    <div style="width: 42px; height: 42px; background: rgba(0, 113, 227, 0.08); border-radius: 10px; display: flex; align-items: center; justify-content: center; margin-bottom: 24px; font-weight: bold; color: #0071e3;">01</div>
-                    <h3 style="font-size: 1.4rem; font-weight: 700; letter-spacing: -0.5px; color: #000000; margin: 0 0 12px 0;">Presentation Mastery</h3>
-                    <p style="font-size: 0.95rem; line-height: 1.5; color: #515154; margin: 0;">Deliver high-impact, professional advisor presentations that communicate complex risk clarity and resonate instantly with client needs.</p>
+                <div class="card" style="display: flex; flex-direction: column; justify-content: space-between; min-height: 220px;">
+                    <div>
+                        <span style="font-size: 11px; font-weight: 600; color: #0071e3; text-transform: uppercase; letter-spacing: 0.05em; display: block; margin-bottom: 6px;">High-Impact Media Portal</span>
+                        <h3>CI Pro Experience</h3>
+                        <p>A curated library of immersive video assets designed to emotionally anchor the vital importance of critical illness protection, enhance client engagement, and drive deep conviction during consultations.</p>
+                    </div>
+                    <a href="cipro-experience.html" class="btn-primary" style="padding: 8px 16px; font-size: 13px; width: fit-content; margin-top: 16px;">Launch Module</a>
                 </div>
 
-                <!-- Card 2: Standard White Bento Box -->
-                <div class="card" style="background: #ffffff; padding: 40px; border-radius: 24px; border: 1px solid rgba(0, 0, 0, 0.02); box-shadow: 0 4px 12px rgba(0, 0, 0, 0.01), 0 16px 40px rgba(0, 0, 0, 0.04); transition: transform 0.3s cubic-bezier(0.25, 1, 0.5, 1);" onmouseover="this.style.transform='translateY(-4px)'" onmouseout="this.style.transform='translateY(0)'">
-                    <div style="width: 42px; height: 42px; background: rgba(0, 113, 227, 0.08); border-radius: 10px; display: flex; align-items: center; justify-content: center; margin-bottom: 24px; font-weight: bold; color: #0071e3;">02</div>
-                    <h3 style="font-size: 1.4rem; font-weight: 700; letter-spacing: -0.5px; color: #000000; margin: 0 0 12px 0;">Technical Knowledge</h3>
-                    <p style="font-size: 0.95rem; line-height: 1.5; color: #515154; margin: 0;">Deep-dive definitions, medical-financial underwriting parameters, and policy mechanics to position yourself as an authority in the industry.</p>
+                <div class="card" style="display: flex; flex-direction: column; justify-content: space-between; min-height: 220px;">
+                    <div>
+                        <span style="font-size: 11px; font-weight: 600; color: #0071e3; text-transform: uppercase; letter-spacing: 0.05em; display: block; margin-bottom: 6px;">Smart Form Automation</span>
+                        <h3>Magic Filler</h3>
+                        <p>A high-speed data entry engine built to help advisors fill out complex insurance forms with maximum efficiency. Eliminates repetitive manual typing by automatically cross-populating recurring client data across multiple forms.</p>
+                    </div>
+                    <a href="magicfiller.html" class="btn-primary" style="padding: 8px 16px; font-size: 13px; width: fit-content; margin-top: 16px;">Open Filler</a>
                 </div>
 
-                <!-- Card 3: Highlighted Gradient Bento Box -->
-                <div class="card" style="background: linear-gradient(135deg, #0071e3 0%, #003f8a 100%); padding: 40px; border-radius: 24px; border: 1px solid rgba(255, 255, 255, 0.1); box-shadow: 0 12px 32px rgba(0, 113, 227, 0.25); transition: transform 0.3s cubic-bezier(0.25, 1, 0.5, 1);" onmouseover="this.style.transform='translateY(-4px)'" onmouseout="this.style.transform='translateY(0)'">
-                    <div style="width: 42px; height: 42px; background: rgba(255, 255, 255, 0.15); border-radius: 10px; display: flex; align-items: center; justify-content: center; margin-bottom: 24px; font-weight: bold; color: #ffffff;">03</div>
-                    <h3 style="font-size: 1.4rem; font-weight: 700; letter-spacing: -0.5px; color: #ffffff; margin: 0 0 12px 0;">Operational Assistance</h3>
-                    <p style="font-size: 0.95rem; line-height: 1.5; color: rgba(255, 255, 255, 0.85); margin: 0;">Streamline administrative friction. Access advanced tools engineered for synchronized multi-form mapping, secure data processing, and local form automation.</p>
+                <div class="card" style="display: flex; flex-direction: column; justify-content: space-between; min-height: 220px;">
+                    <div>
+                        <span style="font-size: 11px; font-weight: 600; color: #0071e3; text-transform: uppercase; letter-spacing: 0.05em; display: block; margin-bottom: 6px;">Live Application Companion</span>
+                        <h3>EPOS Buddy</h3>
+                        <p>Your real-time digital wingman for navigating the live application portal. Stays by your side to streamline inputs, clarify field requirements, and ensure error-free, first-time-right submissions.</p>
+                    </div>
+                    <a href="eposbuddy.html" class="btn-primary" style="padding: 8px 16px; font-size: 13px; width: fit-content; margin-top: 16px;">Open Tool</a>
                 </div>
 
             </div>
-        </div>
-    </section>
+        </section>
 
-    <!-- Secure Security Note Block -->
-    <section id="security" class="security" style="padding: 60px 20px; background: #ffffff;">
-        <div class="container" style="max-width: 1024px; margin: 0 auto;">
-            <div class="security-box" style="background-color: #f5f5f7; border-radius: 20px; padding: 32px; text-align: center; max-width: 700px; margin: 0 auto; border: 1px solid rgba(0, 0, 0, 0.01);">
-                <!-- Security Shield/Lock Sub-label Icon replacement -->
-                <span style="font-size: 1.25rem; display: block; margin-bottom: 8px;">🔒</span>
-                <p style="font-size: 0.95rem; line-height: 1.6; color: #515154; margin: 0;">
-                    <strong>Zero-Knowledge Architecture:</strong> This platform operates on a static, local-injection framework. We do not store, log, or track any personal details or financial credentials on external servers.
-                </p>
+        <section class="security" style="padding: 0 0 60px 0;">
+            <div class="security-box">
+                <strong>Secured Session Active:</strong> This platform operates on a static, local-injection framework. We do not store, log, or track any personal details or financial credentials on external servers.
             </div>
-        </div>
-    </section>
+        </section>
 
-    <!-- Footer -->
-    <footer class="footer" style="padding: 40px 20px; background: #f5f5f7; border-top: 1px solid #e3e3e6; text-align: center;">
-        <p style="font-size: 0.75rem; color: #86868b; margin: 0; line-height: 1.4;">
-            &copy; 2026 CI Pro Universe Portal. All rights reserved. <br style="margin-bottom: 4px;"> Built with privacy first for the Critical Illness Specialist.
-        </p>
+    </main>
+
+    <div id="trayOverlay" class="tray-backdrop" onclick="toggleInboxTray()"></div>
+    <div id="inboxTray" class="notification-tray">
+        <div class="tray-header">
+            <div>
+                <h3>Workspace Updates</h3>
+                <div id="trayCountBadge" class="tray-badge">0 Updates</div>
+            </div>
+            <button class="tray-close-btn" onclick="toggleInboxTray()">&times;</button>
+        </div>
+        <div id="inboxFeed" class="tray-scroll-body">
+            </div>
+    </div>
+
+    <footer class="footer">
+        &copy; 2026 CI Pro Universe Portal. All rights reserved. Built for CI Pro operations.
     </footer>
 
+    <script src="inbox.js"></script>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", () => {
+            const currentHour = new Date().getHours();
+            let greetingList = [];
+
+            if (currentHour < 12) {
+                greetingList = [
+                    "Good morning. Let’s start strong today. ☀️",
+                    "Good morning. Workspace initialized and ready for production. ⚙️",
+                    "Good morning. Setting the pace for an elite day. 📈",
+                    "Good morning. New day, next-level execution. 🎯",
+                    "Good morning. Your operational dashboard is locked and loaded. 🖥️",
+                    "Good morning. Let's map out the wins for today. 🚀",
+                    "Good morning. System status: Optimal. Ready to deploy. ⚡",
+                    "Good morning. Time to streamline operations right from the jump. ⏱️",
+                    "Good morning. Fresh session initiated. Let's make it count. 💎",
+                    "Good morning. Clear skies and high conviction ahead. 🧭"
+                ];
+            } else if (currentHour < 17) {
+                greetingList = [
+                    "Good afternoon. Powering through the day! ☕",
+                    "Good afternoon. Maintaining peak momentum. ⚡",
+                    "Good afternoon. Halfway through—let’s finish the day strong. 💪",
+                    "Good afternoon. Mid-day status: Operational and tracking perfectly. 📊",
+                    "Good afternoon. Next-level calculations await your review. 📱",
+                    "Good afternoon. Stay focused, stay streamlined. 💼",
+                    "Good afternoon. Dive straight back into the flow. 🌊",
+                    "Good afternoon. The Universe is moving fast today; let's keep pace. 🌐",
+                    "Good afternoon. Keeping compliance and efficiency locked down. 🛡️",
+                    "Good afternoon. Ready to finalize today's key targets. 🏁"
+                ];
+            } else {
+                greetingList = [
+                    "Good evening. Wrapping up production like a pro. 🏁",
+                    "Good evening. Securing the day’s wins. 🔒",
+                    "Good evening. Reviewing operations and closing files cleanly. 📁",
+                    "Good evening. Another high-conviction day in the books. 📚",
+                    "Good evening. Logging the final details of a successful run. 📝",
+                    "Good evening. System standby sequence ready when you are. ⏸️",
+                    "Good evening. Protecting what matters most, around the clock. 🌌",
+                    "Good evening. Final session check complete. Excellent progress today. ✨",
+                    "Good evening. Great execution today. Ready to transition to rest. 🔋",
+                    "Good evening. Closing out strong. The Universe rests when you do. 🧘🏽‍♂️"
+                ];
+            }
+
+            const randomIndex = Math.floor(Math.random() * greetingList.length);
+            document.getElementById("welcome-heading").textContent = greetingList[randomIndex];
+        });
+    </script>
+    
 </body>
 </html>
