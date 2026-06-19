@@ -3,7 +3,7 @@
  */
 document.addEventListener("DOMContentLoaded", function() {
     // Target convention deadline date setup
-    const TARGET_DATE = new Date("2026-12-31T23:59:59").getTime();
+    const TARGET_DATE = new Date("2026-09-30T23:59:59").getTime();
 
     // DOM Target Nodes
     const dVal = document.getElementById("days-val");
