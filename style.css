@@ -488,122 +488,111 @@ body.tray-active .tray-backdrop {
 /* ==========================================================================
    Count down timer
    ========================================================================== */
-/* Base structural perspective environment */
-.flip-card {
-    position: relative;
+/* True Apple-Style Flat Widget Interface */
+.card.apple-widget {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    min-height: 240px;
     background: #ffffff;
-    border-radius: 8px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.02), 0 4px 10px rgba(0, 0, 0, 0.04);
-    perspective: 200px;
+    padding: 28px;
+    border-radius: 20px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.01), 
+                0 16px 40px rgba(0, 0, 0, 0.04);
 }
 
-/* Hero row wrapper framework */
-.timer-hero-row {
-    display: flex; 
-    align-items: center; 
-    justify-content: space-between; 
-    background: #ffffff; 
-    padding: 10px 16px; 
-    border-radius: 10px; 
-    box-shadow: 0 2px 4px rgba(0,0,0,0.02);
-}
-
-/* Explicit alignment fixes for iPad/Desktop labels */
-.timer-hero-label {
-    font-size: 12px; 
-    font-weight: 600; 
-    text-transform: uppercase; 
-    color: #86868b; 
-    letter-spacing: 0.05em;
-    text-align: left;
-}
-
-/* HERO SIZE: Days configuration */
-.flip-card.hero-card {
-    width: 70px;
-    height: 48px;
-}
-.flip-card.hero-card .flip-card-top,
-.flip-card.hero-card .flip-card-bottom {
-    font-size: 30px;
-    font-weight: 700;
-    text-align: center;
-}
-.flip-card.hero-card .flip-card-top { line-height: 48px; }
-.flip-card.hero-card .flip-card-bottom { line-height: 0px; padding-top: 24px; }
-
-/* SUB SIZE: Hrs, Min, Sec configurations */
-.flip-card.sub-card {
-    width: 100%;
-    height: 38px;
-}
-.flip-card.sub-card .flip-card-top,
-.flip-card.sub-card .flip-card-bottom {
-    font-size: 20px;
+/* Header Text Settings */
+.widget-tagline {
+    font-size: 11px;
     font-weight: 600;
-    text-align: center;
+    color: #0071e3; /* Premium Apple Blue */
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    display: block;
+    margin-bottom: 4px;
 }
-.flip-card.sub-card .flip-card-top { line-height: 38px; }
-.flip-card.sub-card .flip-card-bottom { line-height: 0px; padding-top: 19px; }
 
-/* Global shared mechanical rules across all card variants */
-.flip-card-inner {
-    position: relative;
-    width: 100%;
-    height: 100%;
-}
-.flip-card-top, .flip-card-bottom {
-    position: absolute;
-    left: 0;
-    width: 100%;
-    height: 50%;
-    overflow: hidden;
+.widget-title {
+    font-size: 20px;
+    font-weight: 700;
     color: #1d1d1f;
     letter-spacing: -0.02em;
-    background-color: #ffffff;
-}
-.flip-card-top {
-    top: 0;
-    border-top-left-radius: 8px;
-    border-top-right-radius: 8px;
-    border-bottom: 1px solid rgba(0, 0, 0, 0.05);
-}
-.flip-card-bottom {
-    bottom: 0;
-    border-bottom-left-radius: 8px;
-    border-bottom-right-radius: 8px;
+    margin: 0 0 20px 0;
 }
 
-/* Mechanical Page Flip Animation Class */
-.flip-animate .flip-card-inner {
-    animation: flipPage 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-}
-@keyframes flipPage {
-    0% { transform: rotateX(0deg); }
-    50% { transform: rotateX(-90deg); opacity: 0.8; }
-    100% { transform: rotateX(0deg); }
+/* Hero Section (Days Counter) */
+.hero-metric-container {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start; /* Asymmetrical clean alignment */
+    margin-bottom: 24px;
 }
 
-/* RESPONSIVE MEDIA QUERIES FOR MOBILE VIEWS */
-@media screen and (max-width: 480px) {
-    /* Stack the Hero row vertically on mobile to prevent squishing text */
-    .timer-hero-row {
-        flex-direction: column;
-        gap: 8px;
-        padding: 12px;
-        text-align: center;
-    }
-    .timer-hero-label {
-        text-align: center;
-    }
-    /* Scale sub card typography down slightly so elements don't crash on tight widths */
-    .flip-card.sub-card {
-        height: 34px;
-    }
-    .flip-card.sub-card .flip-card-top,
-    .flip-card.sub-card .flip-card-bottom {
-        font-size: 16px;
-    }
-    .flip-card.sub-card .flip-card-top { line-height: 34px; }
-    .flip-card.sub-card .flip-card-bottom { padding-top: 17px; }
+.hero-digit {
+    font-size: 54px;
+    font-weight: 700;
+    color: #1d1d1f;
+    line-height: 0.9;
+    letter-spacing: -0.04em; /* Signature tight typography track */
 }
+
+.hero-label {
+    font-size: 10px;
+    font-weight: 600;
+    color: #86868b;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    margin-top: 6px;
+}
+
+/* Horizontal Sub-metrics Row (Hrs, Min, Sec) */
+.widget-sub-row {
+    display: flex;
+    gap: 12px;
+    width: 100%;
+    border-top: 1px solid #f5f5f7; /* Split line separator */
+    padding-top: 16px;
+}
+
+.sub-metric {
+    flex: 1;
+    background: #f5f5f7; /* Embedded capsule shape */
+    padding: 8px 10px;
+    border-radius: 10px;
+    display: flex;
+    align-items: baseline; /* Keeps text aligned perfectly horizontally */
+    justify-content: center;
+    gap: 4px;
+}
+
+.sub-digit {
+    font-size: 16px;
+    font-weight: 700;
+    color: #1d1d1f;
+    letter-spacing: -0.01em;
+}
+
+.sub-label {
+    font-size: 10px;
+    font-weight: 500;
+    color: #86868b;
+    text-transform: lowercase;
+}
+
+/* Accent highlight for moving seconds status */
+.intense-red {
+    color: #ff3b30; /* Apple System Red */
+}
+
+/* Responsive Scaling Adjustments */
+@media screen and (max-width: 380px) {
+    .hero-digit {
+        font-size: 46px;
+    }
+    .sub-metric {
+        padding: 6px 4px;
+        gap: 2px;
+    }
+    .sub-digit {
+        font-size: 14px;
+    }
