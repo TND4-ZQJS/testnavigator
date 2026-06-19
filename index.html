@@ -42,60 +42,33 @@
               <a href="ci-pro-presentation.html" class="btn-primary" style="padding: 8px 16px; font-size: 13px; width: fit-content; margin-top: 16px; background-color: #ffffff; color: #0071e3;">Launch Module</a>
             </div>
 
-<div class="card" style="display: flex; flex-direction: column; justify-content: space-between; min-height: 220px;">
-    <div>
-        <span style="font-size: 11px; font-weight: 600; color: #0071e3; text-transform: uppercase; letter-spacing: 0.05em; display: block; margin-bottom: 6px;">
-            ● Countdown Tracker
-        </span>
-        <h3 style="margin-bottom: 12px;">Convention Trip Closing</h3>
-        
-        <div style="display: flex; flex-direction: column; background: #f5f5f7; padding: 16px; border-radius: 14px; gap: 12px;">
-            
-            <div class="timer-hero-row">
-                <span class="timer-hero-label">Days Remaining</span>
-                <div class="flip-card hero-card" id="days-card">
-                    <div class="flip-card-inner">
-                        <div class="flip-card-top">00</div>
-                        <div class="flip-card-bottom">00</div>
-                    </div>
-                </div>
-            </div>
+<div class="card apple-widget">
+    <div class="widget-header">
+        <span class="widget-tagline">● Countdown Tracker</span>
+        <h3 class="widget-title">Convention Trip Closing</h3>
+    </div>
 
-            <div style="display: flex; justify-content: space-between; gap: 8px;">
-                <div style="flex: 1; text-align: center;">
-                    <div class="flip-card sub-card" id="hours-card">
-                        <div class="flip-card-inner">
-                            <div class="flip-card-top">00</div>
-                            <div class="flip-card-bottom">00</div>
-                        </div>
-                    </div>
-                    <span style="font-size: 9px; font-weight: 600; text-transform: uppercase; color: #86868b; letter-spacing: 0.05em; margin-top: 4px; display: block; text-align: center;">Hrs</span>
-                </div>
+    <div class="hero-metric-container">
+        <span id="days-val" class="hero-digit">00</span>
+        <span class="hero-label">Days Remaining</span>
+    </div>
 
-                <div style="flex: 1; text-align: center;">
-                    <div class="flip-card sub-card" id="mins-card">
-                        <div class="flip-card-inner">
-                            <div class="flip-card-top">00</div>
-                            <div class="flip-card-bottom">00</div>
-                        </div>
-                    </div>
-                    <span style="font-size: 9px; font-weight: 600; text-transform: uppercase; color: #86868b; letter-spacing: 0.05em; margin-top: 4px; display: block; text-align: center;">Min</span>
-                </div>
-
-                <div style="flex: 1; text-align: center;">
-                    <div class="flip-card sub-card" id="secs-card">
-                        <div class="flip-card-inner">
-                            <div class="flip-card-top" style="color: #ff3b30;">00</div>
-                            <div class="flip-card-bottom" style="color: #ff3b30;">00</div>
-                        </div>
-                    </div>
-                    <span style="font-size: 9px; font-weight: 600; text-transform: uppercase; color: #86868b; letter-spacing: 0.05em; margin-top: 4px; display: block; text-align: center;">Sec</span>
-                </div>
-            </div>
-
+    <div class="widget-sub-row">
+        <div class="sub-metric">
+            <span id="hours-val" class="sub-digit">00</span>
+            <span class="sub-label">Hrs</span>
+        </div>
+        <div class="sub-metric">
+            <span id="mins-val" class="sub-digit">00</span>
+            <span class="sub-label">Min</span>
+        </div>
+        <div class="sub-metric live-pulse">
+            <span id="secs-val" class="sub-digit intense-red">00</span>
+            <span class="sub-label">Sec</span>
         </div>
     </div>
 </div>
+
 
 
 
