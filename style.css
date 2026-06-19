@@ -488,69 +488,75 @@ body.tray-active .tray-backdrop {
 /* ==========================================================================
    Count down timer
    ========================================================================== */
+/* Base structural perspective environment */
 .flip-card {
     position: relative;
-    width: 100%;
-    height: 46px;
     background: #ffffff;
     border-radius: 8px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.04), 0 4px 10px rgba(0, 0, 0, 0.04);
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.02), 0 4px 10px rgba(0, 0, 0, 0.04);
     perspective: 200px;
 }
 
+/* HERO SIZE: Days configuration */
+.flip-card.hero-card {
+    width: 70px;
+    height: 48px;
+}
+.flip-card.hero-card .flip-card-top,
+.flip-card.hero-card .flip-card-bottom {
+    font-size: 30px;
+    font-weight: 700;
+}
+.flip-card.hero-card .flip-card-top { line-height: 48px; }
+.flip-card.hero-card .flip-card-bottom { line-height: 0px; padding-top: 24px; }
+
+/* SUB SIZE: Hrs, Min, Sec configurations */
+.flip-card.sub-card {
+    width: 100%;
+    height: 38px;
+}
+.flip-card.sub-card .flip-card-top,
+.flip-card.sub-card .flip-card-bottom {
+    font-size: 20px;
+    font-weight: 600;
+}
+.flip-card.sub-card .flip-card-top { line-height: 38px; }
+.flip-card.sub-card .flip-card-bottom { line-height: 0px; padding-top: 19px; }
+
+/* Global shared mechanical rules across all card variants */
 .flip-card-inner {
     position: relative;
     width: 100%;
     height: 100%;
 }
-
-/* Base Top & Bottom Half Formatting */
-.flip-card-top, 
-.flip-card-bottom {
+.flip-card-top, .flip-card-bottom {
     position: absolute;
     left: 0;
     width: 100%;
     height: 50%;
     overflow: hidden;
-    font-size: 26px;
-    font-weight: 700;
     color: #1d1d1f;
     letter-spacing: -0.02em;
     background-color: #ffffff;
 }
-
-/* Top Half styling and its split barrier */
 .flip-card-top {
     top: 0;
     border-top-left-radius: 8px;
     border-top-right-radius: 8px;
-    line-height: 46px; /* Aligns numeric center */
-    border-bottom: 1px solid rgba(0, 0, 0, 0.06); 
+    border-bottom: 1px solid rgba(0, 0, 0, 0.05);
 }
-
-/* Bottom Half styling */
 .flip-card-bottom {
     bottom: 0;
     border-bottom-left-radius: 8px;
     border-bottom-right-radius: 8px;
-    line-height: 0px; /* Shifts text alignment cleanly upward */
 }
 
-/* Mechanical Page Flip Animation Class triggers via JS */
+/* Mechanical Page Flip Animation Class */
 .flip-animate .flip-card-inner {
     animation: flipPage 0.4s cubic-bezier(0.4, 0, 0.2, 1);
 }
-
 @keyframes flipPage {
-    0% {
-        transform: rotateX(0deg);
-    }
-    50% {
-        transform: rotateX(-90deg);
-        opacity: 0.8;
-    }
-    100% {
-        transform: rotateX(0deg);
-    }
+    0% { transform: rotateX(0deg); }
+    50% { transform: rotateX(-90deg); opacity: 0.8; }
+    100% { transform: rotateX(0deg); }
 }
-
