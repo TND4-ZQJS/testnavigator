@@ -42,37 +42,49 @@
               <a href="ci-pro-presentation.html" class="btn-primary" style="padding: 8px 16px; font-size: 13px; width: fit-content; margin-top: 16px; background-color: #ffffff; color: #0071e3;">Launch Module</a>
             </div>
 
-                <div class="card" style="display: flex; flex-direction: column; justify-content: space-between; min-height: 220px;">
-    <div>
-        <span style="font-size: 11px; font-weight: 600; color: #ff3b30; text-transform: uppercase; letter-spacing: 0.05em; display: block; margin-bottom: 6px;">
-            ● Countdown Tracker
-        </span>
-        <h3 style="margin-bottom: 4px;">Convention Trip Closing</h3>
-        <p style="margin-bottom: 16px;">Tracking qualification window remaining from today.</p>
-        
-        <div class="countdown-container" style="display: flex; justify-content: space-between; align-items: center; background: #f5f5f7; padding: 14px 16px; border-radius: 12px; gap: 8px;">
-            <div style="flex: 1; text-align: center;">
-                <span id="days-val" style="font-size: 26px; font-weight: 700; color: #1d1d1f; letter-spacing: -0.03em; line-height: 1; display: block;">00</span>
-                <span style="font-size: 9px; font-weight: 600; text-transform: uppercase; color: #86868b; letter-spacing: 0.05em; margin-top: 4px; display: block;">Days</span>
-            </div>
-            <div style="flex: 1; text-align: center;">
-                <span id="hours-val" style="font-size: 26px; font-weight: 700; color: #1d1d1f; letter-spacing: -0.03em; line-height: 1; display: block;">00</span>
-                <span style="font-size: 9px; font-weight: 600; text-transform: uppercase; color: #86868b; letter-spacing: 0.05em; margin-top: 4px; display: block;">Hrs</span>
-            </div>
-            <div style="flex: 1; text-align: center;">
-                <span id="mins-val" style="font-size: 26px; font-weight: 700; color: #1d1d1f; letter-spacing: -0.03em; line-height: 1; display: block;">00</span>
-                <span style="font-size: 9px; font-weight: 600; text-transform: uppercase; color: #86868b; letter-spacing: 0.05em; margin-top: 4px; display: block;">Min</span>
-            </div>
-            <div style="flex: 1; text-align: center;">
-                <span id="secs-val" style="font-size: 26px; font-weight: 700; color: #ff3b30; letter-spacing: -0.03em; line-height: 1; display: block;">00</span>
-                <span style="font-size: 9px; font-weight: 600; text-transform: uppercase; color: #86868b; letter-spacing: 0.05em; margin-top: 4px; display: block;">Sec</span>
+ <div class="countdown-container" style="display: flex; justify-content: space-between; align-items: center; background: #f5f5f7; padding: 16px; border-radius: 14px; gap: 10px;">
+    
+    <div style="flex: 1; text-align: center;">
+        <div class="flip-card" id="days-card">
+            <div class="flip-card-inner">
+                <div class="flip-card-top">00</div>
+                <div class="flip-card-bottom">00</div>
             </div>
         </div>
+        <span style="font-size: 9px; font-weight: 600; text-transform: uppercase; color: #86868b; letter-spacing: 0.05em; margin-top: 6px; display: block;">Days</span>
     </div>
-    <div id="countdown-status" style="font-size: 12px; font-weight: 500; color: #86868b; margin-top: 14px; text-align: left; display: none;">
-        Qualification Period Ended
+
+    <div style="flex: 1; text-align: center;">
+        <div class="flip-card" id="hours-card">
+            <div class="flip-card-inner">
+                <div class="flip-card-top">00</div>
+                <div class="flip-card-bottom">00</div>
+            </div>
+        </div>
+        <span style="font-size: 9px; font-weight: 600; text-transform: uppercase; color: #86868b; letter-spacing: 0.05em; margin-top: 6px; display: block;">Hrs</span>
+    </div>
+
+    <div style="flex: 1; text-align: center;">
+        <div class="flip-card" id="mins-card">
+            <div class="flip-card-inner">
+                <div class="flip-card-top">00</div>
+                <div class="flip-card-bottom">00</div>
+            </div>
+        </div>
+        <span style="font-size: 9px; font-weight: 600; text-transform: uppercase; color: #86868b; letter-spacing: 0.05em; margin-top: 6px; display: block;">Min</span>
+    </div>
+
+    <div style="flex: 1; text-align: center;">
+        <div class="flip-card" id="secs-card">
+            <div class="flip-card-inner">
+                <div class="flip-card-top" style="color: #ff3b30;">00</div>
+                <div class="flip-card-bottom" style="color: #ff3b30;">00</div>
+            </div>
+        </div>
+        <span style="font-size: 9px; font-weight: 600; text-transform: uppercase; color: #86868b; letter-spacing: 0.05em; margin-top: 6px; display: block;">Sec</span>
     </div>
 </div>
+
 
                 
                 <div class="card" style="display: flex; flex-direction: column; justify-content: space-between; min-height: 220px;">
