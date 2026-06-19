@@ -497,6 +497,27 @@ body.tray-active .tray-backdrop {
     perspective: 200px;
 }
 
+/* Hero row wrapper framework */
+.timer-hero-row {
+    display: flex; 
+    align-items: center; 
+    justify-content: space-between; 
+    background: #ffffff; 
+    padding: 10px 16px; 
+    border-radius: 10px; 
+    box-shadow: 0 2px 4px rgba(0,0,0,0.02);
+}
+
+/* Explicit alignment fixes for iPad/Desktop labels */
+.timer-hero-label {
+    font-size: 12px; 
+    font-weight: 600; 
+    text-transform: uppercase; 
+    color: #86868b; 
+    letter-spacing: 0.05em;
+    text-align: left;
+}
+
 /* HERO SIZE: Days configuration */
 .flip-card.hero-card {
     width: 70px;
@@ -506,6 +527,7 @@ body.tray-active .tray-backdrop {
 .flip-card.hero-card .flip-card-bottom {
     font-size: 30px;
     font-weight: 700;
+    text-align: center;
 }
 .flip-card.hero-card .flip-card-top { line-height: 48px; }
 .flip-card.hero-card .flip-card-bottom { line-height: 0px; padding-top: 24px; }
@@ -519,6 +541,7 @@ body.tray-active .tray-backdrop {
 .flip-card.sub-card .flip-card-bottom {
     font-size: 20px;
     font-weight: 600;
+    text-align: center;
 }
 .flip-card.sub-card .flip-card-top { line-height: 38px; }
 .flip-card.sub-card .flip-card-bottom { line-height: 0px; padding-top: 19px; }
@@ -559,4 +582,28 @@ body.tray-active .tray-backdrop {
     0% { transform: rotateX(0deg); }
     50% { transform: rotateX(-90deg); opacity: 0.8; }
     100% { transform: rotateX(0deg); }
+}
+
+/* RESPONSIVE MEDIA QUERIES FOR MOBILE VIEWS */
+@media screen and (max-width: 480px) {
+    /* Stack the Hero row vertically on mobile to prevent squishing text */
+    .timer-hero-row {
+        flex-direction: column;
+        gap: 8px;
+        padding: 12px;
+        text-align: center;
+    }
+    .timer-hero-label {
+        text-align: center;
+    }
+    /* Scale sub card typography down slightly so elements don't crash on tight widths */
+    .flip-card.sub-card {
+        height: 34px;
+    }
+    .flip-card.sub-card .flip-card-top,
+    .flip-card.sub-card .flip-card-bottom {
+        font-size: 16px;
+    }
+    .flip-card.sub-card .flip-card-top { line-height: 34px; }
+    .flip-card.sub-card .flip-card-bottom { padding-top: 17px; }
 }
