@@ -3,536 +3,152 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>e-POS Medical Underwriting Dictionary - CI Pro Universe</title>
-<style>
-/* ============================================================
-   GLOBAL DESIGN VARIABLES (Unified Workspace Framework)
-   ============================================================ */
-*, *::before, *::after { 
-    box-sizing: border-box; 
-    margin: 0; 
-    padding: 0; 
-}
-
-:root {
-    --nav-height: 52px;
-    --accent: #0071e3;
-    --bg: #f5f5f7;       /* Clean gray workspace canvas background */
-    --surface: #ffffff;  /* Card surface background */
-    --text-primary: #1d1d1f;
-    --text-secondary: #515154;
-    --text-tertiary: #86868b;
-    --border: rgba(0, 0, 0, 0.06);
-    --line: #e9e9ee;
-}
-
-body {
-    background-color: var(--bg);
-    color: var(--text-primary);
-    font-family: -apple-system, BlinkMacSystemFont, "SF Pro Text", "Segoe UI", sans-serif;
-    -webkit-font-smoothing: antialiased;
-    line-height: 1.5;
-}
-
-.container {
-    max-width: 1020px;
-    margin: 40px auto;
-    padding: 0 24px 100px;
-}
-
-/* ============================================================
-   STICKY STYLISH NAVBAR STRUCTURE
-   ============================================================ */
-.navbar {
-    position: sticky;
-    top: 0;
-    z-index: 100;
-    background: rgba(255, 255, 255, 0.85);
-    backdrop-filter: blur(20px);
-    -webkit-backdrop-filter: blur(20px);
-    border-bottom: 1px solid var(--border);
-    height: var(--nav-height);
-}
-
-.nav-container {
-    max-width: 1020px;
-    margin: 0 auto;
-    padding: 0 24px;
-    height: 100%;
-    display: flex;
-    align-items: center;
-    gap: 32px;
-}
-
-.logo {
-    font-size: 16px;
-    font-weight: 700;
-    color: var(--text-primary);
-    cursor: pointer;
-    letter-spacing: -0.02em;
-    flex-shrink: 0;
-}
-
-.nav-menu {
-    display: flex;
-    gap: 4px;
-    align-items: center;
-    margin-left: auto;
-}
-
-.nav-item {
-    font-size: 13px;
-    font-weight: 500;
-    color: var(--text-secondary);
-    text-decoration: none;
-    padding: 6px 12px;
-    border-radius: 8px;
-    transition: background 0.15s, color 0.15s;
-    white-space: nowrap;
-}
-
-.nav-item:hover { 
-    background: rgba(0,0,0,0.05); 
-    color: var(--text-primary); 
-}
-
-.nav-item.active { 
-    background: rgba(0,113,227,0.08); 
-    color: var(--accent); 
-}
-
-.menu-toggle {
-    display: none;
-    flex-direction: column;
-    gap: 5px;
-    cursor: pointer;
-    margin-left: auto;
-    padding: 6px;
-}
-
-.menu-toggle span {
-    display: block;
-    width: 22px;
-    height: 2px;
-    background: var(--text-primary);
-    border-radius: 2px;
-    transition: 0.3s;
-}
-
-@media (max-width: 700px) {
-    .menu-toggle { display: flex; }
-    .nav-menu {
-        display: none;
-        position: absolute;
-        top: var(--nav-height);
-        left: 0; right: 0;
-        background: rgba(255,255,255,0.97);
-        backdrop-filter: blur(20px);
-        flex-direction: column;
-        padding: 12px 16px 20px;
-        gap: 2px;
-        border-bottom: 1px solid var(--border);
-    }
-    .nav-menu.show { display: flex; }
-    .nav-item { width: 100%; padding: 10px 14px; }
-}
-
-/* ============================================================
-   GOOGLE TRANSLATE STYLE DUAL-PANEL LAYOUT
-   ============================================================ */
-.translate-workspace {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    background: var(--surface);
-    border-radius: 16px;
-    border: 1px solid rgba(0,0,0,0.08);
-    box-shadow: 0 4px 24px rgba(0, 0, 0, 0.02);
-    overflow: hidden;
-    margin-top: 16px;
-}
-
-@media (max-width: 768px) {
-    .translate-workspace {
-        grid-template-columns: 1fr;
-    }
-    .panel-right {
-        border-top: 1px solid var(--line);
-        border-left: none !important;
-    }
-}
-
-.panel-left, .panel-right {
-    padding: 24px;
-    display: flex;
-    flex-direction: column;
-    min-height: 400px;
-}
-
-.panel-right {
-    background: #fbfbfd;
-    border-left: 1px solid var(--line);
-}
-
-.panel-header {
-    font-size: 12px;
-    font-weight: 600;
-    text-transform: uppercase;
-    letter-spacing: 0.05em;
-    color: var(--text-tertiary);
-    padding-bottom: 12px;
-    border-bottom: 1px solid var(--line);
-    margin-bottom: 16px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-}
-
-/* Custom Search Box style inside Translate Left Panel */
-.search-wrapper {
-    position: relative;
-    width: 100%;
-}
-
-.translate-input {
-    width: 100%;
-    padding: 14px 16px;
-    border-radius: 10px;
-    border: 1px solid #d2d2d7;
-    font-size: 16px;
-    font-family: inherit;
-    outline: none;
-    background: #ffffff;
-    transition: border-color 0.15s, box-shadow 0.15s;
-}
-
-.translate-input:focus {
-    border-color: var(--accent);
-    box-shadow: 0 0 0 4px rgba(0, 113, 227, 0.1);
-}
-
-/* Results Suggestions Area */
-.suggestions-box {
-    margin-top: 14px;
-    flex-grow: 1;
-    overflow-y: auto;
-    max-height: 280px;
-    border: 1px solid #e9e9ee;
-    border-radius: 10px;
-    background: #ffffff;
-}
-
-.suggestion-row {
-    padding: 12px 16px;
-    font-size: 14px;
-    color: var(--text-primary);
-    cursor: pointer;
-    border-bottom: 1px solid #f5f5f7;
-    transition: background 0.15s;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-}
-
-.suggestion-row:hover {
-    background: #f2f7fc;
-    color: var(--accent);
-}
-
-.suggestion-row.selected {
-    background: rgba(0, 113, 227, 0.08);
-    color: var(--accent);
-    font-weight: 500;
-}
-
-/* Right Output Translation Panel Displays */
-.output-empty-state {
-    color: var(--text-tertiary);
-    font-size: 15px;
-    margin: auto;
-    text-align: center;
-    line-height: 1.5;
-}
-
-.output-active-card {
-    display: none;
-    animation: fadeIn 0.2s ease-in-out;
-}
-
-@keyframes fadeIn {
-    from { opacity: 0; transform: translateY(4px); }
-    to { opacity: 1; transform: translateY(0); }
-}
-
-.epos-official-title {
-    font-size: 28px;
-    font-weight: 700;
-    color: var(--accent);
-    letter-spacing: -0.02em;
-    margin-bottom: 12px;
-}
-
-.meta-info-block {
-    background: #ffffff;
-    padding: 16px;
-    border-radius: 10px;
-    border: 1px solid var(--border);
-    margin-bottom: 16px;
-}
-
-.meta-info-block h4 {
-    font-size: 11px;
-    font-weight: 600;
-    text-transform: uppercase;
-    letter-spacing: 0.05em;
-    color: var(--text-secondary);
-    margin-bottom: 6px;
-}
-
-.meta-info-block p {
-    font-size: 14px;
-    color: var(--text-primary);
-    line-height: 1.5;
-}
-
-.footer-notice {
-    text-align: center;
-    margin-top: 24px;
-    font-size: 12px;
-    color: var(--text-tertiary);
-}
-</style>
+    <title>Sales Assistant - Interactive Script</title>
 </head>
-<body>
+<body style="background: #f8fafc; font-family: system-ui, -apple-system, sans-serif; margin: 0; padding: 20px;">
 
-    <header class="navbar">
-        <div class="nav-container">
-            <span class="logo" onclick="window.location.href='dashboard.html'">CI Pro Universe</span>
+    <div style="max-width: 1200px; margin: 0 auto;">
+        
+        <!-- Header Hub Banner -->
+        <div style="background: linear-gradient(135deg, #0f172a, #1e293b); color: white; padding: 24px; border-radius: 12px; margin-bottom: 24px; box-shadow: 0 4px 6px -1px rgba(0,0,0,0.1);">
+            <h1 style="margin: 0; font-size: 1.5rem; font-weight: 700; color: #f8fafc;">Sales Assistant Hub</h1>
+            <p style="margin: 6px 0 0 0; color: #94a3b8; font-size: 0.9rem;">Live interactive conversational script & objection handling dashboard.</p>
+        </div>
+
+        <!-- Main Workspace Layout -->
+        <div style="display: grid; grid-template-columns: 280px 1fr; gap: 24px; align-items: start;">
             
-            <div class="menu-toggle" onclick="toggleMobileMenu()" aria-label="Toggle menu">
-                <span></span><span></span><span></span>
+            <!-- Left Navigation: Pitch Phases -->
+            <div style="background: white; border: 1px solid #e2e8f0; border-radius: 12px; padding: 16px; box-shadow: 0 1px 3px rgba(0,0,0,0.05);">
+                <h3 style="margin-top: 0; font-size: 0.85rem; color: #64748b; text-transform: uppercase; letter-spacing: 0.05em;">Pitch Sequence</h3>
+                <div style="display: flex; flex-direction: column; gap: 8px;">
+                    <button onclick="switchPitchPhase('opener')" id="btn-opener" style="text-align: left; padding: 10px 12px; border: none; border-radius: 6px; font-weight: 600; font-size: 0.9rem; cursor: pointer; background: #3b82f6; color: white;">1. The Hook / Opener</button>
+                    <button onclick="switchPitchPhase('discovery')" id="btn-discovery" style="text-align: left; padding: 10px 12px; border: none; border-radius: 6px; font-weight: 600; font-size: 0.9rem; cursor: pointer; background: transparent; color: #475569;">2. Discovery Questions</button>
+                    <button onclick="switchPitchPhase('core-pitch')" id="btn-core-pitch" style="text-align: left; padding: 10px 12px; border: none; border-radius: 6px; font-weight: 600; font-size: 0.9rem; cursor: pointer; background: transparent; color: #475569;">3. Core Solution Presentation</button>
+                    <button onclick="switchPitchPhase('closing')" id="btn-closing" style="text-align: left; padding: 10px 12px; border: none; border-radius: 6px; font-weight: 600; font-size: 0.9rem; cursor: pointer; background: transparent; color: #475569;">4. The Closing Ask</button>
+                </div>
             </div>
 
-            <nav class="nav-menu" id="navMenu">
-                <a href="dashboard.html" class="nav-item">Operational Hub</a>
-                <a href="cipro-experience.html" class="nav-item">CI Pro Experience</a>
-                <a href="eposbuddy.html" class="nav-item active">EPOS Buddy</a>
-                <a href="magicfiller.html" class="nav-item">Magic Filler</a>
-            </nav>
-        </div>
-    </header>
-
-    <main class="container">
-        
-        <span style="font-size: 11px; font-weight: 600; color: var(--accent); text-transform: uppercase; letter-spacing: 0.05em; display: block; margin-bottom: 4px;">e-POS Pre-Assessment Dictionary</span>
-        <h1 style="font-size: 26px; font-weight: 700; margin-bottom: 6px; letter-spacing: -0.02em;">Medical Condition Decoder</h1>
-        <p style="font-size: 14px; color: var(--text-secondary); margin-bottom: 24px;">There are over 80 common medical conditions listed in e-POS that automatically prompt a reflexive questionnaire upon selection. Use this matrix to instantly decode client layman terms or Chinese descriptions into the exact system-recognized parameters required to assist with your pre-assessment</p>
-
-        <div class="translate-workspace">
-            
-            <div class="panel-left">
-                <div class="panel-header">
-                    <span>Client Query (Layman / 中文)</span>
-                    <span style="font-weight: 400; color: var(--text-tertiary); text-transform: none;">Auto-detecting...</span>
-                </div>
+            <!-- Right Area: Main Script Content -->
+            <div style="display: flex; flex-direction: column; gap: 24px;">
                 
-                <div class="search-wrapper">
-                    <input type="text" id="translateSearchInput" class="translate-input" autocomplete="off" placeholder="Enter keywords (e.g., 生蛇, 胃酸倒流, 心有洞, Sprain)..." oninput="handleLiveTranslateSearch()">
-                </div>
-
-                <div class="suggestions-box" id="suggestionsBox">
+                <!-- Script Text Card Box -->
+                <div style="background: white; border: 1px solid #e2e8f0; border-radius: 12px; padding: 24px; box-shadow: 0 1px 3px rgba(0,0,0,0.05); min-height: 200px;">
+                    <div id="script-content-display">
+                        <h2 style="margin-top: 0; color: #0f172a; font-size: 1.25rem;">1. The Hook / Opener</h2>
+                        <p style="color: #475569; line-height: 1.6; font-size: 1rem; background: #f8fafc; padding: 16px; border-left: 4px solid #3b82f6; border-radius: 4px; font-style: italic;">
+                            "Hello [Client Name], thank you for taking the time today. The reason for our discussion is that many asset owners are looking closely at structural stability. We help clients anchor their long-term security parameters efficiently through optimized international structures, ensuring your policy value is locked down regardless of local shifts. Have you explored offshore asset shielding frameworks before?"
+                        </p>
                     </div>
-            </div>
-
-            <div class="panel-right">
-                <div class="panel-header">
-                    <span>e-POS Declaration Parameter (English)</span>
                 </div>
 
-                <div id="translateEmptyState" class="output-empty-state">
-                    <svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="var(--text-tertiary)" stroke-width="1.5" style="margin-bottom: 12px; opacity: 0.7;"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path></svg>
-                    <p>Do not type this as manual free text. Selecting this exact mapped condition from the e-POS dropdown menu initializes the official reflexive questionnaire layout, capturing the necessary risk criteria to streamline the instant approval pipeline.</p>
-                </div>
-
-                <div id="translateActiveDisplay" class="output-active-card">
-                    <span style="font-size: 11px; font-weight: 600; color: var(--text-tertiary); text-transform: uppercase;">System Selection Tag:</span>
-                    <div class="epos-official-title" id="outEposTitle">Condition Name</div>
+                <!-- Live Objection Counter-Attacks Matrix Panel -->
+                <div style="background: white; border: 1px solid #e2e8f0; border-radius: 12px; padding: 24px; box-shadow: 0 1px 3px rgba(0,0,0,0.05);">
+                    <h3 style="margin-top: 0; color: #0f172a; font-size: 1.1rem; display: flex; align-items: center; gap: 8px;">
+                        <span style="background: #ef4444; color: white; width: 8px; height: 8px; border-radius: 50%; display: inline-block;"></span>
+                        Live Client Objection Matrix (Tap to Counter)
+                    </h3>
+                    <p style="color: #64748b; font-size: 0.85rem; margin-bottom: 16px;">If the prospect throws an objection, tap it instantly to view the compliant rebuttal framework:</p>
                     
-                    <div class="meta-info-block">
-                        <h4>MAPPED TERMS LOADED</h4>
-                        <p id="outMatchedTerms">Chinese definitions and vernacular variables matching this block.</p>
+                    <!-- Objection Buttons -->
+                    <div style="display: flex; flex-wrap: wrap; gap: 10px; margin-bottom: 16px;">
+                        <button onclick="showObjection('premium')" style="background: #f1f5f9; border: 1px solid #cbd5e1; padding: 8px 14px; border-radius: 20px; font-size: 0.85rem; font-weight: 600; color: #334155; cursor: pointer; transition: all 0.2s;">"The commitment is too high right now"</button>
+                        <button onclick="showObjection('trust')" style="background: #f1f5f9; border: 1px solid #cbd5e1; padding: 8px 14px; border-radius: 20px; font-size: 0.85rem; font-weight: 600; color: #334155; cursor: pointer; transition: all 0.2s;">"Is this legal/fully compliant?"</button>
+                        <button onclick="showObjection('think')" style="background: #f1f5f9; border: 1px solid #cbd5e1; padding: 8px 14px; border-radius: 20px; font-size: 0.85rem; font-weight: 600; color: #334155; cursor: pointer; transition: all 0.2s;">"I need to think about it / consult my partner"</button>
                     </div>
 
-                    <div class="meta-info-block" style="border-left: 3px solid var(--accent); background: #f2f7fc;">
-                        <h4>ADVISOR SUBMISSION LOGIC</h4>
-                        <p style="font-size: 13px;">Selecting this condition from the e-POS drop-down menu immediately triggers the reflexive medical field matrix questionnaire layout.</p>
+                    <!-- Output Panel Box for Objections -->
+                    <div id="objection-response-box" style="display: none; background: #fff5f5; border: 1px solid #fee2e2; border-left: 4px solid #ef4444; padding: 16px; border-radius: 6px;">
+                        <strong id="objection-title" style="color: #991b1b; display: block; font-size: 0.9rem; margin-bottom: 6px;">Counter Strategy:</strong>
+                        <p id="objection-body" style="margin: 0; color: #7f1d1d; font-size: 0.95rem; line-height: 1.5; font-style: italic;"></p>
                     </div>
                 </div>
 
             </div>
         </div>
+    </div>
 
-        <div class="footer-notice">
-            &copy; 2026 CI Pro Universe | For Internal Staff and Agent training Use Only. Strictly not for Public Distribution.
-        </div>
-
-    </main>
-
+    <!-- SCRIPT INTERACTION SYSTEM ENGINE -->
     <script>
-// Global Navigation Toggle Script
-function toggleMobileMenu() {
-    document.getElementById('navMenu').classList.toggle('show');
-}
+        // Dictionary containing your PDF script blocks
+        const scriptDatabase = {
+            opener: {
+                title: "1. The Hook / Opener",
+                border: "#3b82f6",
+                text: `"Hello [Client Name], thank you for taking the time today. The reason for our discussion is that many asset owners are looking closely at structural stability. We help clients anchor their long-term security parameters efficiently through optimized international structures, ensuring your policy value is locked down regardless of local shifts. Have you explored offshore asset shielding frameworks before?"`
+            },
+            discovery: {
+                title: "2. Discovery Questions",
+                border: "#10b981",
+                text: `"To make sure I'm giving you accurate guidance, what is your primary timeline when considering liquid asset preservation? Are you looking specifically at corporate key-man replacement safety, or structures aimed entirely at generational family inheritance preservation?"`
+            },
+            'core-pitch': {
+                title: "3. Core Solution Presentation",
+                border: "#f59e0b",
+                text: `"Based on your answers, our international offshore structures act as a foundational vault. By utilizing frameworks governed under international cross-border legislation, your premium reserves are structurally separate from common onshore volatility risks. This maximizes both absolute portfolio isolation and premium compound continuity over decades."`
+            },
+            closing: {
+                title: "4. The Closing Ask",
+                border: "#6366f1",
+                text: `"To get your specific allocation limits calculated, we simply submit an initial non-binding confirmation template. This locks in your structural parameters today while our compliance team maps out your personalized prospectus. Shall we verify your ID credentials to begin that validation step?"`
+            }
+        };
 
-// Master 82 e-POS Dataset - Enhanced with all 6 missing/layman target criteria mapped
-const eposDataset = [
-    { en: "Anaemia", zh: "贫血 pinxue 低血红素 bleed 容易晕" }, 
-    { en: "Anal Fistula", zh: "肛瘘 ganglou 肛门 屁股发炎屁眼" },
-    { en: "Ankle Sprain", zh: "脚踝扭伤 jiaohuai niushang 扭到脚 崴脚" }, 
-    { en: "Arrhythmia", zh: "心律失常 xinlvshichang 心跳不齐 心惊 心跳过快" },
-    { en: "Arthritis", zh: "关节炎 guanjieyan 风湿 膝盖痛" }, 
-    { en: "Asthma", zh: "哮喘 xiaochuan 气喘 喘气 呼吸困难" },
-    { en: "Atrial Septal Defect", zh: "房间隔缺损 fangjiange quesun 心脏有洞 心漏症" }, 
-    { en: "Back Pain", zh: "背痛 beitong 腰酸背痛 腰痛 腰肌劳损" },
-    { en: "Barrett’s Esophagus", zh: "巴雷特食管 baleite shiguan 食道发炎 长期胃酸倒流" }, 
-    { en: "Benign Prostate Hyperplasia", zh: "良性前列腺增生 qianliexian 小便困难 前列腺肥大" },
-    { en: "Blindness", zh: "失明 shiming 盲 眼盲 看不见" }, 
-    { en: "Breast Cancer", zh: "乳腺癌 ruxianai 乳房癌 胸部肿瘤" },
-    { en: "Breast Lump", zh: "乳房肿块 ruxian zhongkuai 胸部硬块 乳腺增生" }, 
-    { en: "Bronchitis", zh: "支气管炎 zhiqiguanyan 长期咳嗽 肺部发炎" },
-    { en: "Cataract", zh: "白内障 baineizhang 眼睛模糊 眼膜 眼疾" }, 
-    { en: "CIN", zh: "宫颈上皮内瘤变 gongjing 子宫颈细胞病变 妇科" },
-    { en: "Colon Cancer", zh: "结肠癌 jiechangai 大肠癌 肠癌" }, 
-    { en: "Colon Polyp", zh: "结肠息肉 jiechang xirou 大肠肉瘤 肠息肉" },
-    { en: "Coronary Artery Disease", zh: "冠心病 guanxinbing 心脏血管阻塞 血管硬化" }, 
-    { en: "Deafness", zh: "耳聋 erlong 听不到 听力受损 耳疾" },
-    { en: "Dengue Fever", zh: "骨痛热症 gutongrezheng 登革热 蚊症 dengue 蚊子咬 发烧" }, // 1. Added Dengue Track
-    { en: "Dermatitis", zh: "皮炎 piyan 皮肤发炎 皮肤病" }, 
-    { en: "Gestational DM", zh: "妊娠期糖尿病 renshen tangniaobing 怀孕血糖高 孕期糖尿病" },
-    { en: "Type 1 Diabetes", zh: "1型糖尿病 1xing tangniaobing 先天性糖尿病 血糖高 high sugar" }, // 6. Mapped High Sugar here
-    { en: "Type 2 Diabetes", zh: "2型糖尿病 2xing tangniaobing 后天糖尿病 血糖高 high sugar 糖尿" }, // 6. Mapped High Sugar here
-    { en: "Eczema", zh: "湿疹 shizhen 皮肤痒 红印" }, 
-    { en: "Endometriosis", zh: "子宫内膜异位症 zigong neimo 巧克力囊肿 经痛" },
-    { en: "Fatty Liver", zh: "脂肪肝 zhifanggan 肝肥大 肝脏脂肪" }, 
-    { en: "Fracture - Spine", zh: "骨折 脊椎 jizhui 脊椎骨折 龙骨断裂" },
-    { en: "Fracture - Skull", zh: "骨折 头骨 tougu 头颅骨折" }, 
-    { en: "Fracture - Finger", zh: "骨折 手指 shouzhi 手指断" },
-    { en: "Fracture - Pelvis", zh: "骨折 骨盆 gupen 盆骨骨折" }, 
-    { en: "Fracture - Wrist", zh: "骨折 手腕 shouwan 手骨折" },
-    { en: "Fracture - Arm", zh: "骨折 手臂 shoubi 手青绿" }, 
-    { en: "Fracture - Elbow", zh: "骨折 手肘 shouzhou 手肘断" },
-    { en: "Fracture - Hip", zh: "骨折 髋关节 kuan 大腿骨折 屁股骨折" }, 
-    { en: "Fracture - Knee", zh: "骨折 膝盖 xigai 膝盖骨折" },
-    { en: "Fracture - Leg", zh: "骨折 腿部 tuibu 腿断了" }, 
-    { en: "Fracture - Ankle", zh: "骨折 脚踝 jiaohuai 脚踝骨折" },
-    { en: "Fracture - Toe", zh: "骨折 脚趾 jiaozhi 脚趾断" }, 
-    { en: "G6PD", zh: "蚕豆病 candoubing G6PD 缺乏症" },
-    { en: "Gallstones", zh: "胆结石 danjieshi 胆囊结石 胆痛" }, 
-    { en: "Gastric Reflux", zh: "胃食管反流 weishiguan fanliu 胃酸倒流 烧心 胃痛" },
-    { en: "Gastric Ulcer", zh: "胃溃疡 weikuiyang 胃破洞 胃出血" }, 
-    { en: "Gastritis", zh: "胃炎 weiyan 胃痛 胃胀风胃风" },
-    { en: "Glaucoma", zh: "青光眼 qingguangyan 眼压高 青光" }, 
-    { en: "Gout", zh: "痛风 tongfeng 尿酸高 关节红肿 high uric acid" }, // 5. Mapped High Uric Acid to Gout logic
-    { en: "Haemorrhoids", zh: "痔疮 zhichuang 大便出血 屁股痛 hemorrhoids" }, // 2. Cross-mapped both spellings
-    { en: "Heart Murmur", zh: "心脏杂音 xinzang zayin 心跳杂音 心脏肉跳" },
-    { en: "Helicobacter Pylori", zh: "幽门螺杆菌 youmen luoganjun HP 胃菌 胃部感染" }, 
-    { en: "Hepatitis B", zh: "乙肝 yigan 乙型肝炎 B型肝炎 带菌者" },
-    { en: "High blood pressure", zh: "高血压 gaoxueya 血压高 BP高 hypertension" }, // 3. Cross-mapped both terms
-    { en: "High cholesterol", zh: "高胆固醇 gaodanguchun 脂肪高 胆固醇高 high cholesterol" }, // 4. Retained & secured
-    { en: "High Uric Acid", zh: "高尿酸 gaoniaosuan 尿酸高 high uric acid 痛风前兆" }, // 5. Added dedicated track
-    { en: "Hole in Heart", zh: "心脏有洞 xinzang youdong 心漏症 房间隔缺损" }, 
-    { en: "Hyperthyroidism", zh: "甲亢 jiakang 甲状腺过高 大颈泡 大脖子病" },
-    { en: "Hypothyroidism", zh: "甲减 jiajian 甲状腺过低" }, 
-    { en: "Insomnia", zh: "失眠 shimian 睡不着 精神衰弱" },
-    { en: "Kidney Stones", zh: "肾结石 shenjieshi 腰痛 肾脏腰子" }, 
-    { en: "Meniere's Disease", zh: "美尼尔氏综合症 meinier 耳水不平衡 头晕 眩晕" },
-    { en: "Menstrual Disorder", zh: "月经不调 yuejing 乱经 经期不准 姨妈到" }, 
-    { en: "Migraine", zh: "偏头痛 piantoutong 头痛 经常头痛" },
-    { en: "Mitral Valve Prolapse", zh: "二尖瓣脱垂 erjianban 心脏瓣膜下垂" }, 
-    { en: "Osteoarthritis", zh: "退化性关节炎 guanjieyan 老人风湿 骨质增生" },
-    { en: "Ovarian Cyst", zh: "卵巢囊肿 luanchao nangzhong 水瘤 妇科水泡" }, 
-    { en: "Patent Ductus Arteriosus", zh: "动脉导管未闭 dongmai daoguan 心脏先天血管没关" },
-    { en: "Pneumothorax", zh: "气胸 qixiong 肺积气 肺部漏气 爆肺" }, 
-    { en: "Polycystic Ovarian Syndrome", zh: "多囊卵巢综合征 duonang luanchao PCOS 荷尔蒙失调" },
-    { en: "Pregnancy", zh: "怀孕 huaiyun 妊娠 大肚子 有喜了" }, 
-    { en: "Psoriatic Arthritis", zh: "银屑病关节炎 yinxiebing 牛皮癣关节炎" },
-    { en: "Retinal Detachment", zh: "视网膜脱落 shiwangmo 眼底脱落 眼睛瞎" }, 
-    { en: "Rheumatoid Arthritis", zh: "类风湿性关节炎 leifengshi 类风湿 骨节变形" },
-    { en: "Shingles", zh: "生蛇 shengshe 带状疱疹 daizhuangpaozhen 皮肤红疹水泡" }, 
-    { en: "Sinusitis", zh: "鼻窦炎 bidouyan 鼻敏感 长期流鼻涕" },
-    { en: "Slipped Disc", zh: "椎间盘突出 zhuijianpan 骨刺 脊椎移位" }, 
-    { en: "Sprain", zh: "扭伤 niushang 扭到 筋发炎" },
-    { en: "Stroke", zh: "中风 zhongfeng 半身不遂 脑血管阻塞" }, 
-    { en: "Thalassemia minor", zh: "轻型地中海贫血 dizhonghai pinxue 地贫 遗传性贫血" },
-    { en: "Tonsilitis", zh: "扁桃体炎 biantaotiyan 喉咙发炎 扁桃腺" }, 
-    { en: "Urinary Tract Infection", zh: "尿道感染 niaodao ganran UTI 小便痛 尿道炎" },
-    { en: "Uterine Fibroid", zh: "子宫肌瘤 zigong jiliu 子宫肉瘤 妇科瘤" }, 
-    { en: "Ventricular Septal Defect", zh: "室间隔缺损 shijiange quesun 心脏有洞 心漏症" }
-];
+        // Dictionary containing objection handling text
+        const objectionDatabase = {
+            premium: {
+                title: "Handling Capital/Premium Objections",
+                text: `"I understand completely. When analyzing asset parameters, entry velocity matters. However, remember this isn't an ongoing regular expenditure—it is structural asset allocation conversion. We are shifting capital from a vulnerable domestic cash point to a secured, insulated offshore reserve. Would it help to look at alternative structured funding cycles instead?"`
+            },
+            trust: {
+                title: "Handling Regulatory / Compliance Uncertainty",
+                text: `"That is the most important element. These parameters operate securely under rigorous international financial legal guidelines, fully registered and recognized cross-border frameworks. Everything aligns cleanly with modern statutory reporting compliance safeguards, giving your estate perfect structural peace of mind."`
+            },
+            think: {
+                title: "Handling Timeline Stalling",
+                text: `"That makes total sense. Deciding on structural configurations requires careful thought. Most of our clients prefer evaluating real parameters rather than general concepts. By running our validation parameters today, we get concrete numbers on your table. That gives you and your partner an actual custom architecture to review rather than a theoretical one. Let's build that outline first."`
+            }
+        };
 
-// Seed suggestions with all elements organized alphabetically initially
-document.addEventListener("DOMContentLoaded", () => {
-    renderSuggestions(eposDataset.sort((a,b) => a.en.localeCompare(b.en)));
-});
+        // Function to handle switching script blocks
+        function switchPitchPhase(phaseKey) {
+            const data = scriptDatabase[phaseKey];
+            if (!data) return;
 
-function renderSuggestions(list) {
-    const container = document.getElementById("suggestionsBox");
-    container.innerHTML = "";
-    
-    if (list.length === 0) {
-        container.innerHTML = `<div style="padding: 16px; font-size: 13.5px; color: var(--text-tertiary); text-align: center;">No matches found. Try typing a simpler layman term.</div>`;
-        return;
-    }
+            // Render text
+            document.getElementById('script-content-display').innerHTML = `
+                <h2 style="margin-top:0; color:#0f172a; font-size:1.25rem;">${data.title}</h2>
+                <p style="color:#475569; line-height:1.6; font-size:1rem; background:#f8fafc; padding:16px; border-left:4px solid ${data.border}; border-radius:4px; font-style:italic;">
+                    ${data.text}
+                </p>
+            `;
 
-    list.forEach(item => {
-        const row = document.createElement("div");
-        row.className = "suggestion-row";
-        const primaryZhLabel = item.zh.split(' ')[0]; // Extract first clean translation phrase
-        
-        row.innerHTML = `
-            <span style="font-weight: 500;">${item.en}</span>
-            <span style="font-size: 12px; color: var(--text-tertiary); background: #f5f5f7; padding: 2px 8px; border-radius: 4px;">${primaryZhLabel}</span>
-        `;
-        row.onclick = () => selectCondition(item, row);
-        container.appendChild(row);
-    });
-}
+            // Reset navigation button highlights
+            const keys = Object.keys(scriptDatabase);
+            keys.forEach(k => {
+                const btn = document.getElementById(`btn-${k}`);
+                if (k === phaseKey) {
+                    btn.style.background = "#3b82f6";
+                    btn.style.color = "white";
+                } else {
+                    btn.style.background = "transparent";
+                    btn.style.color = "#475569";
+                }
+            });
+        }
 
-// Live input character string matcher
-function handleLiveTranslateSearch() {
-    const rawQuery = document.getElementById("translateSearchInput").value.toLowerCase().trim();
-    
-    if (rawQuery === "") {
-        renderSuggestions(eposDataset.sort((a,b) => a.en.localeCompare(b.en)));
-        return;
-    }
+        // Function to flash objection handlers onto screen
+        function showObjection(objectionKey) {
+            const objData = objectionDatabase[objectionKey];
+            if (!objData) return;
 
-    const elementsFiltered = eposDataset.filter(record => {
-        return record.en.toLowerCase().includes(rawQuery) || record.zh.toLowerCase().includes(rawQuery);
-    });
-
-    renderSuggestions(elementsFiltered);
-
-    // Auto-open top item if it is an exact single match to streamline operations
-    if (elementsFiltered.length === 1) {
-        selectCondition(elementsFiltered[0], document.querySelector(".suggestion-row"));
-    }
-}
-
-// Output Display Activation Controller
-function selectCondition(item, elementRef) {
-    document.querySelectorAll(".suggestion-row").forEach(r => r.classList.remove("selected"));
-    if (elementRef) elementRef.classList.add("selected");
-
-    document.getElementById("translateEmptyState").style.display = "none";
-    document.getElementById("translateActiveDisplay").style.display = "block";
-
-    // Map target data outputs out to UI
-    document.getElementById("outEposTitle").textContent = item.en;
-    
-    // Clean out space tags for legible advisor reference output
-    const readableZhMeta = item.zh.replace(/ [a-z0-9 ]+/g, '').replace(/ /g, '、');
-    document.getElementById("outMatchedTerms").textContent = `${readableZhMeta} (${item.en})`;
-}
+            const targetBox = document.getElementById('objection-response-box');
+            document.getElementById('objection-title').innerText = `Counter Strategy: ${objData.title}`;
+            document.getElementById('objection-body').innerText = objData.text;
+            
+            // Un-hide element box
+            targetBox.style.display = "block";
+        }
     </script>
 </body>
 </html>
