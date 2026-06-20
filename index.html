@@ -3,152 +3,184 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Sales Assistant - Interactive Script</title>
+    <title>CI PRO - Interactive Sales Assistant</title>
 </head>
 <body style="background: #f8fafc; font-family: system-ui, -apple-system, sans-serif; margin: 0; padding: 20px;">
 
-    <div style="max-width: 1200px; margin: 0 auto;">
-        
-        <!-- Header Hub Banner -->
-        <div style="background: linear-gradient(135deg, #0f172a, #1e293b); color: white; padding: 24px; border-radius: 12px; margin-bottom: 24px; box-shadow: 0 4px 6px -1px rgba(0,0,0,0.1);">
-            <h1 style="margin: 0; font-size: 1.5rem; font-weight: 700; color: #f8fafc;">Sales Assistant Hub</h1>
-            <p style="margin: 6px 0 0 0; color: #94a3b8; font-size: 0.9rem;">Live interactive conversational script & objection handling dashboard.</p>
+<div style="max-width: 800px; margin: 0 auto;">
+
+    <!-- Top Status Progress Tracker -->
+    <div style="background: #ffffff; border: 1px solid #e2e8f0; border-radius: 12px; padding: 20px; margin-bottom: 20px; box-shadow: 0 1px 3px rgba(0,0,0,0.05); display: flex; justify-content: space-between; align-items: center;">
+        <div>
+            <h1 style="margin: 0; font-size: 1.25rem; font-weight: 700; color: #0f172a;">CI PRO Sales Assistant</h1>
+            <p style="margin: 2px 0 0 0; font-size: 0.85rem; color: #64748b;">Interactive Pitch & Perception Questionnaire</p>
         </div>
-
-        <!-- Main Workspace Layout -->
-        <div style="display: grid; grid-template-columns: 280px 1fr; gap: 24px; align-items: start;">
-            
-            <!-- Left Navigation: Pitch Phases -->
-            <div style="background: white; border: 1px solid #e2e8f0; border-radius: 12px; padding: 16px; box-shadow: 0 1px 3px rgba(0,0,0,0.05);">
-                <h3 style="margin-top: 0; font-size: 0.85rem; color: #64748b; text-transform: uppercase; letter-spacing: 0.05em;">Pitch Sequence</h3>
-                <div style="display: flex; flex-direction: column; gap: 8px;">
-                    <button onclick="switchPitchPhase('opener')" id="btn-opener" style="text-align: left; padding: 10px 12px; border: none; border-radius: 6px; font-weight: 600; font-size: 0.9rem; cursor: pointer; background: #3b82f6; color: white;">1. The Hook / Opener</button>
-                    <button onclick="switchPitchPhase('discovery')" id="btn-discovery" style="text-align: left; padding: 10px 12px; border: none; border-radius: 6px; font-weight: 600; font-size: 0.9rem; cursor: pointer; background: transparent; color: #475569;">2. Discovery Questions</button>
-                    <button onclick="switchPitchPhase('core-pitch')" id="btn-core-pitch" style="text-align: left; padding: 10px 12px; border: none; border-radius: 6px; font-weight: 600; font-size: 0.9rem; cursor: pointer; background: transparent; color: #475569;">3. Core Solution Presentation</button>
-                    <button onclick="switchPitchPhase('closing')" id="btn-closing" style="text-align: left; padding: 10px 12px; border: none; border-radius: 6px; font-weight: 600; font-size: 0.9rem; cursor: pointer; background: transparent; color: #475569;">4. The Closing Ask</button>
-                </div>
-            </div>
-
-            <!-- Right Area: Main Script Content -->
-            <div style="display: flex; flex-direction: column; gap: 24px;">
-                
-                <!-- Script Text Card Box -->
-                <div style="background: white; border: 1px solid #e2e8f0; border-radius: 12px; padding: 24px; box-shadow: 0 1px 3px rgba(0,0,0,0.05); min-height: 200px;">
-                    <div id="script-content-display">
-                        <h2 style="margin-top: 0; color: #0f172a; font-size: 1.25rem;">1. The Hook / Opener</h2>
-                        <p style="color: #475569; line-height: 1.6; font-size: 1rem; background: #f8fafc; padding: 16px; border-left: 4px solid #3b82f6; border-radius: 4px; font-style: italic;">
-                            "Hello [Client Name], thank you for taking the time today. The reason for our discussion is that many asset owners are looking closely at structural stability. We help clients anchor their long-term security parameters efficiently through optimized international structures, ensuring your policy value is locked down regardless of local shifts. Have you explored offshore asset shielding frameworks before?"
-                        </p>
-                    </div>
-                </div>
-
-                <!-- Live Objection Counter-Attacks Matrix Panel -->
-                <div style="background: white; border: 1px solid #e2e8f0; border-radius: 12px; padding: 24px; box-shadow: 0 1px 3px rgba(0,0,0,0.05);">
-                    <h3 style="margin-top: 0; color: #0f172a; font-size: 1.1rem; display: flex; align-items: center; gap: 8px;">
-                        <span style="background: #ef4444; color: white; width: 8px; height: 8px; border-radius: 50%; display: inline-block;"></span>
-                        Live Client Objection Matrix (Tap to Counter)
-                    </h3>
-                    <p style="color: #64748b; font-size: 0.85rem; margin-bottom: 16px;">If the prospect throws an objection, tap it instantly to view the compliant rebuttal framework:</p>
-                    
-                    <!-- Objection Buttons -->
-                    <div style="display: flex; flex-wrap: wrap; gap: 10px; margin-bottom: 16px;">
-                        <button onclick="showObjection('premium')" style="background: #f1f5f9; border: 1px solid #cbd5e1; padding: 8px 14px; border-radius: 20px; font-size: 0.85rem; font-weight: 600; color: #334155; cursor: pointer; transition: all 0.2s;">"The commitment is too high right now"</button>
-                        <button onclick="showObjection('trust')" style="background: #f1f5f9; border: 1px solid #cbd5e1; padding: 8px 14px; border-radius: 20px; font-size: 0.85rem; font-weight: 600; color: #334155; cursor: pointer; transition: all 0.2s;">"Is this legal/fully compliant?"</button>
-                        <button onclick="showObjection('think')" style="background: #f1f5f9; border: 1px solid #cbd5e1; padding: 8px 14px; border-radius: 20px; font-size: 0.85rem; font-weight: 600; color: #334155; cursor: pointer; transition: all 0.2s;">"I need to think about it / consult my partner"</button>
-                    </div>
-
-                    <!-- Output Panel Box for Objections -->
-                    <div id="objection-response-box" style="display: none; background: #fff5f5; border: 1px solid #fee2e2; border-left: 4px solid #ef4444; padding: 16px; border-radius: 6px;">
-                        <strong id="objection-title" style="color: #991b1b; display: block; font-size: 0.9rem; margin-bottom: 6px;">Counter Strategy:</strong>
-                        <p id="objection-body" style="margin: 0; color: #7f1d1d; font-size: 0.95rem; line-height: 1.5; font-style: italic;"></p>
-                    </div>
-                </div>
-
-            </div>
+        <div id="step-badge" style="background: #e0f2fe; color: #0369a1; padding: 6px 12px; border-radius: 20px; font-weight: 700; font-size: 0.8rem; uppercase;">
+            Phase 1: Opening Hook
         </div>
     </div>
 
-    <!-- SCRIPT INTERACTION SYSTEM ENGINE -->
-    <script>
-        // Dictionary containing your PDF script blocks
-        const scriptDatabase = {
-            opener: {
-                title: "1. The Hook / Opener",
-                border: "#3b82f6",
-                text: `"Hello [Client Name], thank you for taking the time today. The reason for our discussion is that many asset owners are looking closely at structural stability. We help clients anchor their long-term security parameters efficiently through optimized international structures, ensuring your policy value is locked down regardless of local shifts. Have you explored offshore asset shielding frameworks before?"`
-            },
-            discovery: {
-                title: "2. Discovery Questions",
-                border: "#10b981",
-                text: `"To make sure I'm giving you accurate guidance, what is your primary timeline when considering liquid asset preservation? Are you looking specifically at corporate key-man replacement safety, or structures aimed entirely at generational family inheritance preservation?"`
-            },
-            'core-pitch': {
-                title: "3. Core Solution Presentation",
-                border: "#f59e0b",
-                text: `"Based on your answers, our international offshore structures act as a foundational vault. By utilizing frameworks governed under international cross-border legislation, your premium reserves are structurally separate from common onshore volatility risks. This maximizes both absolute portfolio isolation and premium compound continuity over decades."`
-            },
-            closing: {
-                title: "4. The Closing Ask",
-                border: "#6366f1",
-                text: `"To get your specific allocation limits calculated, we simply submit an initial non-binding confirmation template. This locks in your structural parameters today while our compliance team maps out your personalized prospectus. Shall we verify your ID credentials to begin that validation step?"`
-            }
-        };
-
-        // Dictionary containing objection handling text
-        const objectionDatabase = {
-            premium: {
-                title: "Handling Capital/Premium Objections",
-                text: `"I understand completely. When analyzing asset parameters, entry velocity matters. However, remember this isn't an ongoing regular expenditure—it is structural asset allocation conversion. We are shifting capital from a vulnerable domestic cash point to a secured, insulated offshore reserve. Would it help to look at alternative structured funding cycles instead?"`
-            },
-            trust: {
-                title: "Handling Regulatory / Compliance Uncertainty",
-                text: `"That is the most important element. These parameters operate securely under rigorous international financial legal guidelines, fully registered and recognized cross-border frameworks. Everything aligns cleanly with modern statutory reporting compliance safeguards, giving your estate perfect structural peace of mind."`
-            },
-            think: {
-                title: "Handling Timeline Stalling",
-                text: `"That makes total sense. Deciding on structural configurations requires careful thought. Most of our clients prefer evaluating real parameters rather than general concepts. By running our validation parameters today, we get concrete numbers on your table. That gives you and your partner an actual custom architecture to review rather than a theoretical one. Let's build that outline first."`
-            }
-        };
-
-        // Function to handle switching script blocks
-        function switchPitchPhase(phaseKey) {
-            const data = scriptDatabase[phaseKey];
-            if (!data) return;
-
-            // Render text
-            document.getElementById('script-content-display').innerHTML = `
-                <h2 style="margin-top:0; color:#0f172a; font-size:1.25rem;">${data.title}</h2>
-                <p style="color:#475569; line-height:1.6; font-size:1rem; background:#f8fafc; padding:16px; border-left:4px solid ${data.border}; border-radius:4px; font-style:italic;">
-                    ${data.text}
-                </p>
-            `;
-
-            // Reset navigation button highlights
-            const keys = Object.keys(scriptDatabase);
-            keys.forEach(k => {
-                const btn = document.getElementById(`btn-${k}`);
-                if (k === phaseKey) {
-                    btn.style.background = "#3b82f6";
-                    btn.style.color = "white";
-                } else {
-                    btn.style.background = "transparent";
-                    btn.style.color = "#475569";
-                }
-            });
-        }
-
-        // Function to flash objection handlers onto screen
-        function showObjection(objectionKey) {
-            const objData = objectionDatabase[objectionKey];
-            if (!objData) return;
-
-            const targetBox = document.getElementById('objection-response-box');
-            document.getElementById('objection-title').innerText = `Counter Strategy: ${objData.title}`;
-            document.getElementById('objection-body').innerText = objData.text;
+    <!-- MAIN INTERACTIVE INTERVIEW INTERFACE -->
+    <div style="background: #ffffff; border: 1px solid #e2e8f0; border-radius: 12px; padding: 30px; box-shadow: 0 4px 6px -1px rgba(0,0,0,0.05);">
+        
+        <!-- STEP 1: THE OPENING PERCEPTION HOOK -->
+        <div id="step-1" class="script-step">
+            <h2 style="margin-top: 0; color: #1e3a8a; font-size: 1.1rem; text-transform: uppercase; letter-spacing: 0.05em;">1. The Perception Hook</h2>
+            <p style="color: #64748b; font-size: 0.85rem; margin-bottom: 20px;">Read the dialogue lines systematically as the conversation loops:</p>
             
-            // Un-hide element box
-            targetBox.style.display = "block";
-        }
-    </script>
+            <div style="display: flex; flex-direction: column; gap: 14px;">
+                <div style="background: #f1f5f9; padding: 12px 16px; border-left: 4px solid #475569; border-radius: 4px;">
+                    <strong style="color: #0f172a; font-size: 0.85rem; display: block; margin-bottom: 4px;">🗣️ YOU SAY:</strong>
+                    <span style="font-style: italic; color: #334155;">"Our perception determines our view of something and the subsequent actions, doesn't it? For example, if someone asks us: 'Standing in the middle of Sahara Desert, can you describe the temperature you feel on the desert?'"</span>
+                </div>
+                <div style="background: #f8fafc; padding: 10px 14px; border-radius: 4px; font-size: 0.9rem; color: #64748b;">
+                    <strong>👤 CLIENT LIKELY SAYS:</strong> "It should be very hot, even hotter than Malaysia!"
+                </div>
+                <div style="background: #f1f5f9; padding: 12px 16px; border-left: 4px solid #475569; border-radius: 4px;">
+                    <strong style="color: #0f172a; font-size: 0.85rem; display: block; margin-bottom: 4px;">🗣️ YOU SAY:</strong>
+                    <span style="font-style: italic; color: #334155;">"Yes! But actually, in the desert at night, the temperature can drop to 0 degrees! This is how our perception shapes our views. Despite increasingly early onset of critical illnesses, we still harbour significant blind spots. We introduced CI PRO to help identify these blind spots. Can we run a simple 5-minute questionnaire?"</span>
+                </div>
+            </div>
+            
+            <button onclick="goToStep(2)" style="margin-top: 24px; width: 100%; background: #0f172a; color: white; padding: 12px; border: none; border-radius: 6px; font-weight: 600; cursor: pointer;">Client Agreed - Move to Q1 →</button>
+        </div>
+
+        <!-- STEP 2: QUESTION 1 - WHY BUY A MEDICAL CARD -->
+        <div id="step-2" class="script-step" style="display: none;">
+            <h2 style="margin-top: 0; color: #1e3a8a; font-size: 1.1rem; text-transform: uppercase;">2. Q1: The Medical Card Motivation</h2>
+            
+            <div style="background: #f1f5f9; padding: 16px; border-left: 4px solid #3b82f6; border-radius: 4px; margin-bottom: 20px;">
+                <strong style="color: #0f172a; font-size: 0.85rem; display: block; margin-bottom: 4px;">🗣️ ASK THE CLIENT:</strong>
+                <span style="font-style: italic; color: #334155;">"I'd like to ask, why do we want to buy a medical card? Here are three options (You can choose more than one):"</span>
+            </div>
+
+            <!-- Interactive Selection Options -->
+            <div style="display: flex; flex-direction: column; gap: 10px; margin-bottom: 20px;">
+                <label style="display: flex; align-items: center; gap: 10px; background: #f8fafc; padding: 12px; border: 1px solid #e2e8f0; border-radius: 6px; cursor: pointer;">
+                    <input type="checkbox" style="transform: scale(1.2);"> 1. Worried about high medical costs in private hospitals.
+                </label>
+                <label style="display: flex; align-items: center; gap: 10px; background: #f8fafc; padding: 12px; border: 1px solid #e2e8f0; border-radius: 6px; cursor: pointer;">
+                    <input type="checkbox" style="transform: scale(1.2);"> 2. Not trusting the efficiency of government hospitals.
+                </label>
+                <label style="display: flex; align-items: center; gap: 10px; background: #f8fafc; padding: 12px; border: 1px solid #e2e8f0; border-radius: 6px; cursor: pointer;">
+                    <input type="checkbox" style="transform: scale(1.2);"> 3. Do not wish to burden our family.
+                </label>
+            </div>
+
+            <div style="background: #eff6ff; padding: 12px 16px; border-radius: 6px; color: #1e40af; font-size: 0.9rem; margin-bottom: 20px;">
+                🎯 **Transition Script Line:** *"Exactly. These were the initial intentions for all of us when we decided to purchase security loops."*
+            </div>
+
+            <div style="display: flex; gap: 12px;">
+                <button onclick="goToStep(1)" style="flex: 1; background: #e2e8f0; color: #475569; padding: 12px; border: none; border-radius: 6px; font-weight: 600; cursor: pointer;">Back</button>
+                <button onclick="goToStep(3)" style="flex: 2; background: #0f172a; color: white; padding: 12px; border: none; border-radius: 6px; font-weight: 600; cursor: pointer;">Move to Q2 Math Matrix →</button>
+            </div>
+        </div>
+
+        <!-- STEP 3: QUESTION 2 - LIVE VALUE CALCULATION -->
+        <div id="step-3" class="script-step" style="display: none;">
+            <h2 style="margin-top: 0; color: #1e3a8a; font-size: 1.1rem; text-transform: uppercase;">3. Q2: The Lifetime Premium Cost</h2>
+            <p style="color: #475569; font-size: 0.9rem; margin-bottom: 20px;">Fill out the parameters on-the-fly with the client to calculate their committed lifetime exposure:</p>
+
+            <!-- Dynamic Calculator Form Fields -->
+            <div style="background: #f8fafc; border: 1px solid #e2e8f0; padding: 20px; border-radius: 8px; display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-bottom: 20px;">
+                <div>
+                    <label style="font-size: 0.8rem; color: #475569; display: block; margin-bottom: 4px;">Monthly Premium (RM)</label>
+                    <input type="number" id="calc-premium" value="300" oninput="calculateLifetimeTotal()" style="width: 90%; padding: 8px; border: 1px solid #cbd5e1; border-radius: 6px;">
+                </div>
+                <div>
+                    <label style="font-size: 0.8rem; color: #475569; display: block; margin-bottom: 4px;">Current Age</label>
+                    <input type="number" id="calc-age" value="35" oninput="calculateLifetimeTotal()" style="width: 90%; padding: 8px; border: 1px solid #cbd5e1; border-radius: 6px;">
+                </div>
+            </div>
+
+            <!-- Output Visual Result Wrapper Box -->
+            <div style="background: #fffbeb; border: 1px solid #fef3c7; border-left: 4px solid #d97706; padding: 20px; border-radius: 6px; margin-bottom: 20px; text-align: center;">
+                <span style="font-size: 0.85rem; color: #b45309; font-weight: 600; text-transform: uppercase;">Estimated Total Commitment (To Age 80)</span>
+                <div id="lifetime-payout-total" style="font-size: 2rem; font-weight: 800; color: #78350f; margin: 8px 0;">RM 162,000</div>
+                <p style="margin: 0; font-size: 0.85rem; color: #92400e; font-style: italic;" id="calc-script-helper">That represents paying premium streams over a span of 45 years!</p>
+            </div>
+
+            <div style="background: #f1f5f9; padding: 14px; border-radius: 6px; font-size: 0.9rem; color: #334155; margin-bottom: 24px;">
+                💡 **The Pivot Script:** *"Since we are willing to lock in RM<span id="txt-total-replace">162,000</span> for medical treatments, are you genuinely most worried about **Minor Claims (RM5k-10k)** or **Major Claims (RM300k-500k)**? If it's a major claim, let's explore if a standard card fully handles it."*
+            </div>
+
+            <div style="display: flex; gap: 12px;">
+                <button onclick="goToStep(2)" style="flex: 1; background: #e2e8f0; color: #475569; padding: 12px; border: none; border-radius: 6px; font-weight: 600; cursor: pointer;">Back</button>
+                <button onclick="goToStep(4)" style="flex: 2; background: #0f172a; color: white; padding: 12px; border: none; border-radius: 6px; font-weight: 600; cursor: pointer;">Move to Trivia Evaluation →</button>
+            </div>
+        </div>
+
+        <!-- STEP 4: TRIVIA CHALLENGE & NEXT STEPS -->
+        <div id="step-4" class="script-step" style="display: none;">
+            <h2 style="margin-top: 0; color: #1e3a8a; font-size: 1.1rem; text-transform: uppercase;">4. Medical Card Trivia & Closing</h2>
+            
+            <div style="display: flex; flex-direction: column; gap: 12px; margin-bottom: 24px;">
+                <div style="background: #f8fafc; padding: 14px; border: 1px solid #e2e8f0; border-radius: 6px;">
+                    <strong style="color: #0f172a; font-size: 0.9rem; display: block; margin-bottom: 4px;">Question 1: Can a medical card cover ALL critical illness financial dimensions?</strong>
+                    <span style="font-size: 0.85rem; color: #64748b;">Options: Yes | No | Not Sure</span>
+                </div>
+                <div style="background: #f8fafc; padding: 14px; border: 1px solid #e2e8f0; border-radius: 6px;">
+                    <strong style="color: #0f172a; font-size: 0.9rem; display: block; margin-bottom: 4px;">Question 2: Are medical cards and critical illness policies the same entity?</strong>
+                    <span style="font-size: 0.85rem; color: #64748b;">Options: Yes | No | Not Sure</span>
+                </div>
+            </div>
+
+            <!-- Final Closing Routing Actions Block -->
+            <div style="border-top: 2px dashed #e2e8f0; padding-top: 20px;">
+                <h4 style="margin: 0 0 12px 0; color: #0f172a;">Select Next Step Action Path:</h4>
+                <div style="display: grid; gap: 10px;">
+                    <button onclick="alert('Routing to Full CI PRO Interactive Presentation Module')" style="background: #2563eb; color: white; padding: 12px; border: none; border-radius: 6px; text-align: left; font-weight: 600; cursor: pointer;">Option 1: Pitch CI PRO Instantly (Takes 15 mins)</button>
+                    <button onclick="alert('Opening Calendar Booking Schedule Widget')" style="background: #10b981; color: white; padding: 12px; border: none; border-radius: 6px; text-align: left; font-weight: 600; cursor: pointer;">Option 2: Schedule Follow-up Meeting Module</button>
+                    <button onclick="alert('Redirecting to Income Protection Personal Needs Analysis Sheet')" style="background: #7c3aed; color: white; padding: 12px; border: none; border-radius: 6px; text-align: left; font-weight: 600; cursor: pointer;">Option 3: Run Personal Income Needs Analysis Sheet</button>
+                </div>
+            </div>
+
+            <button onclick="goToStep(3)" style="margin-top: 20px; background: #e2e8f0; color: #475569; padding: 10px 16px; border: none; border-radius: 6px; font-weight: 600; cursor: pointer;">Back to Calculator</button>
+        </div>
+
+    </div>
+</div>
+
+<!-- FRONTEND SYSTEM INTERACTION ROUTER ENGINE -->
+<script>
+    function goToStep(stepNumber) {
+        // Hide all active steps
+        const steps = document.querySelectorAll('.script-step');
+        steps.forEach(s => s.style.display = 'none');
+
+        // Unveil targeted step
+        document.getElementById(`step-${stepNumber}`).style.display = 'block';
+
+        // Update top informational status badge text
+        const badges = {
+            1: "Phase 1: Opening Hook",
+            2: "Phase 2: Questionnaire Q1",
+            3: "Phase 3: Premium Calculus Matrix",
+            4: "Phase 4: Closing & Action Route"
+        };
+        document.getElementById('step-badge').innerText = badges[stepNumber];
+    }
+
+    function calculateLifetimeTotal() {
+        const monthlyPremium = parseFloat(document.getElementById('calc-premium').value) || 0;
+        const currentAge = parseInt(document.getElementById('calc-age').value) || 0;
+        const targetAge = 80;
+
+        // Execute premium loop matrix bounds
+        const yearsPaying = Math.max(targetAge - currentAge, 0);
+        const annualPremium = monthlyPremium * 12;
+        const totalLifetimePremium = annualPremium * yearsPaying;
+
+        // Dynamic element text node insertion replacement
+        document.getElementById('lifetime-payout-total').innerText = `RM ${totalLifetimePremium.toLocaleString()}`;
+        document.getElementById('calc-script-helper').innerText = `That represents paying premium streams over a span of ${yearsPaying} years!`;
+        document.getElementById('txt-total-replace').innerText = totalLifetimePremium.toLocaleString();
+    }
+
+    // Run baseline math configuration check on bootstrap parsing
+    calculateLifetimeTotal();
+</script>
+
 </body>
 </html>
