@@ -3,276 +3,357 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>CI PRO - Script Trainer & Assistant</title>
-</head>
-<body style="background: #f8fafc; font-family: system-ui, -apple-system, sans-serif; margin: 0; padding: 20px;">
-
-<div style="max-width: 1200px; margin: 0 auto;">
-
-    <!-- Control Dashboard Header -->
-    <div style="background: #ffffff; border: 1px solid #e2e8f0; border-radius: 12px; padding: 20px; margin-bottom: 20px; box-shadow: 0 1px 3px rgba(0,0,0,0.05); display: flex; justify-content: space-between; align-items: center;">
-        <div>
-            <h1 style="margin: 0; font-size: 1.3rem; font-weight: 700; color: #0f172a;">CI PRO Interactive Script Dashboard</h1>
-            <p style="margin: 2px 0 0 0; font-size: 0.85rem; color: #64748b;">Complete Trainer Handbook & Live Consultation Flow</p>
-        </div>
-        <div style="display: flex; gap: 10px; align-items: center;">
-            <span style="font-size: 0.8rem; font-weight: 700; color: #475569; background: #f1f5f9; padding: 6px 12px; border-radius: 20px;" id="current-phase-badge">PAGE 1: OPENING</span>
-        </div>
-    </div>
-
-    <!-- Main Workspace Layout Matrix Grid -->
-    <div style="display: grid; grid-template-columns: 320px 1fr; gap: 24px; align-items: start;">
-        
-        <!-- SIDEBAR: VERBATIM HANDBOOK TRAINING GUIDE -->
-        <div style="background: #ffffff; border: 1px solid #e2e8f0; border-radius: 12px; padding: 20px; box-shadow: 0 1px 3px rgba(0,0,0,0.05); max-height: 80vh; overflow-y: auto;">
-            <h3 style="margin-top: 0; font-size: 0.85rem; color: #1e3a8a; text-transform: uppercase; letter-spacing: 0.05em; border-bottom: 2px solid #f1f5f9; padding-bottom: 8px; margin-bottom: 12px;">📚 Verbatim Handbook Navigation</h3>
-            
-            <div style="display: flex; flex-direction: column; gap: 8px;" id="handbook-menu">
-                <button onclick="jumpToPage(1)" id="nav-p1" style="text-align: left; padding: 10px; border: none; border-radius: 6px; font-size: 0.85rem; font-weight: 600; cursor: pointer; background: #eff6ff; color: #1e40af;">Page 1-2: The Sahara Hook</button>
-                <button onclick="jumpToPage(3)" id="nav-p3" style="text-align: left; padding: 10px; border: none; border-radius: 6px; font-size: 0.85rem; font-weight: 600; cursor: pointer; background: transparent; color: #475569;">Page 3: Q1 Medical Card Options</button>
-                <button onclick="jumpToPage(4)" id="nav-p4" style="text-align: left; padding: 10px; border: none; border-radius: 6px; font-size: 0.85rem; font-weight: 600; cursor: pointer; background: transparent; color: #475569;">Page 4-5: Q2 Premium Math</button>
-                <button onclick="jumpToPage(6)" id="nav-p6" style="text-align: left; padding: 10px; border: none; border-radius: 6px; font-size: 0.85rem; font-weight: 600; cursor: pointer; background: transparent; color: #475569;">Page 6: Minor vs Major Claims</button>
-                <button onclick="jumpToPage(7)" id="nav-p7" style="text-align: left; padding: 10px; border: none; border-radius: 6px; font-size: 0.85rem; font-weight: 600; cursor: pointer; background: transparent; color: #475569;">Page 7-8: Trivia & Routing</button>
-            </div>
-
-            <div style="margin-top: 20px; background: #f8fafc; padding: 12px; border-radius: 6px; border: 1px dashed #cbd5e1;">
-                <strong style="font-size: 0.8rem; color: #334155; display: block; margin-bottom: 4px;">💡 Coach Insight:</strong>
-                <p style="margin: 0; font-size: 0.75rem; color: #64748b; line-height: 1.4;">Follow the dialogue scripts verbatim to correctly structure client perception loops before discussing closing parameters.</p>
-            </div>
-        </div>
-
-        <!-- MAIN LAYOUT DISPLAY MODULE AREA -->
-        <div style="background: #ffffff; border: 1px solid #e2e8f0; border-radius: 12px; padding: 30px; box-shadow: 0 4px 6px -1px rgba(0,0,0,0.05);">
-            
-            <!-- PAGE 1 & 2: SAHARA DESERT HOOK -->
-            <div id="page-block-1" class="page-container">
-                <h2 style="margin-top: 0; color: #0f172a; font-size: 1.2rem; margin-bottom: 16px;">Opening Loop: Rebuilding the Path of Our Dream[cite: 1]</h2>
-                
-                <div style="display: flex; flex-direction: column; gap: 12px;">
-                    <div style="background: #f1f5f9; padding: 14px; border-left: 4px solid #3b82f6; border-radius: 4px;">
-                        <strong style="color: #2563eb; font-size: 0.8rem; display: block; margin-bottom: 4px;">ME[cite: 1]</strong>
-                        <p style="margin: 0; font-size: 0.95rem; color: #1e293b; font-style: italic;">"Our perception determines our view of something and the subsequent actions, doesn't it?"[cite: 1]</p>
-                    </div>
-                    <div style="background: #fafafa; padding: 10px 14px; border-radius: 4px; border: 1px solid #f1f5f9; font-size: 0.9rem; color: #64748b;">
-                        <strong>HE/SHE[cite: 1]:</strong> "What do you mean?"[cite: 1]
-                    </div>
-                    <div style="background: #f1f5f9; padding: 14px; border-left: 4px solid #3b82f6; border-radius: 4px;">
-                        <strong style="color: #2563eb; font-size: 0.8rem; display: block; margin-bottom: 4px;">ME[cite: 1]</strong>
-                        <p style="margin: 0; font-size: 0.95rem; color: #1e293b; font-style: italic;">"For example, if someone asks us: 'Standing in the middle of Sahara Desert, can you describe the temperature you feel on the desert?'"[cite: 1]</p>
-                    </div>
-                    <div style="background: #fafafa; padding: 10px 14px; border-radius: 4px; border: 1px solid #f1f5f9; font-size: 0.9rem; color: #64748b;">
-                        <strong>HE/SHE[cite: 1]:</strong> "It should be very hot, even hotter than Malaysia!"[cite: 1]
-                    </div>
-                    <div style="background: #f1f5f9; padding: 14px; border-left: 4px solid #3b82f6; border-radius: 4px;">
-                        <strong style="color: #2563eb; font-size: 0.8rem; display: block; margin-bottom: 4px;">ME[cite: 1]</strong>
-                        <p style="margin: 0; font-size: 0.95rem; color: #1e293b; font-style: italic;">"Yes, in our impression, the desert is extremely hot and desolate. We probably won't say the desert is cold, right? Actually, in the desert at night, the temperature can drop to 0 degrees!"[cite: 1]</p>
-                    </div>
-                    <div style="background: #f1f5f9; padding: 14px; border-left: 4px solid #3b82f6; border-radius: 4px;">
-                        <strong style="color: #2563eb; font-size: 0.8rem; display: block; margin-bottom: 4px;">ME (CONTINUED...)[cite: 1]</strong>
-                        <p style="margin: 0; font-size: 0.95rem; color: #1e293b; line-height: 1.5;">"This is how our perception shapes our views on things and subsequently influences our actions[cite: 1]. Despite widespread and increasingly early onset of critical illnesses, we still harbour significant blind spots in our awareness of critical illness risk[cite: 1]. Therefore, we have introduced CI PRO to help identify these blind spots[cite: 1]. Actually, the questionnaire in my hand allows a simple and easy understanding of our perception. It can be completed quickly, in approximately 5-10 minutes."[cite: 1]</p>
-                    </div>
-                </div>
-
-                <button onclick="jumpToPage(3)" style="margin-top: 24px; width: 100%; background: #0f172a; color: white; padding: 12px; border: none; border-radius: 6px; font-weight: 600; cursor: pointer;">Advance to Page 3 Script →</button>
-            </div>
-
-            <!-- PAGE 3: QUESTION 1 -->
-            <div id="page-block-3" class="page-container" style="display: none;">
-                <h2 style="margin-top: 0; color: #0f172a; font-size: 1.2rem; margin-bottom: 16px;">Q1: Why do we buy a medical card?[cite: 1]</h2>
-                
-                <div style="background: #f1f5f9; padding: 14px; border-left: 4px solid #10b981; border-radius: 4px; margin-bottom: 16px;">
-                    <strong style="color: #059669; font-size: 0.8rem; display: block; margin-bottom: 4px;">ME[cite: 1]</strong>
-                    <p style="margin: 0; font-size: 0.95rem; color: #1e293b; font-style: italic;">"Thank you in advance. So, let's start by understanding 'The Real Reason we are buying Medical Card.'[cite: 1] I believe you already have a medical card policy on hand, right?[cite: 1] I'd like to ask, why do we want to buy a medical card? Here are three options:"[cite: 1]</p>
-                </div>
-
-                <!-- Simulation Interactive Checkbox Elements for Q1 Options -->
-                <div style="display: flex; flex-direction: column; gap: 10px; margin-bottom: 16px;">
-                    <label style="display: flex; align-items: center; gap: 10px; background: #f8fafc; padding: 12px; border: 1px solid #e2e8f0; border-radius: 6px; font-size: 0.9rem; color: #334155;">
-                        <input type="checkbox"> **1.** Worried about the high medical costs in private hospitals.[cite: 1]
-                    </label>
-                    <label style="display: flex; align-items: center; gap: 10px; background: #f8fafc; padding: 12px; border: 1px solid #e2e8f0; border-radius: 6px; font-size: 0.9rem; color: #334155;">
-                        <input type="checkbox"> **2.** Not trusting the efficiency of government hospitals.[cite: 1]
-                    </label>
-                    <label style="display: flex; align-items: center; gap: 10px; background: #f8fafc; padding: 12px; border: 1px solid #e2e8f0; border-radius: 6px; font-size: 0.9rem; color: #334155;">
-                        <input type="checkbox"> **3.** Do not wish to burden our family.[cite: 1]
-                    </label>
-                </div>
-
-                <div style="background: #f1f5f9; padding: 14px; border-left: 4px solid #10b981; border-radius: 4px;">
-                    <strong style="color: #059669; font-size: 0.8rem; display: block; margin-bottom: 4px;">ME TRANSITION BRACKET[cite: 1]</strong>
-                    <p style="margin: 0; font-size: 0.95rem; color: #1e293b; font-style: italic;">"Alright. I believe these were the initial intentions of all of us when we decided to purchase the medical card policy."[cite: 1]</p>
-                </div>
-
-                <div style="display: flex; gap: 12px; margin-top: 24px;">
-                    <button onclick="jumpToPage(1)" style="flex: 1; background: #e2e8f0; color: #475569; padding: 12px; border: none; border-radius: 6px; font-weight: 600; cursor: pointer;">Back</button>
-                    <button onclick="jumpToPage(4)" style="flex: 2; background: #0f172a; color: white; padding: 12px; border: none; border-radius: 6px; font-weight: 600; cursor: pointer;">Advance to Q2 Calculator Script →</button>
-                </div>
-            </div>
-
-            <!-- PAGE 4 & 5: CALCULATOR EXPOSURE STEP -->
-            <div id="page-block-4" class="page-container" style="display: none;">
-                <h2 style="margin-top: 0; color: #0f172a; font-size: 1.2rem; margin-bottom: 12px;">Q2: Total Lifetime Premium Calculus[cite: 1]</h2>
-                
-                <div style="background: #f1f5f9; padding: 14px; border-left: 4px solid #d97706; border-radius: 4px; margin-bottom: 16px; font-size: 0.95rem; line-height: 1.5; color: #1e293b;">
-                    <strong>🗣️ HANDBOOK TEXT (ME)[cite: 1]:</strong><br>
-                    <span style="font-style: italic;">"Our medical card policy requires us to pay premiums until the end of our lives because as we age, our health risks increase[cite: 1]. Have you actually calculated how much, in total, we will be paying for the medical card policy since the day we purchased it?[cite: 1] This questionnaire can help us figure it out."[cite: 1]</span>
-                </div>
-
-                <!-- Simulation Embedded Live Math Inputs -->
-                <div style="background: #f8fafc; border: 1px solid #e2e8f0; padding: 20px; border-radius: 8px; display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 12px; margin-bottom: 16px;">
-                    <div>
-                        <label style="font-size: 0.75rem; color: #475569; display: block; margin-bottom: 4px;">Monthly Premium (RM)</label>
-                        <input type="number" id="h-premium" value="300" oninput="runHandbookMath()" style="width: 85%; padding: 8px; border: 1px solid #cbd5e1; border-radius: 6px;">
-                    </div>
-                    <div>
-                        <label style="font-size: 0.75rem; color: #475569; display: block; margin-bottom: 4px;">Current Age</label>
-                        <input type="number" id="h-age" value="35" oninput="runHandbookMath()" style="width: 85%; padding: 8px; border: 1px solid #cbd5e1; border-radius: 6px;">
-                    </div>
-                    <div>
-                        <label style="font-size: 0.75rem; color: #475569; display: block; margin-bottom: 4px;">Age Purchased</label>
-                        <input type="number" id="h-purchased" value="27" oninput="runHandbookMath()" style="width: 85%; padding: 8px; border: 1px solid #cbd5e1; border-radius: 6px;">
-                    </div>
-                </div>
-
-                <!-- Automatic Ledger Box Wrapper Display -->
-                <div style="background: #fffbeb; border: 1px solid #fef3c7; border-left: 4px solid #d97706; padding: 16px; border-radius: 6px; margin-bottom: 16px;">
-                    <div style="display: flex; justify-content: space-between; font-size: 0.85rem; color: #78350f; margin-bottom: 6px;">
-                        <span>Span of Payment Years (to Age 80):</span> <strong id="out-span">53 Years</strong>[cite: 1]
-                    </div>
-                    <div style="display: flex; justify-content: space-between; font-size: 1.1rem; color: #78350f; font-weight: 700;">
-                        <span>Total Premium Commitment:</span> <span id="out-total">RM 190,800</span>[cite: 1]
-                    </div>
-                </div>
-
-                <div style="background: #f1f5f9; padding: 14px; border-left: 4px solid #d97706; border-radius: 4px; font-size: 0.95rem;">
-                    <strong>🗣️ VERBATIM RESPONSE[cite: 1]:</strong><br>
-                    <span style="font-style: italic; color: #334155;">"From <span id="txt-start-age">27</span> to 80 is a span of <span id="txt-span-years">53</span> years[cite: 1]. Now, the total premium for <span id="txt-span-years-2">53</span> years is... RM<span id="txt-math-total">190,800</span>, right?"[cite: 1]</span>
-                </div>
-
-                <div style="display: flex; gap: 12px; margin-top: 24px;">
-                    <button onclick="jumpToPage(3)" style="flex: 1; background: #e2e8f0; color: #475569; padding: 12px; border: none; border-radius: 6px; font-weight: 600; cursor: pointer;">Back</button>
-                    <button onclick="jumpToPage(6)" style="flex: 2; background: #0f172a; color: white; padding: 12px; border: none; border-radius: 6px; font-weight: 600; cursor: pointer;">Advance to Page 6 Pivot →</button>
-                </div>
-            </div>
-
-            <!-- PAGE 6: THE CLAIMS PIVOT DIALOGUE -->
-            <div id="page-block-6" class="page-container" style="display: none;">
-                <h2 style="margin-top: 0; color: #0f172a; font-size: 1.2rem; margin-bottom: 16px;">Page 6: Let's Ask Ourselves[cite: 1]</h2>
-                
-                <div style="display: flex; flex-direction: column; gap: 12px;">
-                    <div style="background: #f1f5f9; padding: 14px; border-left: 4px solid #6366f1; border-radius: 4px;">
-                        <strong style="color: #4f46e5; font-size: 0.8rem; display: block; margin-bottom: 4px;">ME[cite: 1]</strong>
-                        <p style="margin: 0; font-size: 0.95rem; color: #1e293b; font-style: italic; line-height: 1.45;">"What we're genuinely most concerned about is which type of medical insurance/medical expense claim: 1. Minor Claims, around RM5,000 - RM10,000 or 2. Major Claims, around RM300,000 - RM500,000"[cite: 1]</p>
-                    </div>
-                    <div style="background: #fafafa; padding: 10px 14px; border-radius: 4px; font-size: 0.9rem; color: #475569;">
-                        <strong>HE/SHE[cite: 1]:</strong> "Certainly, it's the claim of RM300,000 - RM500,000 that is the most worrisome."[cite: 1]
-                    </div>
-                    <div style="background: #f1f5f9; padding: 14px; border-left: 4px solid #6366f1; border-radius: 4px;">
-                        <strong style="color: #4f46e5; font-size: 0.8rem; display: block; margin-bottom: 4px;">ME (THE REVELATION PIVOT)[cite: 1]</strong>
-                        <p style="margin: 0; font-size: 0.95rem; color: #1e293b; line-height: 1.5;">"Maybe it's not that we can't afford the RM300,000 - RM500,000, but rather, in the event of a health emergency requiring immediate hospitalization, we might not be able to gather such a significant amount of cash in a short time. So, we are willing to continue paying premiums, right?"[cite: 1]</p>
-                    </div>
-                </div>
-
-                <div style="display: flex; gap: 12px; margin-top: 24px;">
-                    <button onclick="jumpToPage(4)" style="flex: 1; background: #e2e8f0; color: #475569; padding: 12px; border: none; border-radius: 6px; font-weight: 600; cursor: pointer;">Back</button>
-                    <button onclick="jumpToPage(7)" style="flex: 2; background: #0f172a; color: white; padding: 12px; border: none; border-radius: 6px; font-weight: 600; cursor: pointer;">Advance to Trivia Section →</button>
-                </div>
-            </div>
-
-            <!-- PAGE 7 & 8: TRIVIA EVALUATION MATRIX -->
-            <div id="page-block-7" class="page-container" style="display: none;">
-                <h2 style="margin-top: 0; color: #0f172a; font-size: 1.2rem; margin-bottom: 16px;">Page 7-8: Trivia & Next Steps[cite: 1]</h2>
-                
-                <div style="background: #f1f5f9; padding: 14px; border-left: 4px solid #7c3aed; border-radius: 4px; margin-bottom: 16px; font-size: 0.95rem;">
-                    <strong>🗣️ ME[cite: 1]:</strong> <span style="font-style: italic; color: #334155;">"A Major claim is actually related to 'treatment for critical illnesses,' such as cancer treatment. Okay, now we're moving on to the 'Medical Card Trivia' questionnaire."[cite: 1]</span>
-                </div>
-
-                <div style="background: #fafafa; border: 1px solid #e2e8f0; padding: 16px; border-radius: 8px; margin-bottom: 20px; display: flex; flex-direction: column; gap: 12px;">
-                    <div>
-                        <strong style="font-size: 0.85rem; color: #0f172a; display: block; margin-bottom: 4px;">Trivia Q1[cite: 1]</strong>
-                        <p style="margin: 0 0 6px 0; font-size: 0.9rem; color: #475569;">"When a critical illness strikes, can a Medical Card cover all medical expenses?"[cite: 1]</p>
-                        <span style="font-size: 0.75rem; font-weight: 700; color: #6d28d9; background: #f3e8ff; padding: 2px 6px; border-radius: 4px;">Options: Yes | No | Not Sure</span>[cite: 1]
-                    </div>
-                    <hr style="border:0; border-top: 1px solid #e2e8f0;">
-                    <div>
-                        <strong style="font-size: 0.85rem; color: #0f172a; display: block; margin-bottom: 4px;">Trivia Q2[cite: 1]</strong>
-                        <p style="margin: 0 0 6px 0; font-size: 0.9rem; color: #475569;">"Medical card and critical illnesses insurance, are they the same thing?"[cite: 1]</p>
-                        <span style="font-size: 0.75rem; font-weight: 700; color: #6d28d9; background: #f3e8ff; padding: 2px 6px; border-radius: 4px;">Options: Yes | No | Not Sure</span>[cite: 1]
-                    </div>
-                </div>
-
-                <!-- Strategic Next Steps Execution Container Matrix -->
-                <div style="background: #f8fafc; border: 1px solid #cbd5e1; border-radius: 8px; padding: 20px;">
-                    <strong style="display: block; font-size: 0.9rem; color: #0f172a; margin-bottom: 12px;">🎯 Page 8 Next Step Options Router[cite: 1]</strong>
-                    <div style="display: flex; flex-direction: column; gap: 10px;">
-                        <button onclick="alert('Routing Action Path 1')" style="background: #2563eb; color: white; border: none; padding: 10px 14px; border-radius: 6px; text-align: left; font-size: 0.85rem; font-weight: 600; cursor: pointer;">Option 1: Pitch CI PRO immediately (Request 15 mins now)[cite: 1]</button>
-                        <button onclick="alert('Routing Action Path 2')" style="background: #10b981; color: white; border: none; padding: 10px 14px; border-radius: 6px; text-align: left; font-size: 0.85rem; font-weight: 600; cursor: pointer;">Option 2: Schedule a meeting to discuss further on "X" day[cite: 1]</button>
-                        <button onclick="alert('Routing Action Path 3')" style="background: #7c3aed; color: white; border: none; padding: 10px 14px; border-radius: 6px; text-align: left; font-size: 0.85rem; font-weight: 600; cursor: pointer;">Option 3: Pivot to Family Income Support Needs Analysis sheet[cite: 1]</button>
-                    </div>
-                </div>
-            </div>
-
-        </div>
-    </div>
-</div>
-
-<!-- COMPREHENSIVE INTERACTION NAV ENGINE -->
-<script>
-    function jumpToPage(pageNum) {
-        // Hide all active script display page containers
-        const containers = document.querySelectorAll('.page-container');
-        containers.forEach(c => c.style.display = 'none');
-
-        // Unveil the targeted block layout container
-        document.getElementById(`page-block-${pageNum}`).style.display = 'block';
-
-        // Manage sidebar active list styling attributes smoothly
-        const menuButtons = document.querySelectorAll('#handbook-menu button');
-        menuButtons.forEach(btn => {
-            if (btn.id === `nav-p${pageNum}`) {
-                btn.style.background = "#eff6ff";
-                btn.style.color = "#1e40af";
-            } else {
-                btn.style.background = "transparent";
-                btn.style.color = "#475569";
+    <title>CI PRO - Interactive Sales Script & Trainer</title>
+    <!-- Links directly to your cipro.my Apple-Theme Style classes -->
+    <link rel="stylesheet" href="style.css">
+    <style>
+        /* Specific workflow helper classes blending perfectly with your theme */
+        .workspace-grid {
+            display: grid;
+            grid-template-columns: 280px 1fr;
+            gap: 24px;
+            margin-top: 80px; /* Sits cleanly below fixed 48px navbar */
+            align-items: start;
+        }
+        .sidebar-menu {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+        .sidebar-btn {
+            text-align: left;
+            padding: 12px 16px;
+            background: transparent;
+            border: none;
+            border-radius: 10px;
+            font-size: 13px;
+            font-weight: 500;
+            color: #515154;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+        .sidebar-btn:hover {
+            background-color: #f5f5f7;
+            color: #1d1d1f;
+        }
+        .sidebar-btn.active {
+            background-color: #e8e8ed;
+            color: #0071e3;
+            font-weight: 600;
+        }
+        .speaker-badge {
+            display: inline-block;
+            font-size: 10px;
+            font-weight: 700;
+            letter-spacing: 0.06em;
+            padding: 3px 8px;
+            border-radius: 4px;
+            margin-bottom: 6px;
+            text-transform: uppercase;
+        }
+        .speaker-me {
+            background-color: rgba(0, 113, 227, 0.1);
+            color: #0071e3;
+        }
+        .speaker-client {
+            background-color: #f5f5f7;
+            color: #6e6e73;
+        }
+        .verbatim-quote {
+            font-size: 15px;
+            color: #1d1d1f;
+            line-height: 1.6;
+            margin: 0;
+        }
+        .coach-note {
+            font-size: 12px;
+            color: #bf4800;
+            font-weight: 500;
+            margin-top: 4px;
+        }
+        @media (max-width: 768px) {
+            .workspace-grid {
+                grid-template-columns: 1fr;
+                margin-top: 64px;
             }
-        });
+        }
+    </style>
+</head>
+<body>
 
-        // Sync header metadata tracking labels
-        const titles = {
-            1: "PAGE 1-2: THE SAHARA HOOK",
-            3: "PAGE 3: QUESTION 1",
-            4: "PAGE 4-5: Q2 MATHEMATICS",
-            6: "PAGE 6: LEVERAGE PIVOT",
-            7: "PAGE 7-8: CLOSING ROUTER"
-        };
-        document.getElementById('current-phase-badge').innerText = titles[pageNum];
-    }
+    <!-- Floating Blurred Navbar (Using your exact CSS spec) -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="logo">CI PRO <span class="apple-badge-new">SALES ASSISTANT</span></div>
+            <div class="nav-links">
+                <a href="#">Dashboard</a>
+                <a href="#" class="btn-signin">Agent Hub</a>
+            </div>
+        </div>
+    </nav>
 
-    function runHandbookMath() {
-        const premium = parseFloat(document.getElementById('h-premium').value) || 0;
-        const currentAge = parseInt(document.getElementById('h-age').value) || 0;
-        const purchasedAge = parseInt(document.getElementById('h-purchased').value) || 0;
-        const targetExpectancyValue = 80;
+    <!-- Main Container Layout Workspace -->
+    <main class="container">
+        <div class="workspace-grid">
+            
+            <!-- Left Navigation: Book Verbatim Page-by-Page Progress Menu -->
+            <div class="card" style="padding: 20px;">
+                <span class="widget-tagline">Handbook Sequences</span>
+                <h3 class="widget-title" style="font-size: 16px; margin-bottom: 16px;">Interactive Track</h3>
+                <div class="sidebar-menu" id="script-menu">
+                    <button onclick="switchScriptTab(1)" id="tab-p1" class="sidebar-btn active">Page 1-2: The Sahara Hook</button>
+                    <button onclick="switchScriptTab(3)" id="tab-p3" class="sidebar-btn">Page 3: Q1 Medical Reasons</button>
+                    <button onclick="switchScriptTab(4)" id="tab-p4" class="sidebar-btn">Page 4-5: Q2 Premium Math</button>
+                    <button onclick="switchScriptTab(6)" id="tab-p6" class="sidebar-btn">Page 6: Minor vs Major Pivot</button>
+                    <button onclick="switchScriptTab(7)" id="tab-p7" class="sidebar-btn">Page 7-8: Trivia & Closing</button>
+                </div>
+            </div>
 
-        // Perform calculation metrics matching Page 5 bounds
-        const totalPayingYears = Math.max(targetExpectancyValue - purchasedAge, 0);
-        const annualPremiumAccumulator = premium * 12;
-        const totalLifetimePremiumPaid = annualPremiumAccumulator * totalPayingYears;
+            <!-- Right Area: Main Live Assistant Display Module -->
+            <div id="script-content-workspace">
 
-        // Populate values directly across elements in the view layout wrapper
-        document.getElementById('out-span').innerText = `${totalPayingYears} Years`;
-        document.getElementById('out-total').innerText = `RM ${totalLifetimePremiumPaid.toLocaleString()}`;
-        
-        document.getElementById('txt-start-age').innerText = purchasedAge;
-        document.getElementById('txt-span-years').innerText = totalPayingYears;
-        document.getElementById('txt-span-years-2').innerText = totalPayingYears;
-        document.getElementById('txt-math-total').innerText = totalLifetimePremiumPaid.toLocaleString();
-    }
+                <!-- STEP 1 & 2: THE SAHARA PERCEPTION HOOK -->
+                <div id="step-block-1" class="script-step-view">
+                    <div class="card">
+                        <span class="badge">Rebuilding the path of our dream</span>
+                        <h2 style="font-size: 24px; font-weight: 700; letter-spacing: -0.02em; margin-bottom: 20px; color: #1d1d1f;">The Critical Illness Protection Script</h2>
+                        
+                        <div style="display: flex; flex-direction: column; gap: 16px;">
+                            <div style="border-left: 3px solid #0071e3; padding-left: 16px;">
+                                <span class="speaker-badge speaker-me">Me</span>
+                                <p class="verbatim-quote">"Our perception determines our view of something and the subsequent actions, doesn't it?"</p>[cite: 1]
+                            </div>
+                            <div style="border-left: 3px solid #86868b; padding-left: 16px;">
+                                <span class="speaker-badge speaker-client">He/She</span>[cite: 1]
+                                <p class="verbatim-quote" style="color: #6e6e73;">"What do you mean?"</p>[cite: 1]
+                            </div>
+                            <div style="border-left: 3px solid #0071e3; padding-left: 16px;">
+                                <span class="speaker-badge speaker-me">Me</span>[cite: 1]
+                                <p class="verbatim-quote">"For example, if someone asks us: 'Standing in the middle of Sahara Desert, can you describe the temperature you feel on the desert?'"</p>[cite: 1]
+                            </div>
+                            <div style="border-left: 3px solid #86868b; padding-left: 16px;">
+                                <span class="speaker-badge speaker-client">He/She</span>[cite: 1]
+                                <p class="verbatim-quote" style="color: #6e6e73;">"It should be very hot, even hotter than Malaysia!"</p>[cite: 1]
+                            </div>
+                            <div style="border-left: 3px solid #0071e3; padding-left: 16px;">
+                                <span class="speaker-badge speaker-me">Me</span>[cite: 1]
+                                <p class="verbatim-quote">"Yes, in our impression, the desert is extremely hot and desolate. We probably won't say the desert is cold, right? Actually, in the desert at night, the temperature can drop to 0 degrees!"</p>[cite: 1]
+                            </div>
+                            <div style="border-left: 3px solid #0071e3; padding-left: 16px;">
+                                <span class="speaker-badge speaker-me">Me (The Core Transition)</span>[cite: 1]
+                                <p class="verbatim-quote">"This is how our perception shapes our views on things and subsequently influences our actions[cite: 1]. Despite widespread and increasingly early onset of critical illnesses, we still harbour significant blind spots in our awareness of critical illness risk[cite: 1]. Therefore, we have introduced CI PRO to help identify these blind spots in our understanding of critical illnesses insurance[cite: 1]. This is something I hope to share with every friend around me."[cite: 1]</p>
+                            </div>
+                            <div style="border-left: 3px solid #0071e3; padding-left: 16px;">
+                                <span class="speaker-badge speaker-me">Me (Call to Action)</span>[cite: 1]
+                                <p class="verbatim-quote">"Actually, the questionnaire in my hand allows a simple and easy understanding of our perception of the protection we have[cite: 1]. It can be completed quickly, in approximately 5-10 minutes."[cite: 1]</p>
+                            </div>
+                        </div>
+                        <button onclick="switchScriptTab(3)" class="btn-primary" style="width:100%; text-align:center;">Client Agreed: Go to Q1 Options →</button>
+                    </div>
+                </div>
 
-    // Initialize core mathematics variables on parse load execution
-    runHandbookMath();
-</script>
+                <!-- STEP 3: QUESTION 1 -->
+                <div id="step-block-3" class="script-step-view" style="display: none;">
+                    <div class="card">
+                        <span class="widget-tagline">Perception Diagnostic</span>
+                        <h2 style="font-size: 22px; font-weight: 700; margin-bottom: 16px;">Q1: Why do we buy a medical card?</h2>[cite: 1]
+                        
+                        <div style="border-left: 3px solid #0071e3; padding-left: 16px; margin-bottom: 20px;">
+                            <span class="speaker-badge speaker-me">Me</span>[cite: 1]
+                            <p class="verbatim-quote">"Thank you in advance. So, let's start by understanding 'The Real Reason we are buying Medical Card.'[cite: 1] I believe you already have a medical card policy on hand, right? I'd like to ask, why do we want to buy a medical card? Here are three options:"[cite: 1]</p>
+                        </div>
 
+                        <!-- User CSS .form-group structure applied here -->
+                        <div style="margin: 24px 0; display:flex; flex-direction:column; gap:12px;">
+                            <label style="display:flex; align-items:center; gap:12px; background:#f5f5f7; padding:14px; border-radius:10px; cursor:pointer; font-size:14px; font-weight:500;">
+                                <input type="checkbox" style="width:auto; transform:scale(1.1);"> 1. Worried about high medical costs in private hospitals.[cite: 1]
+                            </label>
+                            <label style="display:flex; align-items:center; gap:12px; background:#f5f5f7; padding:14px; border-radius:10px; cursor:pointer; font-size:14px; font-weight:500;">
+                                <input type="checkbox" style="width:auto; transform:scale(1.1);"> 2. Not trusting the efficiency of government hospitals.[cite: 1]
+                            </label>
+                            <label style="display:flex; align-items:center; gap:12px; background:#f5f5f7; padding:14px; border-radius:10px; cursor:pointer; font-size:14px; font-weight:500;">
+                                <input type="checkbox" style="width:auto; transform:scale(1.1);"> 3. Do not wish to burden our family.[cite: 1]
+                            </label>
+                        </div>
+
+                        <div style="border-left: 3px solid #0071e3; padding-left: 16px; margin-top: 20px;">
+                            <span class="speaker-badge speaker-me">Me (Transition)</span>[cite: 1]
+                            <p class="verbatim-quote">"Alright. I believe these were the initial intentions of all of us when we decided to purchase the medical card policy."</p>[cite: 1]
+                        </div>
+
+                        <div style="display:flex; gap:12px; margin-top:24px;">
+                            <button onclick="switchScriptTab(1)" class="btn-submit" style="background-color:#e8e8ed; color:#1d1d1f; width:auto; padding:12px 24px;">Back</button>
+                            <button onclick="switchScriptTab(4)" class="btn-primary" style="margin-top:0; flex-grow:1; text-align:center;">Go to Q2 Math Generator →</button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- STEP 4 & 5: CALCULATOR EXPOSURE -->
+                <div id="step-block-4" class="script-step-view" style="display: none;">
+                    <div class="card">
+                        <span class="widget-tagline">Mathematical Verification</span>
+                        <h2 style="font-size: 22px; font-weight: 700; margin-bottom: 12px;">Q2: Total Medical Card Premium Premium Exposure</h2>[cite: 1]
+                        
+                        <div style="border-left: 3px solid #0071e3; padding-left: 16px; margin-bottom: 20px;">
+                            <span class="speaker-badge speaker-me">Me</span>[cite: 1]
+                            <p class="verbatim-quote">"Our medical card policy requires us to pay premiums until the end of our lives because as we age, our health risks increase, making medical insurance even more crucial, right?[cite: 1] Have you actually calculated how much, in total, we will be paying for the medical card policy since the day we purchased it?"[cite: 1]</p>
+                        </div>
+
+                        <!-- Embedded Interactive Widget Structure using Form Controls -->
+                        <div style="background:#f5f5f7; padding:20px; border-radius:14px; display:grid; grid-template-columns:1fr 1fr; gap:16px; margin-bottom:20px;">
+                            <div class="form-group" style="margin-bottom:0;">
+                                <label>Monthly Premium (RM)</label>
+                                <input type="number" id="apple-calc-premium" value="300" oninput="runAppleThemeMath()">
+                            </div>
+                            <div class="form-group" style="margin-bottom:0;">
+                                <label>Age Policy Was Purchased</label>
+                                <input type="number" id="apple-calc-start-age" value="27" oninput="runAppleThemeMath()">
+                            </div>
+                        </div>
+
+                        <!-- Live Digital Ledger Display Block -->
+                        <div class="security-box" style="margin-bottom: 20px; background:#fffbf0; border-left-color: #0071e3;">
+                            <div style="display:flex; justify-content:space-between; margin-bottom:6px; font-size:13px;">
+                                <span>Years layout spectrum active (To age 80 guide):</span> <strong id="lbl-years" style="color:#1d1d1f;">53 Years</strong>[cite: 1]
+                            </div>
+                            <div style="display:flex; justify-content:space-between; align-items:center; font-size:16px; font-weight:600; color:#1d1d1f;">
+                                <span>Total Committed Capital Output:</span>
+                                <span id="lbl-total-payout" style="font-size:26px; font-weight:700; color:#0071e3;">RM 190,800</span>[cite: 1]
+                            </div>
+                        </div>
+
+                        <div style="border-left: 3px solid #0071e3; padding-left: 16px;">
+                            <span class="speaker-badge speaker-me">Me (Read Verbatim with calculated values)</span>[cite: 1]
+                            <p class="verbatim-quote" style="font-weight: 500;">
+                                "So, you purchased it at the age of <span id="v-start" style="color:#0071e3; font-weight:700;">27</span>[cite: 1]. From <span id="v-start-2" style="color:#0071e3; font-weight:700;">27</span> to 80 is a span of <span id="v-span" style="color:#0071e3; font-weight:700;">53</span> years[cite: 1]. Now, the total premium for <span id="v-span-2" style="color:#0071e3; font-weight:700;">53</span> years is... <span id="v-total" style="color:#0071e3; font-weight:700;">RM 190,800</span>, right?"[cite: 1]
+                            </p>
+                        </div>
+
+                        <div style="display:flex; gap:12px; margin-top:24px;">
+                            <button onclick="switchScriptTab(3)" class="btn-submit" style="background-color:#e8e8ed; color:#1d1d1f; width:auto; padding:12px 24px;">Back</button>
+                            <button onclick="switchScriptTab(6)" class="btn-primary" style="margin-top:0; flex-grow:1; text-align:center;">Go to Page 6 Concept Pivot →</button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- STEP 6: MINOR VS MAJOR PIVOT -->
+                <div id="step-block-6" class="script-step-view" style="display: none;">
+                    <div class="card">
+                        <span class="badge" style="color:#0071e3;">Let's Ask Ourselves</span>[cite: 1]
+                        <h2 style="font-size: 22px; font-weight: 700; margin-bottom: 16px;">The Strategic Choice Dilemma</h2>
+                        
+                        <div style="display: flex; flex-direction: column; gap: 16px;">
+                            <div style="border-left: 3px solid #0071e3; padding-left: 16px;">
+                                <span class="speaker-badge speaker-me">Me</span>[cite: 1]
+                                <p class="verbatim-quote">"Actually, in our lifetime, we are willing to pay a significant total premium for our medical card policy[cite: 1]. Just now, we calculated it to be <span class="calc-replace-total">RM 190,800</span>, and there's a high likelihood that we might consider upgrading our medical insurance if the opportunity arises[cite: 1]. What we're genuinely most concerned about is which type of medical insurance/medical expense claim:"[cite: 1]</p>
+                                <p class="verbatim-quote" style="margin-top: 8px; font-weight: 600;">"1. Minor Claims, around RM5,000 - RM10,000 OR 2. Major Claims, around RM300,000 - RM500,000"</p>[cite: 1]
+                            </div>
+                            <div style="border-left: 3px solid #86868b; padding-left: 16px;">
+                                <span class="speaker-badge speaker-client">He/She</span>[cite: 1]
+                                <p class="verbatim-quote" style="color: #6e6e73;">"Certainly, it's the claim of RM300,000 - RM500,000 that is the most worrisome."</p>[cite: 1]
+                            </div>
+                            <div style="border-left: 3px solid #0071e3; padding-left: 16px;">
+                                <span class="speaker-badge speaker-me">Me (The Insight Realization Pivot)</span>[cite: 1]
+                                <p class="verbatim-quote">"Maybe it's not that we can't afford the RM300,000 - RM500,000, but rather, in the event of a health emergency requiring immediate hospitalization, we might not be able to gather such a significant amount of cash in a short time[cite: 1]. So, we are willing to continue paying premiums, right?"</p>[cite: 1]
+                            </div>
+                        </div>
+
+                        <div style="display:flex; gap:12px; margin-top:24px;">
+                            <button onclick="switchScriptTab(4)" class="btn-submit" style="background-color:#e8e8ed; color:#1d1d1f; width:auto; padding:12px 24px;">Back</button>
+                            <button onclick="switchScriptTab(7)" class="btn-primary" style="margin-top:0; flex-grow:1; text-align:center;">Go to Trivia Assessment →</button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- STEP 7 & 8: TRIVIA CHALLENGE PANEL -->
+                <div id="step-block-7" class="script-step-view" style="display: none;">
+                    <div class="card">
+                        <span class="widget-tagline">Medical Card Trivia (Q1 & Q2)</span>[cite: 1]
+                        <h2 style="font-size: 22px; font-weight: 700; margin-bottom: 16px;">The Final Blindspot Revelation</h2>
+                        
+                        <div style="display: flex; flex-direction: column; gap: 14px; margin-bottom: 24px;">
+                            <div style="border-left: 3px solid #0071e3; padding-left: 16px;">
+                                <span class="speaker-badge speaker-me">Me</span>[cite: 1]
+                                <p class="verbatim-quote">"A Major claim is actually related to 'treatment for critical illnesses,' such as cancer treatment[cite: 1]. Okay, now we're moving on to the 'Medical Card Trivia' questionnaire.[cite: 1] Question 1: When a critical illness strikes, can Medical Card cover all medical expenses? Options: 'Yes', 'No', or 'Not sure'?"[cite: 1]</p>
+                                <div class="coach-note">⚠️ Note: Don't need to respond to his/her answer. Jump straight to the next line:</div>[cite: 1]
+                            </div>
+                            <div style="border-left: 3px solid #0071e3; padding-left: 16px;">
+                                <span class="speaker-badge speaker-me">Me</span>[cite: 1]
+                                <p class="verbatim-quote">"Alright, the last question. Medical card and critical illnesses insurance the same, are they the same? Options: 'Yes', 'No', or 'Not sure'."</p>[cite: 1]
+                                <div class="coach-note">⚠️ Note: Don't need to respond to his/her answer. Proceed to gratitude loop:</div>[cite: 1]
+                            </div>
+                            <div style="border-left: 3px solid #0071e3; padding-left: 16px;">
+                                <span class="speaker-badge speaker-me">Me</span>[cite: 1]
+                                <p class="verbatim-quote">"Thank you for being willing to cooperate and completing half of the questionnaire with me[cite: 1]. Actually, even though I have been in the life insurance industry for a few years, my understanding of the above questions is the same as yours."[cite: 1]</p>
+                            </div>
+                        </div>
+
+                        <!-- User CSS .card-featured Gradient block structure used for routing next steps -->
+                        <div class="card card-featured" style="transform:none; box-shadow:none;">
+                            <h3 style="font-size:16px; margin-bottom:6px;">Next Step Action Routing Dashboard</h3>[cite: 1]
+                            <p style="font-size:13px; margin-bottom:14px;">Select how to proceed with the agent workflow based on client availability parameters:</p>[cite: 1]
+                            <div style="display:flex; flex-direction:column; gap:10px;">
+                                <button onclick="alert('Proceeding directly into CI PRO Pitch Framework')" class="btn-submit" style="background:#ffffff; color:#0071e3; margin:0;">Option 1: Explore answer instantly via CI PRO (Request 15 mins now)</button>[cite: 1]
+                                <button onclick="alert('Opening Booking Modal')" class="btn-submit" style="background:transparent; border:1px solid #ffffff; color:#ffffff; margin:0;">Option 2: Schedule a meeting to discuss further on "X" day</button>[cite: 1]
+                                <button onclick="alert('Opening Personal Financial Income Support Needs Sheet')" class="btn-submit" style="background:transparent; border:1px solid #ffffff; color:#ffffff; margin:0;">Option 3: Turn to 'Family Income Support Needs' Analysis sheet</button>[cite: 1]
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </main>
+
+    <!-- AUTOMATION ROUTER CONTROLLER ENGINE -->
+    <script>
+        function switchScriptTab(pageNum) {
+            // Unveil targeted view state block layers
+            const steps = document.querySelectorAll('.script-step-view');
+            steps.forEach(s => s.style.display = 'none');
+            document.getElementById(`step-block-${pageNum}`).style.display = 'block';
+
+            // Sync menu links highlighting state parameters
+            const buttons = document.querySelectorAll('#script-menu button');
+            buttons.forEach(b => {
+                if(b.id === `tab-p${pageNum}`) {
+                    b.classList.add('active');
+                } else {
+                    b.classList.remove('active');
+                }
+            });
+            
+            // Auto scroll container up cleanly to maintain visibility context
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        function runAppleThemeMath() {
+            const premiumValue = parseFloat(document.getElementById('apple-calc-premium').value) || 0;
+            const purchasedAgeValue = parseInt(document.getElementById('apple-calc-start-age').value) || 0;
+            const absoluteMaxGuide = 80;
+
+            // Perform premium loops bounding metrics
+            const totalYears = Math.max(absoluteMaxGuide - purchasedAgeValue, 0);
+            const totalAccumulatedAmount = premiumValue * 12 * totalYears;
+
+            // Inject metrics directly inside structural element view nodes
+            document.getElementById('lbl-years').innerText = `${totalYears} Years`;
+            document.getElementById('lbl-total-payout').innerText = `RM ${totalAccumulatedAmount.toLocaleString()}`;
+            
+            // Sync read-aloud values verbatim across references inside step elements
+            document.getElementById('v-start').innerText = purchasedAgeValue;
+            document.getElementById('v-start-2').innerText = purchasedAgeValue;
+            document.getElementById('v-span').innerText = totalYears;
+            document.getElementById('v-span-2').innerText = totalYears;
+            document.getElementById('v-total').innerText = `RM ${totalAccumulatedAmount.toLocaleString()}`;
+            
+            // Update reference nodes inside separate page views seamlessly
+            const targetReplacements = document.querySelectorAll('.calc-replace-total');
+            targetReplacements.forEach(el => el.innerText = `RM ${totalAccumulatedAmount.toLocaleString()}`);
+        }
+
+        // Initialize math ledger baseline matrixes right on boot sequence evaluation
+        runAppleThemeMath();
+    </script>
 </body>
 </html>
