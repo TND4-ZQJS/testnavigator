@@ -279,6 +279,20 @@ body {
   .preview{background:#fff;border:1px solid #eee;border-radius:10px;padding:10px}
   .preview canvas{width:100%;height:auto;border-radius:8px}
 
+ /* ============================================================
+    PREMIUM iOS BACK NAVIGATION ENGINE (Optimized)
+   ============================================================ */
+.back-navigation-container {max-width: 940px;margin: 20px auto 0 auto;padding: 0 24px;display: flex;align-items: center;}
+a.back-link,
+a.back-link span {text-decoration: none !important;text-decoration-line: none !important;border-bottom: none !important;box-shadow: none !important;outline: none !important;}
+a.back-link {display: inline-flex;align-items: center;gap: 2px;color:#007aff; 
+            font-family: -apple-system, BlinkMacSystemFont, "SF Pro Text", "SF Pro Display", "Helvetica Neue", Arial, sans-serif;
+            font-size: 16px;font-weight: 400;letter-spacing: -0.3px;transition: opacity 0.15s ease;cursor: pointer;-webkit-user-select: none;user-select: none;}
+a.back-link:hover {opacity: 0.7;}
+a.back-link:active {opacity: 0.3;}
+a.back-link svg {margin-left: -6px;transform: translateY(0.5px);stroke: #007aff !important;fill: none; /* Ensures vector shapes don't accidentally bloat */}
+   
+
   /* Save indicator */
   #saveStatus{
     position:fixed; top:12px; right:12px; background:var(--accent); color:#fff;
@@ -312,10 +326,19 @@ body {
         </div>
     </header>
 
+<div class="back-navigation-container">
+    <a href="#" id="backToMainLink" class="back-link" aria-label="Go back to previous page" role="button">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <polyline points="15 18 9 12 15 6"></polyline>
+        </svg>
+        <span>Back</span>
+    </a>
+</div>    
+
 <main class="container">
 
       <section class="hero" style="padding-top: 0px; padding-bottom: 20px; text-align: left;">
-            <span class="badge">Amendment to Application</span>
+            <span class="badge">Request for Change of Customer Details and Payment Method</span>
         </section>
 
 <section class="section">
@@ -1372,6 +1395,22 @@ window.addEventListener("scroll", () => {
 function scrollToTop() {
   window.scrollTo({ top: 0, behavior: "smooth" });
 }
+
+// iOS-Style Back Navigation Interceptor
+const backToMainLink = document.getElementById("backToMainLink");
+if (backToMainLink) {
+    backToMainLink.addEventListener("click", function(e) {
+        e.preventDefault(); // Always intercept to control the navigation flow cleanly
+        
+        // If the browser has history of a previous page within your system, pop back to it natively
+        if (document.referrer && document.referrer.includes(window.location.hostname)) {
+            window.history.back();
+        } else {
+            // Secure Fallback: If they opened the form directly in a new tab
+            window.location.href = "dashboard.html";
+        }
+    });
+}    
 </script>
     
      <!-- Interactive Script for Mobile Navigation Layout Toggle -->
