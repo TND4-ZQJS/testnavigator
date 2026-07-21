@@ -11,7 +11,11 @@
 .arrival-carousel-container {
     position: relative;
     /* Your Mint-to-Sky Horizon Gradient */
-    background: linear-gradient(90deg, #e3ffe7 0%, #d9e7ff 100%);
+    background: 
+        radial-gradient(at 0% 0%, #e3ffe7 0px, transparent 50%),
+        radial-gradient(at 100% 100%, #d9e7ff 0px, transparent 50%),
+        radial-gradient(at 80% 10%, #e0f4f3 0px, transparent 50%);
+    background-color: #f7faff;
     
     /* Subtle matching border */
     border: 1px solid rgba(0, 113, 227, 0.12);
