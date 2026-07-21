@@ -609,3 +609,121 @@ body.tray-active .tray-backdrop {
     .sub-digit {
         font-size: 14px;
     }
+
+
+            .new-arrival-banner {
+                position: relative;
+                background: linear-gradient(135deg, rgba(28, 28, 30, 0.8) 0%, rgba(18, 18, 20, 0.95) 100%);
+                border: 1px solid rgba(255, 255, 255, 0.12);
+                border-radius: 20px;
+                padding: 28px 32px;
+                margin-bottom: 36px;
+                backdrop-filter: blur(25px);
+                -webkit-backdrop-filter: blur(25px);
+                overflow: hidden;
+                display: flex;
+                align-items: center;
+                justify-content: space-between;
+                gap: 24px;
+                box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
+            }
+
+            /* Ambient Glow Effect */
+            .new-arrival-banner::before {
+                content: '';
+                position: absolute;
+                top: -50%;
+                left: -10%;
+                width: 300px;
+                height: 300px;
+                background: radial-gradient(circle, rgba(0, 113, 227, 0.2) 0%, rgba(0, 0, 0, 0) 70%);
+                pointer-events: none;
+            }
+
+            .arrival-body {
+                position: relative;
+                z-index: 2;
+                max-width: 680px;
+            }
+
+            .arrival-tag-row {
+                display: flex;
+                align-items: center;
+                gap: 10px;
+                margin-bottom: 12px;
+            }
+
+            .badge-new-arrival {
+                background: #0071e3;
+                color: #ffffff;
+                font-size: 11px;
+                font-weight: 700;
+                letter-spacing: 0.08em;
+                text-transform: uppercase;
+                padding: 4px 10px;
+                border-radius: 20px;
+                box-shadow: 0 2px 10px rgba(0, 113, 227, 0.4);
+            }
+
+            .arrival-meta {
+                font-size: 12px;
+                color: #8e8e93;
+                font-weight: 500;
+            }
+
+            .arrival-title {
+                font-size: 22px;
+                font-weight: 700;
+                color: #ffffff;
+                margin: 0 0 8px 0;
+                letter-spacing: -0.01em;
+            }
+
+            .arrival-description {
+                font-size: 14px;
+                color: #a1a1a6;
+                line-height: 1.5;
+                margin: 0;
+            }
+
+            .arrival-action {
+                position: relative;
+                z-index: 2;
+                flex-shrink: 0;
+            }
+
+            .btn-arrival {
+                display: inline-flex;
+                align-items: center;
+                gap: 8px;
+                background: #ffffff;
+                color: #000000;
+                font-weight: 600;
+                font-size: 13px;
+                padding: 12px 22px;
+                border-radius: 30px;
+                text-decoration: none;
+                transition: all 0.25s ease;
+            }
+
+            .btn-arrival:hover {
+                background: #e8e8ed;
+                transform: translateY(-2px);
+                box-shadow: 0 6px 20px rgba(255, 255, 255, 0.15);
+            }
+
+            @media (max-width: 768px) {
+                .new-arrival-banner {
+                    flex-direction: column;
+                    align-items: flex-start;
+                    padding: 24px;
+                }
+                .arrival-action {
+                    width: 100%;
+                    margin-top: 12px;
+                }
+                .btn-arrival {
+                    width: 100%;
+                    justify-content: center;
+                }
+            }
