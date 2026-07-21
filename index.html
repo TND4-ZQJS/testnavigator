@@ -263,6 +263,51 @@
             const randomIndex = Math.floor(Math.random() * greetingList.length);
             document.getElementById("welcome-heading").textContent = greetingList[randomIndex];
         });
+
+        <!-- Carousel Controller Logic -->
+    <script>
+        document.addEventListener("DOMContentLoaded", () => {
+            const track = document.getElementById("carouselTrack");
+            const slides = document.querySelectorAll(".carousel-slide");
+            const prevBtn = document.getElementById("prevSlideBtn");
+            const nextBtn = document.getElementById("nextSlideBtn");
+            const dots = document.querySelectorAll(".dot");
+
+            let currentIndex = 0;
+            const totalSlides = slides.length;
+
+            function updateCarousel(index) {
+                currentIndex = index;
+                // Move track
+                track.style.transform = `translateX(-${currentIndex * 100}%)`;
+
+                // Update Arrow States
+                prevBtn.disabled = currentIndex === 0;
+                nextBtn.disabled = currentIndex === totalSlides - 1;
+
+                // Update Dots
+                dots.forEach((dot, idx) => {
+                    dot.classList.toggle("active", idx === currentIndex);
+                });
+            }
+
+            prevBtn.addEventListener("click", () => {
+                if (currentIndex > 0) updateCarousel(currentIndex - 1);
+            });
+
+            nextBtn.addEventListener("click", () => {
+                if (currentIndex < totalSlides - 1) updateCarousel(currentIndex + 1);
+            });
+
+            dots.forEach(dot => {
+                dot.addEventListener("click", (e) => {
+                    const targetIndex = parseInt(e.target.getAttribute("data-index"));
+                    updateCarousel(targetIndex);
+                });
+            });
+        });
+    </script>
+
     </script>
     
 </body>
