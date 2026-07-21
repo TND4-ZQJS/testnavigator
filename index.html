@@ -31,22 +31,89 @@
             <p style="text-align: left; margin: 0; font-size: 16px;" class="subtitle">Select an operational module below to begin the amazing journey in CI Pro Universe</p>
         </section>
 
-                <section class="new-arrival-banner">
-            <div class="arrival-body">
-                <div class="arrival-tag-row">
-                    <span class="badge-new-arrival">New Arrival</span>
-                    <span class="arrival-meta">Release v2.4.0</span>
+  <section class="arrival-carousel-container">
+            <!-- Header Bar with Arrows -->
+            <div class="carousel-header-bar">
+                <div class="carousel-section-label">
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#0071e3" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg>
+                    New Arrivals & Updates
                 </div>
-                <h2 class="arrival-title">Dynamic Horizon Calculation Engine</h2>
-                <p class="arrival-description">
-                    The Capital Matrix has been upgraded with automated entry age alignment. All amortized leverage curves and retention yields now seamlessly map and anchor to Age 80 across all scenarios.
-                </p>
+                <div class="carousel-nav-controls">
+                    <button class="carousel-arrow-btn" id="prevSlideBtn" aria-label="Previous Slide" disabled>
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"></polyline></svg>
+                    </button>
+                    <button class="carousel-arrow-btn" id="nextSlideBtn" aria-label="Next Slide">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"></polyline></svg>
+                    </button>
+                </div>
             </div>
-            <div class="arrival-action">
-                <a href="./cipro-presentation" class="btn-arrival">
-                    Explore Feature
-                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"></path><path d="M12 5l7 7-7 7"></path></svg>
-                </a>
+
+            <!-- Slide Track -->
+            <div class="carousel-track-wrapper">
+                <div class="carousel-track" id="carouselTrack">
+                    
+                    <!-- Slide 1 -->
+                    <div class="carousel-slide">
+                        <div class="slide-body">
+                            <div class="slide-tag-row">
+                                <span class="badge-arrival">New Arrival</span>
+                                <span class="slide-meta">v2.4.0 • July 2026</span>
+                            </div>
+                            <h2 class="slide-title">Shanghai 2026 Countdown Engine</h2>
+                            <p class="slide-description">
+                                Live qualification tracker integrated directly onto your workspace dashboard. Accurately monitors remaining days, hours, and seconds to the Shanghai & Disneyland trip target.
+                            </p>
+                        </div>
+                        <a href="#shanghai-widget" class="btn-slide-action">
+                            View Countdown
+                            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"></path><path d="M12 5l7 7-7 7"></path></svg>
+                        </a>
+                    </div>
+
+                    <!-- Slide 2 -->
+                    <div class="carousel-slide">
+                        <div class="slide-body">
+                            <div class="slide-tag-row">
+                                <span class="badge-update">Update</span>
+                                <span class="slide-meta">v2.3.8 • Dynamic Horizon</span>
+                            </div>
+                            <h2 class="slide-title">Capital Matrix Age 80 Auto-Alignment</h2>
+                            <p class="slide-description">
+                                Analysis deck metrics now dynamically scale amortization windows based on the client's entry age, anchoring retention yields seamlessly to Age 80.
+                            </p>
+                        </div>
+                        <a href="./cipro-presentation" class="btn-slide-action">
+                            Launch Matrix
+                            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"></path><path d="M12 5l7 7-7 7"></path></svg>
+                        </a>
+                    </div>
+
+                    <!-- Slide 3 -->
+                    <div class="carousel-slide">
+                        <div class="slide-body">
+                            <div class="slide-tag-row">
+                                <span class="badge-arrival">New Arrival</span>
+                                <span class="slide-meta">v2.3.0 • Automation</span>
+                            </div>
+                            <h2 class="slide-title">Magic Filler Local Auto-Population</h2>
+                            <p class="slide-description">
+                                Enhanced smart form fields automatically remember and replicate client profiles across recurring insurance documents, cutting manual entry time in half.
+                            </p>
+                        </div>
+                        <a href="magicfiller.html" class="btn-slide-action">
+                            Open Filler
+                            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"></path><path d="M12 5l7 7-7 7"></path></svg>
+                        </a>
+                    </div>
+
+                </div>
+            </div>
+
+            <!-- Dots Indicator -->
+            <div class="carousel-dots" id="carouselDots">
+                <span class="dot active" data-index="0"></span>
+                <span class="dot" data-index="1"></span>
+                <span class="dot" data-index="2"></span>
             </div>
         </section>
 
