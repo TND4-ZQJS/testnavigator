@@ -10,14 +10,14 @@
 <style>
 .arrival-carousel-container {
     position: relative;
-    /* Initial mesh background */
+    /* Initial background mesh */
     background: 
         radial-gradient(at 0% 0%, #e3ffe7 0px, transparent 50%),
         radial-gradient(at 100% 100%, #d9e7ff 0px, transparent 50%),
         radial-gradient(at 80% 10%, #e0f4f3 0px, transparent 50%);
     background-color: #f7faff;
     
-    /* Extended 1.2s background morph for liquid smoothness */
+    /* Extended 1.2s liquid background morph */
     transition: background 1.2s cubic-bezier(0.19, 1, 0.22, 1);
     
     border: 1px solid rgba(0, 113, 227, 0.12);
@@ -93,11 +93,9 @@
     width: 100%;
 }
 
-/* --- SLOW & LIQUID MAGIC MOVE PHYSICS --- */
-
+/* --- TRACK PHYSICS --- */
 .carousel-track {
     display: flex;
-    /* Extended 1.2s curve gives elements time to breathe and settle */
     transition: transform 1.2s cubic-bezier(0.19, 1, 0.22, 1);
     will-change: transform;
 }
@@ -111,41 +109,95 @@
     gap: 24px;
     padding: 8px 0 16px 0;
 
-    /* Deep inactive state: Soft blur, dropped scale, nearly transparent */
+    /* Base Slide Frame Transition */
     opacity: 0;
-    transform: scale(0.88);
+    transform: scale(0.92);
     filter: blur(6px);
     will-change: transform, opacity, filter;
     transition: 
         transform 1.2s cubic-bezier(0.19, 1, 0.22, 1),
-        opacity 1.0s cubic-bezier(0.19, 1, 0.22, 1),
+        opacity 0.9s cubic-bezier(0.19, 1, 0.22, 1),
         filter 1.2s cubic-bezier(0.19, 1, 0.22, 1);
 }
 
-/* Active Slide State */
 .carousel-slide.active-slide {
     opacity: 1;
     transform: scale(1);
     filter: blur(0px);
 }
 
-/* Staggered Content Floating Layer */
-.slide-body {
-    max-width: 680px;
+/* =========================================================
+   ELEMENT-BY-ELEMENT MAGIC MOVE ANIMATIONS
+   ========================================================= */
+
+/* 1. Tag Row (Badges & Meta) */
+.slide-tag-row {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 10px;
+    
+    /* Outgoing / Inactive state: Drops slightly & fades */
     opacity: 0;
-    transform: translateX(45px);
+    transform: translateY(-12px);
+    will-change: transform, opacity;
     transition: 
-        transform 1.2s cubic-bezier(0.19, 1, 0.22, 1),
-        opacity 0.9s cubic-bezier(0.19, 1, 0.22, 1);
+        transform 1.0s cubic-bezier(0.19, 1, 0.22, 1),
+        opacity 0.7s ease;
 }
 
-.carousel-slide.active-slide .slide-body {
+.carousel-slide.active-slide .slide-tag-row {
     opacity: 1;
-    transform: translateX(0px);
-    /* Delayed entrance allows the track movement to feel weighted */
-    transition-delay: 0.12s;
+    transform: translateY(0px);
+    transition-delay: 0.06s; /* First element to land */
 }
 
+/* 2. Slide Title */
+.slide-title {
+    font-size: 22px;
+    font-weight: 600;
+    color: #0b1e36;
+    letter-spacing: -0.015em;
+    margin: 0 0 6px 0;
+    
+    /* Outgoing / Inactive state: Glides in from right with subtle scale down */
+    opacity: 0;
+    transform: translateX(35px) scale(0.96);
+    will-change: transform, opacity;
+    transition: 
+        transform 1.1s cubic-bezier(0.19, 1, 0.22, 1),
+        opacity 0.8s ease;
+}
+
+.carousel-slide.active-slide .slide-title {
+    opacity: 1;
+    transform: translateX(0px) scale(1);
+    transition-delay: 0.12s; /* Lands after tags */
+}
+
+/* 3. Slide Description */
+.slide-description {
+    font-size: 14px;
+    color: #2c4a6f;
+    line-height: 1.5;
+    margin: 0;
+    
+    /* Outgoing / Inactive state: Drifts up from bottom */
+    opacity: 0;
+    transform: translateY(16px);
+    will-change: transform, opacity;
+    transition: 
+        transform 1.1s cubic-bezier(0.19, 1, 0.22, 1),
+        opacity 0.8s ease;
+}
+
+.carousel-slide.active-slide .slide-description {
+    opacity: 1;
+    transform: translateY(0px);
+    transition-delay: 0.18s; /* Lands after title */
+}
+
+/* 4. Action Button */
 .btn-slide-action {
     display: inline-flex;
     align-items: center;
@@ -169,8 +221,10 @@
         0 4px 16px rgba(0, 80, 160, 0.08),
         inset 0 1px 1px rgba(255, 255, 255, 0.8);
 
+    /* Outgoing / Inactive state: Shrinks and floats from the right */
     opacity: 0;
-    transform: translateX(60px) scale(0.92);
+    transform: translateX(50px) scale(0.88);
+    will-change: transform, opacity;
     transition: 
         transform 1.2s cubic-bezier(0.19, 1, 0.22, 1),
         opacity 0.9s cubic-bezier(0.19, 1, 0.22, 1),
@@ -180,8 +234,7 @@
 .carousel-slide.active-slide .btn-slide-action {
     opacity: 1;
     transform: translateX(0px) scale(1);
-    /* Button lags slightly behind text to build layered depth */
-    transition-delay: 0.22s;
+    transition-delay: 0.26s; /* Final anchor element to land */
 }
 
 .btn-slide-action:hover {
@@ -201,11 +254,8 @@
 }
 
 /* Typography & Badges */
-.slide-tag-row {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    margin-bottom: 10px;
+.slide-body {
+    max-width: 680px;
 }
 
 .badge-arrival {
@@ -236,21 +286,6 @@
     font-size: 12px;
     font-weight: 600;
     color: #5c7b9c;
-}
-
-.slide-title {
-    font-size: 22px;
-    font-weight: 600;
-    color: #0b1e36;
-    letter-spacing: -0.015em;
-    margin: 0 0 6px 0;
-}
-
-.slide-description {
-    font-size: 14px;
-    color: #2c4a6f;
-    line-height: 1.5;
-    margin: 0;
 }
 
 /* Navigation Dots */
@@ -289,6 +324,7 @@
     }
 }
 </style>
+
 
 
 </head>
