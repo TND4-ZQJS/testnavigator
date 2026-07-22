@@ -493,49 +493,81 @@
 
     <!-- Carousel Logic Controller -->
     <script>
-        document.addEventListener("DOMContentLoaded", () => {
-            const track = document.getElementById("carouselTrack");
-            const slides = document.querySelectorAll(".carousel-slide");
-            const prevBtn = document.getElementById("prevSlideBtn");
-            const nextBtn = document.getElementById("nextSlideBtn");
-            const dots = document.querySelectorAll(".dot");
+document.addEventListener("DOMContentLoaded", () => {
+    const container = document.querySelector(".arrival-carousel-container");
+    const track = document.getElementById("carouselTrack");
+    const slides = document.querySelectorAll(".carousel-slide");
+    const prevBtn = document.getElementById("prevSlideBtn");
+    const nextBtn = document.getElementById("nextSlideBtn");
+    const dots = document.querySelectorAll(".dot");
 
-            if (!track || slides.length === 0) return;
+    if (!track || slides.length === 0) return;
 
-            let currentIndex = 0;
-            const totalSlides = slides.length;
+    let currentIndex = 0;
+    const totalSlides = slides.length;
 
-            function updateCarousel(index) {
-                currentIndex = index;
-                track.style.transform = `translateX(-${currentIndex * 100}%)`;
+    // Array of unique mesh gradients matching each slide index
+    const slideMeshGradients = [
+        // Slide 1: Mint-to-Sky Horizon (Original)
+        `radial-gradient(at 0% 0%, #e3ffe7 0px, transparent 50%),
+         radial-gradient(at 100% 100%, #d9e7ff 0px, transparent 50%),
+         radial-gradient(at 80% 10%, #e0f4f3 0px, transparent 50%) #f7faff`,
 
-                if (prevBtn) prevBtn.disabled = currentIndex === 0;
-                if (nextBtn) nextBtn.disabled = currentIndex === totalSlides - 1;
+        // Slide 2: Sunset Horizon Mesh
+        `radial-gradient(at 0% 0%, #fff3e0 0px, transparent 50%),
+         radial-gradient(at 100% 100%, #d9e7ff 0px, transparent 50%),
+         radial-gradient(at 20% 90%, #ffe0b2 0px, transparent 50%) #faf8ff`,
 
-                dots.forEach((dot, idx) => {
-                    dot.classList.toggle("active", idx === currentIndex);
-                });
-            }
+        // Slide 3: Lavender Dusk Mesh
+        `radial-gradient(at 0% 0%, #f3e5f5 0px, transparent 50%),
+         radial-gradient(at 100% 100%, #e8eaf6 0px, transparent 50%),
+         radial-gradient(at 90% 20%, #e1bee7 0px, transparent 50%) #f8f9ff`
+    ];
 
-            if (prevBtn) {
-                prevBtn.addEventListener("click", () => {
-                    if (currentIndex > 0) updateCarousel(currentIndex - 1);
-                });
-            }
+    function updateCarousel(index) {
+        currentIndex = index;
+        
+        // 1. Slide the track horizontally
+        track.style.transform = `translateX(-${currentIndex * 100}%)`;
 
-            if (nextBtn) {
-                nextBtn.addEventListener("click", () => {
-                    if (currentIndex < totalSlides - 1) updateCarousel(currentIndex + 1);
-                });
-            }
+        // 2. Cross-fade the container mesh gradient background
+        if (container && slideMeshGradients[currentIndex]) {
+            container.style.background = slideMeshGradients[currentIndex];
+        }
 
-            dots.forEach(dot => {
-                dot.addEventListener("click", (e) => {
-                    const targetIndex = parseInt(e.target.getAttribute("data-index"), 10);
-                    updateCarousel(targetIndex);
-                });
-            });
+        // 3. Toggle button state
+        if (prevBtn) prevBtn.disabled = currentIndex === 0;
+        if (nextBtn) nextBtn.disabled = currentIndex === totalSlides - 1;
+
+        // 4. Update dot indicators
+        dots.forEach((dot, idx) => {
+            dot.classList.toggle("active", idx === currentIndex);
         });
+    }
+
+    if (prevBtn) {
+        prevBtn.addEventListener("click", () => {
+            if (currentIndex > 0) updateCarousel(currentIndex - 1);
+        });
+    }
+
+    if (nextBtn) {
+        nextBtn.addEventListener("click", () => {
+            if (currentIndex < totalSlides - 1) updateCarousel(currentIndex + 1);
+        });
+    }
+
+    dots.forEach(dot => {
+        dot.addEventListener("click", (e) => {
+            const targetIndex = parseInt(e.target.getAttribute("data-index"), 10);
+            updateCarousel(targetIndex);
+        });
+    });
+
+    // Ensure the initial background is set correctly on load
+    updateCarousel(0);
+});
+
     </script>
     
 </body>
