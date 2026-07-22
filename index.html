@@ -542,22 +542,31 @@ document.addEventListener("DOMContentLoaded", () => {
          radial-gradient(at 90% 20%, #e1bee7 0px, transparent 50%) #f8f9ff`
     ];
 
-    function updateCarousel(index) {
-        currentIndex = index;
-        
-        track.style.transform = `translateX(-${currentIndex * 100}%)`;
+function updateCarousel(index) {
+    currentIndex = index;
+    
+    // 1. Move the track with Apple spring physics
+    track.style.transform = `translateX(-${currentIndex * 100}%)`;
 
-        if (container && slideMeshGradients[currentIndex]) {
-            container.style.background = slideMeshGradients[currentIndex];
-        }
-
-        if (prevBtn) prevBtn.disabled = currentIndex === 0;
-        if (nextBtn) nextBtn.disabled = currentIndex === totalSlides - 1;
-
-        dots.forEach((dot, idx) => {
-            dot.classList.toggle("active", idx === currentIndex);
-        });
+    // 2. Cross-fade the container background gradient
+    if (container && slideMeshGradients[currentIndex]) {
+        container.style.background = slideMeshGradients[currentIndex];
     }
+
+    // 3. Apply active state for Magic Move depth scaling
+    slides.forEach((slide, idx) => {
+        slide.classList.toggle("active-slide", idx === currentIndex);
+    });
+
+    // 4. Navigation states & dots
+    if (prevBtn) prevBtn.disabled = currentIndex === 0;
+    if (nextBtn) nextBtn.disabled = currentIndex === totalSlides - 1;
+
+    dots.forEach((dot, idx) => {
+        dot.classList.toggle("active", idx === currentIndex);
+    });
+}
+
 
     function nextSlide() {
         const targetIndex = (currentIndex + 1) % totalSlides;
