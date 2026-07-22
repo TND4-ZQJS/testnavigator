@@ -169,32 +169,53 @@
             margin: 0;
         }
 
-        .btn-slide-action {
-            display: inline-flex;
-            align-items: center;
-            gap: 8px;
-            background: #0066cc;
-            color: #ffffff;
-            font-weight: 500;
-            font-size: 13px;
-            padding: 9px 18px;
-            border-radius: 980px;
-            text-decoration: none;
-            flex-shrink: 0;
-            transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
-            box-shadow: 0 4px 12px rgba(0, 102, 204, 0.28));
-        }
+.btn-slide-action {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    padding: 10px 22px;
+    border-radius: 99px; /* Classic Apple pill shape */
+    font-size: 14px;
+    font-weight: 500;
+    letter-spacing: -0.01em;
+    text-decoration: none;
+    cursor: pointer;
+    
+    /* Transparent Frosted Glass Layer */
+    background: rgba(255, 255, 255, 0.45);
+    backdrop-filter: blur(16px) saturate(180%);
+    -webkit-backdrop-filter: blur(16px) saturate(180%);
+    
+    /* High contrast text & subtle glass highlight border */
+    color: #005bb5; /* Deep slate blue for contrast on light pastels */
+    border: 1px solid rgba(255, 255, 255, 0.65);
+    box-shadow: 
+        0 4px 16px rgba(0, 80, 160, 0.08),
+        inset 0 1px 1px rgba(255, 255, 255, 0.8); /* Inner top edge rim light */
+        
+    /* Smooth Apple spring transition */
+    transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
 
-        .btn-slide-action:hover {
-            background: #0052a3;
-            box-shadow: 0 6px 16px rgba(0, 113, 227, 0.38);
-            transform: translateY(-1px);
-        }
+/* Hover State: Lifts slightly and brightens glass opacity */
+.btn-slide-action:hover {
+    background: rgba(255, 255, 255, 0.75);
+    border-color: rgba(255, 255, 255, 0.9);
+    color: #004488;
+    transform: translateY(-1.5px) scale(1.02);
+    box-shadow: 
+        0 6px 20px rgba(0, 80, 160, 0.12),
+        inset 0 1px 1px rgba(255, 255, 255, 0.9);
+}
 
+/* Active Click State: Subtle press feedback */
+.btn-slide-action:active {
+    transform: translateY(0) scale(0.98);
+    background: rgba(255, 255, 255, 0.6);
+    box-shadow: 0 2px 8px rgba(0, 80, 160, 0.08);
+}
 
-        .btn-slide-action:active {
-            transform: translateY(0);
-        }
 
         .carousel-dots {
             display: flex;
