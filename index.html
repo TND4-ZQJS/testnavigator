@@ -10,23 +10,21 @@
 <style>
 .arrival-carousel-container {
     position: relative;
-    /* Default initial background (Slide 1) */
+    /* Initial mesh background */
     background: 
         radial-gradient(at 0% 0%, #e3ffe7 0px, transparent 50%),
         radial-gradient(at 100% 100%, #d9e7ff 0px, transparent 50%),
         radial-gradient(at 80% 10%, #e0f4f3 0px, transparent 50%);
     background-color: #f7faff;
     
-    /* Smooth 0.6s cross-fade color transition */
-    transition: background 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+    /* Smooth 0.8s background morph */
+    transition: background 0.8s cubic-bezier(0.16, 1, 0.3, 1);
     
-    /* Subtle matching border */
     border: 1px solid rgba(0, 113, 227, 0.12);
     border-radius: 24px;
     padding: 28px 32px 20px 32px;
     margin-bottom: 36px;
     
-    /* Frosted glass pop */
     backdrop-filter: blur(25px) saturate(160%);
     -webkit-backdrop-filter: blur(25px) saturate(160%);
     box-shadow: 0 12px 32px rgba(0, 60, 120, 0.06);
@@ -95,14 +93,15 @@
     width: 100%;
 }
 
-/* Magic Move Track Physics */
+/* --- APPLE MAGIC MOVE PHYSICS ENGINE --- */
+
 .carousel-track {
     display: flex;
-    transition: transform 0.7s cubic-bezier(0.16, 1, 0.3, 1);
+    /* Soft elastic spring curve */
+    transition: transform 0.85s cubic-bezier(0.16, 1, 0.3, 1);
     will-change: transform;
 }
 
-/* Magic Move Slide Transitions */
 .carousel-slide {
     min-width: 100%;
     box-sizing: border-box;
@@ -112,39 +111,97 @@
     gap: 24px;
     padding: 8px 0 16px 0;
 
-    /* Scaled down & dimmed when inactive */
-    opacity: 0.35;
-    transform: scale(0.94);
-    filter: blur(2px);
+    /* Base Inactive State: Shrinks, dims, and blurs slightly */
+    opacity: 0.1;
+    transform: scale(0.92);
+    filter: blur(3px);
+    will-change: transform, opacity, filter;
     transition: 
-        transform 0.7s cubic-bezier(0.16, 1, 0.3, 1),
-        opacity 0.7s cubic-bezier(0.16, 1, 0.3, 1),
-        filter 0.7s cubic-bezier(0.16, 1, 0.3, 1);
+        transform 0.85s cubic-bezier(0.16, 1, 0.3, 1),
+        opacity 0.85s cubic-bezier(0.16, 1, 0.3, 1),
+        filter 0.85s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
-/* Active Slide State */
+/* Active Slide State: Pops up to 100% full scale and clarity */
 .carousel-slide.active-slide {
     opacity: 1;
     transform: scale(1);
     filter: blur(0px);
 }
 
-/* Inner Parallax Motion */
-.carousel-slide .slide-body,
-.carousel-slide .btn-slide-action {
-    transform: translateX(18px);
-    transition: transform 0.7s cubic-bezier(0.16, 1, 0.3, 1);
-}
-
-.carousel-slide.active-slide .slide-body,
-.carousel-slide.active-slide .btn-slide-action {
-    transform: translateX(0px);
-}
-
+/* Staggered Parallax Content Shift */
 .slide-body {
     max-width: 680px;
+    opacity: 0;
+    transform: translateX(28px);
+    transition: 
+        transform 0.85s cubic-bezier(0.16, 1, 0.3, 1),
+        opacity 0.6s ease;
 }
 
+.carousel-slide.active-slide .slide-body {
+    opacity: 1;
+    transform: translateX(0px);
+    /* Tiny delay lets the container background morph first */
+    transition-delay: 0.08s;
+}
+
+.btn-slide-action {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    padding: 10px 22px;
+    border-radius: 99px;
+    font-size: 14px;
+    font-weight: 500;
+    letter-spacing: -0.01em;
+    text-decoration: none;
+    cursor: pointer;
+    
+    background: rgba(255, 255, 255, 0.45);
+    backdrop-filter: blur(16px) saturate(180%);
+    -webkit-backdrop-filter: blur(16px) saturate(180%);
+    
+    color: #005bb5;
+    border: 1px solid rgba(255, 255, 255, 0.65);
+    box-shadow: 
+        0 4px 16px rgba(0, 80, 160, 0.08),
+        inset 0 1px 1px rgba(255, 255, 255, 0.8);
+
+    /* Inactive State for Button */
+    opacity: 0;
+    transform: translateX(40px) scale(0.95);
+    transition: 
+        transform 0.85s cubic-bezier(0.16, 1, 0.3, 1),
+        opacity 0.6s ease,
+        background 0.3s ease;
+}
+
+.carousel-slide.active-slide .btn-slide-action {
+    opacity: 1;
+    transform: translateX(0px) scale(1);
+    /* Button enters slightly after text for layered depth */
+    transition-delay: 0.14s;
+}
+
+.btn-slide-action:hover {
+    background: rgba(255, 255, 255, 0.75);
+    border-color: rgba(255, 255, 255, 0.9);
+    color: #004488;
+    transform: translateY(-1.5px) scale(1.02);
+    box-shadow: 
+        0 6px 20px rgba(0, 80, 160, 0.12),
+        inset 0 1px 1px rgba(255, 255, 255, 0.9);
+}
+
+.btn-slide-action:active {
+    transform: translateY(0) scale(0.98);
+    background: rgba(255, 255, 255, 0.6);
+    box-shadow: 0 2px 8px rgba(0, 80, 160, 0.08);
+}
+
+/* Typography & Badges */
 .slide-tag-row {
     display: flex;
     align-items: center;
@@ -197,48 +254,7 @@
     margin: 0;
 }
 
-.btn-slide-action {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    gap: 8px;
-    padding: 10px 22px;
-    border-radius: 99px;
-    font-size: 14px;
-    font-weight: 500;
-    letter-spacing: -0.01em;
-    text-decoration: none;
-    cursor: pointer;
-    
-    background: rgba(255, 255, 255, 0.45);
-    backdrop-filter: blur(16px) saturate(180%);
-    -webkit-backdrop-filter: blur(16px) saturate(180%);
-    
-    color: #005bb5;
-    border: 1px solid rgba(255, 255, 255, 0.65);
-    box-shadow: 
-        0 4px 16px rgba(0, 80, 160, 0.08),
-        inset 0 1px 1px rgba(255, 255, 255, 0.8);
-        
-    transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
-}
-
-.btn-slide-action:hover {
-    background: rgba(255, 255, 255, 0.75);
-    border-color: rgba(255, 255, 255, 0.9);
-    color: #004488;
-    transform: translateY(-1.5px) scale(1.02);
-    box-shadow: 
-        0 6px 20px rgba(0, 80, 160, 0.12),
-        inset 0 1px 1px rgba(255, 255, 255, 0.9);
-}
-
-.btn-slide-action:active {
-    transform: translateY(0) scale(0.98);
-    background: rgba(255, 255, 255, 0.6);
-    box-shadow: 0 2px 8px rgba(0, 80, 160, 0.08);
-}
-
+/* Dots Navigation */
 .carousel-dots {
     display: flex;
     align-items: center;
@@ -274,6 +290,7 @@
     }
 }
 </style>
+
 
 </head>
 <body>
