@@ -617,31 +617,30 @@ document.addEventListener("DOMContentLoaded", () => {
          radial-gradient(at 90% 20%, #e1bee7 0px, transparent 50%) #f8f9ff`
     ];
 
-function updateCarousel(index) {
-    currentIndex = index;
-    
-    // 1. Move the track with Apple spring physics
-    track.style.transform = `translateX(-${currentIndex * 100}%)`;
+    function updateCarousel(index) {
+        currentIndex = index;
+        
+        // 1. Move the track with Apple spring physics
+        track.style.transform = `translateX(-${currentIndex * 100}%)`;
 
-    // 2. Cross-fade the container background gradient
-    if (container && slideMeshGradients[currentIndex]) {
-        container.style.background = slideMeshGradients[currentIndex];
+        // 2. Cross-fade the container background gradient
+        if (container && slideMeshGradients[currentIndex]) {
+            container.style.background = slideMeshGradients[currentIndex];
+        }
+
+        // 3. Apply active state for Magic Move depth scaling
+        slides.forEach((slide, idx) => {
+            slide.classList.toggle("active-slide", idx === currentIndex);
+        });
+
+        // 4. Navigation states & dots
+        if (prevBtn) prevBtn.disabled = currentIndex === 0;
+        if (nextBtn) nextBtn.disabled = currentIndex === totalSlides - 1;
+
+        dots.forEach((dot, idx) => {
+            dot.classList.toggle("active", idx === currentIndex);
+        });
     }
-
-    // 3. Apply active state for Magic Move depth scaling
-    slides.forEach((slide, idx) => {
-        slide.classList.toggle("active-slide", idx === currentIndex);
-    });
-
-    // 4. Navigation states & dots
-    if (prevBtn) prevBtn.disabled = currentIndex === 0;
-    if (nextBtn) nextBtn.disabled = currentIndex === totalSlides - 1;
-
-    dots.forEach((dot, idx) => {
-        dot.classList.toggle("active", idx === currentIndex);
-    });
-}
-
 
     function nextSlide() {
         const targetIndex = (currentIndex + 1) % totalSlides;
@@ -685,20 +684,48 @@ function updateCarousel(index) {
         });
     });
 
-    // Pause Auto-Play on Hover / Resume on Leave
+    // --- HOVER & TOUCH PAUSE / RESUME ---
     if (container) {
+        // Desktop Hover
         container.addEventListener("mouseenter", stopAutoPlay);
         container.addEventListener("mouseleave", startAutoPlay);
-        container.addEventListener("touchstart", stopAutoPlay, { passive: true });
+
+        // Mobile Touch (Pause on tap/drag, Resume when lifted)
+        let touchStartX = 0;
+        let touchEndX = 0;
+
+        container.addEventListener("touchstart", (e) => {
+            stopAutoPlay();
+            touchStartX = e.changedTouches[0].screenX;
+        }, { passive: true });
+
+        container.addEventListener("touchend", (e) => {
+            touchEndX = e.changedTouches[0].screenX;
+            handleSwipe();
+            startAutoPlay(); // Restart timer on release
+        }, { passive: true });
+
+        // Touch Swipe Gesture Handling
+        function handleSwipe() {
+            const swipeDistance = touchStartX - touchEndX;
+            const threshold = 40; // minimum 40px swipe to switch
+            
+            if (swipeDistance > threshold && currentIndex < totalSlides - 1) {
+                // Swiped Left -> Next Slide
+                updateCarousel(currentIndex + 1);
+            } else if (swipeDistance < -threshold && currentIndex > 0) {
+                // Swiped Right -> Previous Slide
+                updateCarousel(currentIndex - 1);
+            }
+        }
     }
 
     // Initialize
     updateCarousel(0);
     startAutoPlay();
 });
+</script>
 
-
-    </script>
     
 </body>
 </html>
