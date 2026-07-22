@@ -491,8 +491,7 @@
         });
     </script>
 
-    <!-- Carousel Logic Controller -->
-    <script>
+<script>
 document.addEventListener("DOMContentLoaded", () => {
     const container = document.querySelector(".arrival-carousel-container");
     const track = document.getElementById("carouselTrack");
@@ -505,20 +504,18 @@ document.addEventListener("DOMContentLoaded", () => {
 
     let currentIndex = 0;
     const totalSlides = slides.length;
+    const slideInterval = 7000; // 7 seconds per slide
+    let autoPlayTimer = null;
 
-    // Array of unique mesh gradients matching each slide index
     const slideMeshGradients = [
-        // Slide 1: Mint-to-Sky Horizon (Original)
         `radial-gradient(at 0% 0%, #e3ffe7 0px, transparent 50%),
          radial-gradient(at 100% 100%, #d9e7ff 0px, transparent 50%),
          radial-gradient(at 80% 10%, #e0f4f3 0px, transparent 50%) #f7faff`,
 
-        // Slide 2: Sunset Horizon Mesh
         `radial-gradient(at 0% 0%, #fff3e0 0px, transparent 50%),
          radial-gradient(at 100% 100%, #d9e7ff 0px, transparent 50%),
          radial-gradient(at 20% 90%, #ffe0b2 0px, transparent 50%) #faf8ff`,
 
-        // Slide 3: Lavender Dusk Mesh
         `radial-gradient(at 0% 0%, #f3e5f5 0px, transparent 50%),
          radial-gradient(at 100% 100%, #e8eaf6 0px, transparent 50%),
          radial-gradient(at 90% 20%, #e1bee7 0px, transparent 50%) #f8f9ff`
@@ -527,33 +524,51 @@ document.addEventListener("DOMContentLoaded", () => {
     function updateCarousel(index) {
         currentIndex = index;
         
-        // 1. Slide the track horizontally
         track.style.transform = `translateX(-${currentIndex * 100}%)`;
 
-        // 2. Cross-fade the container mesh gradient background
         if (container && slideMeshGradients[currentIndex]) {
             container.style.background = slideMeshGradients[currentIndex];
         }
 
-        // 3. Toggle button state
         if (prevBtn) prevBtn.disabled = currentIndex === 0;
         if (nextBtn) nextBtn.disabled = currentIndex === totalSlides - 1;
 
-        // 4. Update dot indicators
         dots.forEach((dot, idx) => {
             dot.classList.toggle("active", idx === currentIndex);
         });
     }
 
+    function nextSlide() {
+        const targetIndex = (currentIndex + 1) % totalSlides;
+        updateCarousel(targetIndex);
+    }
+
+    function startAutoPlay() {
+        stopAutoPlay();
+        autoPlayTimer = setInterval(nextSlide, slideInterval);
+    }
+
+    function stopAutoPlay() {
+        if (autoPlayTimer) clearInterval(autoPlayTimer);
+    }
+
+    function restartAutoPlay() {
+        stopAutoPlay();
+        startAutoPlay();
+    }
+
+    // Nav Button Handlers
     if (prevBtn) {
         prevBtn.addEventListener("click", () => {
             if (currentIndex > 0) updateCarousel(currentIndex - 1);
+            restartAutoPlay();
         });
     }
 
     if (nextBtn) {
         nextBtn.addEventListener("click", () => {
             if (currentIndex < totalSlides - 1) updateCarousel(currentIndex + 1);
+            restartAutoPlay();
         });
     }
 
@@ -561,12 +576,22 @@ document.addEventListener("DOMContentLoaded", () => {
         dot.addEventListener("click", (e) => {
             const targetIndex = parseInt(e.target.getAttribute("data-index"), 10);
             updateCarousel(targetIndex);
+            restartAutoPlay();
         });
     });
 
-    // Ensure the initial background is set correctly on load
+    // Pause Auto-Play on Hover / Resume on Leave
+    if (container) {
+        container.addEventListener("mouseenter", stopAutoPlay);
+        container.addEventListener("mouseleave", startAutoPlay);
+        container.addEventListener("touchstart", stopAutoPlay, { passive: true });
+    }
+
+    // Initialize
     updateCarousel(0);
+    startAutoPlay();
 });
+
 
     </script>
     
