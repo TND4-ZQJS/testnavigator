@@ -17,8 +17,8 @@
         radial-gradient(at 80% 10%, #e0f4f3 0px, transparent 50%);
     background-color: #f7faff;
     
-    /* Smooth 0.8s background morph */
-    transition: background 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+    /* Extended 1.2s background morph for liquid smoothness */
+    transition: background 1.2s cubic-bezier(0.19, 1, 0.22, 1);
     
     border: 1px solid rgba(0, 113, 227, 0.12);
     border-radius: 24px;
@@ -67,7 +67,7 @@
     justify-content: center;
     cursor: pointer;
     backdrop-filter: blur(10px);
-    transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+    transition: all 0.3s cubic-bezier(0.19, 1, 0.22, 1);
 }
 
 .carousel-arrow-btn:hover {
@@ -93,12 +93,12 @@
     width: 100%;
 }
 
-/* --- APPLE MAGIC MOVE PHYSICS ENGINE --- */
+/* --- SLOW & LIQUID MAGIC MOVE PHYSICS --- */
 
 .carousel-track {
     display: flex;
-    /* Soft elastic spring curve */
-    transition: transform 0.85s cubic-bezier(0.16, 1, 0.3, 1);
+    /* Extended 1.2s curve gives elements time to breathe and settle */
+    transition: transform 1.2s cubic-bezier(0.19, 1, 0.22, 1);
     will-change: transform;
 }
 
@@ -111,39 +111,39 @@
     gap: 24px;
     padding: 8px 0 16px 0;
 
-    /* Base Inactive State: Shrinks, dims, and blurs slightly */
-    opacity: 0.1;
-    transform: scale(0.92);
-    filter: blur(3px);
+    /* Deep inactive state: Soft blur, dropped scale, nearly transparent */
+    opacity: 0;
+    transform: scale(0.88);
+    filter: blur(6px);
     will-change: transform, opacity, filter;
     transition: 
-        transform 0.85s cubic-bezier(0.16, 1, 0.3, 1),
-        opacity 0.85s cubic-bezier(0.16, 1, 0.3, 1),
-        filter 0.85s cubic-bezier(0.16, 1, 0.3, 1);
+        transform 1.2s cubic-bezier(0.19, 1, 0.22, 1),
+        opacity 1.0s cubic-bezier(0.19, 1, 0.22, 1),
+        filter 1.2s cubic-bezier(0.19, 1, 0.22, 1);
 }
 
-/* Active Slide State: Pops up to 100% full scale and clarity */
+/* Active Slide State */
 .carousel-slide.active-slide {
     opacity: 1;
     transform: scale(1);
     filter: blur(0px);
 }
 
-/* Staggered Parallax Content Shift */
+/* Staggered Content Floating Layer */
 .slide-body {
     max-width: 680px;
     opacity: 0;
-    transform: translateX(28px);
+    transform: translateX(45px);
     transition: 
-        transform 0.85s cubic-bezier(0.16, 1, 0.3, 1),
-        opacity 0.6s ease;
+        transform 1.2s cubic-bezier(0.19, 1, 0.22, 1),
+        opacity 0.9s cubic-bezier(0.19, 1, 0.22, 1);
 }
 
 .carousel-slide.active-slide .slide-body {
     opacity: 1;
     transform: translateX(0px);
-    /* Tiny delay lets the container background morph first */
-    transition-delay: 0.08s;
+    /* Delayed entrance allows the track movement to feel weighted */
+    transition-delay: 0.12s;
 }
 
 .btn-slide-action {
@@ -169,20 +169,19 @@
         0 4px 16px rgba(0, 80, 160, 0.08),
         inset 0 1px 1px rgba(255, 255, 255, 0.8);
 
-    /* Inactive State for Button */
     opacity: 0;
-    transform: translateX(40px) scale(0.95);
+    transform: translateX(60px) scale(0.92);
     transition: 
-        transform 0.85s cubic-bezier(0.16, 1, 0.3, 1),
-        opacity 0.6s ease,
+        transform 1.2s cubic-bezier(0.19, 1, 0.22, 1),
+        opacity 0.9s cubic-bezier(0.19, 1, 0.22, 1),
         background 0.3s ease;
 }
 
 .carousel-slide.active-slide .btn-slide-action {
     opacity: 1;
     transform: translateX(0px) scale(1);
-    /* Button enters slightly after text for layered depth */
-    transition-delay: 0.14s;
+    /* Button lags slightly behind text to build layered depth */
+    transition-delay: 0.22s;
 }
 
 .btn-slide-action:hover {
@@ -254,7 +253,7 @@
     margin: 0;
 }
 
-/* Dots Navigation */
+/* Navigation Dots */
 .carousel-dots {
     display: flex;
     align-items: center;
@@ -269,7 +268,7 @@
     border-radius: 50%;
     background: rgba(0, 113, 227, 0.2);
     cursor: pointer;
-    transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+    transition: all 0.4s cubic-bezier(0.19, 1, 0.22, 1);
 }
 
 .dot.active {
