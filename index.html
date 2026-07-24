@@ -269,51 +269,64 @@
 
 <script>
 document.addEventListener("DOMContentLoaded", () => {
+    // iPad/Mobile Safari initial scroll fix
+    window.scrollTo(0, 0);
+
     const container = document.querySelector(".arrival-carousel-container");
     const track = document.getElementById("carouselTrack");
     const slides = document.querySelectorAll(".carousel-slide");
     const prevBtn = document.getElementById("prevSlideBtn");
     const nextBtn = document.getElementById("nextSlideBtn");
-    const dots = document.querySelectorAll(".dot");
+    const dotsContainer = document.querySelector(".carousel-dots");
 
     if (!track || slides.length === 0) return;
 
     let currentIndex = 0;
-    const totalSlides = slides.length;
-    const slideInterval = 7000; // 7 seconds per slide
+    const totalSlides = slides.length; // <-- Automatically counts your HTML slides
+    const slideInterval = 7000;
     let autoPlayTimer = null;
 
-    const slideMeshGradients = [
-        `radial-gradient(at 0% 0%, #e3ffe7 0px, transparent 50%),
-         radial-gradient(at 100% 100%, #d9e7ff 0px, transparent 50%),
-         radial-gradient(at 80% 10%, #e0f4f3 0px, transparent 50%) #f7faff`,
+    // Dynamic Mesh Gradients (Hue rotates smoothly based on total slide count)
+    function setDynamicBackground(index) {
+        if (!container) return;
+        // Rotates the mesh gradient hue based on current index / totalSlides ratio
+        const hueShift = Math.round((index / totalSlides) * 360);
+        container.style.background = `
+            radial-gradient(at 0% 0%, hsl(${hueShift + 120}, 80%, 92%) 0px, transparent 50%),
+            radial-gradient(at 100% 100%, hsl(${hueShift + 210}, 80%, 92%) 0px, transparent 50%),
+            radial-gradient(at 80% 10%, hsl(${hueShift + 170}, 80%, 92%) 0px, transparent 50%) #f7faff
+        `;
+    }
 
-        `radial-gradient(at 0% 0%, #fff3e0 0px, transparent 50%),
-         radial-gradient(at 100% 100%, #d9e7ff 0px, transparent 50%),
-         radial-gradient(at 20% 90%, #ffe0b2 0px, transparent 50%) #faf8ff`,
+    // Automatically build navigation dots to match total slide count
+    if (dotsContainer) {
+        dotsContainer.innerHTML = ""; // Clear static dots
+        slides.forEach((_, idx) => {
+            const dot = document.createElement("span");
+            dot.classList.add("dot");
+            if (idx === 0) dot.classList.add("active");
+            dot.setAttribute("data-index", idx);
+            dotsContainer.appendChild(dot);
+        });
+    }
 
-        `radial-gradient(at 0% 0%, #f3e5f5 0px, transparent 50%),
-         radial-gradient(at 100% 100%, #e8eaf6 0px, transparent 50%),
-         radial-gradient(at 90% 20%, #e1bee7 0px, transparent 50%) #f8f9ff`
-    ];
+    const dots = document.querySelectorAll(".dot");
 
     function updateCarousel(index) {
         currentIndex = index;
         
-        // 1. Move the track with Apple spring physics
+        // 1. Shift track using standard percentage
         track.style.transform = `translateX(-${currentIndex * 100}%)`;
 
-        // 2. Cross-fade the container background gradient
-        if (container && slideMeshGradients[currentIndex]) {
-            container.style.background = slideMeshGradients[currentIndex];
-        }
+        // 2. Dynamically change mesh color for any total slide count
+        setDynamicBackground(currentIndex);
 
-        // 3. Apply active state for Magic Move depth scaling
+        // 3. Active state for Magic Move depth scaling
         slides.forEach((slide, idx) => {
             slide.classList.toggle("active-slide", idx === currentIndex);
         });
 
-        // 4. Navigation states & dots
+        // 4. Update Nav Buttons & Dots
         if (prevBtn) prevBtn.disabled = currentIndex === 0;
         if (nextBtn) nextBtn.disabled = currentIndex === totalSlides - 1;
 
@@ -341,7 +354,7 @@ document.addEventListener("DOMContentLoaded", () => {
         startAutoPlay();
     }
 
-    // Nav Button Handlers
+    // Button Listeners
     if (prevBtn) {
         prevBtn.addEventListener("click", () => {
             if (currentIndex > 0) updateCarousel(currentIndex - 1);
@@ -364,13 +377,11 @@ document.addEventListener("DOMContentLoaded", () => {
         });
     });
 
-    // --- HOVER & TOUCH PAUSE / RESUME ---
+    // Touch & Mouse Event Handlers
     if (container) {
-        // Desktop Hover
         container.addEventListener("mouseenter", stopAutoPlay);
         container.addEventListener("mouseleave", startAutoPlay);
 
-        // Mobile Touch (Pause on tap/drag, Resume when lifted)
         let touchStartX = 0;
         let touchEndX = 0;
 
@@ -382,19 +393,16 @@ document.addEventListener("DOMContentLoaded", () => {
         container.addEventListener("touchend", (e) => {
             touchEndX = e.changedTouches[0].screenX;
             handleSwipe();
-            startAutoPlay(); // Restart timer on release
+            startAutoPlay();
         }, { passive: true });
 
-        // Touch Swipe Gesture Handling
         function handleSwipe() {
             const swipeDistance = touchStartX - touchEndX;
-            const threshold = 40; // minimum 40px swipe to switch
+            const threshold = 40;
             
             if (swipeDistance > threshold && currentIndex < totalSlides - 1) {
-                // Swiped Left -> Next Slide
                 updateCarousel(currentIndex + 1);
             } else if (swipeDistance < -threshold && currentIndex > 0) {
-                // Swiped Right -> Previous Slide
                 updateCarousel(currentIndex - 1);
             }
         }
@@ -404,6 +412,7 @@ document.addEventListener("DOMContentLoaded", () => {
     updateCarousel(0);
     startAutoPlay();
 });
+
 </script>
 
     
